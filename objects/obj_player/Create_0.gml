@@ -1,3 +1,5 @@
+event_inherited()
+global.player=id
 #region 初始化配置，可重复
 #region 区别配置项
 	hspd=1;
@@ -64,14 +66,6 @@
 		SS_talk=asset_get_index(string_replace("spr_player_@_talk","@",modelname))
 		SS_talking=asset_get_index(string_replace("spr_player_@_talking","@",modelname))
 		SS_talked=asset_get_index(string_replace("spr_player_@_talked","@",modelname))
-		//SS_change=asset_get_index(string_replace("spr_player_@_change","@",modelname))
-		//SS_changing=asset_get_index(string_replace("spr_player_@_changing","@",modelname))
-		//SS_changing2=asset_get_index(string_replace("spr_$_changing2","$",charname))//用人形
-		//SS_changed=asset_get_index(string_replace("spr_player_@_changed","@",modelname))
-		//SS_change_air=asset_get_index(string_replace("spr_player_@_change_air","@",modelname))
-		//SS_changing_air=asset_get_index(string_replace("spr_player_@_changing_air","@",modelname))
-		//SS_changing2_air=asset_get_index(string_replace("spr_$_changing2_air","$",charname))//用人形
-		//SS_changed_air=asset_get_index(string_replace("spr_player_@_changed_air","@",modelname))
 		SS_doorup=asset_get_index(string_replace("spr_player_@_doorup","@",modelname))
 		//SS_squat=asset_get_index(string_replace("spr_player_@_squat","@",modelname))
 		//SS_squating=asset_get_index(string_replace("spr_player_@_squating","@",modelname))
@@ -82,6 +76,16 @@
 		//SS_drop=asset_get_index(string_replace("spr_player_@_drop","@",modelname))
 		//SS_droping=asset_get_index(string_replace("spr_player_@_droping","@",modelname))
 		//SS_droped=asset_get_index(string_replace("spr_player_@_droped","@",modelname))
+		SS_change_idle_start=asset_get_index(string_replace("spr_player_@_change_idle_start","@",modelname))
+		SS_change_idle_ing=asset_get_index(string_replace("spr_player_@_change_idle_ing","@",modelname))
+		SS_change_idle_selected=asset_get_index(string_replace("spr_player_@_change_idle_selected","@",modelname))
+		SS_change_idle_ed=asset_get_index(string_replace("spr_player_@_change_idle_ed","@",modelname))
+		SS_change_idle_cancle=asset_get_index(string_replace("spr_player_@_change_idle_cancle","@",modelname))
+		SS_change_fall_start=asset_get_index(string_replace("spr_player_@_change_fall_start","@",modelname))
+		SS_change_fall_ing=asset_get_index(string_replace("spr_player_@_change_fall_ing","@",modelname))
+		SS_change_fall_selected=asset_get_index(string_replace("spr_player_@_change_fall_selected","@",modelname))
+		SS_change_fall_ed=asset_get_index(string_replace("spr_player_@_change_fall_ed","@",modelname))
+		SS_change_fall_cancle=asset_get_index(string_replace("spr_player_@_change_fall_cancle","@",modelname))
 	#endregion
 	#region 人类动作
 		SS_creep=asset_get_index(string_replace("spr_player_@_creep","@",modelname))
@@ -105,7 +109,7 @@
 		SS_craw_shoot=asset_get_index(string_replace("spr_player_@_craw_shoot","@",modelname))
 		//SS_lad_shoot=asset_get_index(string_replace("spr_player_@_lad_shoot","@",modelname))
 	#endregion
-	#region
+	#region 
 	#endregion
 	scr_sprite_change(SS_idle,0,0.25)
 #endregion
@@ -113,6 +117,7 @@
 	uncharge[1]=true
 	uncharge[2]=true
 	sub_unuse=true
+	charge_dis=30//蓄力开始显示值
 	charge_max=100//蓄力最大值，默认100，X150
 #endregion
 #region 身体替换颜色
@@ -152,7 +157,6 @@ initized=1;
 #endregion
 #region 基础属性
 sprite_set_speed(sprite_index,0.25,spritespeed_framespergameframe);
-scr_menu_var();
 walk=0;
 jump=0;
 hsp=0;

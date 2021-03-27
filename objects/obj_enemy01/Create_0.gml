@@ -1,4 +1,4 @@
-hp=10
+hp=50
 attack=6
 event_inherited();
 

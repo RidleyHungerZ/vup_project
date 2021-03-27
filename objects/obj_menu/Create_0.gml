@@ -1,3 +1,4 @@
+event_inherited()
 global.menu=0
 #region 菜单操作变量
 time=0
@@ -12,7 +13,4 @@ menu_page_change_rate=0 //页切换进度
 for(var page=0;page<=20;page+=1)
 	for(var type=0;type<=2;type+=1)
 		menu_select[page][type]=1
-#endregion
-#region 插卡操作变量
-card_outsert_rate=0 //卡片拔出程度，0插卡中，1完全拔卡
 #endregion

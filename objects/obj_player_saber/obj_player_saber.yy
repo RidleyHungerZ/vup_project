@@ -1,9 +1,12 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_player_armor_idle_chop1_saber",
+    "path": "sprites/spr_player_armor_idle_chop1_saber/spr_player_armor_idle_chop1_saber.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
-  "persistent": false,
+  "persistent": true,
   "parentObjectId": {
     "name": "obj_player_attack",
     "path": "objects/obj_player_attack/obj_player_attack.yy",

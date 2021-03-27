@@ -50,9 +50,59 @@ else if bullet_time==0{
 		scr_sprite_change(SS_fall,0,0.25)
 }
 #endregion
+#region 剑斩动作
+if(scr_player_mainuse(0,0)
+&& scr_player_main_chargebreak(0)!=2) {
+	if jump==0 {
+		if walk==0 {
+			scr_sprite_change(spr_player_armor_idle_chop1, 0, 0.5)
+			scr_sound_play(se_player_armor_chop)
+			scr_sound_play(se_player_armor_chop_cv1)
+			walk=4
+		} else if walk==1 {
+				
+		} else if walk==2 {
+				
+		} else if walk==4 {
+			if sprite_index == spr_player_armor_idle_chop1 {
+				saber_combo++
+			} else if sprite_index == spr_player_armor_idle_chop2 {
+				saber_combo++
+			}
+		}
+	} else {
+			
+	}
+}
+//连斩指令积攒
+if saber_combo>0 {
+	if walk==4 {
+		if sprite_index == spr_player_armor_idle_chop1 && image_index>=5 {
+			saber_combo--
+			scr_sprite_change(spr_player_armor_idle_chop2, 0, 0.5)
+			scr_sound_play(se_player_armor_chop)
+			scr_sound_play(se_player_armor_chop_cv2)
+		} else if sprite_index == spr_player_armor_idle_chop2 && image_index>=5 {
+			saber_combo--
+			scr_sprite_change(spr_player_armor_idle_chop3, 0, 0.5)
+			scr_sound_play(se_player_armor_chop)
+			scr_sound_play(se_player_armor_chop_cv3)
+		}
+	}
+}
+//蓄力斩
+if(scr_player_mainuse(0,0)
+&& scr_player_main_chargebreak(0)==2) {
+	if jump==0 {
+		print "地面蓄力斩"
+	} else {
+		print "空中蓄力斩"
+	}
+}
+#endregion
 #region 发动射击
-if scr_player_mainuse(0,0)
-&&(scr_player_main_chargebreak(0)>0 || canShootBullets()) {
+if scr_player_subuse(0,0)
+&&(scr_player_sub_chargebreak(0)>0 || canShootBullets()) {
 	if jump=0{
 		if walk==0{
 			scr_sprite_change(SS_idle_shoot,0,0.25)

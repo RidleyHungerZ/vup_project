@@ -1,5 +1,4 @@
-scr_menu_var();
-scr_sprite_change(-2,-2,0.25);
+event_inherited()
 /////////////////////////////////
 if(!variable_instance_exists(id,"attack")) 
 	attack=0;

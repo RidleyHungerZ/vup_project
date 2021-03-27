@@ -104,8 +104,10 @@ if(scr_menu_trem()) {
 			scr_sprite_change(SS_idle, 0, 0.25)
 			image_xscale=other.image_xscale
 			image_yscale=other.image_yscale
+			injure_t=other.injure_t
 		}
 		instance_destroy()
+		exit
 	}
 	#endregion
 }
@@ -519,14 +521,14 @@ else if(injure_element==ELEMENTS.ice) {
 if(sprite_index==SS_trip) {
 	if(walk==-1) injure_t=1;//跌倒时无敌一直在
 	#region 落空
-	if(!place_meeting(x,y+2*image_yscale,obj_ground)
+	if(!place_meeting(x,y+GRDY+2*image_yscale,obj_ground)
 	&&!(image_yscale==1
-	&& collision_rectangle(bbox_right,bbox_bottom+2,bbox_left,bbox_bottom,obj_floor,1,1)
-	&&!collision_rectangle(bbox_right,bbox_bottom-1,bbox_left,bbox_bottom-2,obj_floor,1,1))
+	&& collision_rectangle(bbox_right,bbox_bottom+GRDY+2,bbox_left,bbox_bottom+GRDY,obj_floor,1,1)
+	&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-1,bbox_left,bbox_bottom+GRDY-2,obj_floor,1,1))
 	&&!(image_yscale==-1
-	&& collision_rectangle(bbox_right,bbox_top,bbox_left,bbox_top-2,obj_floor,1,1)
-	&&!collision_rectangle(bbox_right,bbox_top+2,bbox_left,bbox_top+1,obj_floor,1,1))
-	&&!place_meeting(x,y,obj_sink)) {
+	&& collision_rectangle(bbox_right,bbox_top-GRDY,bbox_left,bbox_top-GRDY-2,obj_floor,1,1)
+	&&!collision_rectangle(bbox_right,bbox_top-+GRDY+2,bbox_left,bbox_top-GRDY+1,obj_floor,1,1))
+	&&!place_meeting(x,y+GRDY,obj_sink)) {
 		scr_sprite_change(SS_jumped,0,0.25);
 		jump=2;
 		walk=0;
@@ -541,7 +543,7 @@ if(sprite_index==SS_trip) {
 &&(walk!=2 && walk!=5 && jump!=9))
 ||(collision_rectangle(bbox_right-1,bbox_bottom-1,bbox_left+1,bbox_top,obj_ground,1,1)
 &&(walk==2 || walk==5 || jump==9))) */
-if(collision_rectangle(bbox_right-1,bbox_bottom-2,bbox_left+1,bbox_top+2,obj_ground,1,1)) 
+if(collision_rectangle(bbox_right-1,bbox_bottom+GRDY-2,bbox_left+1,bbox_top+2,obj_ground,1,1)) 
 	global.player_hp=0;
 #endregion
 #region 左右出镜头

@@ -1,5 +1,9 @@
 model=PLAYER_MODEL.HU
 event_inherited();
+uncharge[1]=true
+uncharge[2]=true
+sub_unuse=true
+
 dash_can=0//可以冲刺
 craw_can=0//可以爬墙
 swim_can=0//可以下水

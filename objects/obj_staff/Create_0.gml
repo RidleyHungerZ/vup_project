@@ -1,3 +1,4 @@
+event_inherited()
 #region init脚本
 //宏初始化
 scr_macros()
@@ -252,6 +253,8 @@ data_save_variable_single()
 data_save_variable_global()
 #endregion
 #region 其他变量
+global.player_change_flash=0
+global.player_change_flash_rate=0
 global.room_change=0
 global.room_change_rate=array_create(3,0)
 global.skip=0
@@ -264,15 +267,23 @@ global.player_reversed=0//上下倒立
 global.floor_down_list=ds_list_create()//玩家半透板记录
 player_death_action=0//重生控制变量
 player_death_time=0//重生控制变量
+player_change_action=0 //换卡动作
+player_change_time=0 //换卡动作
+player_change_last=0 //换之前上一张卡
+player_change_select=0 //选中的卡
+player_change_select_dir=0 //更改选择的方向
+player_change_outsert_rate=0 //卡片拔出程度，0插卡中，1完全拔卡
+player_change_cancle=false //是否是取消的
+player_change_over=false //玩家动画已经走完
 #endregion
 #region 发射区
 instance_create_depth(0, 0, 0, obj_view)
 instance_create_depth(0, 0, -10000, obj_menu)
 player[PLAYER_MODEL.HU]=obj_player_hu
 player[PLAYER_MODEL.ARMOR]=obj_player_armor
-global.player=instance_create_layer(x,y,"player",player[PLAYER_MODEL.HU])
-with global.player {
+with instance_create_layer(x,y,"player",player[PLAYER_MODEL.HU]) {
 	scr_sprite_change(spr_none, 0, 0)
+	instance_create_depth(x,y,depth-10,obj_player_saber)
 }
 #endregion
 #region 重生区

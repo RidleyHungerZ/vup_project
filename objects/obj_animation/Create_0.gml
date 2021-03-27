@@ -1,1 +1,1 @@
-scr_menu_var()
+event_inherited()

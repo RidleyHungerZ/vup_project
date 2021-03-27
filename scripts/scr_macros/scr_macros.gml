@@ -41,6 +41,14 @@ function scr_macro(){
 #endregion
 #region 常用obj常量
 	#macro GRAV 0.5
-	#macro GROUND_DRAWY 4
+	#macro GRDY 4
+#endregion
+#region 邪道语法
+#macro print								\
+	for(var _print_message; ; {				\
+		show_debug_message(_print_message);	\
+		break;								\
+	}) _print_message=
+
 #endregion
 }

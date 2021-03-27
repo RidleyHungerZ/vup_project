@@ -1,5 +1,10 @@
 model=PLAYER_MODEL.ARMOR
 event_inherited();
+uncharge[1]=false
+uncharge[2]=false
+sub_unuse=false
+
+saber_combo=0 //记录按键combo
 
 bullet_time=-1
 bullet_set=30

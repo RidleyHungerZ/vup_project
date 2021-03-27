@@ -1,6 +1,6 @@
 /// @desc 主武器按键状态
 function scr_player_charge_mainkey_status() {
-	if obj_player.sub_unuse=0{
+	if !obj_player.sub_unuse {
 		if global.sub_type=0
 			return global.att_state
 		else if global.sub_type=1
@@ -12,7 +12,7 @@ function scr_player_charge_mainkey_status() {
 				return 0
 		}
 	}
-	else if obj_player.sub_unuse=1{
+	else if obj_player.sub_unuse {
 		//Y,R
 		if global.sub_type=0{
 			if !keystate_check(global.att_state) 
@@ -122,7 +122,7 @@ function scr_player_mainuse(status, exmainsub0) {
 		&&(keystate_check_pressed(global.att_state) || !in(scr_player_main_chargebreak(1),0,4)))
 			return true
 		else{
-			if obj_player.sub_unuse==1{
+			if obj_player.sub_unuse {
 				if(global.sub_type==0 
 				&&(keystate_check_pressed(global.sub_state) || !in(scr_player_main_chargebreak(1),0,4)))
 				||(global.sub_type==1 && !keystate_check(global.sub_state)
@@ -153,7 +153,7 @@ function scr_player_mainuse(status, exmainsub0) {
 		||(global.sub_type==2 && keystate_check(global.att_state) && global.sub_change[global.model]==0)
 			return true
 		else{
-			if obj_player.sub_unuse==1{
+			if obj_player.sub_unuse {
 				if(global.sub_type==0 && keystate_check(global.sub_state))
 				||(global.sub_type==1 && keystate_check(global.att_state) && keystate_check(global.sub_state))
 				||(global.sub_type==2 && keystate_check(global.att_state) && global.sub_change[global.model]==1)

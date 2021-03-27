@@ -1,4 +1,4 @@
-scr_menu_var();
+event_inherited()
 dspeed=0;
 flash=-1;
 jump=0;

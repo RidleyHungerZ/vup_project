@@ -1,3 +1,4 @@
+event_inherited()
 #region 镜头设置
 //场景镜头
 view={

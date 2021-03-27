@@ -147,7 +147,7 @@ for(var i=1;i<=2;i+=1){
 			//蓄力
 			if((scr_player_charge_mainkey_status()>1 && i==1)
 			||(scr_player_charge_subkey_status()>1 && i==2)) {
-				if(charge[i]<30) charge[i]+=0.5;
+				if(charge[i]<charge_dis) charge[i]+=0.5;
 				else if(charge[i]<charge_max) {
 					charge[i]+=1;
 				}
@@ -277,20 +277,20 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 落下半透板
-		var flordown = collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+		var flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY,obj_floor,1,1);
 		if(image_yscale==-1)  
-			flordown = collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY,bbox_left,bbox_top-GROUND_DRAWY-1,obj_floor,1,1);
+			flordown = collision_rectangle(bbox_right,bbox_top-GRDY,bbox_left,bbox_top-GRDY-1,obj_floor,1,1);
 		if((flordown
-		&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_bottom+GROUND_DRAWY,obj_ground,1,1)
+		&&!collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY,obj_ground,1,1)
 		&& image_yscale==1)
 		||(flordown
-		&&!collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY,bbox_left,bbox_top-GROUND_DRAWY-1,obj_ground,1,1)
+		&&!collision_rectangle(bbox_right,bbox_top-GRDY,bbox_left,bbox_top-GRDY-1,obj_ground,1,1)
 		&& image_yscale==-1)) {
 			if(((image_yscale==1 && keystate_check(global.down_state))
 			||(image_yscale==-1 && keystate_check(global.up_state)))
 			&& keystate_check_pressed(global.jump_state)) {
 				//y+=5*image_yscale;
-				while(place_meeting(x,y+GROUND_DRAWY,obj_ground)) y-=image_yscale;
+				while(place_meeting(x,y+GRDY,obj_ground)) y-=image_yscale;
 				scr_sprite_change(SS_jumped,0,0.25);
 				if(walk==8 || walk==2)
 					scr_player_outground();
@@ -315,20 +315,20 @@ for(var i=1;i<=2;i+=1){
 		var dashbox=((walk==2||walk==5) ? 1 : 0)*8,
 			dleft=dashbox*rightshf*-1,
 			dright=dashbox*leftshf*1;//冲刺的多余部分
-		var flordown = collision_rectangle(bbox_right+dright,bbox_bottom+GROUND_DRAWY+2,bbox_left+dleft,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+		var flordown = collision_rectangle(bbox_right+dright,bbox_bottom+GRDY+2,bbox_left+dleft,bbox_bottom+GRDY,obj_floor,1,1);
 		if(image_yscale==-1) 
-			flordown = collision_rectangle(bbox_right+dright,bbox_top-GROUND_DRAWY,bbox_left+dleft,bbox_top-GROUND_DRAWY-2,obj_floor,1,1);
+			flordown = collision_rectangle(bbox_right+dright,bbox_top-GRDY,bbox_left+dleft,bbox_top-GRDY-2,obj_floor,1,1);
 		//记录的半透板
 		if(scr_player_floordown_exists(flordown)) flordown=noone;
-		if(!collision_rectangle(bbox_right+dright,bbox_bottom+GROUND_DRAWY+2*bottomshf,bbox_left+dleft,bbox_top-2*topshf,obj_ground,1,1)
-		&&!((image_yscale==1 && collision_rectangle(bbox_right+dright,bbox_bottom+GROUND_DRAWY+1,bbox_left+dleft,bbox_top,obj_sink,1,1))
-		|| (image_yscale==-1 && collision_rectangle(bbox_right+dright,bbox_bottom,bbox_left+dleft,bbox_top-GROUND_DRAWY-1,obj_sink,1,1)))
+		if(!collision_rectangle(bbox_right+dright,bbox_bottom+GRDY+2*bottomshf,bbox_left+dleft,bbox_top-2*topshf,obj_ground,1,1)
+		&&!((image_yscale==1 && collision_rectangle(bbox_right+dright,bbox_bottom+GRDY+1,bbox_left+dleft,bbox_top,obj_sink,1,1))
+		|| (image_yscale==-1 && collision_rectangle(bbox_right+dright,bbox_bottom,bbox_left+dleft,bbox_top-GRDY-1,obj_sink,1,1)))
 		&&!((image_yscale==1
 		&& flordown
-		&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY-1,bbox_left,bbox_bottom+GROUND_DRAWY-2,obj_floor,1,1))
+		&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-1,bbox_left,bbox_bottom+GRDY-2,obj_floor,1,1))
 		|| (image_yscale==-1
 		&& flordown
-		&&!collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+2,bbox_left,bbox_top-GROUND_DRAWY+1,obj_floor,1,1)))) {
+		&&!collision_rectangle(bbox_right,bbox_top-GRDY+2,bbox_left,bbox_top-GRDY+1,obj_floor,1,1)))) {
 			scr_sprite_change(SS_jumped,0,0.25);
 			if(in(walk, [2, 8]))
 				scr_player_outground();
@@ -517,9 +517,9 @@ for(var i=1;i<=2;i+=1){
 												bbox_left-(4+dd*4)*image_xscale,
 												bbox_top+2*image_yscale, obj_ground_all,1,1),
 				combojump_ground=collision_rectangle(bbox_right,
-													bbox_bottom+GROUND_DRAWY+4,
+													bbox_bottom+GRDY+4,
 													bbox_left,
-													bbox_bottom+GROUND_DRAWY, obj_ground,1,1);
+													bbox_bottom+GRDY, obj_ground,1,1);
 				craw_ground = false;
 			//落地
 			if(scr_player_Is_fallover(0,0,4,3)
@@ -536,9 +536,9 @@ for(var i=1;i<=2;i+=1){
 				scr_player_fallover_adjust();
 			}
 			//冲刺补偿跳
-			var flordown = collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+4,bbox_left,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+			var flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_floor,1,1);
 			if(image_yscale==-1) 
-				flordown = collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY,bbox_left,bbox_top-GROUND_DRAWY-4,obj_floor,1,1);
+				flordown = collision_rectangle(bbox_right,bbox_top-GRDY,bbox_left,bbox_top-GRDY-4,obj_floor,1,1);
 			//记录的半透板
 			if(scr_player_floordown_exists(flordown)) flordown=noone;
 			if(((combojump_ground
@@ -546,10 +546,10 @@ for(var i=1;i<=2;i+=1){
 			 && !(instance_is_object(combojump_ground, obj_flyground_prick) && combojump_ground.damage>0))
 			||(image_yscale==1
 			 && flordown
-			 &&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY,bbox_left,bbox_bottom+GROUND_DRAWY-1,obj_floor,1,1))
+			 &&!collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-1,obj_floor,1,1))
 			||(image_yscale==-1
 			 && flordown
-			 &&!collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+1,bbox_left,bbox_top-GROUND_DRAWY,obj_floor,1,1))
+			 &&!collision_rectangle(bbox_right,bbox_top-GRDY+1,bbox_left,bbox_top-GRDY,obj_floor,1,1))
 			|| place_meeting(x,y+4*image_yscale,obj_sink))
 			&& dash_can==1
 			&& jump==2) {

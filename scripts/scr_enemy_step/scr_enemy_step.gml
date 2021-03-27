@@ -9,7 +9,7 @@ function scr_enemy_step(){
 		for(var i=afimg_count;i>=0;i-=1){
 			if i<=(afimg_count-afimg_count_now){
 				afimg_x[i]=x
-				afimg_y[i]=y-GROUND_DRAWY
+				afimg_y[i]=y-GRDY
 			}
 			else if i>0{
 				afimg_x[i]=afimg_x[i-1]
@@ -42,34 +42,34 @@ function scr_enemy_step(){
 	//scr_enemy_element_recover()
 #endregion
 //以下内容为敌方目标
-if !object_is_ancestor(object_index,obj_enemy)
-&& !object_is_ancestor(object_index,obj_boss)
+if !inst_of(obj_enemy)
+&& !inst_of(obj_boss)
 	exit
 #region 运动系统
 	if use_speed_system=1{
 		//击飞运动系统
 		if injure_type=ATK_TYPE.push {
-			if instance_is_object(object_index,obj_enemy){
+			if inst_of(obj_enemy){
 				scr_enemy_push_move_system()
 			}
 		} 
 		//普通移动
 		else if (hp>0 || death_use_speed_system)
-		&& ((object_is_ancestor(object_index,obj_boss) &&(global.boss_war=1||global.player_hp<=0))
-			||!object_is_ancestor(object_index,obj_boss)){
+		&& ((inst_of(obj_boss) &&(global.boss_war=1||global.player_hp<=0))
+			||!inst_of(obj_boss)){
 			scr_enemy_move_system()
 		}
 	}
 #endregion
 //以下内容为enemy单独使用
-if !object_is_ancestor(object_index,obj_enemy) exit
+if !inst_of(obj_enemy) exit
 #region 受伤击退
 	if hp>0{
 		element_ssinjure=0
 		//元素僵硬
 		if injure_element!=ELEMENTS.none//带属性
 		&& injure_element!=ELEMENTS.fire//不是火属性
-		&& injure_elementback=1//属性击退
+		&& injure_elementback//属性击退
 		{
 			scr_sprite_change(SS_injure,0,1/10)
 			action=-1
@@ -108,7 +108,7 @@ if !object_is_ancestor(object_index,obj_enemy) exit
 		//元素攻击中恢复
 		if sprite_index=SS_injure
 		&& element_ssinjure=1
-		&& injure_elementback=1
+		&& injure_elementback
 		&& element_index=0{
 			scr_sprite_change(SS_idle,0,1/60)
 			hsp=0

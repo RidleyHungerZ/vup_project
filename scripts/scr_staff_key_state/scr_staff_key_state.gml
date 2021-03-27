@@ -250,7 +250,7 @@ function scr_staff_key_state() {
 #endregion
 #region 主副武器一键切换
 	//if global.sub_type=2 
-	//&& obj_player.sub_unuse=0{
+	//&& !obj_player.sub_unuse{
 	//	if keystate_check_pressed(global.sub_state)
 	//	&& scr_player_stop_trem(){
 	//		if global.sub_change[global.model]=0

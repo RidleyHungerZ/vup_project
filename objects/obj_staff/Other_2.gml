@@ -5,6 +5,9 @@ global.player_hp_up=64
 global.player_hp=global.player_hp_up
 global.player_mp_up=64
 global.player_mp=global.player_mp_up
+global.model_get_number=3
+global.model_get[PLAYER_MODEL.ARMOR]=1
+global.model_get[2]=1
 
 global.left_key =	ord("A")
 global.right_key =	ord("D")

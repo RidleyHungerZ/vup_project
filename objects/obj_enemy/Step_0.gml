@@ -108,13 +108,13 @@ if(hp<=0 && use_death_system==1) {
 				enemy=other.id;
 				//悬浮敌人
 				if(other.enemy_type==1) {
-					other.hspeed=0.5*other.image_xscale;
+					other.hspeed=2*other.image_xscale;
 					hspeed=-other.hspeed;
 				}
 				//半身动作
 				if(other.half_action==1 || other.half_action==2) {
 					fall=1;
-					hspeed=3*sign(other.inxscale);
+					hspeed=4*sign(other.inxscale);
 					vspeed=-4*image_yscale;
 				}
 				if(other.half_action==2) 

@@ -94,21 +94,21 @@ if(jump!=0) {
 		|| (image_yscale=-1 && collision_rectangle(bbox_right,bbox_top,bbox_left,bbox_top-1,obj_floor,1,1) && !collision_rectangle(bbox_right,bbox_top+1,bbox_left,bbox_top,obj_floor,1,1)))
 		&& !place_meeting(x,y,obj_sink)) 
 			y+=0.25*image_yscale*sign(vsp)*V;*/
-		var flordown = collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+vsp+1,bbox_left,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+		var flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY+vsp+1,bbox_left,bbox_bottom+GRDY,obj_floor,1,1);
 		if(scr_player_floordown_exists(flordown)) flordown=noone;
 		if(!place_meeting(x,y+vsp+1,obj_ground)
 		&& !place_meeting(x,y+4,obj_sink)
-	    &&!(flordown && !collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY,bbox_left,bbox_bottom+GROUND_DRAWY-1,obj_floor,1,1))){
+	    &&!(flordown && !collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-1,obj_floor,1,1))){
 	        y+=vsp*V;
 		} else {
 	        y=floor(y);
-			flordown = collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+			flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY,obj_floor,1,1);
 			if(scr_player_floordown_exists(flordown)) flordown=noone;
 	        while(!place_meeting(x,y+1,obj_ground)
 			&& !place_meeting(x,y,obj_sink)
 	        && !flordown) {
 				y+=1;
-				flordown = collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+				flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY,obj_floor,1,1);
 				if(scr_player_floordown_exists(flordown)) flordown=noone;
 			}
 		}
@@ -194,8 +194,8 @@ if(hsp!=0 ||wind_spd!=0
 		|| (jump==-1 && injure_ingrd)) {
 			repeat(round(4*abs(hhh))){
 				//var dashbox=(walk==2||walk==5)*8,dleft=dashbox*(image_xscale==-1)*-1,dright=dashbox*(image_xscale==1)*1;//冲刺的多余部分
-				if(!(collision_rectangle(bbox_right+dright,bbox_bottom+GROUND_DRAWY-4,bbox_left+dleft,bbox_top+GROUND_DRAWY,obj_ground,1,1) && image_yscale==1)
-				&&!(collision_rectangle(bbox_right+dright,bbox_bottom-GROUND_DRAWY,bbox_left+dleft,bbox_top-GROUND_DRAWY+4,obj_ground,1,1) && image_yscale==-1)) {
+				if(!(collision_rectangle(bbox_right+dright,bbox_bottom+GRDY-4,bbox_left+dleft,bbox_top,obj_ground,1,1) && image_yscale==1)
+				&&!(collision_rectangle(bbox_right+dright,bbox_bottom,bbox_left+dleft,bbox_top-GRDY+4,obj_ground,1,1) && image_yscale==-1)) {
 					if(ice==0) 
 						x+=0.25*H*sign(hhh);
 					else if(ice==1) 
@@ -203,37 +203,37 @@ if(hsp!=0 ||wind_spd!=0
 				} else x=round(x)
 				//斜坡上坡
 				if(image_yscale==1) {
-					while(collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY,bbox_left,bbox_bottom+GROUND_DRAWY-4,obj_ground,1,1)
-						&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY-4,bbox_left,bbox_top+8,obj_ground,1,1))
+					while(collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-4,obj_ground,1,1)
+						&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-4,bbox_left,bbox_top+8,obj_ground,1,1))
 						y-=image_yscale;
 					
-					while(collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY,bbox_left,bbox_bottom+GROUND_DRAWY-4,obj_floor,1,1)
-						&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY-4,bbox_left,bbox_bottom+GROUND_DRAWY-8,obj_floor,1,1))
+					while(collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-4,obj_floor,1,1)
+						&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-4,bbox_left,bbox_bottom+GRDY-8,obj_floor,1,1))
 						y-=image_yscale;
 				}
 				else if(image_yscale==-1) {
-					while(collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY,bbox_left,bbox_top-GROUND_DRAWY+4,obj_ground,1,1)
-						&&!collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+4,bbox_left,bbox_bottom-8,obj_ground,1,1))
+					while(collision_rectangle(bbox_right,bbox_top-GRDY,bbox_left,bbox_top-GRDY+4,obj_ground,1,1)
+						&&!collision_rectangle(bbox_right,bbox_top-GRDY+4,bbox_left,bbox_bottom-8,obj_ground,1,1))
 						y-=image_yscale;
 					
-					while(collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+4,bbox_left,bbox_top-GROUND_DRAWY,obj_floor,1,1)
-						&&!collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+8,bbox_left,bbox_top-GROUND_DRAWY+4,obj_floor,1,1))
+					while(collision_rectangle(bbox_right,bbox_top-GRDY+4,bbox_left,bbox_top-GRDY,obj_floor,1,1)
+						&&!collision_rectangle(bbox_right,bbox_top-GRDY+8,bbox_left,bbox_top-GRDY+4,obj_floor,1,1))
 						y-=image_yscale;
 				}
 				//斜坡下坡
 				if(jump<=0) {
 					for(var i=2;i>=1;i-=1){
-						if(place_meeting(x,y+(1+i+GROUND_DRAWY)*image_yscale,obj_ground)
-						&&!place_meeting(x,y+(0+i+GROUND_DRAWY)*image_yscale,obj_ground)) 
+						if(place_meeting(x,y+(1+i+GRDY)*image_yscale,obj_ground)
+						&&!place_meeting(x,y+(0+i+GRDY)*image_yscale,obj_ground)) 
 							y+=image_yscale;
 					
-						if(collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+(1+i),bbox_left,bbox_bottom+GROUND_DRAWY,obj_floor,1,1)
-						&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+(0+i),bbox_left,bbox_bottom+GROUND_DRAWY-4,obj_floor,1,1)
+						if(collision_rectangle(bbox_right,bbox_bottom+GRDY+(1+i),bbox_left,bbox_bottom+GRDY,obj_floor,1,1)
+						&&!collision_rectangle(bbox_right,bbox_bottom+GRDY+(0+i),bbox_left,bbox_bottom+GRDY-4,obj_floor,1,1)
 						&& image_yscale==1) 
 							y+=image_yscale;
 					
-						if(collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY,bbox_left,bbox_top-GROUND_DRAWY-(1+i),obj_floor,1,1)
-						&&!collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+4,bbox_left,bbox_top-GROUND_DRAWY-(0+i),obj_floor,1,1)
+						if(collision_rectangle(bbox_right,bbox_top-GRDY,bbox_left,bbox_top-GRDY-(1+i),obj_floor,1,1)
+						&&!collision_rectangle(bbox_right,bbox_top-GRDY+4,bbox_left,bbox_top-GRDY-(0+i),obj_floor,1,1)
 						&& image_yscale==-1) 
 							y+=image_yscale;
 					}
@@ -255,20 +255,20 @@ if(hsp!=0 ||wind_spd!=0
 				bbox_bottom_coll = bbox_bottom;
 				bbox_top_coll = bbox_top+2;
 			}
-			var flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GROUND_DRAWY+1,bbox_left+xsg,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+			var flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GRDY+1,bbox_left+xsg,bbox_bottom+GRDY,obj_floor,1,1);
 			if(scr_player_floordown_exists(flordown)) flordown=noone;
-			if(!collision_rectangle(bbox_right+xsg, bbox_bottom_coll+GROUND_DRAWY, bbox_left+xsg, bbox_top_coll, obj_ground, 1, 1)
-			&& !(flordown && !collision_rectangle(bbox_right+xsg,bbox_bottom+GROUND_DRAWY,bbox_left+xsg,bbox_bottom+GROUND_DRAWY-1,obj_floor,1,1)))
+			if(!collision_rectangle(bbox_right+xsg, bbox_bottom_coll+GRDY, bbox_left+xsg, bbox_top_coll, obj_ground, 1, 1)
+			&& !(flordown && !collision_rectangle(bbox_right+xsg,bbox_bottom+GRDY,bbox_left+xsg,bbox_bottom+GRDY-1,obj_floor,1,1)))
 				x+=xs;
 			else{
-				flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GROUND_DRAWY+1,bbox_left+xsg,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+				flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GRDY+1,bbox_left+xsg,bbox_bottom+GRDY,obj_floor,1,1);
 				if(scr_player_floordown_exists(flordown)) flordown=noone;
-				while((!collision_rectangle(bbox_right+sign(xs), bbox_bottom_coll+GROUND_DRAWY, bbox_left+sign(xs),  bbox_top_coll, obj_ground, 1, 1) 
-					 && collision_rectangle(bbox_right+xsg,		 bbox_bottom_coll+GROUND_DRAWY, bbox_left+xsg,		bbox_top_coll, obj_ground, 1, 1))
-					||(!collision_rectangle(bbox_right+sign(xs),bbox_bottom+GROUND_DRAWY+1,bbox_left+sign(xs),bbox_bottom+GROUND_DRAWY,obj_floor,1,1) && flordown
+				while((!collision_rectangle(bbox_right+sign(xs), bbox_bottom_coll+GRDY, bbox_left+sign(xs),  bbox_top_coll, obj_ground, 1, 1) 
+					 && collision_rectangle(bbox_right+xsg,		 bbox_bottom_coll+GRDY, bbox_left+xsg,		bbox_top_coll, obj_ground, 1, 1))
+					||(!collision_rectangle(bbox_right+sign(xs),bbox_bottom+GRDY+1,bbox_left+sign(xs),bbox_bottom+GRDY,obj_floor,1,1) && flordown
 						&& !place_meeting(x+sign(xs),y,obj_ground))) {
 						x+=sign(xs);
-					flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GROUND_DRAWY+1,bbox_left+xsg,bbox_bottom+GROUND_DRAWY,obj_floor,1,1);
+					flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GRDY+1,bbox_left+xsg,bbox_bottom+GRDY,obj_floor,1,1);
 					if(scr_player_floordown_exists(flordown)) flordown=noone;
 				}
 			}
@@ -277,30 +277,30 @@ if(hsp!=0 ||wind_spd!=0
 				x-=sign(xs);
 			//斜坡
 			if(image_yscale==1) {
-				while(collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY,bbox_left,bbox_bottom+GROUND_DRAWY-4,obj_ground,1,1)
-					&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY-4,bbox_left,bbox_top+8,obj_ground,1,1)) 
+				while(collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-4,obj_ground,1,1)
+					&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-4,bbox_left,bbox_top+8,obj_ground,1,1)) 
 					y-=image_yscale;
 					
-				flordown = collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY,bbox_left,bbox_bottom+GROUND_DRAWY-4,obj_floor,1,1);
+				flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-4,obj_floor,1,1);
 				if(scr_player_floordown_exists(flordown)) flordown=noone;
 				while(flordown
-					&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY-4,bbox_left,bbox_bottom+GROUND_DRAWY-8,obj_floor,1,1)) {
+					&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-4,bbox_left,bbox_bottom+GRDY-8,obj_floor,1,1)) {
 					y-=image_yscale;
-					flordown = collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY,bbox_left,bbox_bottom+GROUND_DRAWY-4,obj_floor,1,1);
+					flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-4,obj_floor,1,1);
 					if(scr_player_floordown_exists(flordown)) flordown=noone;
 				}
 			}
 			else if(image_yscale==-1) {
-				while(collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY,bbox_left,bbox_top-GROUND_DRAWY+4,obj_ground,1,1)
-					&&!collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+4,bbox_left,bbox_bottom-8,obj_ground,1,1)) 
+				while(collision_rectangle(bbox_right,bbox_top-GRDY,bbox_left,bbox_top-GRDY+4,obj_ground,1,1)
+					&&!collision_rectangle(bbox_right,bbox_top-GRDY+4,bbox_left,bbox_bottom-8,obj_ground,1,1)) 
 					y-=image_yscale;
 					
-				flordown = collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+4,bbox_left,bbox_top-GROUND_DRAWY,obj_floor,1,1);
+				flordown = collision_rectangle(bbox_right,bbox_top-GRDY+4,bbox_left,bbox_top-GRDY,obj_floor,1,1);
 				if(scr_player_floordown_exists(flordown)) flordown=noone;
 				while(flordown
-					&&!collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+8,bbox_left,bbox_top-GROUND_DRAWY+4,obj_floor,1,1)) {
+					&&!collision_rectangle(bbox_right,bbox_top-GRDY+8,bbox_left,bbox_top-GRDY+4,obj_floor,1,1)) {
 					y-=image_yscale;
-					flordown = collision_rectangle(bbox_right,bbox_top-GROUND_DRAWY+4,bbox_left,bbox_top-GROUND_DRAWY,obj_floor,1,1);
+					flordown = collision_rectangle(bbox_right,bbox_top-GRDY+4,bbox_left,bbox_top-GRDY,obj_floor,1,1);
 					if(scr_player_floordown_exists(flordown)) flordown=noone;
 				}
 			}
@@ -414,11 +414,11 @@ else if(!place_meeting(x,y,obj_water_top))
 //}
 #endregion
 #region 沉陷地形
-if((collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_top,obj_sink,1,1)
-&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_top,obj_ground,1,1)
-&&!collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_top,obj_floor,1,1)
+if((collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_sink,1,1)
+&&!collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_ground,1,1)
+&&!collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_floor,1,1)
 )//&&!(scr_itemb_isrun(ITEMB.lighter) /*|| global.model=PLAYER_MODEL.Hz*/))
-|| place_meeting(x,y+GROUND_DRAWY,obj_sink)) {
+|| place_meeting(x,y+GRDY,obj_sink)) {
 	if(abs(hsp)>1) 
 		hsp=hsp/abs(hsp);
 	if(jump==11 || jump==13) {
@@ -430,8 +430,8 @@ if((collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_top
 	}
 	if jump<=0
 	//&& !(scr_itemb_isrun(ITEMB.lighter) /*|| global.model=PLAYER_MODEL.Hz*/)) {
-		if(!place_meeting(x,y+GROUND_DRAWY+1,obj_ground)
-		&& !collision_rectangle(bbox_right,bbox_bottom+GROUND_DRAWY+1,bbox_left,bbox_bottom,obj_floor,1,1)
+		if(!place_meeting(x,y+GRDY+1,obj_ground)
+		&& !collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom,obj_floor,1,1)
 		&& global.player_operate==1) 
 			y+=12/60;
 	//}
@@ -490,7 +490,7 @@ if(obj_player.y>global.room_yb+24) {
 		cliff_protect_time=60*5;
 		uninjure=5;
 		injure_element=ELEMENTS.none;
-		scr_sprite_change(SS_change_air,7,0.5);
+		scr_sprite_change(SS_fall,7,0.5);
 		//scr_player_EB_close();
 		//清空半透板记录
 		scr_player_floordown_clear();

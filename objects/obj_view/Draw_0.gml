@@ -89,13 +89,109 @@ if global.operate==1
 	
 	#region 腰带
 	with obj_menu {
-		var bx=256, by=960
+		var bx=288, by=960
 		//纹路底
 		draw_sprite(spr_ui_grd_cards_in, 0, bx, by)
-		//插入的卡片
-		draw_sprite(spr_ui_grd_cards, global.model, bx, by-128*card_outsert_rate)
-		//当前状态
-		draw_sprite(spr_ui_grd_cards_in, global.model, bx, by)
+		with obj_staff {
+			//非换卡时
+			if player_change_action==0 {
+				if(global.model!=PLAYER_MODEL.HU)
+					draw_sprite(spr_ui_grd_cards, global.model, bx, by)
+				draw_sprite(spr_ui_grd_cards_in, global.model, bx, by)
+			} 
+			//换卡中
+			else {
+				var cardinxs=[], 
+					cardimx=1, 
+					cardshx=0, 
+					insertshy=0;
+				for(var i=-2, j=0;i<=2;{i++ j++}){
+					cardinxs[j]=player_change_select+i
+					while cardinxs[j]<0 
+						cardinxs[j]+=global.model_number;
+					while cardinxs[j]>=global.model_number 
+						cardinxs[j]-=global.model_number;
+				}
+				//卡片缩放：出现、消失
+				if player_change_action==2{
+					cardimx=1-player_change_outsert_rate
+				} else if player_change_action==6 {
+					cardimx=player_change_outsert_rate
+				}
+				//卡片x位移
+				if player_change_action==3 {
+					if player_change_select_dir==1 
+						cardshx=player_change_outsert_rate
+					else if player_change_select_dir==-1 
+						cardshx=-player_change_outsert_rate
+				}
+				//卡片y位移，针对插卡拔卡
+				//拔卡
+				if player_change_action==4 
+				|| player_change_action==5.5 {
+					insertshy=1-player_change_outsert_rate
+				}
+				//插卡
+				if player_change_action==5 {
+					insertshy=player_change_outsert_rate
+				}
+				//消失之前卡片才会出现
+				if between(player_change_action, 1, false, 6, true) {
+					//卡片列表
+					for(var i=-2, j=0;i<=2;{i++ j++}){
+						var alpha=1-abs((i+cardshx)*120)/240,
+							cspr=spr_ui_grd_cards,
+							cinx=cardinxs[j],
+							cinxde=cinx,
+							cardimy=1;
+						//当前使用的卡片位置做空缺
+						if player_change_last==cinx 
+						&& player_change_last!=PLAYER_MODEL.HU{
+							cspr=spr_ui_grd_card_pull
+							cinx=0
+							cardimy=-1
+						}
+						//拔卡后，该位置显示拔出来的卡
+						if player_change_action>=5 && i==0 {
+							if !player_change_cancle
+								cinx=player_change_last
+							if cinx==PLAYER_MODEL.HU alpha=0
+							//恢复人形拔卡时空缺该位置
+							if player_change_action==5.5 alpha=0
+						} else {
+							//选中人形时，提示拔卡箭头
+							if player_change_select==PLAYER_MODEL.HU {
+								if cardshx==0 && insertshy==0 && cardimx==1 {
+									draw_sprite(spr_ui_grd_card_pull, 0, bx, by-144+8*sin(global.fps_curr*pi/30))
+									if cinxde==PLAYER_MODEL.HU alpha=0
+								}
+							}
+						}
+						//人形没有卡片
+						if cinx==PLAYER_MODEL.HU {
+							cspr=spr_ui_grd_card_pull
+							cinx=0
+							//alpha=0
+						}
+						//未获得的卡片使用第8帧
+						if !global.model_get[cinx] cinx=8
+						draw_sprite_ext(cspr, cinx, bx+(i+cardshx)*112, by-144, cardimx, cardimy, 0, c_white, alpha)
+					}
+				}
+				//目前插卡
+				if(global.model!=PLAYER_MODEL.HU)
+					draw_sprite(spr_ui_grd_cards, global.model, bx, by-144*insertshy)
+				//卡在机器里时，显示屏幕
+				if insertshy==0 
+					draw_sprite(spr_ui_grd_cards_in, global.model, bx, by)
+				//选卡箭头
+				if player_change_action==3{
+					for(var i=-1;i<=1;i+=2){
+						draw_sprite_ext(spr_ui_grd_card_arrow, 0, bx+i*(128+8*sin(global.fps_curr*pi/30)), by, i, 1, 0, c_white, 1)
+					}
+				}
+			}
+		}
 		//腰带变身器
 		draw_sprite(spr_ui_grd_belt, 0, bx, by)
 	}

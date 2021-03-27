@@ -1,4 +1,4 @@
-scr_menu_var();
+event_inherited()
 attack=0
 attack_up=0
 element=ELEMENTS.none
@@ -35,5 +35,6 @@ for(var i=0;i<30;i++){ //记录最多5帧的伤害对象
 }
 only_hit_once = false //每个对象只攻击一次(防止重复伤害和超级判定)
 only_hit_once_insts = []
+set_hit=0; //非击中设置
 //对击中对象处理
 hit_target=function(targets) {}
