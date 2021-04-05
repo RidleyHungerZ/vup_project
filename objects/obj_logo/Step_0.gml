@@ -1,6 +1,7 @@
 scr_time_alarm()
 if action==0 {
 	if keyboard_check_pressed(vk_enter) {
+		scr_sound_play(se_logo_true)
 		scr_view_transition(1, 0)
 		action=1
 	}

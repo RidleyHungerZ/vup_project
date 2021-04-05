@@ -11,3 +11,4 @@ dis_dir=0;//显示角度
 G=GRAV;
 vspmaxn=24;
 view_off=32;
+SS_part=spr_none;

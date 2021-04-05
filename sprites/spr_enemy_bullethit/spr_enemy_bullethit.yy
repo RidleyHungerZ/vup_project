@@ -83,9 +83,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"76b70cbf-b6dd-4471-be0e-ea8c3fb1e375","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "enemy",
-    "path": "folders/Sprites/enemy.yy",
+    "name": "effect",
+    "path": "folders/Sprites/enemy/effect.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_enemy_bullethit",

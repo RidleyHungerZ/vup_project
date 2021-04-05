@@ -78,6 +78,7 @@ SP_idle=0.25;
 SS_injure=spr_none;
 SS_death=spr_none;
 SS_part=spr_none;
+SS_part2=spr_none; //贯穿下半身、切开的本体半身
 #endregion
 /////////////////////////////////
 #region 初始化记录
@@ -219,4 +220,29 @@ reflashSetVars = function() {}
 pushFalloverSave = function(){}
 //出视野死亡操作
 outViewDeath = function(){}
+
+//死亡爆零件
+deathBoomPart = function(partspr) {
+	if(!evuser2ed) {
+		deathTrigger();
+		evuser2ed=true;
+	}
+	scr_sprite_change(spr_none,0,0);
+	if(death_xscale==1) 
+		image_xscale=-inxscale;
+	scr_enemy_boom_number();
+	scr_enemy_boompart(partspr);
+	//道具
+	if(item==0) {
+		item=1;
+		scr_enemy_create_item();
+	}
+	injure_type=-1;
+	speed=0;
+	gravity=0;
+	x=xstart;
+	y=ystart;
+	if(variable_instance_exists(id,"death_repeat")) 
+		if death_repeat=0 instance_destroy();
+}
 #endregion

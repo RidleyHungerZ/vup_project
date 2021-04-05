@@ -33,6 +33,9 @@
     {"compositeImage":{"FrameId":{"name":"19544c06-2939-4fe7-ad6a-9edcfcdcdc4d","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"19544c06-2939-4fe7-ad6a-9edcfcdcdc4d","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"LayerId":{"name":"5a48e3f4-3c0d-4777-b2f5-fe61a5b5cbb6","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_enemy01_death","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"resourceVersion":"1.0","name":"19544c06-2939-4fe7-ad6a-9edcfcdcdc4d","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"0a637fef-222c-474b-a4a9-3f5c6fa5bb8c","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"0a637fef-222c-474b-a4a9-3f5c6fa5bb8c","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"LayerId":{"name":"5a48e3f4-3c0d-4777-b2f5-fe61a5b5cbb6","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy01_death","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"resourceVersion":"1.0","name":"0a637fef-222c-474b-a4a9-3f5c6fa5bb8c","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_enemy01_death","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},
@@ -42,7 +45,7 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 3.0,
+    "length": 4.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -50,6 +53,7 @@
             {"id":"f510b0be-e711-41fe-8035-f04f1ba76109","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1a1547a5-23f0-4b0e-a057-18f15d185127","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"a45471ab-7221-4484-a84e-15fa2456dc03","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f146c0f4-a9e6-4a2c-a910-63e20540ffba","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"ddd8b866-bc96-4bb4-acbf-8aa2e87ed869","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"19544c06-2939-4fe7-ad6a-9edcfcdcdc4d","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"355f590f-430c-4ea6-9833-73ddacb20831","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"0a637fef-222c-474b-a4a9-3f5c6fa5bb8c","path":"sprites/spr_enemy01_death/spr_enemy01_death.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -75,6 +79,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"5a48e3f4-3c0d-4777-b2f5-fe61a5b5cbb6","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "01",
     "path": "folders/Sprites/enemy/01.yy",

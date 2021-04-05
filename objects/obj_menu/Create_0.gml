@@ -12,5 +12,6 @@ menu_page_change=0 //页切换
 menu_page_change_rate=0 //页切换进度
 for(var page=0;page<=20;page+=1)
 	for(var type=0;type<=2;type+=1)
-		menu_select[page][type]=1
+		menu_select[page][type]=0
 #endregion
+draw_option_item=noone //设置页面绘制选项内容

@@ -10,8 +10,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "se_player_change_cancle.wav",
-  "duration": 0.294161,
+  "soundFile": "se_player_change_cancle.mp3",
+  "duration": 0.213958,
   "parent": {
     "name": "change",
     "path": "folders/Sounds/player/change.yy",

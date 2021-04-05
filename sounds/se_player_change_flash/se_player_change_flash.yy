@@ -10,8 +10,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "se_player_change_flash.wav",
-  "duration": 0.566633,
+  "soundFile": "se_player_change_flash.mp3",
+  "duration": 1.337208,
   "parent": {
     "name": "change",
     "path": "folders/Sounds/player/change.yy",

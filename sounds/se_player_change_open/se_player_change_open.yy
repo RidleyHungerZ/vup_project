@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "se_player_change_open.wav",
-  "duration": 0.640556,
+  "duration": 0.591621,
   "parent": {
     "name": "change",
     "path": "folders/Sounds/player/change.yy",

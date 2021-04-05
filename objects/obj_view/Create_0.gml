@@ -33,7 +33,8 @@ PreDraw时变更为1920x1080
 完成后，绘制UI
 PostDraw后变回512x288
 */
-window_size=0
+//window_size=0
+window_set_size(ui.winsize[global.resolution].w, ui.winsize[global.resolution].h)
 #endregion
 #region 小房间切分+镜头控制
 global.room_xl=0
@@ -43,6 +44,7 @@ global.room_yb=room_height
 
 global.view_control=0
 global.view_shock=0
+viewShock=0 //镜头震动计算
 
 global.view_dx=0//镜头横向移速
 global.view_dy=0//镜头纵向移速
@@ -109,52 +111,35 @@ black_light_player=noone
 #endregion
 #region 绘制函数
 //血条
-draw_hp = function(hp, hplenmax) {
+get_hp_surface = function(hp, rate) {
 	var hpw=sprite_get_width(spr_ui_grd_hp),
 		hph=sprite_get_height(spr_ui_grd_hp),
-		hplen=(hp/global.player_hp_up)*hplenmax,
-		hpsurf=surface_create(hplenmax, hph);
+		hptopw=sprite_get_width(spr_ui_grd_hp_top),
+		hptoph=sprite_get_height(spr_ui_grd_hp_top),
+		realenmax=global.player_hp_up*rate, //只看上边的真实最大长度
+		realen=hp*rate, //只看上边的真实长度
+		hpsurf=surface_create(realenmax+hpw, hptoph);
 	surface_set_target(hpsurf)
 	draw_clear_alpha(c_white, 0)
-	draw_sprite(spr_ui_grd_hp, 0, 0, 0)
-	draw_sprite_ext(spr_ui_grd_hp, 1, hpw, 0, hplenmax/hpw, 1, 0, c_white, 1)
+	//绘制白条
+	var hpx=0, hpy=0, cenlen=realenmax-hpw;
+	draw_sprite(spr_ui_grd_hp, 0, hpx, hpy)
+	draw_sprite_ext(spr_ui_grd_hp, 1, hpx+hpw, hpy, cenlen/hpw, 1, 0, c_white, 1)
+	draw_sprite(spr_ui_grd_hp, 2, hpx+realenmax, hpy)
+	//擦除扣血部分
 	gpu_set_blendmode_ext(bm_src_alpha, bm_zero)
 	draw_set_alpha(0)
 	draw_primitive_begin(pr_trianglestrip)
-	draw_vertex(hplenmax, 0)
-	draw_vertex(hplenmax, hph)
-	draw_vertex(hplen-hph, hph)
-	draw_vertex(hplen, 0)
-	draw_vertex(hplenmax, 0)
+	draw_vertex(hpx+realenmax+hpw, hpy)
+	draw_vertex(hpx+realen, hpy)
+	draw_vertex(hpx+realen+hpw, hpy+hph)
+	draw_vertex(hpx+realenmax+hpw, hpy+hph)
+	draw_vertex(hpx+realenmax+hpw, hpy)
 	draw_primitive_end()
 	draw_set_color_alpha_init()
 	gpu_set_blendmode(bm_normal)
 	surface_reset_target()
 	return hpsurf
-}
-//能量条
-draw_mp = function(mp, mplenmax) {
-	var mpw=sprite_get_width(spr_ui_grd_mp),
-		mph=sprite_get_height(spr_ui_grd_mp),
-		mplen=(mp/global.player_mp_up)*mplenmax,
-		mpsurf=surface_create(mplenmax, mph);
-	surface_set_target(mpsurf)
-	draw_clear_alpha(c_white, 0)
-	draw_sprite(spr_ui_grd_mp, 0, 0, 0)
-	draw_sprite_ext(spr_ui_grd_mp, 1, mpw, 0, mplenmax/mpw, 1, 0, c_white, 1)
-	gpu_set_blendmode_ext(bm_src_alpha, bm_zero)
-	draw_set_alpha(0)
-	draw_primitive_begin(pr_trianglestrip)
-	draw_vertex(mplenmax, 0)
-	draw_vertex(mplenmax, mph)
-	draw_vertex(mplen-mph, mph)
-	draw_vertex(mplen, 0)
-	draw_vertex(mplenmax, 0)
-	draw_primitive_end()
-	draw_set_color_alpha_init()
-	gpu_set_blendmode(bm_normal)
-	surface_reset_target()
-	return mpsurf
 }
 #endregion
 event_perform(ev_other, ev_room_start)

@@ -10,8 +10,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "se_menu_change.wav",
-  "duration": 0.131395,
+  "soundFile": "se_menu_change.mp3",
+  "duration": 0.135583,
   "parent": {
     "name": "menu",
     "path": "folders/Sounds/menu.yy",

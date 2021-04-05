@@ -272,13 +272,29 @@ function string_format_vals(str, vals) {
 	return str
 }
 /// @desc 获取特定格式日期
-/// @arg reg
-function date_format(reg) {
-	reg=string_replace(reg, "yyyy", string(current_year))
-	reg=string_replace(reg, "MM", string(current_month))
-	reg=string_replace(reg, "dd", string(current_day))
-	reg=string_replace(reg, "HH", string(current_hour))
-	reg=string_replace(reg, "mm", string(current_minute))
-	reg=string_replace(reg, "ss", string(current_second))
-	return reg
+/// @arg sdf
+/// @arg times[yyyy;MM;dd;HH;mm;ss]
+function date_format(sdf, times) {
+	if is_undefined(times) times=[
+		current_year,
+		current_month,
+		current_day,
+		current_hour,
+		current_minute,
+		current_second,
+	]
+	sdf=string_replace(sdf, "yyyy", string_real_supply0(times[0], 4))
+	sdf=string_replace(sdf, "MM", string_real_supply0(times[1], 2))
+	sdf=string_replace(sdf, "dd", string_real_supply0(times[2], 2))
+	sdf=string_replace(sdf, "HH", string_real_supply0(times[3], 2))
+	sdf=string_replace(sdf, "mm", string_real_supply0(times[4], 2))
+	sdf=string_replace(sdf, "ss", string_real_supply0(times[5], 2))
+	return sdf
+}
+
+function string_real_supply0(num, digit) {
+	var str=string(num)
+	while string_length(str)<digit
+		str = "0" + str
+	return str
 }

@@ -41,7 +41,8 @@ function scr_macro(){
 #endregion
 #region 常用obj常量
 	#macro GRAV 0.5
-	#macro GRDY 4
+	#macro GRDY 4 //角色脚离地距离
+	#macro UIPINK $6800ff //UI字体常用粉色
 #endregion
 #region 邪道语法
 #macro print								\

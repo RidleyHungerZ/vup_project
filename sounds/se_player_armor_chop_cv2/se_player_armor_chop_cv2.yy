@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "se_player_armor_chop_cv2.wav",
-  "duration": 0.327744,
+  "duration": 0.467721,
   "parent": {
     "name": "armor",
     "path": "folders/Sounds/player/armor.yy",

@@ -64,62 +64,29 @@ function scr_enemy_boom_number(xx, yy, number, type) {
 	}
 }
 /// @desc 死亡时爆零件
-function scr_enemy_boompart(partspr) {
-	if partspr=spr_none exit
-	var number=sprite_get_number(partspr)
-	for(var i=0;i<number;i+=1){
-		var part
-		if layer_exists(layer) part=instance_create_layer(x,y,layer,obj_enemy_part)
-		else part=instance_create_depth(x,y,depth,obj_enemy_part)
-		part.image_xscale=image_xscale
-		part.image_yscale=image_yscale
-		part.dspeed=random(10)*-image_xscale*image_yscale
-		with(part){
-			scr_sprite_change(partspr,i,0)
-			gravity=G
-			if place_meeting(x,y,obj_water)
-				gravity=G/2
-			switch(irandom(number)){
-				case 0:{
-					hspeed=4*image_xscale
-					vspeed=-10*image_yscale
-					break
-				} case 1:{
-					hspeed=2*image_xscale
-					vspeed=-6*image_yscale
-					break
-				} case 2:{
-					hspeed=-2*image_xscale
-					vspeed=-8*image_yscale
-					break
-				} case 3:{
-					hspeed=-8*image_xscale
-					vspeed=-6*image_yscale
-					break
-				} case 4:{
-					hspeed=-4*image_xscale
-					vspeed=-10*image_yscale
-					break
-				} case 5:{
-					hspeed=-2*image_xscale
-					vspeed=-6*image_yscale
-					break
-				} case 6:{
-					hspeed=2*image_xscale
-					vspeed=-8*image_yscale
-					break
-				} case 7:{
-					hspeed=8*image_xscale
-					vspeed=-6*image_yscale
-					break
-				} default:{
-					hspeed=6*image_xscale
-					vspeed=-6*image_yscale
-					break
-				}
+function scr_enemy_boompart(partsprs) {
+	if !is_array(partsprs) partsprs=[partsprs]
+	if array_length(partsprs)==0 exit
+	for(var s=0;s<array_length(partsprs);s++) {
+		var spr=partsprs[s],
+			number=sprite_get_number(partsprs[s]);
+		for(var i=0;i<number;i+=1){
+			if spr==spr_none continue
+			if layer_exists(layer) part=instance_create_layer(x,y,layer,obj_enemy_part)
+			else part=instance_create_depth(x,y,depth,obj_enemy_part)
+			part.image_xscale=image_xscale
+			part.image_yscale=image_yscale
+			part.dspeed=random(10)*-image_xscale*image_yscale
+			with(part){
+				scr_sprite_change(spr,i,0)
+				gravity=G
+				if place_meeting(x,y,obj_water)
+					gravity=G/2
+				speed=10
+				direction=90+random_range(-45, 45)
+				if place_meeting(x,y,obj_water)
+					vspeed*=1.5
 			}
-			if place_meeting(x,y,obj_water)
-				vspeed*=1.5
 		}
 	}
 }
@@ -127,28 +94,33 @@ function scr_enemy_boompart(partspr) {
 /// @arg number
 /// @arg x
 /// @arg y
-function scr_enemy_boompart_ext(spr, number, xx, yy) {
-	if spr=spr_none exit
-	var spr_num=sprite_get_number(spr)
-	for(var i=0;i<number;i+=1){
-		var part=instance_create_depth(xx,yy,depth,obj_enemy_part)
-		part.image_xscale=image_xscale
-		part.image_yscale=image_yscale
-		part.dspeed=random(10)*-image_xscale*image_yscale
-		with(part){
-			scr_sprite_change(spr,i mod spr_num,0)
-			gravity=G
-			if place_meeting(x,y,obj_water)
-				gravity=G/2
-			hspeed=random_range(-10,10)
-			vspeed=image_yscale*random_range(-10,-6)
-			if place_meeting(x,y,obj_water)
-				vspeed*=1.5
+function scr_enemy_boompart_ext(partsprs, number, xx, yy) {
+	if !is_array(partsprs) partsprs=[partsprs]
+	if array_length(partsprs)==0 exit
+	for(var s=0;s<array_length(partsprs);s++) {
+		var spr=partsprs[s],
+			spr_num=sprite_get_number(partsprs[s]);
+		if spr=spr_none exit
+		for(var i=0;i<number;i+=1){
+			var part=instance_create_depth(xx,yy,depth,obj_enemy_part)
+			part.image_xscale=image_xscale
+			part.image_yscale=image_yscale
+			part.dspeed=random(10)*-image_xscale*image_yscale
+			with(part){
+				scr_sprite_change(spr,i mod spr_num,0)
+				gravity=G
+				if place_meeting(x,y,obj_water)
+					gravity=G/2
+				hspeed=random_range(-10,10)
+				vspeed=image_yscale*random_range(-10,-6)
+				if place_meeting(x,y,obj_water)
+					vspeed*=1.5
+			}
 		}
 	}
 }
 
 /// @desc 死亡时晃动镜头
 function scr_enemy_boom_viewweak() {
-	
+	scr_view_shock(1)
 }

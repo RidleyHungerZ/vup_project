@@ -1,6 +1,6 @@
 x=obj_player.x
 y=obj_player.y
-
+gpu_set_texfilter(false)
 ////////////////////////////////////////
 ///////////////按键控制//////////////////
 ////////////////////////////////////////
@@ -112,6 +112,7 @@ if player_change_action==0 {
 			afterdash=99
 			if jump==0 scr_sprite_change(SS_change_idle_start, 0, 0.25)
 			else scr_sprite_change(SS_change_fall_start, 0, 0.25)
+			walk=0
 			dash=0
 			vsp=0
 		}

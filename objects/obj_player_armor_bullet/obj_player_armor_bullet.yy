@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_player_hu_bullet01",
-    "path": "sprites/spr_player_hu_bullet01/spr_player_hu_bullet01.yy",
+    "name": "spr_player_armor_bullet_charge02",
+    "path": "sprites/spr_player_armor_bullet_charge02/spr_player_armor_bullet_charge02.yy",
   },
   "solid": false,
   "visible": true,
@@ -25,6 +25,7 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_player_armor_bullet","path":"objects/obj_player_armor_bullet/obj_player_armor_bullet.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":7,"eventType":7,"collisionObjectId":null,"parent":{"name":"obj_player_armor_bullet","path":"objects/obj_player_armor_bullet/obj_player_armor_bullet.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],

@@ -54,7 +54,7 @@ if(scr_menu_trem()) {
 			scr_player_se_step();
 	}
 	if((charge[1]>=30 || charge[2]>=30)
-	&& global.fps_3==0
+	&& global.fps_2==0
 	&& global.player_operate==1
 	&& global.operate==1)
 		scr_sound_play(se_player_charge);

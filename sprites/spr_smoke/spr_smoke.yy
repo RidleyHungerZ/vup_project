@@ -87,9 +87,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"f4659f2f-71c4-448b-89fa-b9b8d814d82c","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "enemy",
-    "path": "folders/Sprites/enemy.yy",
+    "name": "effect",
+    "path": "folders/Sprites/enemy/effect.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_smoke",

@@ -19,17 +19,17 @@ audio_bgm_set_volume(audio_bgm_get_volume())
 audio_bgm_inchange()//必须放在vol之后，有淡入淡出效果
 audio_bgm_inloop()
 #endregion
-#region 插值模糊
-if global.texfilter==1{
-	if !gpu_get_texfilter(){
-		gpu_set_texfilter(true)
-	}
-}
-else if global.texfilter==0{
-	if gpu_get_texfilter(){
-		gpu_set_texfilter(false)
-	}
-}
+#region 像素插值模糊
+//if global.texfilter==1{
+//	if !gpu_get_texfilter(){
+//		gpu_set_texfilter(true)
+//	}
+//}
+//else if global.texfilter==0{
+//	if gpu_get_texfilter(){
+//		gpu_set_texfilter(false)
+//	}
+//}
 #endregion
 #region 多普勒音效箱
 audio_dpl_working()

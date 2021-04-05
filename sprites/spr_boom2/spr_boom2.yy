@@ -99,9 +99,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"6a07df7e-ec45-4aeb-bfbb-8d2c3968b02f","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "enemy",
-    "path": "folders/Sprites/enemy.yy",
+    "name": "effect",
+    "path": "folders/Sprites/enemy/effect.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boom2",

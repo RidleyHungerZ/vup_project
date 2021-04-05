@@ -106,5 +106,30 @@ if global.menu==1 {
 		else if menu_page>=menu_page_count 
 			menu_page=0
 	}
+	#region 状态
+	if menu_page==0 {
+		
+	}
+	#endregion
+	#region 道具
+	if menu_page==1 {
+		
+	}
+	#endregion
+	#region 设置
+	if menu_page==2 {
+		scr_menu_option_code()
+	}
+	#endregion
+	#region 任务
+	if menu_page==3 {
+		
+	}
+	#endregion
+	#region 技能
+	if menu_page==4 {
+		
+	}
+	#endregion
 }
 #endregion

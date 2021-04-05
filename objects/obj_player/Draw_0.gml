@@ -6,7 +6,7 @@ y=round(y)
 if charge[2]>=charge_dis {
 	var spr=spr_player_charge_sub_1_bck
 	if charge[2]>=charge_max spr=spr_player_charge_sub_2_bck
-	draw_sprite_ext(spr, global.fps_curr*0.25, x, y-4*image_yscale, 
+	draw_sprite_ext(spr, global.fps_currmenu*0.25, x, y-4*image_yscale, 
 					1, image_yscale, image_alpha, image_blend, image_alpha)
 }
 #endregion
@@ -47,13 +47,13 @@ if(uninjure==1 && scr_menu_trem()) {
 if charge[1]>=charge_dis {
 	var spr=spr_player_charge_main_1
 	if charge[1]>=charge_max spr=spr_player_charge_main_2
-	draw_sprite_ext(spr, global.fps_curr*0.25, x, y-4*image_yscale, 
+	draw_sprite_ext(spr, global.fps_currmenu*0.25, x, y-4*image_yscale, 
 					1, image_yscale, image_alpha, image_blend, image_alpha)
 }
 if charge[2]>=charge_dis {
 	var spr=spr_player_charge_sub_1_frt
 	if charge[2]>=charge_max spr=spr_player_charge_sub_2_frt
-	draw_sprite_ext(spr, global.fps_curr*0.25, x, y-4*image_yscale, 
+	draw_sprite_ext(spr, global.fps_currmenu*0.25, x, y-4*image_yscale, 
 					1, image_yscale, image_alpha, image_blend, image_alpha)
 }
 #endregion

@@ -10,8 +10,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "se_player_change_error.wav",
-  "duration": 0.325363,
+  "soundFile": "se_player_change_error.mp3",
+  "duration": 0.389,
   "parent": {
     "name": "change",
     "path": "folders/Sounds/player/change.yy",

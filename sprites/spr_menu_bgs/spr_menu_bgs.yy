@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"065bf261-2d22-48af-90f2-a0f60425b536","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "menu",
-    "path": "folders/Sprites/UI/menu.yy",
+    "name": "header",
+    "path": "folders/Sprites/UI/menu/header.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_menu_bgs",

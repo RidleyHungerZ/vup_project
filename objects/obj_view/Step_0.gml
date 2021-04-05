@@ -1,1 +1,1 @@
-window_set_size(ui.winsize[window_size].w, ui.winsize[window_size].h)
+window_set_size(ui.winsize[global.resolution].w, ui.winsize[global.resolution].h)

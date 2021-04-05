@@ -67,17 +67,25 @@ else if sprite_index==SS_change_idle_ed{
 			scr_sprite_change(SS_idle, 0, 0)
 			menu_imspd=0.25
 			jump=0
+			walk=0
+			hsp=0
 		}
 		instance_destroy()
 	} else {
 		scr_sprite_change(SS_idle,0,0);
 		menu_imspd=0.25
+		jump=0
+		walk=0
+		hsp=0
 	}
 	obj_staff.player_change_over=true
 }
 else if sprite_index==SS_change_idle_cancle{
 	scr_sprite_change(SS_idle,0,0);
 	menu_imspd=0.25
+	jump=0
+	walk=0
+	hsp=0
 	obj_staff.player_change_over=true
 }
 //空中变身
@@ -100,17 +108,24 @@ else if sprite_index==SS_change_fall_ed{
 			menu_imspd=0.25
 			jump=2
 			hsp=walkspd*hspd;
+			vsp=0
 		}
 		instance_destroy()
 	} else {
 		scr_sprite_change(SS_fall,0,0);
 		menu_imspd=0.25
+		jump=2
+		hsp=walkspd*hspd;
+		vsp=0
 	}
 	obj_staff.player_change_over=true
 }
 else if sprite_index==SS_change_fall_cancle{
 	scr_sprite_change(SS_fall,0,0);
 	menu_imspd=0.25
+	jump=2
+	hsp=walkspd*hspd;
+	vsp=0
 	obj_staff.player_change_over=true
 }
 #endregion

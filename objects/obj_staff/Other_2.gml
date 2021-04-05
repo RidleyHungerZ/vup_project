@@ -1,10 +1,11 @@
 randomize()
 
 global.player_support=35
-global.player_hp_up=64
+global.player_hp_up=32
 global.player_hp=global.player_hp_up
-global.player_mp_up=64
+global.player_mp_up=32
 global.player_mp=global.player_mp_up
+global.player_ec=62345
 global.model_get_number=3
 global.model_get[PLAYER_MODEL.ARMOR]=1
 global.model_get[2]=1
@@ -19,7 +20,7 @@ global.start_key =	vk_space
 global.A_key=ord("U")
 global.B_key=ord("K")
 global.L_key=ord("L")
-global.R_key=vk_shift
+global.R_key=ord("H")//vk_shift
 global.X_key=ord("I")
 global.Y_key=ord("J")
 

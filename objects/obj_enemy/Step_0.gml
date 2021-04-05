@@ -58,27 +58,7 @@ if(hp<=0 && use_death_system==1) {
 	#endregion
 	#region 枪伤爆炸
 	if(injure_type==ATK_TYPE.bullet) {
-		if(!evuser2ed) {
-			deathTrigger();
-			evuser2ed=true;
-		}
-		scr_sprite_change(spr_none,0,0);
-		if(death_xscale==1) 
-			image_xscale=-inxscale;
-		scr_enemy_boom_number();
-		scr_enemy_boompart(SS_part);
-		//道具
-		if(item==0) {
-			item=1;
-			scr_enemy_create_item();
-		}
-		injure_type=-1;
-		speed=0;
-		gravity=0;
-		x=xstart;
-		y=ystart;
-		if(variable_instance_exists(id,"death_repeat")) 
-			if death_repeat=0 instance_destroy();
+		deathBoomPart([SS_part, SS_part2])
 	}
 	#endregion
 	#region 切割
@@ -105,6 +85,7 @@ if(hp<=0 && use_death_system==1) {
 				fall=other.enemy_type;
 				wait_time=other.wait_time;
 				boom_number=other.boom_number;
+				SS_part=other.SS_part2
 				enemy=other.id;
 				//悬浮敌人
 				if(other.enemy_type==1) {
@@ -125,9 +106,9 @@ if(hp<=0 && use_death_system==1) {
 			injure_type=ATK_TYPE.bullet;
 			wait_time=0;
 		}
-		if(!place_meeting(x,y+4,obj_ground)
-		&& !place_meeting(x,y+4,obj_sink)
-		&& !collision_rectangle(bbox_right,bbox_bottom+4,bbox_left,bbox_bottom,obj_floor,1,1)
+		if(!place_meeting(x,y+GRDY+4,obj_ground)
+		&& !place_meeting(x,y+GRDY+4,obj_sink)
+		&& !collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_floor,1,1)
 		&& grav>0)
 			enemy_type=1;
 		//喷血
@@ -135,24 +116,29 @@ if(hp<=0 && use_death_system==1) {
 	}
 	#endregion
 	#region 贯穿
-	//else if(injure_type==ATK_TYPE.through) {
-	//	if(!evuser2ed) {
-	//		deathTrigger();
-	//		evuser2ed=true;
-	//	}
-	//	scr_sprite_change(SS_death,3,0);
-	//	if(death_xscale==1)  
-	//		image_xscale=-inxscale;
-	//	if(death_boom==0) {
-	//		injure_type=3.1;
-	//		wait_time=30;
-	//	} else {
-	//		injure_type=ATK_TYPE.bullet;
-	//		wait_time=0;
-	//	}
-	//	if(SS_part!=spr_none) 
-	//		scr_enemy_death_through();
-	//}
+	else if(injure_type==ATK_TYPE.through) {
+		if(!evuser2ed) {
+			deathTrigger();
+			evuser2ed=true;
+		}
+		scr_sprite_change(SS_death,3,0);
+		if(death_xscale==1)  
+			image_xscale=-inxscale;
+		if(death_boom==0) {
+			injure_type=3.1;
+			wait_time=30;
+		} else {
+			injure_type=ATK_TYPE.bullet;
+			wait_time=0;
+		}
+		if(!place_meeting(x,y+GRDY+4,obj_ground)
+		&& !place_meeting(x,y+GRDY+4,obj_sink)
+		&& !collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_floor,1,1)
+		&& grav>0)
+			enemy_type=1;
+		if(SS_part!=spr_none) 
+			scr_enemy_through(SS_part);
+	}
 	#endregion
 	#region 切割中&贯穿中
 	else if(injure_type==1.1
@@ -162,45 +148,49 @@ if(hp<=0 && use_death_system==1) {
 			if(wait_time>0) {
 				wait_time-=1;
 				//落空
-				if(!place_meeting(x,y+4,obj_ground)
-				&& !place_meeting(x,y+4,obj_sink)
-				&& !collision_rectangle(bbox_right,bbox_bottom+4,bbox_left,bbox_bottom,obj_floor,1,1)
+				if(!place_meeting(x,y+GRDY+4,obj_ground)
+				&& !place_meeting(x,y+GRDY+4,obj_sink)
+				&& !collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_floor,1,1)
 				&& grav>0) {
 					enemy_type=1;
 					gravity=grav;
 				}
 				//上坡
-				else if((collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-8,obj_ground,1,1)
-				&&!collision_rectangle(bbox_right,bbox_bottom-8,bbox_left,bbox_top,obj_ground,1,1))
-				||(collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-8,obj_sink,1,1)
-				&&!collision_rectangle(bbox_right,bbox_bottom-8,bbox_left,bbox_top,obj_sink,1,1))
-				||(collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-8,obj_floor,1,1)
-				&&!collision_rectangle(bbox_right,bbox_bottom-8,bbox_left,bbox_top,obj_floor,1,1))) {
-					while(collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-8,obj_ground,1,1)
-					|| collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-8,obj_sink,1,1)
-					|| collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-8,obj_floor,1,1)) {
+				else if((collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-8,obj_ground,1,1)
+				&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-8,bbox_left,bbox_top,obj_ground,1,1))
+				||(collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-8,obj_sink,1,1)
+				&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-8,bbox_left,bbox_top,obj_sink,1,1))
+				||(collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-8,obj_floor,1,1)
+				&&!collision_rectangle(bbox_right,bbox_bottom+GRDY-8,bbox_left,bbox_top,obj_floor,1,1))) {
+					while(collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-8,obj_ground,1,1)
+					|| collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-8,obj_sink,1,1)
+					|| collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-8,obj_floor,1,1)) {
 						y-=1;
 					}
 				}
 				//撞墙
-				else if(collision_rectangle(bbox_right,bbox_bottom-8,bbox_left,bbox_top,obj_ground,1,1)
-				|| collision_rectangle(bbox_right,bbox_bottom-8,bbox_left,bbox_top,obj_sink,1,1)) {
+				else if(collision_rectangle(bbox_right,bbox_bottom+GRDY-8,bbox_left,bbox_top,obj_ground,1,1)
+				|| collision_rectangle(bbox_right,bbox_bottom+GRDY-8,bbox_left,bbox_top,obj_sink,1,1)) {
 					wait_time=0;
 				}
 			}
 			else{
-				injure_type=ATK_TYPE.bullet;
+				if injure_type==1.1 deathBoomPart(SS_part)
+				else if injure_type==3.1 deathBoomPart(SS_part2)
+				//injure_type=ATK_TYPE.bullet;
 			}
 		}
 		#endregion
 		#region 落下
 		else if(enemy_type==1) {
 			gravity=grav;
-			if(place_meeting(x,y,obj_ground)
-			|| place_meeting(x,y,obj_sink)
-			|| collision_rectangle(bbox_right,bbox_bottom+1,bbox_left,bbox_bottom-1,obj_floor,1,1)
+			if(place_meeting(x,y+GRDY,obj_ground)
+			|| place_meeting(x,y+GRDY,obj_sink)
+			|| collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY-1,obj_floor,1,1)
 			|| death_boom==1) {
-				injure_type=ATK_TYPE.bullet;
+				if injure_type==1.1 deathBoomPart(SS_part)
+				else if injure_type==3.1 deathBoomPart(SS_part2)
+				//injure_type=ATK_TYPE.bullet;
 			}
 		}
 		#endregion

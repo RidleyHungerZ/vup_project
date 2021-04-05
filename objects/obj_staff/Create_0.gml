@@ -1,4 +1,5 @@
 event_inherited()
+gpu_set_texfilter(true)
 #region init脚本
 //宏初始化
 scr_macros()
@@ -12,6 +13,7 @@ audio_bgm_inti()
 #endregion
 #region ini变量初始化
 #region 键盘
+global.direct_asdw = 0 //方向键类型，0=方向键，1=asdw
 global.left_key =	vk_left
 global.right_key =	vk_right
 global.up_key =		vk_up
@@ -43,10 +45,10 @@ global.option_init_ary[1]=[
 #endregion
 #region 手柄
 global.joy=-4//当前手柄
-global.jump_joy =	gp_b
-global.true_joy =	gp_a
-global.att_joy =	gp_y
-global.trans_joy =	gp_x
+global.jump_joy =	gp_a
+global.true_joy =	gp_b
+global.att_joy =	gp_x
+global.trans_joy =	gp_y
 global.dash_joy =	gp_l
 global.sub_joy =	gp_r
 global.tformL_joy =	gp_zl
@@ -62,23 +64,20 @@ global.option_init_ary[2]=[
 #region 动作
 global.sub_type=0//0双键，1双按，2切换
 global.dash_order=1//冲刺指令
-global.glide_type=0//下落方式
-global.swim_type=0//游泳方式
+global.alert_type=0//系统提示
 //初始化记录存入
 global.option_init_ary[3]=[
-	"sub_type", "dash_order", "glide_type", "swim_type",
+	"sub_type", "dash_order", "alert_type", 
 ]
 #endregion
 #region 显示读取
-global.fps_display=0
-global.texfilter=0
-global.language=LANG.CHS
-global.effect_enemy_boom=0
-global.joy_button_style=0
+global.full_screen=0
+global.resolution=0
 global.pix_filter=0
+global.language=LANG.CHS
 //初始化记录存入
 global.option_init_ary[4]=[
-	"fps_display", "texfilter", "language", "effect_enemy_boom", "joy_button_style"
+	"full_screen", "resolution", "pix_filter", "language"
 ]
 #endregion
 #region 音量读取
@@ -109,6 +108,7 @@ for(var i=1;i<array_length(global.option_init_ary);i++){
 have_file_config = file_exists(FILE_CONFIG)
 ini_open(FILE_CONFIG)
 #region 键盘
+global.direct_asdw = ini_read_real("key", "direct_asdw",	global.direct_asdw)
 global.left_key =	ini_read_real("key", "left",	global.left_key)
 global.right_key =	ini_read_real("key", "right",global.right_key)
 global.up_key =		ini_read_real("key", "up",	global.up_key)
@@ -128,13 +128,13 @@ global.att_key =	ini_read_real("key", "att",		global.att_key)
 global.dash_key =	ini_read_real("key", "dash",	global.dash_key)
 global.sub_key =	ini_read_real("key", "sub",		global.sub_key)
 global.trans_key =	ini_read_real("key", "trans",	global.trans_key)
-global.true_key =	ini_read_real("key", "true",		global.true_key)
+global.true_key =	ini_read_real("key", "true",	global.true_key)
 global.tformL_key =	ini_read_real("key", "tformL",	global.tformL_key)
 global.tformR_key =	ini_read_real("key", "tformR",	global.tformR_key)
 #endregion
 #region 手柄
 global.jump_joy =	ini_read_real("joy", "jump",	global.jump_joy)
-global.true_joy =	ini_read_real("joy", "true",		global.true_joy)
+global.true_joy =	ini_read_real("joy", "true",	global.true_joy)
 global.att_joy =	ini_read_real("joy", "att",		global.att_joy)
 global.trans_joy =	ini_read_real("joy", "trans",	global.trans_joy)
 global.dash_joy =	ini_read_real("joy", "dash",	global.dash_joy)
@@ -143,18 +143,15 @@ global.tformL_joy =	ini_read_real("joy", "tformL",	global.tformL_joy)
 global.tformR_joy =	ini_read_real("joy", "tformR",	global.tformR_joy)
 #endregion
 #region 动作
-global.sub_type =	ini_read_real("weapon", "sub",			global.sub_type)//0双键，1双按，2切换
-global.dash_order =	ini_read_real("weapon", "dash_order",	global.dash_order)//冲刺指令
-global.glide_type =	ini_read_real("weapon", "glide_type",	global.glide_type)//下落方式
-global.swim_type =	ini_read_real("weapon", "swim_type",	global.swim_type)//游泳方式
+global.sub_type =	ini_read_real("order", "sub",			global.sub_type)//0双键，1双按，2切换
+global.dash_order =	ini_read_real("order", "dash_order",	global.dash_order)//冲刺指令
+global.alert_type =	ini_read_real("order", "alert_type",	global.alert_type)//系统提示
 #endregion
 #region 显示读取
-global.fps_display =	ini_read_real("display", "fps",			global.fps_display)
-global.texfilter =		ini_read_real("display", "texfilter",		global.texfilter)
-global.language =		ini_read_real("display", "language",		global.language)
-global.effect_enemy_boom =	ini_read_real("display", "effect_enemy_boom",	global.effect_enemy_boom)
-global.joy_button_style =	ini_read_real("display", "joy_button_style",	global.joy_button_style)
+global.full_screen = ini_read_real("display", "full_screen",global.full_screen)
+global.resolution = ini_read_real("display", "resolution",global.resolution)
 global.pix_filter =	ini_read_real("display", "pix_filter",	global.pix_filter)
+global.language =	ini_read_real("display", "language",	global.language)
 #endregion
 #region 音量读取
 global.volume_se =	ini_read_real("volume", "se",	global.volume_se)

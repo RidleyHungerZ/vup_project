@@ -30,63 +30,82 @@ if surface_exists(view0_surface_temp) {
 	}
 }
 #endregion
+//绘制UI时开启模糊
+gpu_set_texfilter(true)
 #region 界面内容
 if global.operate==1
 && global.player_operate==1 {
-	var ifx=16, ify=16;
-	draw_sprite(spr_ui_grd_support_iframe, 0, ifx, ify)
+	var ifx=32, ify=32;
+	//发卡
+	draw_sprite(spr_ui_grd_board_bgs, 0, ifx, ify)
 	//hp 对应血条64=3倍长度
-	if false{
+	#region HP
+	if true {
 		//血条框架
-		var hpx=ifx+32, hpy=ify+13,
+		var hpx=ifx+112, hpy=ify+42, hprate=8;
+		//黑背景
+		var hpifx=hpx+16+12,hpify=hpy-2,
 			hpifw=sprite_get_width(spr_ui_grd_hp_iframe),
 			hpifh=sprite_get_height(spr_ui_grd_hp_iframe),
-			hpiflen=(global.player_hp_up/64)*3*hpifw;
-		draw_sprite(spr_ui_grd_hp_iframe, 0, hpx, hpy)
-		draw_sprite_ext(spr_ui_grd_hp_iframe, 1, hpx+hpifw, hpy, (hpiflen-hpifw-32)/hpifw, 1, 0, c_white, 1)
-		draw_sprite_ext(spr_ui_grd_hp_iframe, 2, hpx+hpiflen, hpy, -1, 1, 0, c_white, 1)
-		var hpsurf = draw_hp(global.player_hp, hpiflen-1),
-			hpaftsurf = draw_hp(global.player_hp_aft, hpiflen-1)
-		draw_surface_ext(hpaftsurf, hpx+2, hpy+2, 1, 1, 0, $130ecc, 1)
-		surface_free(hpaftsurf)
-		draw_surface_ext(hpsurf, hpx+2, hpy+2, 1, 1, 0, c_white, 1)
-		surface_free(hpsurf)
+			hpifcenlen=global.player_hp_up*hprate-16;
+		draw_sprite_ext(spr_ui_grd_hp_iframe, 0, hpifx, hpify, hpifcenlen/hpifw, 1, 0, c_white, 1)
+		draw_sprite(spr_ui_grd_hp_iframe, 1, hpifx+hpifcenlen, hpify)
+		//红血条
+		var hpaftsurf=get_hp_surface(global.player_hp_aft, hprate);
+		if surface_exists(hpaftsurf) {
+			draw_surface_ext(hpaftsurf, hpx+0, hpy+8, 1, 1, 0, $130ecc, 11)
+			surface_free(hpaftsurf)
+		}
+		//血条
+		var hpsurf=get_hp_surface(global.player_hp, hprate);
+		if surface_exists(hpsurf) {
+			draw_surface(hpsurf, hpx+0, hpy+8)
+			surface_free(hpsurf)
+		}
+		//血条外白条
+		var hptopx=hpx-4, hptopy=hpy,
+			hptopw=sprite_get_width(spr_ui_grd_hp_top),
+			hptopcenlen=global.player_hp_up*hprate-hptopw;
+		draw_sprite(spr_ui_grd_hp_top, 0, hptopx, hptopy)
+		draw_sprite_ext(spr_ui_grd_hp_top, 1, hptopx+hptopw, hptopy, hptopcenlen/hptopw, 1, 0, c_white, 1)
+		draw_sprite(spr_ui_grd_hp_top, 2, hptopx+hptopw+hptopcenlen, hptopy)
 	}
-	//mp
-	if false{
+	#endregion
+	#region MP
+	if true {
 		//能量条框架
-		var mpx=ifx+36, mpy=ify+39,
+		var mpx=ifx+120, mpy=ify+72, mprate=2;
+		//黑条
+		var mpifx=mpx, mpify=mpy,
 			mpifw=sprite_get_width(spr_ui_grd_mp_iframe),
 			mpifh=sprite_get_height(spr_ui_grd_mp_iframe),
-			mpiflen=(global.player_mp_up/64)*3*mpifw;
-		draw_sprite(spr_ui_grd_mp_iframe, 0, mpx, mpy)
-		draw_sprite_ext(spr_ui_grd_mp_iframe, 1, mpx+mpifw, mpy, (mpiflen-mpifw-16)/mpifw, 1, 0, c_white, 1)
-		draw_sprite_ext(spr_ui_grd_mp_iframe, 2, mpx+mpiflen, mpy, -1, 1, 0, c_white, 1)
+			mpifcenlen=global.player_mp_up*hprate-16;
+		draw_sprite(spr_ui_grd_mp_iframe, 0, mpifx, mpify)
+		draw_sprite_ext(spr_ui_grd_mp_iframe, 1, mpifx+mpifw, mpify, mpifcenlen/mpifw, 1, 0, c_white, 1)
+		draw_sprite(spr_ui_grd_mp_iframe, 2, mpifx+mpifw+mpifcenlen, mpify)
 		//能量条
-		var mpsurf = draw_mp(global.player_mp, mpiflen-4)
-		draw_surface_ext(mpsurf, mpx+2, mpy+2, 1, 1, 0, $f0ce00, 1)
-		surface_free(mpsurf)
+		var mppointx=mpx+6, mppointy=mpy+4,
+			mppointw=sprite_get_width(spr_ui_grd_mp),
+			mppointcount=global.player_mp_up/mprate;
+		for(var i=0;i<mppointcount;i++) {
+			var pointval = global.player_mp mod mprate;
+			if (i+1)*mprate<=global.player_mp pointval=mprate;
+			else if i*mprate>global.player_mp pointval=0;
+			draw_sprite_ext(spr_ui_grd_mp, 0, mppointx+16*i, mppointy, 1, 1, 0, c_white, pointval/mprate)
+		}
 	}
-
-
-	//var supportw = sprite_get_width(spr_ui_grd_support),
-	//	supporth = sprite_get_height(spr_ui_grd_support),
-	//	parth = floor(supporth*(1-global.player_support/100))
-	//draw_sprite_part(spr_ui_grd_support, 0, 0, parth, supportw, supporth-parth, 39, 102+parth)
-	////scr_draw_text(c_white, 1, 0, font_butter_support, 0.5, 0.5, "50", 60, 82, 1, 1, -1, -1, -1)
-	//draw_set_font(font_butter_support)
-	//draw_set_halign(fa_center)
-	//draw_set_valign(fa_middle)
-	//draw_set_color_alpha($5300f1, 1)
-	//draw_text_ext_transformed(59, 81, global.player_support, -1, -1, 1, 1, 0)
-	//draw_set_color_alpha_init()
-	////血条
-	//draw_sprite(spr_ui_grd_hp_iframe, 0, 81, 76)
-	//draw_sprite_ext(spr_ui_grd_hp, 0, 83, 76, global.player_hp/global.player_hp_up, 1, 0, c_white, 1)
-	////能量条
-	//draw_sprite(spr_ui_grd_mp_iframe, 0, 89, 120)
-	//draw_sprite_ext(spr_ui_grd_mp, 0, 92, 120, global.player_mp/global.player_mp_up, 1, 0, c_white, 1)
-	
+	#endregion
+	#region 支援槽
+	var supifx=ifx+132, supify=ify+21;
+	draw_sprite(spr_ui_grd_support_iframe, 0, supifx, supify)
+	draw_sprite(spr_ui_grd_support_iframe, 1, supifx, supify)
+	var supstr="MAX";
+	if global.player_support<100 {
+		supstr=string(global.player_support)+"%"
+		if global.player_support<10 supstr=" "+supstr;
+	}
+	scr_draw_text_ext(UIPINK, 1, 0, font_jam_24, 0.5, 0.5, supstr, supifx, supify+1, 1, 1, -1, -1, c_black, 1);
+	#endregion
 	#region 腰带
 	with obj_menu {
 		var bx=288, by=960
