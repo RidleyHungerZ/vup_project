@@ -90,6 +90,8 @@ else if menu_page_change==-1{
 #endregion
 #region 菜单操作
 if global.menu==1 {
+	if menu_exit_time>0 menu_exit_time--
+	else menu_exit_time=0
 	//切页
 	if menu_type==0 && menu_page_change==0 {
 		if keystate_check_pressed(global.L_state) {

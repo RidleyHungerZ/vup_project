@@ -44,6 +44,8 @@ global.room_yb=room_height
 
 global.view_control=0
 global.view_shock=0
+global.gaypad_shock=[0, 0]
+global.gaypad_shock_time=-1
 viewShock=0 //镜头震动计算
 
 global.view_dx=0//镜头横向移速

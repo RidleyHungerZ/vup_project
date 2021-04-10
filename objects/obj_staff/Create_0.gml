@@ -12,8 +12,8 @@ audio_dpl_inti()
 audio_bgm_inti()
 #endregion
 #region ini变量初始化
+var initaryinx=0
 #region 键盘
-global.direct_asdw = 0 //方向键类型，0=方向键，1=asdw
 global.left_key =	vk_left
 global.right_key =	vk_right
 global.up_key =		vk_up
@@ -25,8 +25,8 @@ global.A_key=ord("X")
 global.B_key=ord("C")
 global.L_key=ord("Z")
 global.R_key=ord("A")
-global.X_key=ord("S")
-global.Y_key=ord("D")
+global.X_key=ord("Q")
+global.Y_key=ord("E")
 
 global.jump_key =	global.B_key
 global.att_key =	global.Y_key
@@ -37,10 +37,14 @@ global.true_key =	global.A_key
 global.tformL_key =	ord("Q")
 global.tformR_key =	ord("E")
 //初始化记录存入
-global.option_init_ary[1]=[
-	"left_key", "right_key", "up_key", "down_key", "select_key", "start_key",
+global.option_init_ary[initaryinx++]=[
+	"left_key", "right_key", "up_key", "down_key", 
+	"select_key", "start_key",
 	"A_key", "B_key", "L_key", "R_key", "X_key", "Y_key",
 	"jump_key", "att_key", "dash_key", "sub_key", "trans_key", "true_key", "tformL_key", "tformR_key",
+	
+	"jump_joy", "att_joy", "dash_joy", "sub_joy", 
+	"trans_joy", "true_joy", "tformL_joy", "tformR_joy",
 ]
 #endregion
 #region 手柄
@@ -56,17 +60,17 @@ global.tformR_joy =	gp_zr
 global.select_joy =	gp_select
 global.start_joy =	gp_start
 //初始化记录存入
-global.option_init_ary[2]=[
-	"jump_joy", "att_joy", "dash_joy", "sub_joy", 
-	"trans_joy", "true_joy", "tformL_joy", "tformR_joy",
-]
+//global.option_init_ary[initaryinx++]=[
+//	"jump_joy", "att_joy", "dash_joy", "sub_joy", 
+//	"trans_joy", "true_joy", "tformL_joy", "tformR_joy",
+//]
 #endregion
 #region 动作
 global.sub_type=0//0双键，1双按，2切换
 global.dash_order=1//冲刺指令
 global.alert_type=0//系统提示
 //初始化记录存入
-global.option_init_ary[3]=[
+global.option_init_ary[initaryinx++]=[
 	"sub_type", "dash_order", "alert_type", 
 ]
 #endregion
@@ -76,7 +80,7 @@ global.resolution=0
 global.pix_filter=0
 global.language=LANG.CHS
 //初始化记录存入
-global.option_init_ary[4]=[
+global.option_init_ary[initaryinx++]=[
 	"full_screen", "resolution", "pix_filter", "language"
 ]
 #endregion
@@ -86,12 +90,12 @@ global.volume_bgm=1
 global.volume_all=1
 global.volume_menu=0.5//菜单音量
 //初始化记录存入
-global.option_init_ary[5]=[
-	"volume_se", "volume_bgm", "volume_all",
+global.option_init_ary[initaryinx++]=[
+	 "volume_all","volume_se", "volume_bgm",
 ]
 #endregion
 #region 设置初始化和上版本记录map
-for(var i=1;i<array_length(global.option_init_ary);i++){
+for(var i=0;i<array_length(global.option_init_ary);i++){
 	global.option_init_map[i]=ds_map_create() //记录初始按键
 	global.option_last_map[i]=ds_map_create() //记录上一次按键
 	var ary = global.option_init_ary[i],
@@ -108,7 +112,6 @@ for(var i=1;i<array_length(global.option_init_ary);i++){
 have_file_config = file_exists(FILE_CONFIG)
 ini_open(FILE_CONFIG)
 #region 键盘
-global.direct_asdw = ini_read_real("key", "direct_asdw",	global.direct_asdw)
 global.left_key =	ini_read_real("key", "left",	global.left_key)
 global.right_key =	ini_read_real("key", "right",global.right_key)
 global.up_key =		ini_read_real("key", "up",	global.up_key)

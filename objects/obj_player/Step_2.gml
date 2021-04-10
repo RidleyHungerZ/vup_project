@@ -386,6 +386,8 @@ global.player_def=1;
 			vsp=0;
 			injure_element=ELEMENTS.none;
 		}
+		//手柄震动
+		gaypad_shock(1, 1, 10)
 	}
 	#endregion
 	#region 设定受伤时间

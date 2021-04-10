@@ -5,7 +5,7 @@ function gaypad_get_anykey(getpad) {
 	//-1无按键
 	//其他为返回按键
 	var gaypad=global.joy;
-	if gaypad=-4 return -4;
+	if!gaypad_exists() return -4;
 	if gamepad_button_check_pressed(gaypad,gp_face1)
 		return gp_face1
 	else if gamepad_button_check_pressed(gaypad,gp_face2)

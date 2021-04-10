@@ -1,12 +1,12 @@
 /// @desc 主武器按键状态
 function scr_player_charge_mainkey_status() {
 	if !obj_player.sub_unuse {
-		if global.sub_type=0
+		if global.sub_type==0
 			return global.att_state
-		else if global.sub_type=1
+		else if global.sub_type==1
 			return global.att_state
-		else if global.sub_type=2{
-			if global.sub_change[global.model]=0
+		else if global.sub_type==2{
+			if global.sub_change[global.model]==0
 				return global.att_state
 			else
 				return 0
@@ -14,7 +14,7 @@ function scr_player_charge_mainkey_status() {
 	}
 	else if obj_player.sub_unuse {
 		//Y,R
-		if global.sub_type=0{
+		if global.sub_type==0{
 			if !keystate_check(global.att_state) 
 			&& !keystate_check(global.sub_state)
 				return 0
@@ -36,21 +36,21 @@ function scr_player_charge_mainkey_status() {
 				return global.att_state
 		}
 		//Y.Y+R
-		else if global.sub_type=1
+		else if global.sub_type==1
 			return global.att_state
 		//Y|R
-		else if global.sub_type=2
+		else if global.sub_type==2
 			return global.att_state
 	}
 }
 /// @desc 副武器按键状态
 function scr_player_charge_subkey_status() {
-	if global.sub_type=0
+	if global.sub_type==0
 		return global.sub_state
-	else if global.sub_type=1
+	else if global.sub_type==1
 		return global.att_state
-	else if global.sub_type=2{
-		if global.sub_change[global.model]=1
+	else if global.sub_type==2{
+		if global.sub_change[global.model]==1
 			return global.att_state
 		else
 			return 0

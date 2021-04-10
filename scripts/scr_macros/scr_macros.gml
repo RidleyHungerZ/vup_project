@@ -4,6 +4,7 @@ function scr_macro(){
 #macro DATA_ENCODE_KEY "VUPROJECT" //加密key
 #macro VERSION "1.0.0.0" //版本号
 #macro VERSION_KEY "112233AABBCC" //版本密钥
+#macro CAPTION "VIRTUA UNLIMITED PROJECT"
 #macro FPS_N 60 //正常帧数
 #region 常用参数
 	#macro True bool(true)

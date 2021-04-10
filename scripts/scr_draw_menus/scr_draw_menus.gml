@@ -63,9 +63,9 @@ function scr_draw_menu_status(dx, dy){
 	draw_sprite_ext(spr_menu_status_left_hp_iframe, 1, drawx+hpifw, drawy, hpifxcenlen/hpifw, 1, 0, c_white, 1)
 	draw_sprite(spr_menu_status_left_hp_iframe, 2, drawx+hpifw+hpifxcenlen, drawy)
 	
-	draw_sprite_part(spr_menu_status_left_hp, 0, 0, 0, max(0, min(hpcenlen, hpifw)), hpifh, drawx, drawy-hpifh/2)
-	draw_sprite_ext(spr_menu_status_left_hp, 1, drawx+hpifw, drawy, max(0, min(hpcenlen-hpifw, hpifxcenlen))/hpifw, 1, 0, c_white, 1)
-	draw_sprite_part(spr_menu_status_left_hp, 2, 0, 0, max(0, min(hpcenlen-hpifw-hpifxcenlen, hpifw)), hpifh, drawx+hpifw+hpifxcenlen, drawy-hpifh/2)
+	draw_sprite_part(spr_menu_status_left_hp, 0, 0, 0, clamp(hpcenlen, 0, hpifw), hpifh, drawx, drawy-hpifh/2)
+	draw_sprite_ext(spr_menu_status_left_hp, 1, drawx+hpifw, drawy, clamp(hpcenlen-hpifw, 0, hpifxcenlen)/hpifw, 1, 0, c_white, 1)
+	draw_sprite_part(spr_menu_status_left_hp, 2, 0, 0, clamp(hpcenlen-hpifw-hpifxcenlen, 0, hpifw), hpifh, drawx+hpifw+hpifxcenlen, drawy-hpifh/2)
 	//mp
 	drawx=dx+128 drawy=dy+816
 	var mpifw=sprite_get_width(spr_menu_status_left_mp_iframe),
@@ -76,9 +76,9 @@ function scr_draw_menu_status(dx, dy){
 	draw_sprite_ext(spr_menu_status_left_mp_iframe, 1, drawx+mpifw, drawy, mpifxcenlen/mpifw, 1, 0, c_white, 1)
 	draw_sprite(spr_menu_status_left_mp_iframe, 2, drawx+mpifw+mpifxcenlen, drawy)
 
-	draw_sprite_part_ext(spr_menu_status_left_mp, 0, 0, 0, max(0, min(mpcenlen, mpifw)), mpifh, drawx, drawy-mpifh/2, 1, 1, UIPINK, 1)
-	draw_sprite_ext(spr_menu_status_left_mp, 1, drawx+mpifw, drawy, max(0, min(mpcenlen-mpifw, mpifxcenlen))/mpifw, 1, 0, UIPINK, 1)
-	draw_sprite_part_ext(spr_menu_status_left_mp, 2, 0, 0, max(0, min(mpcenlen-mpifw-mpifxcenlen, mpifw)), mpifh, drawx+mpifw+mpifxcenlen, drawy-mpifh/2, 1, 1, UIPINK, 1)
+	draw_sprite_part_ext(spr_menu_status_left_mp, 0, 0, 0, clamp(mpcenlen, 0, mpifw), mpifh, drawx, drawy-mpifh/2, 1, 1, UIPINK, 1)
+	draw_sprite_ext(spr_menu_status_left_mp, 1, drawx+mpifw, drawy, clamp(mpcenlen-mpifw, 0, mpifxcenlen)/mpifw, 1, 0, UIPINK, 1)
+	draw_sprite_part_ext(spr_menu_status_left_mp, 2, 0, 0, clamp(mpcenlen-mpifw-mpifxcenlen, 0, mpifw), mpifh, drawx+mpifw+mpifxcenlen, drawy-mpifh/2, 1, 1, UIPINK, 1)
 	//羁绊
 	drawx=dx+464 drawy=dy+936
 	var supstr="MAX";

@@ -7,6 +7,7 @@ if view_current==0 {
 	//房间不震动
 	if global.view_shock==0{
 		viewShock=0;
+		gaypad_shock_stop()
 	}
 	//房间震动
 	else if scr_menu_trem(){
@@ -35,6 +36,7 @@ if view_current==0 {
 			if viewShock >= floor(shockT*(3/4))
 				viewShock = floor(shockT*(1/4));
 		}
+		gaypad_shock(min(cur_val_x, 0), max(0, cur_val_x), -1)
 	}
 	#endregion
 }
