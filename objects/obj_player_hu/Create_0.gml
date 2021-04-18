@@ -16,8 +16,8 @@ clearBullets = function() {
 //判断是否能射出子弹
 canShootBullets = function() {
 	var bullet_number=0
-	if instance_exists(obj_player_hu_bullet){
-		with(obj_player_hu_bullet){
+	if instance_exists(obj_player_bullet_hu){
+		with(obj_player_bullet_hu){
 			if sprite_index==spr_player_hu_bullet01
 				bullet_number+=1
 		}

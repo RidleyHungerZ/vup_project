@@ -113,7 +113,8 @@ if global.operate==1
 		draw_sprite(spr_ui_grd_cards_in, 0, bx, by)
 		with obj_staff {
 			//非换卡时
-			if player_change_action==0 {
+			if player_change_action==0 
+			|| player_change_atonce {
 				if(global.model!=PLAYER_MODEL.HU)
 					draw_sprite(spr_ui_grd_cards, global.model, bx, by)
 				draw_sprite(spr_ui_grd_cards_in, global.model, bx, by)
@@ -193,7 +194,7 @@ if global.operate==1
 							//alpha=0
 						}
 						//未获得的卡片使用第8帧
-						if !global.model_get[cinx] cinx=8
+						if !scr_model_isget(cinx) cinx=8
 						draw_sprite_ext(cspr, cinx, bx+(i+cardshx)*112, by-144, cardimx, cardimy, 0, c_white, alpha)
 					}
 				}

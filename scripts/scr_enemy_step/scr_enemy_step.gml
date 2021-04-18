@@ -68,7 +68,7 @@ if !inst_of(obj_enemy) exit
 		element_ssinjure=0
 		//元素僵硬
 		if injure_element!=ELEMENTS.none//带属性
-		&& injure_element!=ELEMENTS.fire//不是火属性
+		//&& injure_element!=ELEMENTS.fire//不是火属性
 		&& injure_elementback//属性击退
 		{
 			scr_sprite_change(SS_injure,0,1/10)

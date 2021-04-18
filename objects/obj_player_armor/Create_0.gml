@@ -8,14 +8,17 @@ saber_combo=0 //记录按键combo
 
 bullet_time=-1
 bullet_set=30
+walk_saber_time=-1
+walk_saber_set=15
 clearBullets = function() {
 	bullet_time=-1;
+	walk_saber_time=-1;
 }
 //判断是否能射出子弹
 canShootBullets = function() {
 	var bullet_number=0
-	if instance_exists(obj_player_armor_bullet){
-		with(obj_player_armor_bullet){
+	if instance_exists(obj_player_bullet_armor){
+		with(obj_player_bullet_armor){
 			if sprite_index==spr_player_armor_bullet01
 				bullet_number+=1
 		}

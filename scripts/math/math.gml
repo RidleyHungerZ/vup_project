@@ -230,5 +230,22 @@ function sigma_var(n, pw) {
 function accurate_to(num, unit) {
 	return floor(num/unit)*unit
 }
-
+/// @desc 根据概率取数
+/// @arg [val1-rate1] 值1和它的概率
+/// @arg [val2-rate2] 值2和它的概率
+/// @arg ...		更多值和概率
+/// @arg default	都不满足时的默认值
+function probability() {
+	var num=0,
+		pro=random(100)
+	for(var i=0;i<argument_count-1;i++) {
+		var ary=argument[i],
+			val=ary[0],
+			rate=ary[1]
+		num+=100*rate
+		if pro<=num
+			return val
+	}
+	return argument[argument_count-1]
+}
 #endregion

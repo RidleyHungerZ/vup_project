@@ -53,45 +53,59 @@ global.hour=global.hour mod 100
 //var oldmap=global.player_mp_up
 //global.player_hp_up=16+4*scr_item_hpup_count()
 //global.player_mp_up=16+4*scr_item_mpup_count()
+ds_list_clear(global.modellist)
+for(var i=0;i<array_length(global.model_number);i++) {
+	if scr_model_isget(i)
+		ds_list_add(global.modellist, i)
+}
+ds_list_clear(global.rtanklist)
+for(var i=0;i<array_length(global.rtank);i++) {
+	if global.rtank[i]==1
+		ds_list_add(global.rtanklist, i)
+}
 #endregion
 #region 玩家数值控制
+//血量控制
 if global.player_hp>global.player_hp_up
 	global.player_hp=global.player_hp_up
 else if global.player_hp<0
 	global.player_hp=0
-	
+//血量红条
 if global.player_hp_aft<global.player_hp
 	global.player_hp_aft=global.player_hp
 else if global.player_hp_aft>global.player_hp {
 	global.player_hp_aft-=1/5
 }
-
+//mp控制
 if global.player_mp>global.player_mp_up
 	global.player_mp=global.player_mp_up
 else if global.player_mp<0
 	global.player_mp=0
-	
-if global.player_life<0 
-	global.player_life=0
-else if global.player_life>9 
-	global.player_life=9
-#endregion
-#region 游戏暂停
-switch(global.stop){
-	case 0.5:{
-		global.stop=1
-		break
-	}
-	case -0.5:{
-		global.stop=0
-		break
-	}
+//羁绊值控制
+if global.player_support>100
+	global.player_support=100
+else if global.player_support<0
+	global.player_support=0
+//if global.player_life<0 
+//	global.player_life=0
+//else if global.player_life>9 
+//	global.player_life=9
+//自动回复能量
+if scr_menu_trem() {
+	if global.player_mp<global.player_mp_up {
+		if auto_sp_time<120 auto_sp_time++
+		else {
+			global.player_mp++
+			auto_sp_time=0
+		}
+	} else auto_sp_time=0
 }
 #endregion
 
 #region 玩家换卡
 if player_change_action==0 {
-	if scr_player_change_trim() {
+	if scr_menu_trem() 
+	&& scr_player_change_trim() {
 		if keystate_check_pressed(global.trans_state) {
 			player_change_action=1
 			player_change_last=global.model
@@ -130,7 +144,32 @@ if player_change_action==0 {
 		if player_change_time==0 {
 			var action_type=0
 			player_change_select_dir=0
-			if keystate_check_pressed(global.Left_state) {
+			//选定或者自动变身
+			if keystate_check_pressed(global.trans_state) 
+			|| keystate_check_pressed(global.A_state) 
+			|| player_change_atonce {
+				if player_change_select==player_change_last
+				&& !player_change_atonce {
+					action_type=-1
+					scr_sound_play(se_player_change_true)
+				} else {
+					if scr_model_isget(player_change_select) {
+						if global.player.model==0 {
+							action_type=2
+						} else if player_change_select==0 {
+							action_type=3
+						} else action_type=1
+						scr_sound_play(se_player_change_true)
+					}
+					else scr_sound_play(se_player_change_error)
+				}
+			} 
+			//取消
+			else if keystate_check_pressed(global.B_state) {
+				action_type=-1
+				player_change_cancle=true
+				scr_sound_play(se_player_change_cancle)
+			} else if keystate_check_pressed(global.Left_state) {
 				player_change_select_dir=-1
 				player_change_time=15
 				player_change_select--
@@ -145,30 +184,6 @@ if player_change_action==0 {
 					player_change_select=0
 				scr_sound_play(se_player_change_select)
 			} 
-			//取消
-			else if keystate_check_pressed(global.B_state) {
-				action_type=-1
-				player_change_cancle=true
-				scr_sound_play(se_player_change_cancle)
-			} 
-			//选定
-			else if keystate_check_pressed(global.trans_state) 
-			|| keystate_check_pressed(global.A_state) {
-				if player_change_select==player_change_last {
-					action_type=-1
-					scr_sound_play(se_player_change_true)
-				} else {
-					if global.model_get[player_change_select] {
-						if global.player.model==0 {
-							action_type=2
-						} else if player_change_select==0 {
-							action_type=3
-						} else action_type=1
-						scr_sound_play(se_player_change_true)
-					}
-					else scr_sound_play(se_player_change_error)
-				}
-			}
 			//取消或保持原样
 			if action_type==-1 {
 				with obj_player {
@@ -217,7 +232,8 @@ if player_change_action==0 {
 				if jump==0 scr_sprite_change(SS_change_idle_ed, 0, 0.25)
 				else scr_sprite_change(SS_change_fall_ed, 0, 0.25)
 			}
-			global.model=player_change_select
+			if !player_change_atonce
+				global.model=player_change_select
 			player_change_action=5
 			player_change_time=15
 		}
@@ -241,7 +257,8 @@ if player_change_action==0 {
 	//变回人形先出卡
 	else if player_change_action==5.5 {
 		if(player_change_time==0) {
-			global.model=player_change_select
+			if !player_change_atonce
+				global.model=player_change_select
 			with obj_player {
 				if jump==0 scr_sprite_change(spr_player_armor_change_idle_pull, 0, 0.25)
 				else scr_sprite_change(spr_player_armor_change_fall_pull, 0, 0.25)
@@ -268,6 +285,7 @@ if player_change_action==0 {
 		if player_change_over {
 			global.stop=-0.5
 			player_change_action=0
+			player_change_atonce=false
 		}
 	}
 	//////////////////

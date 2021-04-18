@@ -5,12 +5,8 @@ function scr_player_charge_mainkey_status() {
 			return global.att_state
 		else if global.sub_type==1
 			return global.att_state
-		else if global.sub_type==2{
-			if global.sub_change[global.model]==0
-				return global.att_state
-			else
-				return 0
-		}
+		else if global.sub_type==2
+			return global.att_state
 	}
 	else if obj_player.sub_unuse {
 		//Y,R
@@ -49,12 +45,8 @@ function scr_player_charge_subkey_status() {
 		return global.sub_state
 	else if global.sub_type==1
 		return global.att_state
-	else if global.sub_type==2{
-		if global.sub_change[global.model]==1
-			return global.att_state
-		else
-			return 0
-	}
+	else if global.sub_type==2
+		return global.att_state
 }
 /// @desc 放开蓄力时的等级
 /// @arg i

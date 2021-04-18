@@ -20,7 +20,7 @@ function data_filemap(){
 	map[? "player_mp_ex"]=noone
 	map[? "player_mp_up"]=noone
 	map[? "player_life"]=noone
-	map[? "player_ec"]=noone
+	map[? "player_es"]=noone
 	map[? "hpup_item"]=noone
 	map[? "mpup_item"]=noone
 

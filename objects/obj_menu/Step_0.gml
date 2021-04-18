@@ -110,7 +110,7 @@ if global.menu==1 {
 	}
 	#region 状态
 	if menu_page==0 {
-		
+		scr_menu_page_status_code()
 	}
 	#endregion
 	#region 道具

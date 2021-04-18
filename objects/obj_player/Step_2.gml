@@ -1,7 +1,7 @@
 #region 数据设定
 if(scr_menu_trem()) {
 	#region 精灵播放帧速修改区
-	scr_sprite_imspd(SS_idle,1/120,0,1);
+	scr_sprite_imspd(SS_idle,1/90,0,1);
 	scr_sprite_imspd(SS_idle,0.1,1,2);
 	scr_sprite_imspd(SS_idle,0.025,2,3);
 	scr_sprite_imspd(SS_idle,0.1,3,6);
@@ -93,21 +93,23 @@ if(scr_menu_trem()) {
 	}
 	#endregion
 	#region 检测model是否符合当前卡片
-	var newplayer = noone;
-	if model==0 && global.model!=0 {
-		newplayer=obj_player_armor
-	} else if model!=0 && global.model==0 {
-		newplayer=obj_player_hu
-	}
-	if(newplayer!=noone) {
-		with instance_create_depth(x, y, depth, newplayer) {
-			scr_sprite_change(SS_idle, 0, 0.25)
-			image_xscale=other.image_xscale
-			image_yscale=other.image_yscale
-			injure_t=other.injure_t
+	if !obj_staff.player_change_atonce {
+		var newplayer = noone;
+		if model==0 && global.model!=0 {
+			newplayer=obj_player_armor
+		} else if model!=0 && global.model==0 {
+			newplayer=obj_player_hu
 		}
-		instance_destroy()
-		exit
+		if(newplayer!=noone) {
+			with instance_create_depth(x, y, depth, newplayer) {
+				scr_sprite_change(SS_idle, 0, 0.25)
+				image_xscale=other.image_xscale
+				image_yscale=other.image_yscale
+				injure_t=other.injure_t
+			}
+			instance_destroy()
+			exit
+		}
 	}
 	#endregion
 }
@@ -219,7 +221,7 @@ global.player_def=1;
 		for(var i=0;i<bosslistcnt;i++){
 			var boss=bosslist[| i];
 			if(global.boss_hp>0 && boss.attack!=0 && boss.have_dmg=true
-			&& !in(boss.injure_element, [ELEMENTS.ice, ELEMENTS.elec])
+			//&& !in(boss.injure_element, [ELEMENTS.ice, ELEMENTS.elec])
 			&& (uninjure==0 || injure_level<boss.damage_level)) {
 				place=true;
 				konjo=true;
@@ -293,6 +295,7 @@ global.player_def=1;
 	}
 	#endregion
 	#endregion
+	injure_element=ELEMENTS.none
 	#region 进入受伤状态，进行方向和类型设定
 	if(place) injure_t=0;
 	if((uninjure==1 || uninjure==-1)
@@ -300,8 +303,9 @@ global.player_def=1;
 		var ww=walk;
 		dash=0;
 		//击飞
-		if(injure_element==ELEMENTS.push
-		&& !scr_itemb_isrun(ITEMB.shock_absorber)) {
+		if injure_attack_type==ATK_TYPE.push
+		//&& !scr_itemb_isrun(ITEMB.shock_absorber) 
+		{
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
 			if(jump==9) scr_player_outground();
@@ -312,7 +316,7 @@ global.player_def=1;
 				y-=4*image_yscale;
 		}
 		//上击飞
-		else if(injure_element==ELEMENTS.pushup) {
+		else if(injure_attack_type==ATK_TYPE.pushup) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
 			if(jump==9) scr_player_outground();
@@ -324,7 +328,7 @@ global.player_def=1;
 				y-=4*image_yscale;
 		}
 		//下击飞
-		else if(injure_element==ELEMENTS.pushdown) {
+		else if(injure_attack_type==ATK_TYPE.pushdown) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
 			if(jump==9) scr_player_outground();
@@ -336,7 +340,7 @@ global.player_def=1;
 				y-=4*image_yscale;
 		}
 		//冰冻
-		else if(injure_element==ELEMENTS.ice) {
+		else if(injure_attack_type==ATK_TYPE.frozen) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
 			if(jump==9) scr_player_outground();
@@ -346,7 +350,7 @@ global.player_def=1;
 			scr_sound_play(se_ice);
 		}
 		//普通受伤
-		else{
+		else {
 			if(uninjure==1) {
 				scr_sprite_change(SS_injure1,0,0.25);
 				scr_sound_play(SE_injure1);
@@ -356,7 +360,7 @@ global.player_def=1;
 				scr_sound_play(SE_injure2);
 			}
 			if(jump==9) scr_player_outground();
-			if(injure_element!=ELEMENTS.absorb) {//吸附
+			if(injure_attack_type!=ATK_TYPE.absorb) {//吸附
 				hsp=2*hspd*(-uninjure);
 				vsp=-(1/3)*vspd;
 			}
@@ -364,7 +368,8 @@ global.player_def=1;
 				hsp=0;
 				vsp=0;
 			}
-			injure_element=ELEMENTS.none;
+			injure_attack_type=ATK_TYPE.bullet;
+			//injure_element=ELEMENTS.none;
 		}
 		//if(scr_itemb_isrun(ITEMB.shock_absorber)) {
 		//	hsp=0;
@@ -374,9 +379,6 @@ global.player_def=1;
 		jump=-1;
 		uninjure=1;
 		injure_ingrd=false;
-		//if(injure_element==ELEMENTS.fire
-		//|| injure_element==ELEMENTS.elec)
-		//	injure_element=ELEMENTS.none;
 		//夹缝中
 		if(ww==8 
 		&& global.model==PLAYER_MODEL.HU
@@ -384,10 +386,11 @@ global.player_def=1;
 			scr_sprite_change(SS_injure3,0,0.25);
 			hsp=0;
 			vsp=0;
+			injure_attack_type=ATK_TYPE.bullet;
 			injure_element=ELEMENTS.none;
 		}
 		//手柄震动
-		gaypad_shock(1, 1, 10)
+		gaypad_shock(1, 1, 30)
 	}
 	#endregion
 	#region 设定受伤时间
@@ -411,7 +414,7 @@ global.player_def=1;
 }
 #endregion
 #region 轰飞
-if(injure_element==ELEMENTS.push) {
+if(injure_attack_type==ATK_TYPE.push) {
 	injure_t=1;//无敌一直在
 	#region 落地
 	if(scr_player_Is_fallover(0,0,2,2)) {
@@ -420,7 +423,7 @@ if(injure_element==ELEMENTS.push) {
 		hsp=0;
 		vsp=0;
 		jump=0;
-		injure_element=ELEMENTS.none;
+		injure_attack_type=ATK_TYPE.bullet;
 		scr_player_se_step();
 		scr_player_fallover_adjust();
 	}
@@ -433,13 +436,13 @@ if(injure_element==ELEMENTS.push) {
 		dash=0;
 		jump=2;
 		walk=0;
-		injure_element=ELEMENTS.none;
+		injure_attack_type=ATK_TYPE.bullet;
 	}
 	#endregion
 }
 #endregion
 #region 上轰飞
-else if(injure_element==ELEMENTS.pushup) {
+else if(injure_attack_type==ATK_TYPE.pushup) {
 	injure_t=1;//无敌一直在
 	#region 落地
 	if(scr_player_Is_fallover(0,0,2,2)) {
@@ -448,7 +451,7 @@ else if(injure_element==ELEMENTS.pushup) {
 		hsp=0;
 		vsp=0;
 		jump=0;
-		injure_element=ELEMENTS.none;
+		injure_attack_type=ATK_TYPE.bullet;
 		global.player_hp-=1;
 		scr_player_se_step();
 		scr_player_fallover_adjust();
@@ -462,14 +465,14 @@ else if(injure_element==ELEMENTS.pushup) {
 		dash=0;
 		jump=2;
 		walk=0;
-		injure_element=ELEMENTS.none;
+		injure_attack_type=ATK_TYPE.bullet;
 		global.player_hp-=1;
 	}
 	#endregion
 }
 #endregion
 #region 下轰飞
-else if(injure_element==ELEMENTS.pushdown) {
+else if(injure_attack_type==ATK_TYPE.pushdown) {
 	injure_t=1;//无敌一直在
 	#region 落地
 	if(scr_player_Is_fallover(0,0,2,2)) {
@@ -478,7 +481,7 @@ else if(injure_element==ELEMENTS.pushdown) {
 		hsp=0;
 		vsp=0;
 		jump=0;
-		injure_element=ELEMENTS.none;
+		injure_attack_type=ATK_TYPE.bullet;
 		global.player_hp-=1;
 		scr_player_se_step();
 		scr_player_fallover_adjust();
@@ -487,7 +490,7 @@ else if(injure_element==ELEMENTS.pushdown) {
 }
 #endregion
 #region 冰冻
-else if(injure_element==ELEMENTS.ice) {
+else if(injure_attack_type==ATK_TYPE.frozen) {
 	injure_t=1;//无敌一直在
 	#region 挣扎
 	if((keystate_check(global.left_state)
@@ -498,7 +501,7 @@ else if(injure_element==ELEMENTS.ice) {
 	}
 	ice_time+=1;
 	if(ice_time>=ice_time_up) {
-		injure_element=ELEMENTS.none;
+		injure_attack_type=ATK_TYPE.bullet;
 		scr_sprite_change(SS_idle,0,0.25);
 		walk=0;
 		jump=0;

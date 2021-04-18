@@ -5,30 +5,9 @@ global.player_hp_up=32
 global.player_hp=global.player_hp_up
 global.player_mp_up=32
 global.player_mp=global.player_mp_up
-global.player_ec=62345
+//global.player_es=62345
 global.model_get_number=3
 global.model_get[PLAYER_MODEL.ARMOR]=1
 global.model_get[2]=1
-
-global.left_key =	ord("A")
-global.right_key =	ord("D")
-global.up_key =		ord("W")
-global.down_key =	ord("S")
-global.select_key =	ord("O")
-global.start_key =	vk_space
-
-global.A_key=ord("U")
-global.B_key=ord("K")
-global.L_key=ord("L")
-global.R_key=ord("H")//vk_shift
-global.X_key=ord("I")
-global.Y_key=ord("J")
-
-global.jump_key =	global.B_key
-global.att_key =	global.Y_key
-global.dash_key =	global.L_key
-global.sub_key =	global.R_key
-global.trans_key =	global.X_key
-global.true_key =	global.A_key
-global.tformL_key =	ord("Q")
-global.tformR_key =	ord("E")
+global.rtank[1]=1
+global.rtank[2]=1

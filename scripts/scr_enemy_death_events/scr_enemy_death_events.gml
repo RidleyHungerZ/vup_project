@@ -3,16 +3,73 @@ function scr_enemy_element_death(){
 	if(injure_type==ATK_TYPE.bullet 
 	|| injure_type==ATK_TYPE.cut 
 	|| injure_type==ATK_TYPE.through) {
-		if(element==ELEMENTS.fire && injure_element==ELEMENTS.elec)
-		||(element==ELEMENTS.ice && injure_element==ELEMENTS.fire)
-		||(element==ELEMENTS.elec && injure_element==ELEMENTS.ice) {
+		//if(element==ELEMENTS.fire && injure_element==ELEMENTS.elec)
+		//||(element==ELEMENTS.ice && injure_element==ELEMENTS.fire)
+		//||(element==ELEMENTS.elec && injure_element==ELEMENTS.ice) {
 			
-		}
+		//}
 	}
 }
 /// @desc 死亡时产生道具
 function scr_enemy_create_item() {
-	
+	/*
+	普通情况下，按照大道具、小道具区分
+	血量低于8点时，道具爆率提升0.5倍，且75%是血药
+	能量低于8点时，道具爆率提升0.5倍，75%是能量
+	*/
+	//敌人死亡爆道具
+	var ITEM=-1,
+		p1=random(100),
+		p2=random(100),
+		num=0,
+		small,big,card,
+		musthp=(global.player_hp<=8),
+		mustmp=(global.player_mp<=8),
+		maxhp=(global.player_hp>=global.player_hp_up),
+		maxmp=(global.player_mp>=global.player_mp_up)
+	num+=20	small=num
+	num+=10	big=num
+	num+=30 card=num
+	if musthp 
+	|| mustmp{
+		small*=1.5
+		big*=1.5
+	}
+	//贪婪
+	//if scr_itemb_isrun(ITEMB.greedy) {
+	//	small*=2
+	//	big*=2
+	//	card*=2
+	//} 
+	if p1<=small{
+		var p_hp=0.5,
+			p_mp=0.5
+		if musthp p_hp=0.75
+		else if maxhp p_hp=0.25
+		if mustmp p_mp=0.75
+		else if maxmp p_mp=0.25
+		ITEM=probability([obj_item_hp_s, p_hp], 
+						obj_item_sp_s)
+	} else if p1<=big	{
+		var p_hp=0.5,
+			p_mp=0.5
+		if musthp p_hp=0.75
+		else if maxhp p_hp=0.25
+		if mustmp p_mp=0.75
+		else if maxmp p_mp=0.25
+		ITEM=probability([obj_item_hp, p_hp], 
+						obj_item_sp)
+	} else if p1<=card {
+		ITEM=obj_item_disk
+	}
+	if object_exists(ITEM){
+		with instance_create_depth(x, y, depth, ITEM) {
+			create()
+			if inst_of(obj_item_disk) {
+				object=other.object_index
+			}
+		}
+	}
 }
 /// @desc 死亡时发生爆炸
 /// @arg x*

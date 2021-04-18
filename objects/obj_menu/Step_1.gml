@@ -12,7 +12,8 @@ if global.operate==1
 				menu_page=0
 				menu_type=0
 				menu_page_change=0
-				menu_select[0,0]=1
+				menu_select[0][0]=0
+				last_model=global.model
 			}
 			break
 		}
@@ -43,7 +44,16 @@ if global.operate==1
 		case -0.6:{
 			if menu_open_action==0{
 				global.menu=0
-				global.stop=-0.5
+				//菜单结束直接变身
+				if obj_staff.player_change_atonce {
+					with obj_staff {
+						player_change_action=1
+						player_change_last=global.model
+						player_change_select=global.model
+						player_change_cancle=false
+						player_change_over=false
+					}
+				} else global.stop=-0.5
 			}
 			break
 		}

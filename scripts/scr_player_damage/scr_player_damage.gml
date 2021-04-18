@@ -223,12 +223,12 @@ function scr_player_damage(otherobj) {
 							    att_infact=attnor, //实际造成伤害
 								old_injure_element = injure_element; //记录之前受伤属性
 							//冰元素破冰1.5伤害，且不附带任何属性
-							if att_infact>0 
-							&& old_injure_element==ELEMENTS.ice {
-								att_infact = playerattack*1.5*DEF;
-								atkelement = ELEMENTS.none;
-								element_index=9999
-							}
+							//if att_infact>0 
+							//&& old_injure_element==ELEMENTS.ice {
+							//	att_infact = playerattack*1.5*DEF;
+							//	atkelement = ELEMENTS.none;
+							//	element_index=9999
+							//}
 							//敌人无属性
 							if element=ELEMENTS.none{
 								att_infact=attnor
@@ -237,42 +237,47 @@ function scr_player_damage(otherobj) {
 									element_index=0
 								}
 							}
-							//敌人火属性
-							else if element=ELEMENTS.fire{
-								if atkelement=ELEMENTS.fire att_infact=attsame
-								else if atkelement=ELEMENTS.ice att_infact=attingrum
-								else if atkelement=ELEMENTS.elec{
-									att_infact=attgrum
-									injure_element=atkelement
-									element_index=0
-								}
-								else att_infact=attnor
-							}
-							//敌人冰属性
-							else if element=ELEMENTS.ice{
-								if atkelement=ELEMENTS.ice att_infact=attsame
-								else if atkelement=ELEMENTS.elec att_infact=attingrum
-								else if atkelement=ELEMENTS.fire{
-									att_infact=attgrum
-									injure_element=atkelement
-									element_index=0
-								}
-								else att_infact=attnor
-							}
-							//敌人雷属性
-							else if element=ELEMENTS.elec{
-								if atkelement=ELEMENTS.elec att_infact=attsame
-								else if atkelement=ELEMENTS.fire att_infact=attingrum
-								else if atkelement=ELEMENTS.ice{
-									att_infact=attgrum
-									injure_element=atkelement
-									element_index=0
-								}
-								else att_infact=attnor
-							}
+							////敌人火属性
+							//else if element=ELEMENTS.fire{
+							//	if atkelement=ELEMENTS.fire att_infact=attsame
+							//	else if atkelement=ELEMENTS.ice att_infact=attingrum
+							//	else if atkelement=ELEMENTS.elec{
+							//		att_infact=attgrum
+							//		injure_element=atkelement
+							//		element_index=0
+							//	}
+							//	else att_infact=attnor
+							//}
+							////敌人冰属性
+							//else if element=ELEMENTS.ice{
+							//	if atkelement=ELEMENTS.ice att_infact=attsame
+							//	else if atkelement=ELEMENTS.elec att_infact=attingrum
+							//	else if atkelement=ELEMENTS.fire{
+							//		att_infact=attgrum
+							//		injure_element=atkelement
+							//		element_index=0
+							//	}
+							//	else att_infact=attnor
+							//}
+							////敌人雷属性
+							//else if element=ELEMENTS.elec{
+							//	if atkelement=ELEMENTS.elec att_infact=attsame
+							//	else if atkelement=ELEMENTS.fire att_infact=attingrum
+							//	else if atkelement=ELEMENTS.ice{
+							//		att_infact=attgrum
+							//		injure_element=atkelement
+							//		element_index=0
+							//	}
+							//	else att_infact=attnor
+							//}
 	        				//减血
 						    hp-=att_infact
 							scr_sound_play(se_enemy_damage) //播放音效
+							
+							//羁绊值增加
+							global.player_support+=att_infact
+							if global.player_support>100 
+								global.player_support=100
 					
 							//反馈给武器攻击结果
 							if hp>0 btn_or_sbr.hit=1 //击中
@@ -361,7 +366,7 @@ function scr_player_damage_block() {
 	blockcollcnt = instance_place_list(x+(hspeed+hsp)+sign_no0(hspeed+hsp), y+vspeed+sign_no0(vspeed), obj_ground_block, blocklist, false)
 	if blockcollcnt>0
 	&& btn_or_sbr.attack!=0
-	&&(btn_or_sbr.attack_type==2 || btn_or_sbr.element=ELEMENTS.fire){
+	&&(btn_or_sbr.attack_type==2){ // || btn_or_sbr.element=ELEMENTS.fire
 		for(var i=0;i<blockcollcnt;i++){
 			with blocklist[| i]{
 				//子弹打破的单独计算

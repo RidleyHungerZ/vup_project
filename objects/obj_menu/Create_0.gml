@@ -19,6 +19,7 @@ menu_option_list_begin=0 //列表最上项
 menu_option_list_end=menu_option_list_max-1 //列表最下项
 #endregion
 draw_option_item=noone //设置页面绘制选项内容
+last_model=0 //开启彩蛋时的卡片
 #region 键盘sprite
 {
 	var inx=0
@@ -72,9 +73,9 @@ draw_option_item=noone //设置页面绘制选项内容
 	global.keyboard_spr_map[? ord(".")] = inx++;
 	global.keyboard_spr_map[? ord("/")] = inx++;
 	global.keyboard_spr_map[? vk_right]	= inx++;
-	global.keyboard_spr_map[? vk_up]		= inx++;
+	global.keyboard_spr_map[? vk_down]		= inx++;
 	global.keyboard_spr_map[? vk_left]	= inx++;
-	global.keyboard_spr_map[? vk_down]	= inx++;
+	global.keyboard_spr_map[? vk_up]	= inx++;
 	global.keyboard_spr_map[? vk_f1]	= inx++;
 	global.keyboard_spr_map[? vk_f2]	= inx++;
 	global.keyboard_spr_map[? vk_f3]	= inx++;
@@ -126,9 +127,9 @@ draw_option_item=noone //设置页面绘制选项内容
 	global.gaypad_spr_map[? "undefined"] = inx++;
 	global.gaypad_spr_map[? "direct"] = inx++;
 	global.gaypad_spr_map[? gp_padr] = inx++;
-	global.gaypad_spr_map[? gp_padu] = inx++;
-	global.gaypad_spr_map[? gp_padl] = inx++;
 	global.gaypad_spr_map[? gp_padd] = inx++;
+	global.gaypad_spr_map[? gp_padl] = inx++;
+	global.gaypad_spr_map[? gp_padu] = inx++;
 	global.gaypad_spr_map[? gp_a] = inx++;
 	global.gaypad_spr_map[? gp_b] = inx++;
 	global.gaypad_spr_map[? gp_x] = inx++;

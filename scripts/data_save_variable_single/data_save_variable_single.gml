@@ -7,10 +7,6 @@ function data_save_variable_single(){
 #region 玩家区
 	global.mode=1//当前模式
 	/////////////////////////
-	global.re_x=0
-	global.re_y=0
-	global.re_xscale=0
-	/////////////////////////
 	global.player_hp=32
 	global.player_hp_aft=global.player_hp	//受伤红血
 	global.player_hp_up=32
@@ -19,8 +15,8 @@ function data_save_variable_single(){
 	global.player_mp_up=32
 	global.player_mp_ex=0	//一次性扩展能量
 	global.player_support=0 //羁绊值
-	global.player_life=2
-	global.player_ec=0
+	//global.player_life=2
+	global.player_es=0
 	/////////////////////////
 	for(var i=0;i<=30;i++){
 		global.boss[i]=0
@@ -38,6 +34,12 @@ function data_save_variable_single(){
 		global.sub_change[i]=0//模式三使用副武器
 	}
 	global.model_get[PLAYER_MODEL.HU]=1
+	for(var i=0;i<4;i++) {
+		global.hpup[i]=0
+		global.mpup[i]=0
+		global.rtank[i]=0
+		global.rtank_val[i]=0
+	}
 #endregion
 #region 剧情
 	//各种剧情是否进行过（可跳过）

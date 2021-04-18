@@ -41,6 +41,19 @@ else if sprite_index == spr_player_armor_idle_chop3 {
 else if sprite_index == spr_player_armor_idle_choped {
 	scr_sprite_change(SS_idle, 0, 0.25)
 }
+else if sprite_index == spr_player_armor_dash_chop {
+	scr_sprite_change(SS_dashed,0,0.25);
+	dash=0;
+	walk=0;
+	hsp=0;
+	dash_time_l=0;
+	dash_time_r=0;
+	dash_order_time_H=0;
+}
+else if sprite_index == spr_player_armor_fall_chop {
+	if jump==1 scr_sprite_change(SS_jumping, 0, 0.25)
+	else scr_sprite_change(SS_fall, 0, 0.25)
+}
 #endregion
 #region 变回人形
 else if sprite_index==spr_player_armor_change_idle_pull_st{

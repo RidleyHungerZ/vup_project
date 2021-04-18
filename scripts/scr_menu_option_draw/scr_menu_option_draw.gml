@@ -75,10 +75,15 @@ function scr_menu_option_draw(dx, dy){
 					//绘制键盘，如果是字符串则视为变量，如果是数字则直接当做值
 					var keyvarstr = variable_list[0]
 					if is_real(keyvarstr)
+					|| is_method(keyvarstr)
 					|| variable_global_exists(keyvarstr) {
-						var keyval = undefined;
+						var keyval = undefined, lock=false;
 						if is_real(keyvarstr) {
 							keyval=keyvarstr
+							lock=true
+						} else if is_method(keyvarstr) {
+							keyval=keyvarstr()
+							lock=true
 						} else {
 							keyval = variable_global_get(keyvarstr);
 						}
@@ -86,14 +91,20 @@ function scr_menu_option_draw(dx, dy){
 						if is_undefined(keyinx) 
 							keyinx = global.keyboard_spr_map[? "undefined"];
 						draw_sprite(spr_menu_option_keyboard, keyinx, drx+432, dry)
+						if lock draw_sprite(spr_menu_option_lock, 0, drx+432+16, dry+12)
 					}
 					//绘制手柄，如果是字符串则视为变量，如果是数字则直接当做值
 					var joyvarstr = variable_list[1]
 					if is_real(joyvarstr)
+					|| is_method(joyvarstr)
 					|| variable_global_exists(joyvarstr) {
-						var joyval = undefined;
+						var joyval = undefined, lock=false;
 						if is_real(joyvarstr) {
 							joyval=joyvarstr
+							lock=true
+						} else if is_method(joyvarstr) {
+							joyval=joyvarstr()
+							lock=true
 						} else {
 							joyval = variable_global_get(joyvarstr);
 						}
@@ -101,7 +112,7 @@ function scr_menu_option_draw(dx, dy){
 						if is_undefined(joyinx) 
 							joyinx = global.gaypad_spr_map[? "undefined"];
 						draw_sprite(spr_menu_option_gaypad, joyinx, drx+624, dry)
-						
+						if lock draw_sprite(spr_menu_option_lock, 0, drx+624+16, dry+12)
 					}
 					break;
 				case menu_page2_option.line:
@@ -125,26 +136,27 @@ function scr_menu_option_draw(dx, dy){
 		buttonlist=[txtstruts.button.init, txtstruts.button.back],
 		button_count=array_length(buttonlist);
 		
+	//背景iframe
+	drawx=dx+960 drawy=dy+272
+	draw_sprite(spr_menu_option_iframe, 0, drawx, drawy)
 	//tab选项页
-	drawx=dx+336 drawy=dy+288
+	drawx=dx+336 drawy=dy+272
 	for(var i=0;i<array_length(strutslist);i++) {
 		var selected = menupagesel[0]==i, 
 			tabinx=1,
 			txtselup=8;
 		if selected tabinx=0
 		else txtselup=0
-		draw_sprite(spr_menu_option_tab, tabinx, drawx+224*i, drawy)
+		draw_sprite(spr_menu_option_tab, tabinx, drawx+224*i, drawy-2)
 		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0.5, 0.5, strutslist[i].name, drawx+224*i+8, drawy-16-txtselup, 1, 1, -1, -1, -1, 0)
 	}
-	//背景iframe
-	draw_sprite(spr_menu_option_iframe, 0, dx+960, dy+288)
 	//滚动条
-	drawx=dx+1760 drawy=dy+320
+	drawx=dx+1760 drawy=dy+304
 	if item_count>menu_option_list_max {
 		scr_draw_menu_scroll(drawx, drawy, 1, 40, menu_option_list_begin, menu_option_list_max, item_count+button_count)
 	}
 	//详细内容绘制
-	drawx=dx+960 drawy=dy+352
+	drawx=dx+960 drawy=dy+336
 	for(var i=menu_option_list_begin; i<min(menu_option_list_end+1, item_count+button_count); i++) {
 		var selected = (menupagesel[1]==i) && menu_type>0;
 		//项目

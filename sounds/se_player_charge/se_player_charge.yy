@@ -1,6 +1,6 @@
 {
   "compression": 0,
-  "volume": 0.0,
+  "volume": 0.5,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,
@@ -10,8 +10,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "se_player_charge.wav",
-  "duration": 0.798175,
+  "soundFile": "se_player_charge.mp3",
+  "duration": 0.52745,
   "parent": {
     "name": "player",
     "path": "folders/Sounds/player.yy",

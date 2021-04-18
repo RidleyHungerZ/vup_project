@@ -35,6 +35,9 @@ PostDraw后变回512x288
 */
 //window_size=0
 window_set_size(ui.winsize[global.resolution].w, ui.winsize[global.resolution].h)
+window_size_change=0
+last_resolution=-1
+last_full_screen=-1
 #endregion
 #region 小房间切分+镜头控制
 global.room_xl=0

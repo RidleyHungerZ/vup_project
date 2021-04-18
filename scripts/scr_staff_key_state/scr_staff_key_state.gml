@@ -46,10 +46,17 @@ function scr_staff_key_state() {
 		global.select_allstate[1]=scr_gaypad_state(gaypad,global.select_allstate[1],gp_select)
 		global.start_allstate[1]=scr_gaypad_state(gaypad,global.start_allstate[1],gp_start)
 	
-		global.A_allstate[1]=scr_gaypad_state(gaypad,global.A_allstate[1], gp_a)
-		global.B_allstate[1]=scr_gaypad_state(gaypad,global.B_allstate[1], gp_b)
-		global.X_allstate[1]=scr_gaypad_state(gaypad,global.X_allstate[1], gp_x)
-		global.Y_allstate[1]=scr_gaypad_state(gaypad,global.Y_allstate[1], gp_y)
+		if global.joy_ab_invert==0 {
+			global.A_allstate[1]=scr_gaypad_state(gaypad,global.A_allstate[1], gp_a)
+			global.B_allstate[1]=scr_gaypad_state(gaypad,global.B_allstate[1], gp_b)
+			global.X_allstate[1]=scr_gaypad_state(gaypad,global.X_allstate[1], gp_x)
+			global.Y_allstate[1]=scr_gaypad_state(gaypad,global.Y_allstate[1], gp_y)
+		} else {
+			global.A_allstate[1]=scr_gaypad_state(gaypad,global.A_allstate[1], gp_b)
+			global.B_allstate[1]=scr_gaypad_state(gaypad,global.B_allstate[1], gp_a)
+			global.X_allstate[1]=scr_gaypad_state(gaypad,global.X_allstate[1], gp_y)
+			global.Y_allstate[1]=scr_gaypad_state(gaypad,global.Y_allstate[1], gp_x)
+		}
 		global.L_allstate[1]=scr_gaypad_state(gaypad,global.L_allstate[1], [gp_l, gp_zl])
 		global.R_allstate[1]=scr_gaypad_state(gaypad,global.R_allstate[1], [gp_r, gp_zr])
 	

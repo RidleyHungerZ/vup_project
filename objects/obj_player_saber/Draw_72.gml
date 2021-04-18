@@ -16,5 +16,11 @@ if sprite_index==spr_player_armor_idle_chop1_saber {
 	scr_player_damage_set(8,ELEMENTS.none,ATK_TYPE.cut,2,8,0,8,1)
 } else if sprite_index==spr_player_armor_idle_chop3_saber {
 	scr_player_damage_set(10,ELEMENTS.none,ATK_TYPE.cut,2,9,0,9,1)
+} else if sprite_index==spr_player_armor_fall_chop_saber {
+	scr_player_damage_set(8,ELEMENTS.none,ATK_TYPE.cut,2,6,0,6,1)
+} else if sprite_index==spr_player_armor_walk_chop_saber {
+	scr_player_damage_set(6,ELEMENTS.none,ATK_TYPE.cut,2,6,0,6,1)
+} else if sprite_index==spr_player_armor_dash_chop_saber {
+	scr_player_damage_set(10,ELEMENTS.none,ATK_TYPE.cut,2,6,0,6,1)
 }
 #endregion

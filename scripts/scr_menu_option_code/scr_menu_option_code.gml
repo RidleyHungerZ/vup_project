@@ -76,6 +76,7 @@ function scr_menu_option_code(){
 		} else if keystate_check_pressed(global.B_state) {
 			menu_type=0
 			scr_sound_menu_play(se_menu_cancle)
+			scr_menu_option_ini_save(menu_select[page][0]) //保存ini
 			menu_select[page][1]=0
 			menu_option_list_begin=0 //列表最上项
 			menu_option_list_end=menu_option_list_max-1 //列表最下项
@@ -179,7 +180,8 @@ function scr_menu_option_code(){
 				if keyjoy==0 {
 					var anykey=keyboard_key;
 					if anykey!=0 
-					&& keyboard_check_pressed(anykey){
+					&& (!keyboard_check(anykey) || keyboard_check_pressed(anykey)){
+						scr_keyboard_set_replace(varstr, anykey)
 						variable_global_set(varstr, anykey)
 						option.onChange();
 						menu_type=2
@@ -215,4 +217,68 @@ function scr_menu_option_code(){
 		}
 	}
 	#endregion
+}
+/// @desc 保存ini配置内容
+/// @arg 类型，按option分页算
+function scr_menu_option_ini_save(type) {
+	ini_open(FILE_CONFIG)
+	#region 按键
+	if type==0 {
+		ini_write_real("key", "left",	global.left_key)
+		ini_write_real("key", "right",	global.right_key)
+		ini_write_real("key", "up",		global.up_key)
+		ini_write_real("key", "down",	global.down_key)
+		ini_write_real("key", "select",	global.select_key)
+		ini_write_real("key", "start",	global.start_key)
+
+		ini_write_real("key", "A", global.A_key)
+		ini_write_real("key", "B", global.B_key)
+		ini_write_real("key", "L", global.L_key)
+		ini_write_real("key", "R", global.R_key)
+		ini_write_real("key", "X", global.X_key)
+		ini_write_real("key", "Y", global.Y_key)
+
+		ini_write_real("key", "jump",	global.jump_key)
+		ini_write_real("key", "att",	global.att_key)
+		ini_write_real("key", "dash",	global.dash_key)
+		ini_write_real("key", "sub",	global.sub_key)
+		ini_write_real("key", "trans",	global.trans_key)
+		ini_write_real("key", "true",	global.true_key)
+		ini_write_real("key", "tformL",	global.tformL_key)
+		ini_write_real("key", "tformR",	global.tformR_key)
+
+		ini_write_real("joy", "jump",	global.jump_joy)
+		ini_write_real("joy", "true",	global.true_joy)
+		ini_write_real("joy", "att",	global.att_joy)
+		ini_write_real("joy", "trans",	global.trans_joy)
+		ini_write_real("joy", "dash",	global.dash_joy)
+		ini_write_real("joy", "sub",	global.sub_joy)
+		ini_write_real("joy", "tformL",	global.tformL_joy)
+		ini_write_real("joy", "tformR",	global.tformR_joy)
+	}
+	#endregion
+	#region 指令
+	else if type==1 {
+		ini_write_real("order", "joy_ab_invert",	global.joy_ab_invert) //ab倒置
+		ini_write_real("order", "sub",			global.sub_type)//0双键，1双按，2切换
+		ini_write_real("order", "dash_order",	global.dash_order)//冲刺指令
+		ini_write_real("order", "alert_type",	global.alert_type)//系统提示
+	}
+	#endregion
+	#region 显示
+	else if type==2 {
+		ini_write_real("display", "full_screen",global.full_screen)
+		ini_write_real("display", "resolution",global.resolution)
+		ini_write_real("display", "pix_filter",	global.pix_filter)
+		ini_write_real("display", "language",	global.language)
+	}
+	#endregion
+	#region 音量
+	else if type==3 {
+		ini_write_real("volume", "se",	global.volume_se)
+		ini_write_real("volume", "bgm",	global.volume_bgm)
+		ini_write_real("volume", "all",	global.volume_all)
+	}
+	#endregion
+	ini_close()
 }

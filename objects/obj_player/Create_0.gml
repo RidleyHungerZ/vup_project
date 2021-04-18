@@ -116,7 +116,7 @@ global.player=id
 #region 能否蓄力
 	uncharge[1]=true
 	uncharge[2]=true
-	sub_unuse=true
+	sub_unuse=obj_staff.player_sub_unuse[global.model]
 	charge_dis=30//蓄力开始显示值
 	charge_max=100//蓄力最大值，默认100，X150
 #endregion
@@ -182,6 +182,7 @@ uninjure=0; //无敌状态
 injure_ingrd=false; //受伤动作中落地
 injure_element=ELEMENTS.none; //被特殊攻击效果，值为none，ice，push，absorb
 element=ELEMENTS.none; //自身属性
+injure_attack_type=ATK_TYPE.bullet;
 ice_time=0; //被冰冻时间
 ice_time_up=60*3;
 wind_spd=0; //风速

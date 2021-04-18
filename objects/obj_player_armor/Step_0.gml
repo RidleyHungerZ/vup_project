@@ -33,8 +33,7 @@ if bullet_time>0{
 		if sprite_index!=SS_fall_shoot
 			scr_sprite_change(SS_fall_shoot,inxorg,0.25)
 	}
-}
-else if bullet_time==0{
+} else if bullet_time==0{
 	bullet_time=-1
 	if jump==0{
 		if walk==0
@@ -49,10 +48,27 @@ else if bullet_time==0{
 	else if jump==2
 		scr_sprite_change(SS_fall,0,0.25)
 }
+//走路斩
+if walk_saber_time>0 {
+	walk_saber_time-=1
+	if walk==1 {
+		if walk_saber_set-walk_saber_time<2 
+			scr_sprite_change(spr_player_armor_walk_chop0, -2, -2)
+		else 
+			scr_sprite_change(spr_player_armor_walk_chop1, -2, -2)
+	} else {
+		walk_saber_time=-1
+	}
+} else if walk_saber_time==0 {
+	walk_saber_time=-1
+	if walk==1
+		scr_sprite_change(SS_walk, -2, -2)
+}
 #endregion
 #region 剑斩动作
 if(scr_player_mainuse(0,0)
-&& scr_player_main_chargebreak(0)!=2) {
+&& scr_player_main_chargebreak(0)!=2)
+&& bullet_time<=bullet_set/2{
 	if jump==0 {
 		if walk==0 {
 			scr_sprite_change(spr_player_armor_idle_chop1, 0, 0.5)
@@ -60,9 +76,22 @@ if(scr_player_mainuse(0,0)
 			scr_sound_play(se_player_armor_chop_cv1)
 			walk=4
 		} else if walk==1 {
-				
+			if walk_saber_time==-1 {
+				scr_sprite_change(spr_player_armor_walk_chop0, -2, -2)
+				scr_sound_play(se_player_armor_chop)
+				scr_sound_play(se_player_armor_chop_cv1)
+				walk_saber_time=walk_saber_set
+				bullet_time=-1
+				with global.player_saber {
+					scr_sprite_change(spr_player_armor_walk_chop_saber, 0, 0.5)
+				}
+			}
 		} else if walk==2 {
-				
+			scr_sprite_change(spr_player_armor_dash_chop, 0, 0.5)
+			scr_sound_play(se_player_armor_chop)
+			scr_sound_play(se_player_armor_chop_cv1)
+			walk=5
+			hsp=dashspd*(2/3)*hspd;
 		} else if walk==4 {
 			if sprite_index == spr_player_armor_idle_chop1 {
 				saber_combo++
@@ -71,7 +100,24 @@ if(scr_player_mainuse(0,0)
 			}
 		}
 	} else {
-			
+		if in(jump, [1, 2, 4]) {
+			if sprite_index!=spr_player_armor_fall_chop {
+				//回旋斩
+				//if keystate_check_pressed(global.up_state) {
+				
+				//} 
+				//挫剑式
+				//else if keystate_check_pressed(global.down_state) {
+				
+				//} 
+				//普通跳砍
+				//else {
+					scr_sprite_change(spr_player_armor_fall_chop, 0, 0.5)
+					scr_sound_play(se_player_armor_chop)
+					scr_sound_play(se_player_armor_chop_cv1)
+				//}
+			}
+		}
 	}
 }
 //连斩指令积攒

@@ -1,5 +1,8 @@
 if(!scr_player_stop_trem()) exit;
-var ox=x,oy=y;
+var ox=x,oy=y,masktmp=mask_index;
+//使用mask替代碰撞盒检测地面
+mask_index=spr_player_mask_idle
+if walk==8 mask_index=spr_player_mask_creep
 #region 飓风吹飞
 //滑翔才受影响
 var //windlist = ds_list_create(),
@@ -507,3 +510,4 @@ if(obj_player.y>global.room_yb+24) {
 if(in(jump, [0, 3, 5, 14])) 
 	cliff_protect=false;
 #endregion
+mask_index=masktmp

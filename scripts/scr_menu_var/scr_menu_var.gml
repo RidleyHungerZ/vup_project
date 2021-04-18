@@ -12,8 +12,8 @@ function scr_menu_var() {
 }
 //是否非暂停
 function scr_menu_trem() {
-	if global.stop=0
-	|| global.stop=-0.5
+	if global.stop==0
+	|| global.stop==-0.5
 		return true
 	else
 		return false
@@ -21,7 +21,7 @@ function scr_menu_trem() {
 //进出暂停
 function scr_menu_stop() {
 	//进入暂停
-	if global.stop=0.5{
+	if global.stop==0.5{
 		menu_spd=speed
 		speed=0
 		menu_grav=gravity
@@ -35,7 +35,7 @@ function scr_menu_stop() {
 		image_speed=0
 	}
 	//恢复游戏
-	else if global.stop=-0.5{
+	else if global.stop==-0.5{
 		speed=menu_spd
 		gravity=menu_grav
 		path_speed=menu_phspd

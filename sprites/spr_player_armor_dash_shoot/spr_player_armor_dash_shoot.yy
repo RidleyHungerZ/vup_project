@@ -9,7 +9,7 @@
   "swfPrecision": 2.525,
   "bbox_left": 28,
   "bbox_right": 51,
-  "bbox_top": 31,
+  "bbox_top": 45,
   "bbox_bottom": 79,
   "HTile": false,
   "VTile": false,
@@ -87,6 +87,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "shoot",
     "path": "folders/Sprites/player/armor/action/shoot.yy",

@@ -81,4 +81,21 @@ else if global.skip==2{
 if keyboard_check_pressed(vk_delete) {
 	global.player_hp=0
 }
+if keyboard_check(vk_control) 
+&&(global.fps_curr mod 3 == 0){
+	if keyboard_check(vk_up) {
+		global.player_hp++
+		scr_sound_play(se_item_hp)
+	} else if keyboard_check(vk_down) {
+		global.player_hp--
+		scr_sound_play(se_item_hp)
+	}
+	if keyboard_check(vk_right) {
+		global.player_mp++
+		scr_sound_play(se_item_mp)
+	} else if keyboard_check(vk_left) {
+		global.player_mp--
+		scr_sound_play(se_item_mp)
+	}
+}
 #endregion

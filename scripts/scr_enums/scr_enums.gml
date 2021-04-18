@@ -3,21 +3,26 @@
 function scr_enmus(){
 	//元素
 	enum ELEMENTS{
-		none = 0,
-		fire = 1,
-		ice = 2,
-		elec = 3,
-		push = 4,
-		absorb = 5,
-		pushup = 6,
-		pushdown = 7,
+		none,
+		fire,
+		card4,
+		card5,
+		card6,
+		card7,
+		card8,
+		card9,
+		card10,
 	}
 	//攻击方式
 	enum ATK_TYPE{
-		bullet = 0,
-		cut = 1,
-		push = 2,
-		through = 3
+		bullet,
+		cut,
+		push,
+		through,
+		absorb,
+		pushup,
+		pushdown,
+		frozen, //冰冻
 	}
 	//语言
 	enum LANG{
@@ -30,6 +35,7 @@ function scr_enmus(){
 	enum PLAYER_MODEL{
 		HU = 0,
 		ARMOR = 1,
+		YANZX = 2, //燕逐晓
 	}
 	// 菜单每一页
 	enum MENU {

@@ -4,7 +4,7 @@ if player_death_action=2{
 	audio_se_stop_all()
 	scr_sound_stopall_dpl()
 	//命归零
-	if global.player_life<=0 && false{
+	if false{ //global.player_life<=0 && 
 		//global.game_start=0
 		//global.operate=0
 		//global.player_operate=0
@@ -27,7 +27,7 @@ if player_death_action=2{
 		global.player_hp=global.player_hp_up
 		global.player_mp=global.player_mp_up
 		global.boss_hp=0
-		global.player_life-=1
+		//global.player_life-=1
 		with obj_player{
 			x=global.re_x
 			y=global.re_y

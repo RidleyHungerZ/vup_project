@@ -13,23 +13,24 @@ function scr_player_damage_cal(enemy) {
 	injure_level=enemy.damage_level
 	//子弹记录击中
 	if instance_is_object(enemy, obj_bullet) enemy.hit=1
-	//属性（击飞）
-	if in(enemy.element, [ELEMENTS.push, ELEMENTS.absorb, ELEMENTS.pushup, ELEMENTS.pushdown]) 
-	&& enemy.element!=element{
-		injure_element=enemy.element
+	//特殊效果
+	injure_element=enemy.element
+	injure_attack_type=enemy.attack_type
+	//几种击飞指定朝向方向
+	if in(enemy.attack_type, [ATK_TYPE.push, ATK_TYPE.pushup, ATK_TYPE.pushdown]) {
 		//击飞方向，有位移则以位移为准
-		if enemy.element = ELEMENTS.push {
+		if enemy.attack_type = ATK_TYPE.push {
 			if(enemy.x!=enemy.xprevious) {
 				if sign_no0(enemy.xprevious-enemy.x)=image_xscale uninjure=1
 				else uninjure=-1
 			}
 		}
 		//击飞方向，有位移则以位移为准
-		else if enemy.element = ELEMENTS.pushup {
+		else if enemy.attack_type = ATK_TYPE.pushup {
 			uninjure=-1
 		}
 		//击飞方向，有位移则以位移为准
-		else if enemy.element = ELEMENTS.pushdown {
+		else if enemy.attack_type = ATK_TYPE.pushdown {
 			uninjure=1
 		}
 	}

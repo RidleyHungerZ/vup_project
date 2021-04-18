@@ -14,28 +14,28 @@ audio_bgm_inti()
 #region ini变量初始化
 var initaryinx=0
 #region 键盘
-global.left_key =	vk_left
-global.right_key =	vk_right
-global.up_key =		vk_up
-global.down_key =	vk_down
-global.select_key =	vk_space
-global.start_key =	vk_enter
+global.left_key		=ord("A")
+global.right_key	=ord("D")
+global.up_key		=ord("W")
+global.down_key		=ord("S")
+global.select_key	=vk_space
+global.start_key	=vk_enter
 
-global.A_key=ord("X")
-global.B_key=ord("C")
-global.L_key=ord("Z")
-global.R_key=ord("A")
-global.X_key=ord("Q")
-global.Y_key=ord("E")
+global.A_key	=ord("U")
+global.B_key	=ord("K")
+global.L_key	=ord("L")
+global.R_key	=ord("H")
+global.X_key	=ord("I")
+global.Y_key	=ord("J")
 
-global.jump_key =	global.B_key
-global.att_key =	global.Y_key
-global.dash_key =	global.L_key
-global.sub_key =	global.R_key
-global.trans_key =	global.X_key
-global.true_key =	global.A_key
-global.tformL_key =	ord("Q")
-global.tformR_key =	ord("E")
+global.jump_key		=	global.B_key
+global.att_key		=	global.Y_key
+global.dash_key		=	global.L_key
+global.sub_key		=	global.R_key
+global.trans_key	=	global.X_key
+global.true_key		=	global.A_key
+global.tformL_key	=	ord("Q")
+global.tformR_key	=	ord("E")
 //初始化记录存入
 global.option_init_ary[initaryinx++]=[
 	"left_key", "right_key", "up_key", "down_key", 
@@ -66,12 +66,13 @@ global.start_joy =	gp_start
 //]
 #endregion
 #region 动作
+global.joy_ab_invert=0 //AB倒置
 global.sub_type=0//0双键，1双按，2切换
 global.dash_order=1//冲刺指令
 global.alert_type=0//系统提示
 //初始化记录存入
 global.option_init_ary[initaryinx++]=[
-	"sub_type", "dash_order", "alert_type", 
+	"joy_ab_invert", "sub_type", "dash_order", "alert_type", 
 ]
 #endregion
 #region 显示读取
@@ -146,6 +147,7 @@ global.tformL_joy =	ini_read_real("joy", "tformL",	global.tformL_joy)
 global.tformR_joy =	ini_read_real("joy", "tformR",	global.tformR_joy)
 #endregion
 #region 动作
+global.joy_ab_invert = ini_read_real("order", "joy_ab_invert",	global.joy_ab_invert)//AB倒置
 global.sub_type =	ini_read_real("order", "sub",			global.sub_type)//0双键，1双按，2切换
 global.dash_order =	ini_read_real("order", "dash_order",	global.dash_order)//冲刺指令
 global.alert_type =	ini_read_real("order", "alert_type",	global.alert_type)//系统提示
@@ -251,6 +253,11 @@ for(var i=0;i<2;i++){
 global.game_start=0
 data_save_variable_single()
 data_save_variable_global()
+/////////////////////////
+global.re_x=0
+global.re_y=0
+global.re_xscale=0
+global.player_es_max=99999
 #endregion
 #region 其他变量
 global.player_change_flash=0
@@ -275,6 +282,15 @@ player_change_select_dir=0 //更改选择的方向
 player_change_outsert_rate=0 //卡片拔出程度，0插卡中，1完全拔卡
 player_change_cancle=false //是否是取消的
 player_change_over=false //玩家动画已经走完
+player_change_atonce=false //立刻变身
+player_sub_unuse=array_create(global.model_number, false)
+player_sub_unuse[0]=true
+//一些方便使用的list
+global.modellist=ds_list_create()
+global.rtanklist=ds_list_create()
+global.rtank_val_max=64
+//自动回复sp
+auto_sp_time=0
 #endregion
 #region 发射区
 instance_create_depth(0, 0, 0, obj_view)

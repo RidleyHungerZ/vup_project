@@ -6,7 +6,51 @@ function scr_txt_menu(){
 			CYBER_ES : "存在支持度点数",
 		},
 		right : {
-			
+			option : [
+				{
+					name : "卡片选择",
+					desc : [
+						"按确认键选择要插入的卡片",
+						"当前状态无法改变卡片",
+						"此卡片尚未获得",
+					],
+					itemdesc : [
+						"拔出当前卡片",
+						"插入基础形态卡片",
+						"插入【燕逐晓】卡片",
+						"插入3卡片",
+						"插入4卡片",
+						"插入5卡片",
+						"插入6卡片",
+						"插入7卡片",
+						"插入8卡片",
+						"插入9卡片",
+						"插入白发卡片",
+					]
+				},
+				{
+					name : "武器选择",
+					desc : [
+						"按确认键变更主副武器",
+						"没有副武器，无需变更",
+					]
+				},
+				{
+					name : "备用能源",
+					desc : [
+						"按确认键选择要使用的备用能源",
+						"没有可供使用的备用能源",
+						"当前没有必要使用备用能源",
+						"当前选中备用能源量：%1$",
+					]
+				},
+				{
+					name : "紧急脱出",
+					desc : [
+						"按确认键选择离开该区域，返回基地",
+					]
+				},
+			]
 		}
 	}
 	#endregion
@@ -167,7 +211,11 @@ function scr_txt_menu(){
 					option : {
 						type : menu_page2_option.keypad,
 						list : [],
-						variable : ["A_key", gp_a],
+						variable : ["A_key", 
+						function() {
+							if global.joy_ab_invert==0 return gp_a
+							else return gp_b
+						}],
 						onChange : function() {},
 					},
 				}, {
@@ -175,7 +223,11 @@ function scr_txt_menu(){
 					option : {
 						type : menu_page2_option.keypad,
 						list : [],
-						variable : ["B_key", gp_b],
+						variable : ["B_key", 
+						function() {
+							if global.joy_ab_invert==0 return gp_b
+							else return gp_a
+						}],
 						onChange : function() {},
 					},
 				},
@@ -186,6 +238,14 @@ function scr_txt_menu(){
 			name : "指令",
 			items : [
 				{
+					text : "手柄ABXY倒置",
+					option : {
+						type : menu_page2_option.list,
+						list : ["关闭", "开启"],
+						variable : "joy_ab_invert",
+						onChange : function() {},
+					},
+				}, {
 					text : "副武器使用方式",
 					option : {
 						type : menu_page2_option.list,

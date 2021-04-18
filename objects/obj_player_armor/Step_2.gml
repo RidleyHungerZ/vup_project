@@ -16,4 +16,14 @@ scr_sprite_imspd(spr_player_armor_idle_chop3,0.5,7,10)
 scr_sprite_imspd(spr_player_armor_idle_chop3,0.25,10,11)
 scr_sprite_imspd(spr_player_armor_idle_chop3,0.25,11,12)
 //////////////////////////////////////
+scr_sprite_imspd(spr_player_armor_fall_chop,0.5,0,1)
+scr_sprite_imspd(spr_player_armor_fall_chop,0.5,1,4)
+scr_sprite_imspd(spr_player_armor_fall_chop,0.5,4,7)
+scr_sprite_imspd(spr_player_armor_fall_chop,0.25,7,10)
+//////////////////////////////////////
+scr_sprite_imspd(spr_player_armor_dash_chop,0.5,0,1)
+scr_sprite_imspd(spr_player_armor_dash_chop,0.5,1,4)
+scr_sprite_imspd(spr_player_armor_dash_chop,0.5,4,7)
+scr_sprite_imspd(spr_player_armor_dash_chop,0.25,7,9)
+//////////////////////////////////////
 #endregion
