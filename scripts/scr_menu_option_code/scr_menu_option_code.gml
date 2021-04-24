@@ -93,10 +93,9 @@ function scr_menu_option_code(){
 			menu_select[page][1]=0
 		//滚动条
 		var scroll=scr_menu_scroll_set(menu_select[page][1], menu_option_list_begin, menu_option_list_end, menu_option_list_max);
-		menu_select[page][1]=scroll[0];
-		menu_option_list_begin=scroll[1];
-		menu_option_list_end=scroll[2];
-		menu_option_list_max=scroll[3];
+		menu_option_list_begin=scroll[0];
+		menu_option_list_end=scroll[1];
+		menu_option_list_max=scroll[2];
 	}
 	#endregion
 	#region 选项选值

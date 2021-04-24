@@ -125,6 +125,9 @@ scr_time_alarm();
 		else charge_index[i]=0;
 	}
 	#endregion
+	#region 每帧刷新
+	floordown=false;
+	#endregion
 #endregion
 if(!scr_player_stop_trem()) exit;
 #region 蓄力
@@ -306,6 +309,7 @@ for(var i=1;i<=2;i+=1){
 						hsp=image_xscale*dis_x*hspd;
 				}
 				scr_player_floordown_set(flordown);
+				floordown=true;
 			}
 		}
 		#endregion

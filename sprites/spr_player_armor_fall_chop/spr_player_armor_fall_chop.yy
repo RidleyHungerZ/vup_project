@@ -9,8 +9,8 @@
   "swfPrecision": 2.525,
   "bbox_left": 20,
   "bbox_right": 43,
-  "bbox_top": 13,
-  "bbox_bottom": 75,
+  "bbox_top": 11,
+  "bbox_bottom": 73,
   "HTile": false,
   "VTile": false,
   "For3D": false,
@@ -48,12 +48,6 @@
     {"compositeImage":{"FrameId":{"name":"1538eebd-461f-4cc4-ad52-deb98c830b03","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"1538eebd-461f-4cc4-ad52-deb98c830b03","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_player_armor_fall_chop","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","name":"1538eebd-461f-4cc4-ad52-deb98c830b03","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"423527bc-d3ed-4591-a4db-88628f7c1afd","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"423527bc-d3ed-4591-a4db-88628f7c1afd","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_player_armor_fall_chop","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","name":"423527bc-d3ed-4591-a4db-88628f7c1afd","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"054ac889-92e8-4187-a23d-783d945471e9","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"054ac889-92e8-4187-a23d-783d945471e9","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_player_armor_fall_chop","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","name":"054ac889-92e8-4187-a23d-783d945471e9","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_player_armor_fall_chop","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},
@@ -63,7 +57,7 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 10.0,
+    "length": 8.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -76,8 +70,6 @@
             {"id":"55faba80-a0f5-4051-898c-c6499c7dd35b","Key":5.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"ef2175a1-4fce-4ded-8410-5cea708c3f05","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"f4eddb8b-9ea4-4068-a820-caa3d7486513","Key":6.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6de3af1b-6fab-402f-813e-7dbd46f60daa","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"78de219e-8dbd-4329-b23e-5e8415eae51a","Key":7.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1538eebd-461f-4cc4-ad52-deb98c830b03","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"a390edee-c23a-424a-99a5-d6b25a5c6108","Key":8.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"423527bc-d3ed-4591-a4db-88628f7c1afd","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"2665ad36-f11e-40b0-a784-ffc25344d49b","Key":9.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"054ac889-92e8-4187-a23d-783d945471e9","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -91,7 +83,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 32,
-    "yorigin": 44,
+    "yorigin": 42,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_armor_fall_chop","path":"sprites/spr_player_armor_fall_chop/spr_player_armor_fall_chop.yy",},
@@ -105,8 +97,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "chop",
-    "path": "folders/Sprites/player/armor/action/chop.yy",
+    "name": "charge",
+    "path": "folders/Sprites/player/armor/action/chop/charge.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_player_armor_fall_chop",

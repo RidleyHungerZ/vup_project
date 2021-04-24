@@ -18,13 +18,6 @@ function data_save_variable_single(){
 	//global.player_life=2
 	global.player_es=0
 	/////////////////////////
-	for(var i=0;i<=30;i++){
-		global.boss[i]=0
-		for(var j=0;j<=8;j++){
-			global.sub_bosses[i][j]=0
-		}
-	}
-	/////////////////////////
 	global.model=PLAYER_MODEL.HU
 	global.model_get_number=1//获得模块数量
 	global.model_number=11
@@ -33,18 +26,44 @@ function data_save_variable_single(){
 		global.main_sub_exchange[i]=0//模块武器切换
 		global.sub_change[i]=0//模式三使用副武器
 	}
-	global.model_get[PLAYER_MODEL.HU]=1
+	global.model_get[PLAYER_MODEL.HU]=1 //默认拥有人形
+#endregion
+#region 道具
+	//上限道具
 	for(var i=0;i<4;i++) {
-		global.hpup[i]=0
-		global.mpup[i]=0
-		global.rtank[i]=0
-		global.rtank_val[i]=0
+		global.hpup[i]=0 //生命上限
+		global.mpup[i]=0 //能量上限
+		global.rtank[i]=0 //坦克上限
+		global.rtank_val[i]=0 //坦克存储量
 	}
+	global.itemlist=[
+		ds_list_create(), //消耗品
+		ds_list_create(), //装备品
+		ds_list_create(), //贵重品
+	]
+	//道具获取数量/状态等，每种道具上限50个
+	for(var i=0;i<3;i++) {
+		for(var t=0;t<50;t++) {
+			//消耗品、贵重品数量
+			//装备品0未获得，1获得未开启，2开启
+			global.item[i][t]=0
+		}
+	}
+	global.item2_byte_max=10 //装备品总插槽数
 #endregion
 #region 剧情
-	//各种剧情是否进行过（可跳过）
+	//击败的boss和subboss记录
+	for(var i=0;i<=30;i++){
+		global.boss[i]=0
+		for(var j=0;j<=8;j++){
+			global.sub_bosses[i][j]=0
+		}
+	}
+	/////////////////////////
+	//各种剧情是否进行过
 	for(var i=0;i<=500;i++){
-		global.thread[i]=0
+		global.thread[i]=0 //剧情已经开启过了
+		global.threaded[i]=0 //第一次进行时开启，以后可跳过
 	}
 #endregion
 }

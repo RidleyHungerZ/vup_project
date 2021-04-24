@@ -5,13 +5,8 @@ function scr_enmus(){
 	enum ELEMENTS{
 		none,
 		fire,
-		card4,
-		card5,
-		card6,
-		card7,
-		card8,
-		card9,
-		card10,
+		ice,
+		elec,
 	}
 	//攻击方式
 	enum ATK_TYPE{
@@ -36,6 +31,14 @@ function scr_enmus(){
 		HU = 0,
 		ARMOR = 1,
 		YANZX = 2, //燕逐晓
+		ice = 3,
+		elec = 4,
+		none = 5,
+		fire2 = 6,
+		ice2 = 7,
+		elec2 = 8,
+		none2 = 9,
+		white = 10,
 	}
 	// 菜单每一页
 	enum MENU {

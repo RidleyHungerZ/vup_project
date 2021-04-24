@@ -6,7 +6,7 @@ if action>=0 {
 		action=-1
 	}
 	if action==0 {
-		if !place_meeting(x, y+GRDY, obj_soild) {
+		if !place_meeting(x, y+1+GRDY, obj_soild) {
 			gravity=GRAV
 			action=1
 		}

@@ -115,22 +115,47 @@ if global.menu==1 {
 	#endregion
 	#region 道具
 	if menu_page==1 {
-		
+		//计算装备品总占用值
+		menu_item_byte_sum=0
+		for(var i=0;i<array_length(global.item[ITEM.B]);i++) {
+			if global.item[ITEM.B][i]==ITEMB.open
+				menu_item_byte_sum+=global.txt_menu[1].items[ITEM.B].list[i].byte
+		}
+		scr_menu_page_item_code()
 	}
 	#endregion
 	#region 设置
 	if menu_page==2 {
-		scr_menu_option_code()
+		scr_menu_page_option_code()
 	}
 	#endregion
 	#region 任务
 	if menu_page==3 {
-		
+		scr_menu_page_mission_code()
 	}
 	#endregion
 	#region 技能
 	if menu_page==4 {
-		
+		//重新获取当前技能列表
+		ds_list_clear(menu_skill_list)
+		var skstruts=global.txt_menu[menu_page].skills,
+			skarray;
+		if global.model==PLAYER_MODEL.HU {
+			skarray=[skstruts.human]
+		} else {
+			skarray=[skstruts.armor]
+			if global.model!=PLAYER_MODEL.ARMOR {
+				
+			}
+		}
+		for(var i=0;i<array_length(skarray);i++) {
+			for(var j=0;j<array_length(skarray[i]);j++) {
+				if skarray[i][j].trim() {
+					ds_list_add(menu_skill_list, skarray[i][j])
+				}
+			}
+		}
+		scr_menu_page_skill_code()
 	}
 	#endregion
 }

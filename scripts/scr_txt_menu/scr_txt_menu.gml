@@ -55,8 +55,118 @@ function scr_txt_menu(){
 	}
 	#endregion
 	#region 道具
+	enum ITEM {
+		A,
+		B,
+		C,
+	}
+	enum ITEMB {
+		null,
+		close,
+		open,
+	}
 	global.txt_menu[1]={
-		
+		items : [{
+			name : "消耗品",
+			desc : "一次性物品，使用后会消失\n能进行应急补充",
+			list : [{
+				name : "消耗1",
+				desc : "消耗1desc",
+			}, {
+				name : "消耗2",
+				desc : "消耗2desc",
+			}, {
+				name : "消耗3",
+				desc : "消耗3desc",
+			}, {
+				name : "消耗4",
+				desc : "消耗4desc",
+			}, {
+				name : "消耗5",
+				desc : "消耗5desc",
+			}]
+		}, {
+			name : "装备品",
+			desc : "可拆卸的强化装备，\n会强化某方面的能力",
+			tag  : "●",
+			list : [{
+				name : "装备1",
+				desc : "装备1desc",
+				byte : 1,
+				exclude : [],
+			}, {
+				name : "装备2",
+				desc : "装备2desc",
+				byte : 2,
+				exclude : [],
+			}, {
+				name : "装备3",
+				desc : "装备3desc",
+				byte : 3,
+				exclude : [],
+			}, {
+				name : "装备4",
+				desc : "装备4desc",
+				byte : 4,
+				exclude : [],
+			}, {
+				name : "装备5",
+				desc : "装备4desc",
+				byte : 5,
+				exclude : [],
+			}, {
+				name : "装备6",
+				desc : "装备4desc",
+				byte : 6,
+				exclude : [],
+			}, {
+				name : "装备7",
+				desc : "装备4desc",
+				byte : 7,
+				exclude : [],
+			}, {
+				name : "装备8",
+				desc : "装备4desc",
+				byte : 8,
+				exclude : [],
+			}, {
+				name : "装备9",
+				desc : "装备4desc",
+				byte : 9,
+				exclude : [],
+			}, {
+				name : "装备10",
+				desc : "装备4desc",
+				byte : 10,
+				exclude : [],
+			}, {
+				name : "装备11",
+				desc : "装备4desc",
+				byte : 11,
+				exclude : [],
+			}, {
+				name : "装备12",
+				desc : "装备4desc",
+				byte : 12,
+				exclude : [],
+			}]
+		}, {
+			name : "贵重品",
+			desc : "任务或剧情需要用到的道具，\n十分珍贵，无法主动使用",
+			list : [{
+				name : "贵重1",
+				desc : "贵重1desc",
+			}, {
+				name : "贵重2",
+				desc : "贵重2desc",
+			}, {
+				name : "贵重3",
+				desc : "贵重3desc",
+			}, {
+				name : "贵重4",
+				desc : "贵重4desc",
+			}]
+		}]
 	}
 	#endregion
 	#region 设置
@@ -368,7 +478,96 @@ function scr_txt_menu(){
 	#endregion
 	#region 技能
 	global.txt_menu[4]={
-		
+		skills : {
+			human : [
+				{
+					txt : "下蹲",
+					desc : "站立时按下键可以蹲下",
+					trim : function(){return true;},
+				}, {
+					txt : "爬行",
+					desc : "蹲下时按左右键可以爬行，\n可以爬过狭窄的缝隙",
+					trim : function(){return true;},
+				}, {
+					txt : "射击",
+					desc : "按攻击键发射子弹，\n最多可连续发射三枚子弹",
+					trim : function(){return true;},
+				},
+			],
+			armor : [
+				{
+					txt : "冲刺",
+					desc : "按冲刺键或快速按两下方向键，\n可以进行冲刺并进入冲刺状态，\n冲刺状态下跳跃时水平速度会大幅提升",
+					trim : function(){return true;},
+				}, {
+					txt : "蹬墙跳",
+					desc : "接触墙壁时按跳键，可以跳起，\n按住冲刺键发动，水平速度会更快",
+					trim : function(){return true;},
+				}, {
+					txt : "斩击",
+					desc : "按攻击键发动近身攻击，\n站立时连续按可发动三段斩，\n走路、冲刺、空中等动作时亦可发动",
+					trim : function(){return true;},
+				}, {
+					txt : "蓄力斩",
+					desc : "按住攻击键蓄力到黄色状态时释放，\n可发动大范围斩击",
+					trim : function(){return true;},
+				}, {
+					txt : "射击",
+					desc : "按副武器键发射子弹，\n最多可连续发射三枚子弹",
+					trim : function(){return true;},
+				}, {
+					txt : "蓄力射击",
+					desc : "按住副武器键蓄力到出现蓄力光时释放，\n红色蓄力光为一段蓄力，\n黄色蓄力光为二段蓄力",
+					trim : function(){return true;},
+				}, {
+					txt : "测试1",
+					desc : "test1",
+					trim : function(){return true;},
+				}, {
+					txt : "测试2",
+					desc : "test2",
+					trim : function(){return false;},
+				}, {
+					txt : "测试3",
+					desc : "test3",
+					trim : function(){return true;},
+				}, {
+					txt : "测试4",
+					desc : "test4",
+					trim : function(){return true;},
+				}, {
+					txt : "测试5",
+					desc : "test5",
+					trim : function(){return true;},
+				}, {
+					txt : "测试6",
+					desc : "test6",
+					trim : function(){return true;},
+				}, {
+					txt : "测试7",
+					desc : "test7",
+					trim : function(){return false;},
+				}, {
+					txt : "测试8",
+					desc : "test8",
+					trim : function(){return true;},
+				}, {
+					txt : "测试9",
+					desc : "test9",
+					trim : function(){return true;},
+				}, {
+					txt : "测试10",
+					desc : "test10",
+					trim : function(){return true;},
+				}, 
+			],
+			special : [
+				
+			],
+			support : [
+				
+			]
+		}
 	}
 	#endregion
 }

@@ -1,6 +1,6 @@
 /// @desc 绘制操作界面
 function scr_menu_option_draw(dx, dy){
-	var drawx=dx, drawy=dy, page=2
+	var drawx=dx, drawy=dy, page=2, txtstu=global.txt_menu[page]
 	//定义每个选项绘制方式
 	if !is_method(draw_option_item) {
 		draw_option_item = function(drx, dry, txtstruts, menupagesel, selected) {
@@ -127,7 +127,7 @@ function scr_menu_option_draw(dx, dy){
 	}
 	var options_count=0,
 		menupagesel = menu_select[page];
-	var txtstruts=global.txt_menu[2],
+	var txtstruts=txtstu,
 		tabcount=variable_struct_names_count(txtstruts), //页卡总数
 		strutslist=[txtstruts.keyboards, txtstruts.orders, txtstruts.displays, txtstruts.volume], //页卡列表
 		struts=strutslist[menupagesel[0]], //当前页卡配置项
@@ -153,7 +153,7 @@ function scr_menu_option_draw(dx, dy){
 	//滚动条
 	drawx=dx+1760 drawy=dy+304
 	if item_count>menu_option_list_max {
-		scr_draw_menu_scroll(drawx, drawy, 1, 40, menu_option_list_begin, menu_option_list_max, item_count+button_count)
+		scr_draw_menu_scroll(drawx, drawy, 1, 40, menupagesel[1], menu_option_list_begin, menu_option_list_max, item_count+button_count)
 	}
 	//详细内容绘制
 	drawx=dx+960 drawy=dy+336

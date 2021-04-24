@@ -1,4 +1,9 @@
 event_inherited();
+#region 专属动作
+if sprite_index == spr_player_armor_jump_double {
+	scr_sprite_change(SS_jumping, 0, 0.25)
+}
+#endregion
 #region 射击动作
 if sprite_index == SS_idle_shoot{
 	scr_sprite_change(-2,2,0)
@@ -50,7 +55,39 @@ else if sprite_index == spr_player_armor_dash_chop {
 	dash_time_r=0;
 	dash_order_time_H=0;
 }
+//蓄力斩
+else if sprite_index == spr_player_armor_idle_chop_charge {
+	scr_sprite_change(spr_player_armor_idle_choped, 0, 0.25)
+	saber_combo=0
+	walk=0
+}
+//回旋斩
 else if sprite_index == spr_player_armor_fall_chop {
+	scr_sprite_change(spr_player_armor_fall_choped, 0, 0.25)
+}
+else if sprite_index == spr_player_armor_fall_spin_chop {
+	scr_sprite_change(spr_player_armor_fall_spin_choped, 0, 0.5)
+}
+else if sprite_index == spr_player_armor_fall_spin_choped {
+	scr_sprite_change(spr_player_armor_fall_choped, 0, 0.25)
+}
+else if sprite_index == spr_player_armor_fall_choped {
+	if jump==1 scr_sprite_change(SS_jumping, 0, 0.25)
+	else scr_sprite_change(SS_fall, 0, 0.25)
+}
+//升龙斩
+else if sprite_index == spr_player_armor_fly_chop {
+	scr_sprite_change(spr_player_armor_fly_choping, 0, 0.5)
+	walk=0
+	jump=17
+	w_j=1
+	hsp=2*hspd;
+	vsp=-vspd;
+}
+else if sprite_index == spr_player_armor_fly_choping {
+	scr_sprite_change(-2, image_number-3, -2)
+}
+else if sprite_index == spr_player_armor_fly_choped {
 	if jump==1 scr_sprite_change(SS_jumping, 0, 0.25)
 	else scr_sprite_change(SS_fall, 0, 0.25)
 }

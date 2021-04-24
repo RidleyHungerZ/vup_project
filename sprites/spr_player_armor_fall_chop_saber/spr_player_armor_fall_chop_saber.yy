@@ -64,16 +64,6 @@
         {"FrameId":{"name":"1538eebd-461f-4cc4-ad52-deb98c830b03","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":{"name":"c74106f6-2396-4f10-b71b-3fbc486c0fae","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
         {"FrameId":{"name":"1538eebd-461f-4cc4-ad52-deb98c830b03","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_player_armor_fall_chop_saber","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"1538eebd-461f-4cc4-ad52-deb98c830b03","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"423527bc-d3ed-4591-a4db-88628f7c1afd","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"423527bc-d3ed-4591-a4db-88628f7c1afd","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":{"name":"ee0d3f8f-64cf-414f-b8cf-0d17ec5cdcbc","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"423527bc-d3ed-4591-a4db-88628f7c1afd","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":{"name":"c74106f6-2396-4f10-b71b-3fbc486c0fae","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"423527bc-d3ed-4591-a4db-88628f7c1afd","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_player_armor_fall_chop_saber","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"423527bc-d3ed-4591-a4db-88628f7c1afd","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"054ac889-92e8-4187-a23d-783d945471e9","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"054ac889-92e8-4187-a23d-783d945471e9","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":{"name":"ee0d3f8f-64cf-414f-b8cf-0d17ec5cdcbc","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"054ac889-92e8-4187-a23d-783d945471e9","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":{"name":"c74106f6-2396-4f10-b71b-3fbc486c0fae","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"054ac889-92e8-4187-a23d-783d945471e9","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_player_armor_fall_chop_saber","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","name":"054ac889-92e8-4187-a23d-783d945471e9","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_player_armor_fall_chop_saber","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},
@@ -83,7 +73,7 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 10.0,
+    "length": 8.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -96,8 +86,6 @@
             {"id":"7426903c-6b8a-47b9-a737-12a057b84490","Key":5.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"ef2175a1-4fce-4ded-8410-5cea708c3f05","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"81b91e1a-bab7-4999-bdc7-553ca724f06a","Key":6.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6de3af1b-6fab-402f-813e-7dbd46f60daa","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"3d637a06-6324-4888-9eb6-f0f0078125e9","Key":7.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1538eebd-461f-4cc4-ad52-deb98c830b03","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"5f4a463c-05de-4d45-af33-3a102e94c466","Key":8.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"423527bc-d3ed-4591-a4db-88628f7c1afd","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"c4ac221d-2204-4d15-8013-7b989455ad5e","Key":9.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"054ac889-92e8-4187-a23d-783d945471e9","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -111,7 +99,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 32,
-    "yorigin": 76,
+    "yorigin": 74,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_armor_fall_chop_saber","path":"sprites/spr_player_armor_fall_chop_saber/spr_player_armor_fall_chop_saber.yy",},

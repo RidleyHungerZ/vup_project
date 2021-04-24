@@ -54,6 +54,15 @@ function ds_list_remove(list, o) {
 	var i = ds_list_find_index(list, o);
 	ds_list_delete(list, i);
 }
+/// @function ds_list_add_array(list, array)
+/// @desc 将array并入list
+/// @arg list 
+/// @arg array 要去除的项的值
+function ds_list_add_array(list, array) {
+	for(var i=0;i<array_length(array);i++) {
+		ds_list_add(list, array[i])
+	}
+}
 /// @desc 读取ds
 /// @arg id
 /// @arg type

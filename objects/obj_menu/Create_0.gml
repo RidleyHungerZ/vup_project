@@ -14,9 +14,20 @@ for(var page=0;page<=20;page+=1)
 	for(var type=0;type<=5;type+=1)
 		menu_select[page][type]=0
 menu_exit_time=0 //自动退出计时
+//道具页面list
+menu_item_list_max=10 //列表显示最大数量
+menu_item_list_begin=0 //列表最上项
+menu_item_list_end=menu_item_list_max-1 //列表最下项
+menu_item_byte_sum=0
+//设置页面list
 menu_option_list_max=10 //列表显示最大数量
 menu_option_list_begin=0 //列表最上项
 menu_option_list_end=menu_option_list_max-1 //列表最下项
+//技能页面list
+menu_skill_list_max=10 //列表显示最大数量
+menu_skill_list_begin=0 //列表最上项
+menu_skill_list_end=menu_skill_list_max-1 //列表最下项
+menu_skill_list=ds_list_create()
 #endregion
 draw_option_item=noone //设置页面绘制选项内容
 last_model=0 //开启彩蛋时的卡片
