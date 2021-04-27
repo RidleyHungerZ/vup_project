@@ -7,6 +7,10 @@
 /// @arg ui_change 造成无敌的数值改变量
 /// @arg slow 是否有打击感
 function scr_player_damage_set(att, elm, type, urp, ui_max, ui_set, ui_chg, slow) {
+	if scr_itemb_isopen(ITEMB.overload)
+	&& scr_itemb_overload()>0 {
+		att*=1.5
+	}
 	//A类道具加成
 	attack=att+attack_up
 	element=elm

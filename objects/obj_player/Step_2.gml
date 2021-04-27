@@ -274,21 +274,12 @@ global.player_def=1;
 				var damage,attack=global.prick_attack;
 				damage=ceil(attack*global.player_def);
 				//可操作时简单模式或者尖刺防护
-				//if(global.player_operate==1
-				//&& (scr_mode_Is_easy()
-				//	|| scr_itemb_isrun(ITEMB.spike_protect))) {
-				//	//伤害吸收
-				//	if(scr_player_mp_ebing()) {
-				//		damage=scr_player_damage_offset(damage);
-				//	}
-				//	//普通伤害(不用else是为了部分抵消)
-				//	if(!scr_player_mp_ebing()) {
-				//		uninjure=1;
-				//		scr_player_hp_subtract(damage+overload);
-				//		konjo=true;
-				//	}
-				//}
-				//else 
+				if(global.player_operate==1
+				&& (scr_mode_Is_easy()
+					|| scr_itemb_isopen(ITEMB.prickGuard))) {
+					scr_player_hp_subtract(damage+overload);
+				}
+				else 
 					global.player_hp=0;
 			}
 		}
@@ -304,7 +295,7 @@ global.player_def=1;
 		dash=0;
 		//击飞
 		if injure_attack_type==ATK_TYPE.push
-		//&& !scr_itemb_isrun(ITEMB.shock_absorber) 
+		//&& !scr_itemb_isrun(ITEMB_STATUS.shock_absorber) 
 		{
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
@@ -371,10 +362,10 @@ global.player_def=1;
 			injure_attack_type=ATK_TYPE.bullet;
 			//injure_element=ELEMENTS.none;
 		}
-		//if(scr_itemb_isrun(ITEMB.shock_absorber)) {
-		//	hsp=0;
-		//	vsp=0;
-		//}
+		if(scr_itemb_isopen(ITEMB.defineBack)) {
+			hsp=0;
+			vsp=0;
+		}
 		walk=-1;
 		jump=-1;
 		uninjure=1;
@@ -397,9 +388,8 @@ global.player_def=1;
 	if(uninjure==1//受伤
 	|| uninjure==0.5) {//抵消
 		if(uninjure==0.5) uninjure=1;
-		//if((injure_t<90 && !scr_itemb_isrun(ITEMB.inv_ext))
-		//||(injure_t<150 && scr_itemb_isrun(ITEMB.inv_ext)))
-		if(injure_t<90)
+		if((injure_t<90 && !scr_itemb_isopen(ITEMB.invinEx))
+		||(injure_t<90*1.5 && scr_itemb_isopen(ITEMB.invinEx)))
 			injure_t+=1;
 		else{
 			injure_t=0;

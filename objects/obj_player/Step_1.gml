@@ -53,7 +53,7 @@ if(instance_exists(obj_trans)) {
 if scr_player_ice()
 && jump==0 && ice_free==0
 //钉鞋同时抵制冰滑和油滑
-//&& !scr_itemb_isrun(ITEMB.anti_ice)
+//&& !scr_itemb_isrun(ITEMB_STATUS.anti_ice)
 //L可以抵御冰滑，但不能抵御油滑
 //&& !(object_index==obj_player_lz))
 	ice=1;
@@ -89,8 +89,8 @@ if(ice==1 && jump==0) {
 if(jump!=0) {
 	var fall=false,jumpup=false;
 	#region 下降中
-	if(in(jump, [2, 3, 18, 19, 21, 22, 24, 25])
-	||(in(jump, [-1, 6, 11, 12, 13, 26, 27, 28, 29]) && vsp>0)) {
+	if(in(jump, [PYJUMP.fall, PYJUMP.craw, PYJUMP.guild])
+	||(in(jump, [-1]) && vsp>0)) {
 		fall=true;
 		/*if(!place_meeting(x,y+0.25*image_yscale*sign(vsp),obj_ground)
 		&&!((image_yscale=1 && collision_rectangle(bbox_right,bbox_bottom+1,bbox_left,bbox_bottom,obj_floor,1,1) && !collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-1,obj_floor,1,1))
@@ -130,25 +130,12 @@ if(jump!=0) {
 	}
 	#endregion
 	#region 重力作用
-	if(jump!=3 //滑墙
-	&& jump!=5 //爬梯子
-	&& jump!=6 //上浮
-	&& jump!=7 //游泳
-	&& jump!=8 //悬浮
-	&& jump!=9 //空冲
-	&& jump!=11//潜水
-	&& jump!=12//潜水走
-	&& jump!=13//潜水冲刺
-	&& jump!=14//悬挂
-	&& jump!=16//悬挂
+	if(jump!=PYJUMP.craw //滑墙
+	&& jump!=PYJUMP.ladding //爬梯子
+	&& jump!=PYJUMP.guild //悬浮
+	&& jump!=PYJUMP.airdash //空冲
+	&& jump!=PYJUMP.airDashChop //空冲砍
 	&& jump!=20//悬崖漂浮
-	&& jump!=21//下冲刺
-	&& jump!=22//空中大型蓄力斩
-	&& jump!=24//爬墙下滑暂停不能取消
-	&& jump!=25//爬梯子暂停不能取消
-	&& jump!=26//钩锁拉拽中
-	&& jump!=27//悬挂入轨中
-	&& jump!=28//悬挂荡漾中
 	&& !(jump==-1 && injure_ingrd))//受伤且在地面上
 	{
 		if(vsp<vspmaxrate*grav*sign(grav)) 
@@ -167,11 +154,11 @@ if(hsp!=0 ||wind_spd!=0
 	||(jump>0 && w_j=1)
 	|| jump==-1
 	|| wind_spd!=0)
-	&& !in(jump, [3, 5, 24])){
+	&& !in(jump, [PYJUMP.craw, PYJUMP.ladding])){
 		var hhh;
 		if(jump<=0) {
 			var pe_wind=wind_spd; //暂存风速
-			//if(scr_itemb_isrun(ITEMB.anti_wind)
+			//if(scr_itemb_isrun(ITEMB_STATUS.anti_wind)
 			//&& !place_meeting(x,y,obj_trans)) {
 			if !place_meeting(x,y,obj_trans) {
 				if((ice==0)||(ice==1 && v_ice==0)) {
@@ -193,7 +180,7 @@ if(hsp!=0 ||wind_spd!=0
 			hhh=hsp*image_xscale*w_j+wind_spd;
 		var dright=((sign(hhh)==1)?1:0),dleft=((sign(hhh)==-1)?-1:0);
 		#region 地面或L潜水
-		if(in(jump, [0, 11, 12, 13])
+		if(in(jump, [0])
 		|| (jump==-1 && injure_ingrd)) {
 			repeat(round(4*abs(hhh))){
 				//var dashbox=(walk==2||walk==5)*8,dleft=dashbox*(image_xscale==-1)*-1,dright=dashbox*(image_xscale==1)*1;//冲刺的多余部分
@@ -394,12 +381,12 @@ else if(!place_meeting(x,y,obj_water_top))
 }*/
 #endregion
 #region 爬墙芯片
-//if(scr_itemb_isrun(ITEMB.rough)
+//if(scr_itemb_isrun(ITEMB_STATUS.rough)
 //&&!(jump==3 
 //	&& ((keystate_check(global.down_state) && image_yscale==1) 
 //	 || (keystate_check(global.up_state) && image_yscale==-1)))) {
-//	if(scr_itemb_isrun(ITEMB.lighter)) {
-//		if(scr_itemb_isrun(ITEMB.elf_child)) {
+//	if(scr_itemb_isrun(ITEMB_STATUS.lighter)) {
+//		if(scr_itemb_isrun(ITEMB_STATUS.elf_child)) {
 //			if(water==0)		cspd=0;
 //			else if(water==1)	cspd=0;
 //		} else {
@@ -420,7 +407,7 @@ else if(!place_meeting(x,y,obj_water_top))
 if((collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_sink,1,1)
 &&!collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_ground,1,1)
 &&!collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_floor,1,1)
-)//&&!(scr_itemb_isrun(ITEMB.lighter) /*|| global.model=PLAYER_MODEL.Hz*/))
+)//&&!(scr_itemb_isrun(ITEMB_STATUS.lighter) /*|| global.model=PLAYER_MODEL.Hz*/))
 || place_meeting(x,y+GRDY,obj_sink)) {
 	if(abs(hsp)>1) 
 		hsp=hsp/abs(hsp);
@@ -432,7 +419,7 @@ if((collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_sin
 		vsp=0;
 	}
 	if jump<=0
-	//&& !(scr_itemb_isrun(ITEMB.lighter) /*|| global.model=PLAYER_MODEL.Hz*/)) {
+	//&& !(scr_itemb_isrun(ITEMB_STATUS.lighter) /*|| global.model=PLAYER_MODEL.Hz*/)) {
 		if(!place_meeting(x,y+GRDY+1,obj_ground)
 		&& !collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom,obj_floor,1,1)
 		&& global.player_operate==1) 

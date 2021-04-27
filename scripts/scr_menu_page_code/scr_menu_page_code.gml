@@ -209,25 +209,27 @@ function scr_menu_page_item_code() {
 			if menu_select[page][0]==ITEM.A {
 				
 			} else if menu_select[page][0]==ITEM.B {
-				if global.item[ITEM.B][itemnow]==ITEMB.open {
-					global.item[ITEM.B][itemnow]=ITEMB.close
+				if global.item[ITEM.B][itemnow]==ITEMB_STATUS.open {
+					global.item[ITEM.B][itemnow]=ITEMB_STATUS.close
 					scr_sound_play(se_menu_true)
 				} else {
-					if menu_item_byte_sum+itemnowst.byte>global.item2_byte_max {
+					if menu_item_byte_sum>=global.item2_byte_max {
 						scr_sound_play(se_menu_error)
 					} else {
 						//检测是否已装备排除装备
 						var exclude=itemnowst.exclude,
 							isExclude=false;
 						for(var i=0;i<itemcount;i++) {
-							if array_contains(itemlist[| i], exclude) {
+							var ilinx=itemlist[| i]
+							if array_contains(ilinx, exclude) 
+							&& scr_itemb_isopen(ilinx){
 								scr_sound_play(se_menu_error)
 								isExclude=true
 								break
 							}
 						}
 						if(!isExclude) {
-							global.item[ITEM.B][itemnow]=ITEMB.open
+							global.item[ITEM.B][itemnow]=ITEMB_STATUS.open
 							scr_sound_play(se_menu_true)
 						}
 					}
@@ -255,7 +257,60 @@ function scr_menu_page_option_code() {
 }
 /// @desc 技能页操作按钮
 function scr_menu_page_mission_code() {
-	var page=3;
+	var page=3,
+		txtstu=global.txt_menu[page],
+		misslist=global.mission_list[menu_select[page][0]],
+		misscount=ds_list_size(misslist);
+	//非技能页面变回第一个
+	if menu_page==0 {
+		menu_select[page][1]=0
+		menu_miss_list_begin=0 //列表最上项
+		menu_miss_list_end=menu_miss_list_max-1 //列表最下项
+	}
+	if menu_type==0 {
+		if keystate_check_pressed(global.Left_state) {
+			menu_select[page][0]-=1
+			scr_sound_play(se_menu_select)
+		} else if keystate_check_pressed(global.Right_state) {
+			menu_select[page][0]+=1
+			scr_sound_play(se_menu_select)
+		} else if keystate_check_pressed(global.A_state) {
+			if misscount>0 {
+				menu_type=1
+				scr_sound_play(se_menu_true)
+			} else  {
+				scr_sound_play(se_menu_error)
+			}
+		}
+		while menu_select[page][0]<0 
+			menu_select[page][0]+=2
+		while menu_select[page][0]>=2 
+			menu_select[page][0]-=2
+	}
+	#region 选道具
+	else if menu_type==1 {
+		if keystate_check_pressed(global.Up_state) {
+			menu_select[page][1]-=1
+			scr_sound_play(se_menu_select)
+		} else if keystate_check_pressed(global.Down_state) {
+			menu_select[page][1]+=1
+			scr_sound_play(se_menu_select)
+		} else if keystate_check_pressed(global.B_state) {
+			menu_type=0
+			menu_select[page][1]=0
+			scr_sound_play(se_menu_cancle)
+		}
+		while menu_select[page][1]<0 
+			menu_select[page][1]+=misscount
+		while menu_select[page][1]>=misscount 
+			menu_select[page][1]-=misscount
+		//滚动条
+		var scroll=scr_menu_scroll_set(menu_select[page][1], menu_miss_list_begin, menu_miss_list_end, menu_miss_list_max);
+		menu_miss_list_begin=scroll[0];
+		menu_miss_list_end=scroll[1];
+		menu_miss_list_max=scroll[2];
+	}
+	#endregion
 }
 /// @desc 技能页操作按钮
 function scr_menu_page_skill_code() {

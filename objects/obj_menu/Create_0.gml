@@ -23,6 +23,10 @@ menu_item_byte_sum=0
 menu_option_list_max=10 //列表显示最大数量
 menu_option_list_begin=0 //列表最上项
 menu_option_list_end=menu_option_list_max-1 //列表最下项
+//任务页面list
+menu_miss_list_max=10 //列表显示最大数量
+menu_miss_list_begin=0 //列表最上项
+menu_miss_list_end=menu_miss_list_max-1 //列表最下项
 //技能页面list
 menu_skill_list_max=10 //列表显示最大数量
 menu_skill_list_begin=0 //列表最上项

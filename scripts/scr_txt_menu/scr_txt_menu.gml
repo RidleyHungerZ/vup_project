@@ -1,6 +1,8 @@
 function scr_txt_menu(){
+	var page
 	#region 状态
-	global.txt_menu[0]={
+	page=0
+	global.txt_menu[page]={
 		left : {
 			PLAY_TIME : "游戏时间",
 			CYBER_ES : "存在支持度点数",
@@ -55,121 +57,168 @@ function scr_txt_menu(){
 	}
 	#endregion
 	#region 道具
-	enum ITEM {
-		A,
-		B,
-		C,
+	page=1
+	global.txt_menu[page]={
+		items : []
 	}
-	enum ITEMB {
-		null,
-		close,
-		open,
+	#region 消耗品
+	global.txt_menu[page].items[ITEM.A]={
+		name : "消耗品",
+		desc : "一次性物品，使用后会消失\n能进行应急补充",
+		list : [],
 	}
-	global.txt_menu[1]={
-		items : [{
-			name : "消耗品",
-			desc : "一次性物品，使用后会消失\n能进行应急补充",
-			list : [{
-				name : "消耗1",
-				desc : "消耗1desc",
-			}, {
-				name : "消耗2",
-				desc : "消耗2desc",
-			}, {
-				name : "消耗3",
-				desc : "消耗3desc",
-			}, {
-				name : "消耗4",
-				desc : "消耗4desc",
-			}, {
-				name : "消耗5",
-				desc : "消耗5desc",
-			}]
-		}, {
-			name : "装备品",
-			desc : "可拆卸的强化装备，\n会强化某方面的能力",
-			tag  : "●",
-			list : [{
-				name : "装备1",
-				desc : "装备1desc",
-				byte : 1,
-				exclude : [],
-			}, {
-				name : "装备2",
-				desc : "装备2desc",
-				byte : 2,
-				exclude : [],
-			}, {
-				name : "装备3",
-				desc : "装备3desc",
-				byte : 3,
-				exclude : [],
-			}, {
-				name : "装备4",
-				desc : "装备4desc",
-				byte : 4,
-				exclude : [],
-			}, {
-				name : "装备5",
-				desc : "装备4desc",
-				byte : 5,
-				exclude : [],
-			}, {
-				name : "装备6",
-				desc : "装备4desc",
-				byte : 6,
-				exclude : [],
-			}, {
-				name : "装备7",
-				desc : "装备4desc",
-				byte : 7,
-				exclude : [],
-			}, {
-				name : "装备8",
-				desc : "装备4desc",
-				byte : 8,
-				exclude : [],
-			}, {
-				name : "装备9",
-				desc : "装备4desc",
-				byte : 9,
-				exclude : [],
-			}, {
-				name : "装备10",
-				desc : "装备4desc",
-				byte : 10,
-				exclude : [],
-			}, {
-				name : "装备11",
-				desc : "装备4desc",
-				byte : 11,
-				exclude : [],
-			}, {
-				name : "装备12",
-				desc : "装备4desc",
-				byte : 12,
-				exclude : [],
-			}]
-		}, {
-			name : "贵重品",
-			desc : "任务或剧情需要用到的道具，\n十分珍贵，无法主动使用",
-			list : [{
-				name : "贵重1",
-				desc : "贵重1desc",
-			}, {
-				name : "贵重2",
-				desc : "贵重2desc",
-			}, {
-				name : "贵重3",
-				desc : "贵重3desc",
-			}, {
-				name : "贵重4",
-				desc : "贵重4desc",
-			}]
-		}]
+	global.txt_menu[page].items[ITEM.A].list[ITEMA.milk]={
+		name : "牛奶",
+		desc : "恢复50%生命值",
+		type : ITEMA_TYPE.HP,
+		value: 0.5,
+	}
+	global.txt_menu[page].items[ITEM.A].list[ITEMA.candy]={
+		name : "糖果",
+		desc : "恢复50%SP值",
+		type : ITEMA_TYPE.MP,
+		value: 0.5,
+	}
+	global.txt_menu[page].items[ITEM.A].list[ITEMA.energy]={
+		name : "能源填充装置",
+		desc : "补充满一个R罐",
+		type : ITEMA_TYPE.RTANK,
+		value: 1,
+	}
+	global.txt_menu[page].items[ITEM.A].list[ITEMA.hpup]={
+		name : "生命增幅装置",
+		desc : "提高生命上限8点",
+		type : ITEMA_TYPE.OTHER,
+		value: 8,
+	}
+	global.txt_menu[page].items[ITEM.A].list[ITEMA.mpup]={
+		name : "ESP增幅装置",
+		desc : "提升能量上限8点",
+		type : ITEMA_TYPE.OTHER,
+		value: 8,
+	}
+	global.txt_menu[page].items[ITEM.A].list[ITEMA.rtank]={
+		name : "备用能源R罐",
+		desc : "获得一个能存储生命能量的R罐",
+		type : ITEMA_TYPE.OTHER,
+		value: 8,
+	}
+	global.txt_menu[page].items[ITEM.A].list[ITEMA.byte]={
+		name : "装备内存插槽",
+		desc : "提高装备插槽口上限一格",
+		type : ITEMA_TYPE.OTHER,
+		value: 1,
 	}
 	#endregion
+	#region 装备品
+	global.txt_menu[page].items[ITEM.B]={
+		name : "装备品",
+		desc : "可拆卸的强化装备，\n会强化某方面的能力",
+		tag  : "◆",
+		exmsg: "不能与%1$同时装备",
+		list : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.dbjump]={
+		name : "二段跳",
+		desc : "空中可以进行一次跳跃",
+		byte : 6,
+		exclude : [ITEMB.glide],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.airdash]={
+		name : "空中冲刺",
+		desc : "空中可以进行一次冲刺",
+		byte : 6,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.glide]={
+		name : "悬浮缓落",
+		desc : "下落时按跳键可以缓慢下落，\n再按一次解除缓落状态",
+		byte : 6,
+		exclude : [ITEMB.dbjump],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.defineBack]={
+		name : "防御击退",
+		desc : "受伤时不会后退",
+		byte : 5,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.invinEx]={
+		name : "无敌扩展",
+		desc : "无敌时间延长1.5倍",
+		byte : 6,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.prickGuard]={
+		name : "陷阱防护",
+		desc : "即死陷阱变为受伤",
+		byte : 8,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.invinDash]={
+		name : "无敌冲刺",
+		desc : "冲刺时不会受伤",
+		byte : 5,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.chargeQuick]={
+		name : "快速蓄力",
+		desc : "蓄力时间缩短25%",
+		byte : 6,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.autoRecover]={
+		name : "自动恢复",
+		desc : "站立不动时恢复生命值，\n1秒钟恢复1点",
+		byte : 4,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.supportGain]={
+		name : "羁绊增幅",
+		desc : "获得的羁绊点数增加25%",
+		byte : 5,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.nonslip]={
+		name : "防滑",
+		desc : "冰面和风中不会打滑",
+		byte : 4,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.fastRun]={
+		name : "疾跑",
+		desc : "跑步速度加快30%",
+		byte : 3,
+		exclude : [],
+	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.overload]={
+		name : "超载骑士",
+		desc : "超载时攻击力提升50%，\n受到伤害提高50%",
+		byte : 18,
+		exclude : [],
+	}
+	#endregion
+	#region 贵重品
+	global.txt_menu[page].items[ITEM.C]={
+		name : "贵重品",
+		desc : "任务或剧情需要用到的道具，\n十分珍贵，无法主动使用",
+		list : [],
+	}
+	global.txt_menu[page].items[ITEM.C].list[ITEMC.esGun]={
+		name : "ES能量手枪",
+		desc : "基础武器，可以三连发",
+	}
+	global.txt_menu[page].items[ITEM.C].list[ITEMC.esSaber]={
+		name : "ES能量剑刃",
+		desc : "基础武器，可以近身造成伤害",
+	}
+	global.txt_menu[page].items[ITEM.C].list[ITEMC.starGuard]={
+		name : "星之守护",
+		desc : "受到足以死亡的伤害时发动保护，\n避免死亡并回复1点生命值，\n使用后消失",
+	}
+	#endregion
+	#endregion
 	#region 设置
+	page=2
 	//获得所有屏幕分辨率
 	var getWindowResolution = function() {
 		var sizelist=[], winsize=obj_view.ui.winsize;
@@ -183,7 +232,7 @@ function scr_txt_menu(){
 		keypad = 1,
 		line = 2,
 	}
-	global.txt_menu[2]={
+	global.txt_menu[page]={
 		//按键
 		keyboards : {
 			name : "按键",
@@ -472,12 +521,73 @@ function scr_txt_menu(){
 	}
 	#endregion
 	#region 任务
-	global.txt_menu[3]={
-		
+	page=3
+	global.txt_menu[page]={
+		main : {
+			name : "主线任务",
+			desc : "",
+			list : []
+		},
+		sub : {
+			name : "支线任务",
+			desc : "",
+			list : []
+		},
+		reward : {
+			desc : "任务报酬：",
+			es : "存在支持度点数：",
+			item : [
+				"消耗品：", 
+				"装备品：", 
+				"贵重品：",
+			],
+		},
+		status : {
+			desc : "当前任务状态：",
+			list : [],
+		}
+	}
+	global.txt_menu[page].status.list[MISSION_STATIS.unstart]="未开始"
+	global.txt_menu[page].status.list[MISSION_STATIS.inProcess]="进行中"
+	global.txt_menu[page].status.list[MISSION_STATIS.waitReport]="待汇报"
+	global.txt_menu[page].status.list[MISSION_STATIS.complete]="已完成"
+	#region 主线任务
+	global.txt_menu[page].main.list[0]={
+		name : "撤离资源管理所",
+		desc : "资源管理所确认遭受到不明暴乱袭击，\n请携带货物从这里撤离",
+		reward : {
+			es : 300,
+			item : [],
+		},
 	}
 	#endregion
+	#region 支线任务
+	global.txt_menu[page].sub.list[0]={
+		name : "测试支线0",
+		desc : "测试支线0desc",
+		reward : {
+			es : 0,
+			item : [
+				[ITEM.A, ITEMA.milk],
+				[ITEM.A, ITEMA.rtank],
+			],
+		},
+	}
+	global.txt_menu[page].sub.list[1]={
+		name : "测试支线1",
+		desc : "测试支线1desc",
+		reward : {
+			es : 150,
+			item : [
+				[ITEM.B, ITEMB.overload],
+			],
+		},
+	}
+	#endregion
+	#endregion
 	#region 技能
-	global.txt_menu[4]={
+	page=4
+	global.txt_menu[page]={
 		skills : {
 			human : [
 				{
@@ -509,7 +619,11 @@ function scr_txt_menu(){
 					trim : function(){return true;},
 				}, {
 					txt : "蓄力斩",
-					desc : "按住攻击键蓄力到黄色状态时释放，\n可发动大范围斩击",
+					desc : "按住攻击键蓄力到黄色状态，\n在地面时释放，\n可发动大范围斩击",
+					trim : function(){return true;},
+				}, {
+					txt : "回旋斩",
+					desc : "按住攻击键蓄力到黄色状态，\n在空中时释放，\n可发动圆形范围斩击",
 					trim : function(){return true;},
 				}, {
 					txt : "射击",
@@ -520,45 +634,29 @@ function scr_txt_menu(){
 					desc : "按住副武器键蓄力到出现蓄力光时释放，\n红色蓄力光为一段蓄力，\n黄色蓄力光为二段蓄力",
 					trim : function(){return true;},
 				}, {
-					txt : "测试1",
-					desc : "test1",
-					trim : function(){return true;},
+					txt : "二段跳",
+					desc : "装备二段跳后，在空中按跳键，\n可以进行一次额外跳跃",
+					trim : function(){return scr_itemb_isopen(ITEMB.dbjump)},
 				}, {
-					txt : "测试2",
-					desc : "test2",
-					trim : function(){return false;},
+					txt : "速降飞踢",
+					desc : "装备二段跳并在空中进行二段跳后，\n按住下键按跳跃发动，\n会快速降下，击中物体后会弹飞",
+					trim : function(){return scr_itemb_isopen(ITEMB.dbjump)},
 				}, {
-					txt : "测试3",
-					desc : "test3",
-					trim : function(){return true;},
+					txt : "斜下飞踢",
+					desc : "装备二段跳并在空中进行二段跳后，\n按住下键按跳跃发动，\n会快速降下，击中物体后会弹飞",
+					trim : function(){return scr_itemb_isopen(ITEMB.dbjump)},
 				}, {
-					txt : "测试4",
-					desc : "test4",
-					trim : function(){return true;},
+					txt : "空中冲刺",
+					desc : "装备空中冲刺后，在空中按冲刺键，\n可以在空中进行一次冲刺",
+					trim : function(){return scr_itemb_isopen(ITEMB.airdash)},
 				}, {
-					txt : "测试5",
-					desc : "test5",
-					trim : function(){return true;},
+					txt : "滑翔",
+					desc : "装备滑翔后，在空中按跳键，\n会进入滑翔状态，进行缓速下落，\n再按一次跳键解除状态",
+					trim : function(){return scr_itemb_isopen(ITEMB.glide)},
 				}, {
-					txt : "测试6",
-					desc : "test6",
-					trim : function(){return true;},
-				}, {
-					txt : "测试7",
-					desc : "test7",
-					trim : function(){return false;},
-				}, {
-					txt : "测试8",
-					desc : "test8",
-					trim : function(){return true;},
-				}, {
-					txt : "测试9",
-					desc : "test9",
-					trim : function(){return true;},
-				}, {
-					txt : "测试10",
-					desc : "test10",
-					trim : function(){return true;},
+					txt : "升龙斩",
+					desc : "地面按住上键时按攻击键发动，\n在地面跃起向前上方攻击",
+					trim : function(){return scr_player_exskill_isget(PLAYER_SKILL.flyChop)},
 				}, 
 			],
 			special : [

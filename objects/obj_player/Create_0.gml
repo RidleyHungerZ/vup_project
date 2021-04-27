@@ -267,3 +267,25 @@ iceHspeed = function(icestart) {
 	}
 }
 #endregion
+#region 动作
+enum PYWALK {
+	idle=0,
+	walk=1,
+	dash=2,
+	attack=4,
+	dashChop=5,
+	creepe=8,
+}
+enum PYJUMP {
+	ingrd=0,
+	jump=1,
+	fall=2,
+	craw=3,
+	crawjump=4,
+	ladding=5,
+	guild=8,
+	airdash=9,
+	airDashChop=10,
+	flyChop=17,
+}
+#endregion

@@ -1,6 +1,7 @@
 event_inherited();
 spr_loopinx=2
 itemval=16
+needtank=-1
 //吃到后执行（补血）
 executeNoStop=function() {
 	if action==-1 {
@@ -31,16 +32,15 @@ executeNoStop=function() {
 }
 //吃到后执行（E罐）
 execute=function() {
-	//确认需要补充的tank
-	var needtank=-1
-	for(var i=0;i<ds_list_size(global.rtanklist);i++) {
-		var inx=global.rtanklist[| i]
-		if global.rtank_val[inx]<global.rtank_val_max {
-			needtank=inx
-			break
-		}
-	}
 	if action==-10 {
+		//确认需要补充的tank
+		for(var i=0;i<ds_list_size(global.rtanklist);i++) {
+			var inx=global.rtanklist[| i]
+			if global.rtank_val[inx]<global.rtank_val_max {
+				needtank=inx
+				break
+			}
+		}
 		if needtank>=0 {
 			action=-11
 		} else {
@@ -48,9 +48,9 @@ execute=function() {
 		}
 	} else if action==-11 && time==0 {
 		if itemval>0 
-		&& needtank>=0 {
+		&& global.rtank_val[needtank]<global.rtank_val_max {
 			itemval--
-			global.rtank_val[inx]++
+			global.rtank_val[needtank]++
 			scr_sound_play(se_item_rtank)
 			time=2
 		} else {

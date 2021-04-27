@@ -21,12 +21,11 @@ function data_save_variable_single(){
 	global.model=PLAYER_MODEL.HU
 	global.model_get_number=1//获得模块数量
 	global.model_number=11
-	for(var i=0;i<global.model_number;i+=1){
-		global.model_get[i]=0//模块获得
-		global.main_sub_exchange[i]=0//模块武器切换
-		global.sub_change[i]=0//模式三使用副武器
-	}
+	global.model_get=array_create(global.model_number, 0)
+	global.main_sub_exchange=array_create(global.model_number, 0)
+	global.sub_change=array_create(global.model_number, 0)
 	global.model_get[PLAYER_MODEL.HU]=1 //默认拥有人形
+	global.exskill=array_create(8, 0)
 #endregion
 #region 道具
 	//上限道具
@@ -65,5 +64,9 @@ function data_save_variable_single(){
 		global.thread[i]=0 //剧情已经开启过了
 		global.threaded[i]=0 //第一次进行时开启，以后可跳过
 	}
+	global.mission[MISSION_TYPE.main]=array_create(20, 0)
+	global.mission_list[MISSION_TYPE.main]=ds_list_create()
+	global.mission[MISSION_TYPE.sub]=array_create(20, 0)
+	global.mission_list[MISSION_TYPE.sub]=ds_list_create()
 #endregion
 }

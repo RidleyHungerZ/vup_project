@@ -67,10 +67,8 @@ if !inst_of(obj_enemy) exit
 	if hp>0{
 		element_ssinjure=0
 		//元素僵硬
-		if injure_element!=ELEMENTS.none//带属性
-		//&& injure_element!=ELEMENTS.fire//不是火属性
-		&& injure_elementback//属性击退
-		{
+		if in(injure_element, [ELEMENTS.ice, ELEMENTS.elec])
+		&& injure_elementback {
 			scr_sprite_change(SS_injure,0,1/10)
 			action=-1
 			hsp=0

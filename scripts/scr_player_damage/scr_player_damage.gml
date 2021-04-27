@@ -275,7 +275,9 @@ function scr_player_damage(otherobj) {
 							scr_sound_play(se_enemy_damage) //播放音效
 							
 							//羁绊值增加
-							global.player_support+=att_infact
+							var supval=att_infact
+							if scr_itemb_isopen(ITEMB.supportGain) supval*=1.25
+							global.player_support+=floor(supval)
 							if global.player_support>100 
 								global.player_support=100
 					

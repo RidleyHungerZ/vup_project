@@ -279,7 +279,8 @@ function scr_draw_menu_item(dx, dy){
 
 	//道具图像
 	if msel[0]==ITEM.A {
-		
+		drawx=dx+480 drawy=dy+512
+		draw_sprite_ext(spr_menu_item_icon_a, itemnow, drawx, drawy, 2.5, 2.5, 0, c_white, 1)
 	} else if msel[0]==ITEM.B {
 		//蜂窝格子
 		drawx=dx+304 drawy=dy+352
@@ -308,7 +309,7 @@ function scr_draw_menu_item(dx, dy){
 					//已占用格子
 					if byteinx<menu_item_byte_sum {
 						if menu_type==1
-						&& global.item[ITEM.B][itemnow]==ITEMB.open 
+						&& global.item[ITEM.B][itemnow]==ITEMB_STATUS.open 
 						&& byteinx>=menu_item_byte_sum-itemnowst.byte {
 							draw_sprite_ext(spr_menu_item_hex, 1, drx, dry, 1, 1, 0, c_white, 0.5)
 						}
@@ -316,7 +317,7 @@ function scr_draw_menu_item(dx, dy){
 					}
 					//待占用格子
 					else if menu_type==1 
-					&& global.item[ITEM.B][itemnow]==ITEMB.close
+					&& global.item[ITEM.B][itemnow]==ITEMB_STATUS.close
 					&& byteinx<menu_item_byte_sum+itemnowst.byte
 						draw_sprite_ext(spr_menu_item_hex, 1, drx, dry, 1, 1, 0, c_white, flashaph)
 					byteinx++;
@@ -329,7 +330,8 @@ function scr_draw_menu_item(dx, dy){
 		scr_draw_text(UIPINK, 1, 0, font_jam_80, 1, 0.5, menu_item_byte_sum, drawx, drawy-40, 1, 1, -1, -1, -1, 0)
 		scr_draw_text(UIPINK, 1, 0, font_jam_80, 0, 0.5, global.item2_byte_max, drawx, drawy+40, 1, 1, -1, -1, -1, 0)
 	} else if msel[0]==ITEM.C {
-		
+		drawx=dx+480 drawy=dy+512
+		draw_sprite_ext(spr_menu_item_icon_c, itemnow, drawx, drawy, 2.5, 2.5, 0, c_white, 1)
 	}
 	//道具说明
 	drawx=dx+128 drawy=dy+768
@@ -350,7 +352,7 @@ function scr_draw_menu_item(dx, dy){
 		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, itstruts[msel[0]].list[itinx].name, drawx-192, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
 		if msel[0]==ITEM.B {
 			//scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, "["+string(itstruts[msel[0]].list[itinx].byte)+"]", drawx-224, drawy+yshift+8, 1, 1, -1, -1, -1, 0)
-			if global.item[ITEM.B][itinx]==ITEMB.open
+			if global.item[ITEM.B][itinx]==ITEMB_STATUS.open
 				scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, itstruts[msel[0]].tag, drawx-272, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
 		} else if msel[0]==ITEM.C {
 			scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, "[x"+string(global.item[ITEM.C][itemnow])+"]", drawx-272, drawy+yshift, 1, 1, -1, -1, -1, 0)
@@ -377,7 +379,81 @@ function scr_draw_menu_option(dx, dy){
 function scr_draw_menu_mission(dx, dy){
 	var drawx=dx, drawy=dy, page=3, txtstu=global.txt_menu[page], msel=menu_select[page]
 	scr_draw_menu_tab(dx, dy, page)
-	
+	var missstruts=[txtstu.main, txtstu.sub],
+		misslist=global.mission_list[msel[0]],
+		misscount=ds_list_size(misslist),
+		missnowinx=msel[1],
+		missnow=misslist[| missnowinx],
+		missnowstatus=global.mission[msel[0]][missnow],
+		flashaph = 0.5+0.5*sin(global.fps_curr*pi/15);
+	#region 左侧详情
+	drawx=dx+90 drawy=dy+262
+	draw_sprite(spr_menu_mission_bgs, 0, drawx, drawy)
+	//tab
+	drawx=dx+528 drawy=dy+263
+	for(var i=0;i<2;i++) {
+		var selected = msel[0]==i, 
+			tabinx=1,
+			txtselup=0;
+		if selected tabinx=0
+		else txtselup=0
+		draw_sprite(spr_menu_mission_tab, tabinx, drawx+256*i, drawy)
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0.5, 0.5, missstruts[i].name, drawx+256*i+8, drawy-16-txtselup, 1, 1, -1, -1, -1, 0)
+	}
+	//任务说明
+	if !is_undefined(missnow) {
+		var missnowst = missstruts[msel[0]].list[missnow],
+			desctxt = missnowst.desc,
+			reward = missnowst.reward,
+			stmodel = txtstu.status,
+			rwmodel = txtstu.reward,
+			rewardtxt = rwmodel.desc,
+			itemst = global.txt_menu[1].items;
+		//任务详情
+		drawx=dx+160 drawy=dy+304
+		var statuscol="ffffff"
+		if missnowstatus==MISSION_STATIS.unstart statuscol="ffffff"
+		else if missnowstatus==MISSION_STATIS.inProcess statuscol="fff200"
+		else if missnowstatus==MISSION_STATIS.waitReport statuscol="FB8E19"
+		else if missnowstatus==MISSION_STATIS.complete statuscol="00a651"
+		desctxt = stmodel.desc + "[$="+statuscol+"]" + stmodel.list[missnowstatus] + "[$=ffffff]\n" + desctxt
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, desctxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
+		//任务报酬
+		drawx=dx+160 drawy=dy+752
+		rewardtxt = rewardtxt + "\n"
+		if reward.es>0 {
+			rewardtxt += rwmodel.es + string(reward.es) + "\n"
+		}
+		for(var i=0;i<array_length(reward.item);i++){
+			var ri = reward.item[i]
+			rewardtxt += rwmodel.item[ri[0]] + itemst[ri[0]].list[ri[1]].name + "\n"
+		}
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, rewardtxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
+	}
+	#endregion
+	#region 右侧列表
+	drawx=dx+1368 drawy=dy+232
+	for(var i=menu_miss_list_begin; i<min(menu_miss_list_end+1, misscount); i++) {
+		var itinx=misslist[| i],
+			btninx=0, 
+			yshift=(i-menu_miss_list_begin)*80,
+			statuscol=c_white;
+		if i==missnowinx && menu_type>=1
+			btninx=1;
+		draw_sprite(spr_menu_mission_items, btninx, drawx, drawy+yshift)
+		var missst = global.mission[msel[0]][itinx]
+		if missst==MISSION_STATIS.unstart statuscol=c_white
+		else if missst==MISSION_STATIS.inProcess statuscol=c_yellow
+		else if missst==MISSION_STATIS.waitReport statuscol=c_orange
+		else if missst==MISSION_STATIS.complete statuscol=c_green
+		scr_draw_text_ext(statuscol, 1, 0, font_puhui_32, 0, 0.5, missstruts[msel[0]].list[itinx].name, drawx-192, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
+	}
+	//滚动条
+	drawx=dx+1792 drawy=dy+204
+	if misscount>menu_miss_list_max {
+		scr_draw_menu_scroll(drawx, drawy, 1, 49, missnowinx, menu_miss_list_begin, menu_miss_list_max, misscount)
+	}
+	#endregion
 }
 /// @desc 绘制技能页
 /// @arg x

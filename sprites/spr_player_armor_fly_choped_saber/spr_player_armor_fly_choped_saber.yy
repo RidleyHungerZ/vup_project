@@ -39,6 +39,11 @@
         {"FrameId":{"name":"50d332c0-7332-457e-94d8-deee9f52f42e","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"LayerId":{"name":"b13dade5-1ab6-4a5a-9ada-d3db681dd9bb","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
         {"FrameId":{"name":"50d332c0-7332-457e-94d8-deee9f52f42e","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_player_armor_fly_choped_saber","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","name":"50d332c0-7332-457e-94d8-deee9f52f42e","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"2b042b13-5317-4657-a18b-a65ef2f884da","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"2b042b13-5317-4657-a18b-a65ef2f884da","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"LayerId":{"name":"198faa36-b164-4c96-9bf8-210e44a0624b","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+        {"FrameId":{"name":"2b042b13-5317-4657-a18b-a65ef2f884da","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"LayerId":{"name":"b13dade5-1ab6-4a5a-9ada-d3db681dd9bb","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+        {"FrameId":{"name":"2b042b13-5317-4657-a18b-a65ef2f884da","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_player_armor_fly_choped_saber","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","name":"2b042b13-5317-4657-a18b-a65ef2f884da","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_player_armor_fly_choped_saber","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},
@@ -48,7 +53,7 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 3.0,
+    "length": 4.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -56,6 +61,7 @@
             {"id":"7a2bc528-e308-4989-907d-887d7d5944cb","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"c25daba8-e9bf-45f8-8902-4ca27ef9a2b5","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"af84cf7b-681a-47c8-bfa8-85f84debdadc","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"e50b20a6-375e-46df-b77a-4d55e96ceedd","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"bb936e20-ea77-4f75-b492-89ebae7d86cc","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"50d332c0-7332-457e-94d8-deee9f52f42e","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"5c7af980-2695-4b91-bd7e-4e4400974018","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"2b042b13-5317-4657-a18b-a65ef2f884da","path":"sprites/spr_player_armor_fly_choped_saber/spr_player_armor_fly_choped_saber.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,

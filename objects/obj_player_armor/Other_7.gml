@@ -47,13 +47,18 @@ else if sprite_index == spr_player_armor_idle_choped {
 	scr_sprite_change(SS_idle, 0, 0.25)
 }
 else if sprite_index == spr_player_armor_dash_chop {
-	scr_sprite_change(SS_dashed,0,0.25);
-	dash=0;
-	walk=0;
-	hsp=0;
-	dash_time_l=0;
-	dash_time_r=0;
-	dash_order_time_H=0;
+	if jump==0 && walk==PYWALK.dashChop {
+		scr_sprite_change(SS_dashed,0,0.25);
+		dash=0;
+		walk=0;
+		hsp=0;
+		dash_time_l=0;
+		dash_time_r=0;
+		dash_order_time_H=0;
+	} else if jump==PYJUMP.airDashChop {
+		scr_sprite_change(SS_jumped, 0, 0.25)
+		jump=PYJUMP.fall
+	}
 }
 //蓄力斩
 else if sprite_index == spr_player_armor_idle_chop_charge {
@@ -79,13 +84,17 @@ else if sprite_index == spr_player_armor_fall_choped {
 else if sprite_index == spr_player_armor_fly_chop {
 	scr_sprite_change(spr_player_armor_fly_choping, 0, 0.5)
 	walk=0
-	jump=17
+	jump=PYJUMP.flyChop
 	w_j=1
 	hsp=2*hspd;
 	vsp=-vspd;
+	if global.player_saber.element==ELEMENTS.fire {
+		vsp*=1.2
+	}
 }
 else if sprite_index == spr_player_armor_fly_choping {
 	scr_sprite_change(-2, image_number-3, -2)
+	hsp=0
 }
 else if sprite_index == spr_player_armor_fly_choped {
 	if jump==1 scr_sprite_change(SS_jumping, 0, 0.25)

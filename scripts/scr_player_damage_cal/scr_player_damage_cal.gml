@@ -2,13 +2,17 @@
 /// @arg enemy
 function scr_player_damage_cal(enemy) {
 	var attack = enemy.attack,
-		damage=ceil(attack*global.player_def),
-		overload=scr_itemb_overload()
+		damage = attack*global.player_def,
+		overload = scr_itemb_overload()
 	//受伤方向
 	if sign(enemy.x-x)=image_xscale uninjure=1
 	else uninjure=-1
 	//扣血
-	scr_player_hp_subtract(damage+overload)
+	if scr_itemb_isopen(ITEMB.overload)
+	&& scr_itemb_overload()>0 {
+		damage*=1.5
+	}
+	scr_player_hp_subtract(ceil(damage)+overload)
 	//受伤等级
 	injure_level=enemy.damage_level
 	//子弹记录击中

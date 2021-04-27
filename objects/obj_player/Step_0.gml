@@ -20,7 +20,8 @@ scr_time_alarm();
 			afterdash+=1;
 		l_dash=0;
 	}
-	if(walk!=2) 
+	if(walk!=PYWALK.dash
+	&& jump!=PYJUMP.airdash) 
 		l_dash=0;
 	for(var i=8;i>=0;i-=1){
 		if(i<=afterdash) {
@@ -34,7 +35,7 @@ scr_time_alarm();
 	}
 	#endregion
 	#region 爬墙跳初始化
-	if(jump!=4) 
+	if(jump!=PYJUMP.crawjump) 
 		jump_craw=0;
 	#endregion
 	#region 冲刺指令
@@ -45,21 +46,20 @@ scr_time_alarm();
 	if(dash_order_time_H>0) dash_order_time_H-=1;
 	if(dash_order_time_V>0) dash_order_time_V-=1;
 	//横向冲刺使用中
-	if(walk!=2 //地面冲刺
-	&& jump!=9 //空中冲刺
-	&& jump!=13)//水中冲刺
+	if(walk!=PYWALK.dash
+	&& jump!=PYJUMP.airdash)
 	{
 		if(dash_order_time_H==-1) 
 			dash_order_time_H=0;
 	}
-	//纵向冲刺使用中
-	if(jump!=13 //水中冲刺
-	&& jump!=10 //对空冲刺
-	&& jump!=21)//向下冲刺
-	{
-		if(dash_order_time_V==-1)
-			dash_order_time_V=0;
-	}
+	////纵向冲刺使用中
+	//if(jump!=13 //水中冲刺
+	//&& jump!=10 //对空冲刺
+	//&& jump!=21)//向下冲刺
+	//{
+	//	if(dash_order_time_V==-1)
+	//		dash_order_time_V=0;
+	//}
 	//冲刺指令转换
 	if(dash_can==1 
 	&& global.dash_order==1) {
@@ -104,19 +104,16 @@ scr_time_alarm();
 	}
 	#endregion
 	#region 超级冲刺
-	//if(scr_itemb_isrun(ITEMB.super_dash)) l_dashup=floor(30*1.5);
+	//if(scr_itemb_isrun(ITEMB_STATUS.super_dash)) l_dashup=floor(30*1.5);
 	//else 
 		l_dashup=30;
 	#endregion
+	#region 疾跑
+	if(scr_itemb_isopen(ITEMB.fastRun)) {
+		walkspd=4
+	} else walkspd=3
+	#endregion
 	#region 蓄力动画帧数
-	//if(global.main_sub_exchange[global.model]==0) {
-	//	uncharge[1]=obj_staff.player_uncharge[model][1];
-	//	uncharge[2]=obj_staff.player_uncharge[model][2];
-	//}
-	//else if(global.main_sub_exchange[global.model]==1) {
-	//	uncharge[1]=obj_staff.player_uncharge[model][2];
-	//	uncharge[2]=obj_staff.player_uncharge[model][1];
-	//}
 	for(var i=1;i<=2;i+=1){
 		if(charge[i]>=30 || charge_break[i]==4) {
 			charge_index[i]+=0.25;
@@ -150,9 +147,14 @@ for(var i=1;i<=2;i+=1){
 			//蓄力
 			if((scr_player_charge_mainkey_status()>1 && i==1)
 			||(scr_player_charge_subkey_status()>1 && i==2)) {
-				if(charge[i]<charge_dis) charge[i]+=0.5;
-				else if(charge[i]<charge_max) {
+				if(charge[i]<charge_dis) {
+					charge[i]+=0.5;
+					if(scr_itemb_isopen(ITEMB.chargeQuick))
+						charge[i]+=0.125;
+				} else if(charge[i]<charge_max) {
 					charge[i]+=1;
+					if(scr_itemb_isopen(ITEMB.chargeQuick))
+						charge[i]+=0.25;
 				}
 				else charge[i]=charge_max;
 			}
@@ -203,7 +205,7 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 走路
-		if(walk==1) {
+		if(walk==PYWALK.walk) {
 			if(keystate_check(global.left_state)) 
 				image_xscale=-1;
 			else if(keystate_check(global.right_state)) 
@@ -216,7 +218,7 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 冲刺
-		if(walk==2) {
+		if(walk==PYWALK.dash) {
 			if(keystate_check(global.left_state)) 
 				image_xscale=-1;
 			else if(keystate_check(global.right_state)) 
@@ -238,12 +240,12 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 斩击动作
-		if(walk==4) {
+		if(walk==PYWALK.attack) {
 			hsp=0
 		}
 		#endregion
 		#region 进入冲刺
-		if((walk==0 || walk==1)
+		if((walk==0 || walk==PYWALK.walk)
 		&& dash_can==1){
 			if(dash_order_time_H>0
 			|| scr_player_dash_cor()) {
@@ -256,7 +258,7 @@ for(var i=1;i<=2;i+=1){
 					while(collision_rectangle(bbox_left,bbox_bottom-8,bbox_left-8,bbox_top,obj_ground,1,1) && image_xscale==-1) x+=1;
 				}*/
 				dash=1;
-				walk=2;
+				walk=PYWALK.dash;
 				hsp=dashspd*hspd;
 				if(dash_order_time_H>0) dash_order_time_H=-1;
 				//发射烟雾
@@ -297,7 +299,7 @@ for(var i=1;i<=2;i+=1){
 				scr_sprite_change(SS_jumped,0,0.25);
 				if(walk==8 || walk==2)
 					scr_player_outground();
-				jump=2;
+				jump=PYJUMP.fall;
 				walk=0;
 				if(ice==0) {
 					dashHspeed(1);
@@ -336,7 +338,7 @@ for(var i=1;i<=2;i+=1){
 			scr_sprite_change(SS_jumped,0,0.25);
 			if(in(walk, [2, 8]))
 				scr_player_outground();
-			jump=2;
+			jump=PYJUMP.fall;
 			walk=0;
 			if(ice==0) {
 				dashHspeed(1);
@@ -382,8 +384,8 @@ for(var i=1;i<=2;i+=1){
 	else{
 		#region 空中动作集体调整
 		//空中转向
-		if(in(jump, [1, 23])
-		|| in(jump, [2, 8])) {
+		if(in(jump, [PYJUMP.jump])
+		|| in(jump, [PYJUMP.fall, PYJUMP.guild])) {
 			if(keystate_check(global.left_state) || keystate_check(global.right_state)) {
 				var old_xscale=image_xscale;
 				if(keystate_check(global.left_state))  image_xscale=-1;
@@ -410,10 +412,10 @@ for(var i=1;i<=2;i+=1){
 			}
 		}
 		//冲刺辅助消除
-		if(jump!=1) jump_dash=0;
+		if(jump!=PYJUMP.jump) jump_dash=0;
 		#endregion
 		#region 跳起
-		if(in(jump, [1, 23])) {
+		if(in(jump, [PYJUMP.jump])) {
 			//辅助跳跃
 			if(jump_dash<6) {
 				jump_dash+=1;
@@ -427,19 +429,19 @@ for(var i=1;i<=2;i+=1){
 			if(place_meeting(x,y,obj_sink)) vsp=0;
 			var colltop=place_meeting(x,y-1*image_yscale,obj_ground),
 				jumptop=(vsp*image_yscale>=0),
-				jump_released=(!keystate_check(global.jump_state) && jump==1);
+				jump_released=(!keystate_check(global.jump_state) && jump==PYJUMP.jump);
 			if(colltop
 			|| jumptop
 			|| jump_released) {
 				if(vsp<0) vsp=0;
 				if(in(sprite_index, [SS_jump, SS_jumping, SS_crawjump]))
 					scr_sprite_change(SS_jumped,0,0.25);
-				jump=2;
+				jump=PYJUMP.fall;
 			}
 		}
 		#endregion
 		#region 爬墙下滑
-		if(jump==3) {
+		if(jump==PYJUMP.craw) {
 			vsp=cspd;
 			//下滑速度0时不播放头发动画
 			if(vsp==0 && sprite_index==SS_crawing) 
@@ -459,7 +461,7 @@ for(var i=1;i<=2;i+=1){
 				while(!precoll && place_meeting(x,y,obj_ground)) 
 					x-=image_xscale;
 				scr_sprite_change(SS_jumped,0,0.25);
-				jump=2;
+				jump=PYJUMP.fall;
 				vsp=0;
 				//清空半透板记录
 				scr_player_floordown_clear();
@@ -478,13 +480,13 @@ for(var i=1;i<=2;i+=1){
 			//滑到没墙、滑到冰墙、沾油
 			else if(!craw_ground || craw_ground.ice==1) {
 				scr_sprite_change(SS_jumped,0,0.25);
-				jump=2;
+				jump=PYJUMP.fall;
 				vsp=0;
 			}
 			//爬墙跳
 			else if(keystate_check_pressed(global.jump_state)) {
 				scr_sprite_change(SS_crawjump,0,0.25);
-				jump=4;
+				jump=PYJUMP.crawjump;
 				image_xscale*=-1;
 				vsp=-vspd;
 				if(keystate_check(global.dash_state)
@@ -505,7 +507,7 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 下落中
-		if(in(jump, [2, 8, 14])) {
+		if(in(jump, [PYJUMP.fall, PYJUMP.guild])) {
 			//三角跳用变量
 			var dd=keystate_check(global.dash_state) ? 1 : 0,
 				craw_ground=collision_rectangle(bbox_right+1*image_xscale,
@@ -527,7 +529,7 @@ for(var i=1;i<=2;i+=1){
 				craw_ground = false;
 			//落地
 			if(scr_player_Is_fallover(0,0,4,3)
-			&& ((jump==8 && vsp>=0) || jump!=8)) { //滑翔时下落才着地
+			&& ((jump==PYJUMP.guild && vsp>=0) || jump!=PYJUMP.guild)) { //滑翔时下落才着地
 				if(sprite_index==SS_craw) 
 					image_xscale*=-1;
 				scr_sprite_change(SS_fallover,0,0.25);
@@ -556,11 +558,11 @@ for(var i=1;i<=2;i+=1){
 			 &&!collision_rectangle(bbox_right,bbox_top-GRDY+1,bbox_left,bbox_top-GRDY,obj_floor,1,1))
 			|| place_meeting(x,y+4*image_yscale,obj_sink))
 			&& dash_can==1
-			&& jump==2) {
+			&& jump==PYJUMP.fall) {
 				if(global.jump_cor>0 && global.jump_cor<3) {
 					scr_sprite_change(SS_jump,0,0.25);
 					walk=0;
-					jump=1;
+					jump=PYJUMP.jump;
 					vsp=-vspd;
 					if(ice==0) {
 						dashHspeed(1);
@@ -582,10 +584,9 @@ for(var i=1;i<=2;i+=1){
 			 ||(keystate_check(global.right_state) && image_xscale==1))
 			&& sign(wind_spd)!=-image_xscale
 			&& craw_can==1
-			&&!scr_player_icewall()
-			&& jump!=14 && jump!=15) {
+			&&!scr_player_icewall()) {
 				scr_sprite_change(SS_craw,0,0.25);
-				jump=3;
+				jump=PYJUMP.craw;
 				vsp=cspd;
 				dash=0;
 				image_xscale*=-1;
@@ -594,12 +595,12 @@ for(var i=1;i<=2;i+=1){
 			//同向三角跳
 			else if(trg_ground && trg_ground.ice==0
 			&& craw_can==1
-			&& jump==2
+			&& jump==PYJUMP.fall
 			&&!scr_player_icewall()) {
 				if(keystate_check_pressed(global.jump_state)) {
 					scr_sprite_change(SS_crawjump,0,0.25);
 					//image_xscale*=-1;
-					jump=4;
+					jump=PYJUMP.crawjump;
 					vsp=-vspd;
 					if(keystate_check(global.dash_state)
 					|| dash_order_time_H>0) 
@@ -622,12 +623,12 @@ for(var i=1;i<=2;i+=1){
 			//反向三角跳
 			else if(intrg_ground && intrg_ground.ice==0
 			&& craw_can==1
-			&& jump==2
+			&& jump==PYJUMP.fall
 			&&!scr_player_icewall()) {
 				if(keystate_check_pressed(global.jump_state)) {
 					scr_sprite_change(SS_crawjump,0,0.25);
 					image_xscale*=-1;
-					jump=4;
+					jump=PYJUMP.crawjump;
 					vsp=-vspd;
 					if(keystate_check(global.dash_state)
 					|| dash_order_time_H>0) 
@@ -650,7 +651,7 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 爬墙跳
-		if(jump==4) {
+		if(jump==PYJUMP.crawjump) {
 			w_j=1;
 			if(scr_player_dash_cor() && dash==0) {
 				dash=1;
@@ -677,7 +678,7 @@ for(var i=1;i<=2;i+=1){
 				if(vsp<0) vsp=0;
 				if(in(sprite_index, [SS_jump, SS_jumping, SS_crawjump])) 
 					scr_sprite_change(SS_jumped,0,0.25);
-				jump=2;
+				jump=PYJUMP.fall;
 				if(hsp<0) hsp*=-1;
 			}
 		}
@@ -731,7 +732,7 @@ for(var i=1;i<=2;i+=1){
 				image_alpha=1;
 				cliff_protect_time=0;
 				uninjure=0;
-				jump=2;
+				jump=PYJUMP.fall;
 				scr_sprite_change(SS_fall,0,0.25);
 				hsp=walkspd*hspd;
 				vsp=0;

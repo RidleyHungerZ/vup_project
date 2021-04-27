@@ -1,4 +1,9 @@
 /// @description 精灵对齐
+if global.player_hp<=0 
+|| global.operate!=1
+|| global.player_operate!=1 {
+	scr_sprite_change(spr_none, 0, 0)
+}
 #region 精灵对齐
 if(scr_menu_trem()) {
 	var sprname = sprite_get_name(global.player.sprite_index)+"_saber",

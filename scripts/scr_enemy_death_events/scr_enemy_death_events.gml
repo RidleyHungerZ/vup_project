@@ -36,7 +36,7 @@ function scr_enemy_create_item() {
 		big*=1.5
 	}
 	//贪婪
-	//if scr_itemb_isrun(ITEMB.greedy) {
+	//if scr_itemb_isrun(ITEMB_STATUS.greedy) {
 	//	small*=2
 	//	big*=2
 	//	card*=2

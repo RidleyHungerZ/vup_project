@@ -118,7 +118,7 @@ if global.menu==1 {
 		//计算装备品总占用值
 		menu_item_byte_sum=0
 		for(var i=0;i<array_length(global.item[ITEM.B]);i++) {
-			if global.item[ITEM.B][i]==ITEMB.open
+			if global.item[ITEM.B][i]==ITEMB_STATUS.open
 				menu_item_byte_sum+=global.txt_menu[1].items[ITEM.B].list[i].byte
 		}
 		scr_menu_page_item_code()
