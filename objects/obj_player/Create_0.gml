@@ -181,6 +181,7 @@ meet_prick=noone; //碰到的尖刺
 injure_level=0; //无敌等级
 injure_t=0; //受伤计时
 uninjure=0; //无敌状态
+uninjure_temp=0; //暂时无敌
 injure_ingrd=false; //受伤动作中落地
 injure_element=ELEMENTS.none; //被特殊攻击效果，值为none，ice，push，absorb
 element=ELEMENTS.none; //自身属性
@@ -283,9 +284,12 @@ enum PYJUMP {
 	craw=3,
 	crawjump=4,
 	ladding=5,
-	guild=8,
-	airdash=9,
-	airDashChop=10,
+	kickSt=6,
+	kick=7,
+	kickJump=8,
+	guild=9,
+	airdash=10,
+	airDashChop=11,
 	flyChop=17,
 }
 #endregion

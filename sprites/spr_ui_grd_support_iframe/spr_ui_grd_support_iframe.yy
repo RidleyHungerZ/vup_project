@@ -74,9 +74,10 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"8d497be7-77f3-48ae-afdc-35e0b6914735","tags":[],"resourceType":"GMImageLayer",},
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 1","resourceVersion":"1.0","name":"1ab8d207-c39a-49bf-884f-10414dc616c5","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "ground",
-    "path": "folders/Sprites/UI/ground.yy",
+    "name": "cockpit",
+    "path": "folders/Sprites/UI/ground/cockpit.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_ui_grd_support_iframe",

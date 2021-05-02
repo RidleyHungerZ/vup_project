@@ -75,9 +75,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b8297f51-2d64-4b5f-9293-43d30c25379b","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "ground",
-    "path": "folders/Sprites/UI/ground.yy",
+    "name": "cockpit",
+    "path": "folders/Sprites/UI/ground/cockpit.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_ui_grd_mp_iframe",

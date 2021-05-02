@@ -76,6 +76,7 @@ if(scr_menu_trem()) {
 		water=0;
 		injure_element=ELEMENTS.none;
 		injure_t=0;
+		uninjure_temp=0;
 		//清空各类记录
 		scr_player_charge_clear()
 		scr_player_floordown_clear(); 
@@ -185,7 +186,8 @@ global.player_def=1;
 			if(enemy.hp>0 && enemy.attack!=0
 			&& enemy.have_dmg
 			&& enemy.injure_type!=2
-			&& (uninjure==0 || injure_level<enemy.damage_level)) {
+			&& (uninjure==0 || injure_level<enemy.damage_level)
+			&& uninjure_temp==0 ) {
 				place=true;
 				konjo=true;
 				scr_player_damage_cal(enemy);
@@ -201,7 +203,8 @@ global.player_def=1;
 		for(var i=0;i<bulletlistcnt;i++){
 			var bullet=bulletlist[| i];
 			if(bullet.attack!=0) {
-				if(uninjure==0 || injure_level<bullet.damage_level) {
+				if(uninjure==0 || injure_level<bullet.damage_level)
+				&& uninjure_temp==0  {
 					place=true;
 					konjo=true;
 					scr_player_damage_cal(bullet);
@@ -222,7 +225,8 @@ global.player_def=1;
 			var boss=bosslist[| i];
 			if(global.boss_hp>0 && boss.attack!=0 && boss.have_dmg=true
 			//&& !in(boss.injure_element, [ELEMENTS.ice, ELEMENTS.elec])
-			&& (uninjure==0 || injure_level<boss.damage_level)) {
+			&& (uninjure==0 || injure_level<boss.damage_level)
+			&& uninjure_temp==0 ) {
 				place=true;
 				konjo=true;
 				scr_player_damage_cal(boss);

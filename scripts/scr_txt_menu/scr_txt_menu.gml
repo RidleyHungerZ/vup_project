@@ -136,6 +136,12 @@ function scr_txt_menu(){
 		byte : 6,
 		exclude : [ITEMB.dbjump],
 	}
+	global.txt_menu[page].items[ITEM.B].list[ITEMB.kick]={
+		name : "极速飞踢",
+		desc : "下落时按下+跳键发动极速飞踢，\n击中敌人时跳起，\n可按左右键向斜下方飞踢",
+		byte : 6,
+		exclude : [ITEMB.dbjump],
+	}
 	global.txt_menu[page].items[ITEM.B].list[ITEMB.defineBack]={
 		name : "防御击退",
 		desc : "受伤时不会后退",
@@ -535,7 +541,7 @@ function scr_txt_menu(){
 		},
 		reward : {
 			desc : "任务报酬：",
-			es : "存在支持度点数：",
+			es : "x",
 			item : [
 				"消耗品：", 
 				"装备品：", 

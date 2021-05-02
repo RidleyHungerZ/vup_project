@@ -4,6 +4,8 @@ uncharge[1]=false
 uncharge[2]=false
 sub_unuse=false
 
+kick_type=0 //0下踢1斜下
+
 saber_combo=0 //记录按键combo
 
 bullet_time=-1

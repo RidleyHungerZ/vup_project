@@ -77,8 +77,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "ground",
-    "path": "folders/Sprites/UI/ground.yy",
+    "name": "cockpit",
+    "path": "folders/Sprites/UI/ground/cockpit.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_ui_grd_hp_top",

@@ -74,14 +74,185 @@ if walk_saber_time>0 {
 }
 #endregion
 #region 专属动作
-#region 飞行动作
+#region 飞行动作中
+if jump==0 {}
+#region 下踢前摇
+else if jump==PYJUMP.kickSt {
+	if place_meeting(x,y-image_yscale,obj_ground) 
+	|| vsp>0 vsp=0
+	if image_speed==0 {
+		if kick_type==0 {
+			scr_sprite_change(spr_player_armor_kick_down, 0, 0.5)
+			vsp=vspmaxrate*grav;
+			dash=1
+			jump=PYJUMP.kick
+			//下爆气
+			dash_boost_inst=instance_create_depth(x,y,depth-1,obj_animation_once);
+			with(dash_boost_inst) {
+				scr_sprite_change(spr_player_dash_boost,0,0.5);
+				image_angle=270
+				image_yscale=other.image_xscale;
+			}
+		} else if kick_type==1 {
+			scr_sprite_change(spr_player_armor_kick_below, 0, 0.5)
+			vsp=round(vspmaxrate*grav*sin(pi/4));
+			//vsp=vspmaxrate*grav;
+			hsp=vsp
+			w_j=1
+			dash=1
+			jump=PYJUMP.kick
+			//下爆气
+			dash_boost_inst=instance_create_depth(x,y,depth-1,obj_animation_once);
+			with(dash_boost_inst) {
+				scr_sprite_change(spr_player_dash_boost,0,0.5);
+				image_angle=270+45*other.image_xscale
+				image_yscale=other.image_xscale;
+			}
+		}
+	}
+}
+#endregion
+#region 下踢
+else if jump==PYJUMP.kick {
+	//着地
+	if scr_player_Is_fallover(0,0,4,3) {
+		scr_sprite_change(spr_player_armor_kick_fallover,0,0.5);
+		walk=PYWALK.attack;
+		jump=0;
+		hsp=0;
+		vsp=0;
+		dash=0;
+		//scr_player_se_step();
+		scr_player_fallover_adjust();
+		scr_view_shock(1)
+	}
+	//撞墙
+	else if place_meeting(x+hsp*image_xscale, y+vsp*image_yscale, obj_ground) 
+	&& kick_type==1 {
+		var xof=hsp*image_xscale, yof=vsp*image_yscale;
+		while !place_meeting(x+sign(xof), y+sign(yof), obj_ground) {
+			x+=sign(xof) 
+			y+=sign(yof)
+		}
+		scr_sprite_change(spr_player_armor_kick_craw_jump, 0, 0.5)
+		jump=PYJUMP.kickJump
+		hsp=-dashspd*hspd
+		vsp=-vspd;
+		can_dbjump=true
+		scr_player_fallover_adjust();
+		scr_view_shock(1)
+	}
+	//撞怪
+	else {
+		var xof=hsp*image_xscale, yof=vsp*image_yscale,
+			enemy=instance_place(x+xof, y+yof, obj_enemy),
+			boss=instance_place(x+xof, y+yof, obj_boss),
+			bullet=instance_place(x+xof, y+yof, obj_bullet),
+			kickinst=noone;
+		if(enemy && enemy.can_dmg) 
+		||(boss && boss.can_dmg) 
+		||(bullet && boss.undm==1) {
+			if enemy kickinst=enemy
+			else if boss kickinst=boss
+			else if bullet kickinst=bullet
+			while !place_meeting(x+sign(xof), y+sign(yof), kickinst) {
+				x+=sign(xof) 
+				y+=sign(yof)
+			}
+			uninjure_temp=1;
+			jump=PYJUMP.kickJump
+			hsp=dashspd*hspd
+			vsp=-vspd;
+			can_dbjump=true
+			if kick_type==0 {
+				scr_sprite_change(spr_player_armor_kick_squat_jump, 0, 0.5)
+				if keystate_check(global.left_state) {
+					image_xscale=-1
+					w_j=1
+				} else if keystate_check(global.right_state) {
+					image_xscale=1
+					w_j=1
+				}
+			} else if kick_type==1 {
+				scr_sprite_change(spr_player_armor_kick_jump, 0, 0.5)
+				w_j=1
+			}
+		}
+	}
+}
+#endregion
+#region 踢到怪
+if jump==PYJUMP.kickJump {
+	if vsp>=0
+	|| place_meeting(x,y-image_yscale,obj_ground){
+		scr_sprite_change(SS_jumped, 0, 0.25)
+		vsp=0
+		jump=PYJUMP.fall
+		uninjure_temp=0;
+	}
+}
+#endregion
+#region 空中冲刺
+else if jump==PYJUMP.airdash {
+	if(keystate_check(global.left_state)) 
+		image_xscale=-1;
+	else if(keystate_check(global.right_state)) 
+		image_xscale=1;
+	if l_dash>=5
+	&&((dash_order_time_H>=0 && !keystate_check(global.dash_state))
+	|| (dash_order_time_H=-1 && !keystate_check(global.left_state) && !keystate_check(global.right_state))
+	|| (l_dash>=l_dashup)
+	|| place_meeting(x+image_xscale, y, obj_ground)) {
+		scr_sprite_change(SS_jumped,0,0.25);
+		jump=PYJUMP.fall
+		w_j=0;
+		dash_time_l=0;
+		dash_time_r=0;
+		dash_order_time_H=0;
+	}
+	if(l_dash<l_dashup) 
+		l_dash+=1;
+}
+#endregion
+#region 空中滑翔
+else if jump==PYJUMP.guild {
+	if keystate_check_pressed(global.jump_state)
+	|| !scr_itemb_isopen(ITEMB.glide) {
+		if sprite_index==spr_player_armor_guild
+			scr_sprite_change(SS_fall, 0, 0.25)
+		jump=PYJUMP.fall
+	}
+}
+#endregion
+#endregion
+#region 发动飞行动作
+//下踢
 if jump==PYJUMP.fall {
-	//二段跳
+	if scr_itemb_isopen(ITEMB.kick) {
+		if keystate_check(global.down_state) 
+		&& keystate_check_pressed(global.jump_state) {
+			if keystate_check(global.left_state) 
+			|| keystate_check(global.right_state) {
+				kick_type=1
+				if keystate_check(global.left_state) image_xscale=-1
+				else image_xscale=1
+			} else kick_type=0
+			scr_sprite_change(spr_player_armor_kick_down_st, 0, 0.25)
+			hsp=0
+			vsp=-3
+			jump=PYJUMP.kickSt
+		}
+	}
+}
+//二段跳
+if in(jump, [PYJUMP.fall, PYJUMP.kick]) {
 	if scr_itemb_isopen(ITEMB.dbjump)
 	&& can_dbjump {
 		if keystate_check_pressed(global.jump_state) 
 		&& !floordown {
 			if sprite_index==SS_fall 
+			|| sprite_index==spr_player_armor_kick_down 
+			|| sprite_index==spr_player_armor_kick_down_st 
 				scr_sprite_change(spr_player_armor_jump_double, 0, 0.25)
 			scr_sound_play(se_player_jump)
 			jump=PYJUMP.jump
@@ -89,9 +260,18 @@ if jump==PYJUMP.fall {
 			can_dbjump=false;
 			//清空半透板记录
 			scr_player_floordown_clear();
+			//上爆气
+			dash_boost_inst=instance_create_depth(x,y,depth-1,obj_animation_once);
+			with(dash_boost_inst) {
+				scr_sprite_change(spr_player_dash_boost,0,0.5);
+				image_angle=90
+				image_yscale=other.image_xscale;
+			}
 		}
 	}
-	//空中冲刺
+}
+//空中冲刺
+if in(jump, [PYJUMP.fall, PYJUMP.kick]) {
 	if scr_itemb_isopen(ITEMB.airdash)
 	&& can_dbjump 
 	&& !place_meeting(x+image_xscale, y, obj_ground){
@@ -117,7 +297,9 @@ if jump==PYJUMP.fall {
 			}
 		}
 	}
-	//缓落
+}
+//缓落
+if jump==PYJUMP.fall {
 	if scr_itemb_isopen(ITEMB.glide) 
 	&& jump==PYJUMP.fall {
 		if keystate_check_pressed(global.jump_state) {
@@ -130,41 +312,11 @@ if jump==PYJUMP.fall {
 		}
 	}
 } 
-//空中冲刺结束
-else if jump==PYJUMP.airdash {
-	if(keystate_check(global.left_state)) 
-		image_xscale=-1;
-	else if(keystate_check(global.right_state)) 
-		image_xscale=1;
-	if l_dash>=5
-	&&((dash_order_time_H>=0 && !keystate_check(global.dash_state))
-	|| (dash_order_time_H=-1 && !keystate_check(global.left_state) && !keystate_check(global.right_state))
-	|| (l_dash>=l_dashup)
-	|| place_meeting(x+image_xscale, y, obj_ground)) {
-		scr_sprite_change(SS_jumped,0,0.25);
-		jump=PYJUMP.fall
-		w_j=0;
-		dash_time_l=0;
-		dash_time_r=0;
-		dash_order_time_H=0;
-	}
-	if(l_dash<l_dashup) 
-		l_dash+=1;
-}
-//空中滑翔
-else if jump==PYJUMP.guild {
-	if keystate_check_pressed(global.jump_state)
-	|| !scr_itemb_isopen(ITEMB.glide) {
-		if sprite_index==spr_player_armor_guild
-			scr_sprite_change(SS_fall, 0, 0.25)
-		jump=PYJUMP.fall
-	}
-}
+#endregion
 //清除二段跳记录
 if jump==0 || jump==PYJUMP.crawjump {
 	can_dbjump=true;
 }
-#endregion
 #endregion
 #region 剑斩动作
 #region 升龙斩空中

@@ -233,9 +233,10 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 2","resourceVersion":"1.0","name":"5be0956e-b726-4e63-b504-ea8806e54cad","tags":[],"resourceType":"GMImageLayer",},
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "action",
-    "path": "folders/Sprites/player/human/action.yy",
+    "name": "normal",
+    "path": "folders/Sprites/player/human/action/normal.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_player_hu_death",

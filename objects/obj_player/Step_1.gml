@@ -89,7 +89,7 @@ if(ice==1 && jump==0) {
 if(jump!=0) {
 	var fall=false,jumpup=false;
 	#region 下降中
-	if(in(jump, [PYJUMP.fall, PYJUMP.craw, PYJUMP.guild])
+	if(in(jump, [PYJUMP.fall, PYJUMP.craw, PYJUMP.guild, PYJUMP.kick])
 	||(in(jump, [-1]) && vsp>0)) {
 		fall=true;
 		/*if(!place_meeting(x,y+0.25*image_yscale*sign(vsp),obj_ground)
@@ -135,6 +135,7 @@ if(jump!=0) {
 	&& jump!=PYJUMP.guild //悬浮
 	&& jump!=PYJUMP.airdash //空冲
 	&& jump!=PYJUMP.airDashChop //空冲砍
+	&& jump!=PYJUMP.kick //斜下踢
 	&& jump!=20//悬崖漂浮
 	&& !(jump==-1 && injure_ingrd))//受伤且在地面上
 	{

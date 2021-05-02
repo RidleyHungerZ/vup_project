@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b8472671-37f3-431b-a00a-2a9c4f7cd047","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "ground",
-    "path": "folders/Sprites/UI/ground.yy",
+    "name": "cockpit",
+    "path": "folders/Sprites/UI/ground/cockpit.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_ui_grd_board_bgs",

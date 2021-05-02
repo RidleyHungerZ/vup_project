@@ -3,9 +3,29 @@ event_inherited();
 if sprite_index == spr_player_armor_jump_double {
 	scr_sprite_change(SS_jumping, 0, 0.25)
 }
+else if sprite_index == spr_player_armor_kick_down_st {
+	scr_sprite_change(-2, image_number-0.5, 0)
+}
+else if sprite_index == spr_player_armor_kick_fallover {
+	//scr_sprite_change(-2, image_number-0.5, 0)
+	scr_sprite_change(spr_player_armor_squated, 0, 0.25)
+}
+else if sprite_index == spr_player_armor_squated {
+	scr_sprite_change(SS_idle, 0, 0.25)
+	walk=0
+}
+else if sprite_index == spr_player_armor_kick_squat_jump {
+	scr_sprite_change(spr_player_armor_tumbing, 0, 0.5)
+}
+else if sprite_index == spr_player_armor_kick_jump {
+	scr_sprite_change(spr_player_armor_tumbing, 0, 0.5)
+}
+else if sprite_index == spr_player_armor_kick_craw_jump {
+	scr_sprite_change(spr_player_armor_tumbing, 0, -0.5)
+}
 #endregion
 #region 射击动作
-if sprite_index == SS_idle_shoot{
+else if sprite_index == SS_idle_shoot{
 	scr_sprite_change(-2,2,0)
 }
 else if sprite_index == SS_walk_shoot{

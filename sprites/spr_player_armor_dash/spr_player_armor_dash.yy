@@ -121,8 +121,8 @@
     "resourceType": "GMNineSliceData",
   },
   "parent": {
-    "name": "action",
-    "path": "folders/Sprites/player/armor/action.yy",
+    "name": "normal",
+    "path": "folders/Sprites/player/armor/action/normal.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_player_armor_dash",

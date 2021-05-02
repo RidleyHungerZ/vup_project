@@ -280,7 +280,7 @@ function scr_draw_menu_item(dx, dy){
 	//道具图像
 	if msel[0]==ITEM.A {
 		drawx=dx+480 drawy=dy+512
-		draw_sprite_ext(spr_menu_item_icon_a, itemnow, drawx, drawy, 2.5, 2.5, 0, c_white, 1)
+		draw_sprite_ext(spr_menu_item_icon_a_big, itemnow, drawx, drawy, 1, 1, 0, c_white, 1)
 	} else if msel[0]==ITEM.B {
 		//蜂窝格子
 		drawx=dx+304 drawy=dy+352
@@ -331,7 +331,7 @@ function scr_draw_menu_item(dx, dy){
 		scr_draw_text(UIPINK, 1, 0, font_jam_80, 0, 0.5, global.item2_byte_max, drawx, drawy+40, 1, 1, -1, -1, -1, 0)
 	} else if msel[0]==ITEM.C {
 		drawx=dx+480 drawy=dy+512
-		draw_sprite_ext(spr_menu_item_icon_c, itemnow, drawx, drawy, 2.5, 2.5, 0, c_white, 1)
+		draw_sprite_ext(spr_menu_item_icon_c_big, itemnow, drawx, drawy, 1, 1, 0, c_white, 1)
 	}
 	//道具说明
 	drawx=dx+128 drawy=dy+768
@@ -419,16 +419,37 @@ function scr_draw_menu_mission(dx, dy){
 		desctxt = stmodel.desc + "[$="+statuscol+"]" + stmodel.list[missnowstatus] + "[$=ffffff]\n" + desctxt
 		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, desctxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
 		//任务报酬
-		drawx=dx+160 drawy=dy+752
-		rewardtxt = rewardtxt + "\n"
-		if reward.es>0 {
-			rewardtxt += rwmodel.es + string(reward.es) + "\n"
-		}
+		drawx=dx+160 drawy=dy+768
+		//rewardtxt = rewardtxt + "\n"
+		//if reward.es>0 {
+		//	rewardtxt += rwmodel.es + string(reward.es) + "\n"
+		//}
+		//for(var i=0;i<array_length(reward.item);i++){
+		//	var ri = reward.item[i]
+		//	rewardtxt += rwmodel.item[ri[0]] + itemst[ri[0]].list[ri[1]].name + "\n"
+		//}
+		//scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, rewardtxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, rewardtxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
+		//ES
+		drawx=dx+544 drawy=dy+768
+		draw_sprite(spr_menu_mission_item_es, 0, drawx, drawy)
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, rwmodel.es + string(reward.es), drawx+48, drawy, 1, 1, -1, -1, -1, 0)
+		//道具
+		drawx=dx+160 drawy=dy+848
 		for(var i=0;i<array_length(reward.item);i++){
-			var ri = reward.item[i]
-			rewardtxt += rwmodel.item[ri[0]] + itemst[ri[0]].list[ri[1]].name + "\n"
+			var ri = reward.item[i],
+				ispr = spr_menu_mission_item_es,
+				iinx = ri[1],
+				shifx = (i mod 2)*384,
+				shify = (i div 2)*80;
+			if ri[0]==ITEM.A ispr=spr_menu_mission_item_a_small
+			else if ri[0]==ITEM.C ispr=spr_menu_mission_item_c_small
+			else if ri[0]==ITEM.B {
+				ispr=spr_menu_mission_item_formula
+			}
+			draw_sprite(ispr, ri[1], drawx+shifx, drawy+shify)
+			scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, itemst[ri[0]].list[ri[1]].name, drawx+48+shifx, drawy+shify, 1, 1, -1, -1, -1, 0)
 		}
-		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, rewardtxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
 	}
 	#endregion
 	#region 右侧列表

@@ -336,7 +336,7 @@ for(var i=1;i<=2;i+=1){
 		&& flordown
 		&&!collision_rectangle(bbox_right,bbox_top-GRDY+2,bbox_left,bbox_top-GRDY+1,obj_floor,1,1)))) {
 			scr_sprite_change(SS_jumped,0,0.25);
-			if(in(walk, [2, 8]))
+			if(in(walk, [PYWALK.dash, PYWALK.creepe]))
 				scr_player_outground();
 			jump=PYJUMP.fall;
 			walk=0;
@@ -352,13 +352,13 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 跳跃
-		if((walk==0 || walk==1 || walk==2
-		 ||(walk==8 && !scr_player_collcreep()))
+		if((walk==0 || walk==PYWALK.walk || walk==PYWALK.dash
+		 ||(walk==PYWALK.creepe && !scr_player_collcreep()))
 		&& jump==0) {
 			if(keystate_check_pressed(global.jump_state)) {
 				scr_sprite_change(SS_jump,0,0.25);
 				walk=0;
-				jump=1;
+				jump=PYJUMP.jump;
 				vsp=-vspd;
 				scr_sound_play(SE_jump);
 				if(ice==0) {

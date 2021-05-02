@@ -77,8 +77,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "action",
-    "path": "folders/Sprites/player/human/action.yy",
+    "name": "normal",
+    "path": "folders/Sprites/player/human/action/normal.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_player_hu_creep",
