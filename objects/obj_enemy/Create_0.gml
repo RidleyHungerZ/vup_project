@@ -11,6 +11,10 @@ ysign=y; //漂浮前定位
 xrange=128; //走路行动范围（单方向）
 ytange=32; //漂浮行动范围（单方向）
 shoot=0; //射击/动作
+uninjure=0; //无敌等级
+_uninjure=0; //上一帧无敌等级
+untime=0; //无敌时间
+crash=0; //无敌等级变化
 injure_unrepeat=0; //防重复伤害
 injure_unrepeat_undm=0; //防重复无伤
 injure_type=ATK_TYPE.bullet;
@@ -93,7 +97,7 @@ init_angle=image_angle;
 init_alpha=image_alpha;
 init_blend=image_blend;
 #endregion
-evuser2ed=false; //死亡时是否执行过2事件
+deathTriggerExecuted=false; //死亡时是否执行过2事件
 /////////////////////////////////
 #region 配置项
 /// @arg enemy_type=0
@@ -130,6 +134,8 @@ boom_type=0; //死亡爆炸类型0普通1伤害
 death_repeat=true; //死亡后复活
 /// @arg out_reflash=1
 out_reflash=true; //出镜头刷新
+/// @arg untime_set=0
+untime_set=0; //无敌时间设定
 /// @parga afterimage=false
 afterimage=false; //是否使用残影
 /// @parga afterimageflash=false
@@ -173,6 +179,27 @@ for(var i=0;i<2;i++){//0前景，1背景，j深度
 }
 #endregion
 #region 事件
+//绘制自身
+drawSelf = function() {
+	draw_self();
+}
+//绘制属性效果
+drawElementEffect = function() {
+	//var spr_elem1 = spr_enemy_element1,
+	//	spr_elem2 = spr_enemy_element2,
+	//	spr_elem3 = spr_enemy_element3;
+	//if(element_size==2) {
+	//	spr_elem1 = spr_boss_element1
+	//	spr_elem2 = spr_boss_element2
+	//	spr_elem3 = spr_boss_element3;
+	//}
+	//if(injure_element==ELEMENTS.fire) 
+	//	draw_sprite(spr_elem1, element_index, x, y);
+	//else if(injure_element==ELEMENTS.ice) 
+	//	draw_sprite(spr_elem2, element_index, x, y);
+	//else if(injure_element==ELEMENTS.elec) 
+	//	draw_sprite(spr_elem3, element_index, x, y);
+}
 //原地爆炸
 final_selfBoom = function(intype, inele) {
 	hp=0;
@@ -216,17 +243,17 @@ final_reflashSetVars = function() {
 		image_blend=init_blend;
 	}
 }
+//刷新设置变量
 reflashSetVars = function() {}
 //被击飞落地后存活
 pushFalloverSave = function(){}
 //出视野死亡操作
 outViewDeath = function(){}
-
 //死亡爆零件
 deathBoomPart = function(partspr) {
-	if(!evuser2ed) {
+	if(!deathTriggerExecuted) {
 		deathTrigger();
-		evuser2ed=true;
+		deathTriggerExecuted=true;
 	}
 	scr_sprite_change(spr_none,0,0);
 	if(death_xscale==1) 

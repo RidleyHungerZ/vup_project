@@ -104,8 +104,8 @@ function scr_txt_menu(){
 		value: 8,
 	}
 	global.txt_menu[page].items[ITEM.A].list[ITEMA.byte]={
-		name : "装备内存插槽",
-		desc : "提高装备插槽口上限一格",
+		name : "装备内存扩展",
+		desc : "提高装备装载内存上限一格",
 		type : ITEMA_TYPE.OTHER,
 		value: 1,
 	}
@@ -122,7 +122,7 @@ function scr_txt_menu(){
 		name : "二段跳",
 		desc : "空中可以进行一次跳跃",
 		byte : 6,
-		exclude : [ITEMB.glide],
+		exclude : [],
 	}
 	global.txt_menu[page].items[ITEM.B].list[ITEMB.airdash]={
 		name : "空中冲刺",
@@ -132,15 +132,9 @@ function scr_txt_menu(){
 	}
 	global.txt_menu[page].items[ITEM.B].list[ITEMB.glide]={
 		name : "悬浮缓落",
-		desc : "下落时按跳键可以缓慢下落，\n再按一次解除缓落状态",
+		desc : "空中可以进入缓慢下落状态",
 		byte : 6,
-		exclude : [ITEMB.dbjump],
-	}
-	global.txt_menu[page].items[ITEM.B].list[ITEMB.kick]={
-		name : "极速飞踢",
-		desc : "下落时按下+跳键发动极速飞踢，\n击中敌人时跳起，\n可按左右键向斜下方飞踢",
-		byte : 6,
-		exclude : [ITEMB.dbjump],
+		exclude : [],
 	}
 	global.txt_menu[page].items[ITEM.B].list[ITEMB.defineBack]={
 		name : "防御击退",
@@ -620,6 +614,14 @@ function scr_txt_menu(){
 					desc : "接触墙壁时按跳键，可以跳起，\n按住冲刺键发动，水平速度会更快",
 					trim : function(){return true;},
 				}, {
+					txt : "速降飞踢",
+					desc : "按住下键按跳跃键发动，\n会快速向下方降下，击中物体会弹飞\n命中敌人时回复2点羁绊值",
+					trim : function(){return true;},
+				}, {
+					txt : "斜下飞踢",
+					desc : "按住下键和左右键按跳跃键，\n消耗10点羁绊值发动，\n会快速向斜下方降下，击中物体会弹飞\n命中墙体时回复5点羁绊值，\n命中敌人时回复10点羁绊值",
+					trim : function(){return true;},
+				}, {
 					txt : "斩击",
 					desc : "按攻击键发动近身攻击，\n站立时连续按可发动三段斩，\n走路、冲刺、空中等动作时亦可发动",
 					trim : function(){return true;},
@@ -642,14 +644,6 @@ function scr_txt_menu(){
 				}, {
 					txt : "二段跳",
 					desc : "装备二段跳后，在空中按跳键，\n可以进行一次额外跳跃",
-					trim : function(){return scr_itemb_isopen(ITEMB.dbjump)},
-				}, {
-					txt : "速降飞踢",
-					desc : "装备二段跳并在空中进行二段跳后，\n按住下键按跳跃发动，\n会快速降下，击中物体后会弹飞",
-					trim : function(){return scr_itemb_isopen(ITEMB.dbjump)},
-				}, {
-					txt : "斜下飞踢",
-					desc : "装备二段跳并在空中进行二段跳后，\n按住下键按跳跃发动，\n会快速降下，击中物体后会弹飞",
 					trim : function(){return scr_itemb_isopen(ITEMB.dbjump)},
 				}, {
 					txt : "空中冲刺",

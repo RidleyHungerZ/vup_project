@@ -25,8 +25,8 @@ if(scr_menu_trem()) {
 	#endregion
 	#region 声控区
 	if(sprite_index==SS_idle2) {
-		//image_index=accurate_to(image_index, 0.1)
 		if between(image_index, 3, true, 3.1, false)
+		&& global.operate==1
 			scr_sound_play(se_player_dying)
 	} else {
 		scr_sound_stop(se_player_dying)
@@ -165,19 +165,19 @@ global.player_def=1;
 	#region 伤害数值和属性修改
 	ds_list_clear(enemylist);
 	ds_list_clear(bulletlist);
-	ds_list_clear(bosslist);
+	//ds_list_clear(bosslist);
 	var //enemylist=ds_list_create(),
 		enemylistcnt=0,
 		//bulletlist=ds_list_create(),
 		bulletlistcnt=0,
 		//bosslist=ds_list_create(),
-		bosslistcnt=0,
+		//bosslistcnt=0,
 		oldhp=global.player_hp,
 		konjo=false,
 		overload=scr_itemb_overload(),
 		enemylistcnt=collision_rectangle_list(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_enemy,1,1,enemylist,0)
 		bulletlistcnt=collision_rectangle_list(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_bullet,1,1,bulletlist,0)
-		bosslistcnt=collision_rectangle_list(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_boss,1,1,bosslist,0);
+		//bosslistcnt=collision_rectangle_list(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_boss,1,1,bosslist,0);
 	#region 杂兵撞击受伤
 	if(enemylistcnt>0
 	&& operator) {//omega剑强行取消无敌写在剑的事件中
@@ -185,7 +185,7 @@ global.player_def=1;
 			var enemy=enemylist[| i];
 			if(enemy.hp>0 && enemy.attack!=0
 			&& enemy.have_dmg
-			&& enemy.injure_type!=2
+			//&& enemy.injure_type!=ATK_TYPE.push
 			&& (uninjure==0 || injure_level<enemy.damage_level)
 			&& uninjure_temp==0 ) {
 				place=true;
@@ -219,22 +219,22 @@ global.player_def=1;
 	}
 	#endregion
 	#region BOSS撞击受伤
-	if(bosslistcnt>0
-	&& operator) {
-		for(var i=0;i<bosslistcnt;i++){
-			var boss=bosslist[| i];
-			if(global.boss_hp>0 && boss.attack!=0 && boss.have_dmg=true
-			//&& !in(boss.injure_element, [ELEMENTS.ice, ELEMENTS.elec])
-			&& (uninjure==0 || injure_level<boss.damage_level)
-			&& uninjure_temp==0 ) {
-				place=true;
-				konjo=true;
-				scr_player_damage_cal(boss);
-			}
-		}
-		//ds_list_destroy(bosslist);
-		ds_list_clear(bosslist);
-	}
+	//if(bosslistcnt>0
+	//&& operator) {
+	//	for(var i=0;i<bosslistcnt;i++){
+	//		var boss=bosslist[| i];
+	//		if(global.boss_hp>0 && boss.attack!=0 && boss.have_dmg=true
+	//		//&& !in(boss.injure_element, [ELEMENTS.ice, ELEMENTS.elec])
+	//		&& (uninjure==0 || injure_level<boss.damage_level)
+	//		&& uninjure_temp==0 ) {
+	//			place=true;
+	//			konjo=true;
+	//			scr_player_damage_cal(boss);
+	//		}
+	//	}
+	//	//ds_list_destroy(bosslist);
+	//	ds_list_clear(bosslist);
+	//}
 	#endregion
 	#region 尖刺撞击
 	if(collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_prick,1,1)
@@ -537,6 +537,10 @@ if(sprite_index==SS_trip) {
 }
 #endregion
 #endregion
+#region 左右出镜头
+if(x<global.room_xl) x=global.room_xl;
+if(x>global.room_xr) x=global.room_xr;
+#endregion
 #region 挤压墙壁致死
 /*if((collision_rectangle(bbox_right-1,bbox_bottom-1,bbox_left+1,bbox_top+1,obj_ground,1,1)
 &&(walk!=2 && walk!=5 && jump!=9))
@@ -544,10 +548,6 @@ if(sprite_index==SS_trip) {
 &&(walk==2 || walk==5 || jump==9))) */
 if(collision_rectangle(bbox_right-1,bbox_bottom+GRDY-2,bbox_left+1,bbox_top+2,obj_ground,1,1)) 
 	global.player_hp=0;
-#endregion
-#region 左右出镜头
-if(x<global.room_xl) x=global.room_xl;
-if(x>global.room_xr) x=global.room_xr;
 #endregion
 #region 坐标偏移计算
 	dis_x=x-x_last;

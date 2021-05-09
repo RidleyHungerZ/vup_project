@@ -54,7 +54,6 @@ function audio_bgm_change_imm(bgm) {
 	global.music_now=global.__bgm_name
 }
 /// @desc 停止播放
-/// @arg snd
 function audio_bgm_stop() {
 	if global.__bgm_name!=noone{
 		global.__bgm_change=1//音乐淡出
@@ -63,7 +62,6 @@ function audio_bgm_stop() {
 	}
 }
 /// @desc 立刻停止音乐
-/// @arg snd
 function audio_bgm_stop_imm() {
 	global.__bgm_change=1.5//音乐淡出
 	global.__bgm_lastname=global.__bgm_name//名字换为上一个

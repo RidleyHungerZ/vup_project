@@ -87,9 +87,24 @@ _room_last=0
 
 global.view_hsp=0
 global.view_vsp=0
+
+room_range_inst=noone //当前使用的房间范围实例
+room_range_list=ds_list_create()
 #endregion
 #region 对话
-global.talk=0//对话
+global.talk=0 //对话
+global.talk_inx=0 //对话，0全出，1上2下
+global.talk_now=1 //当前对话框，0为同时
+global.talk_txt=array_create(2, "") //对话内容
+global.talk_txt_len=array_create(2, 0) //对话内容
+global.talk_print=array_create(2, "") //对话输出内容（打字机当前）
+global.talk_print_len=array_create(2, 0) //对话输出内容长度
+global.talk_shoto_type=array_create(2, 0) //头像类型
+global.talk_shoto=array_create(2, 0) //头像
+global.talk_name=array_create(2, 0) //名称
+global.talk_options=array_create(2, []) //对话中的选项
+global.talk_select=array_create(2, 0) //当前选中选项
+talk_rate=0 //对话框位置
 #endregion
 #region 房间存储
 room_range_inst=noone //当前房间对应对象
@@ -114,16 +129,21 @@ black_light_followed_insts_list=ds_list_create() //跟踪对象的id集合
 //跟踪玩家的光圈
 black_light_player=noone
 #endregion
-#region 绘制函数
+#region 绘制
+operate_rate=0 //恢复操作驾驶舱缓动
+//羁绊满时触发
+support_max_trigger=function() {
+	scr_sound_play(se_support_max)
+}
 //血条
-get_hp_surface = function(hp, rate) {
+get_hp_surface = function(hp, up, rate) {
 	var hpw=sprite_get_width(spr_ui_grd_hp),
 		hph=sprite_get_height(spr_ui_grd_hp),
-		hptopw=sprite_get_width(spr_ui_grd_hp_top),
-		hptoph=sprite_get_height(spr_ui_grd_hp_top),
-		realenmax=global.player_hp_up*rate, //只看上边的真实最大长度
+		//hptopw=sprite_get_width(spr_ui_grd_hp_top),
+		//hptoph=sprite_get_height(spr_ui_grd_hp_top),
+		realenmax=up*rate, //只看上边的真实最大长度
 		realen=hp*rate, //只看上边的真实长度
-		hpsurf=surface_create(realenmax+hpw, hptoph);
+		hpsurf=surface_create(realenmax+hpw, hph);
 	surface_set_target(hpsurf)
 	draw_clear_alpha(c_white, 0)
 	//绘制白条

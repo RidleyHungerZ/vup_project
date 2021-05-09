@@ -21,3 +21,15 @@ global.room_xl=0
 global.room_xr=room_width
 global.room_yt=0
 global.room_yb=room_height
+
+//获取所有房间范围
+ds_list_clear(room_range_list)
+with obj_viewroom_real {
+	if use {
+		ds_list_add(other.room_range_list, id)
+	}
+}
+ds_list_sort(room_range_list, true)
+//镜头聚焦中心
+if instance_exists(obj_player)
+	scr_view_set_with_inst(obj_player)

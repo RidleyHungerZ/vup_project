@@ -55,6 +55,7 @@ if(hp<=0 && use_death_system==1) {
 	scr_enemy_element_death(injure_element);
 	element_index=0;
 	injure_element=ELEMENTS.none;
+	untime=0;
 	#endregion
 	#region 枪伤爆炸
 	if(injure_type==ATK_TYPE.bullet) {
@@ -63,9 +64,9 @@ if(hp<=0 && use_death_system==1) {
 	#endregion
 	#region 切割
 	else if(injure_type==ATK_TYPE.cut) {
-		if(!evuser2ed) {
+		if(!deathTriggerExecuted) {
 			deathTrigger();
-			evuser2ed=true;
+			deathTriggerExecuted=true;
 		}
 		scr_sprite_change(SS_death,1,0);
 		if(death_xscale==1)  
@@ -117,9 +118,9 @@ if(hp<=0 && use_death_system==1) {
 	#endregion
 	#region 贯穿
 	else if(injure_type==ATK_TYPE.through) {
-		if(!evuser2ed) {
+		if(!deathTriggerExecuted) {
 			deathTrigger();
-			evuser2ed=true;
+			deathTriggerExecuted=true;
 		}
 		scr_sprite_change(SS_death,3,0);
 		if(death_xscale==1)  
@@ -211,5 +212,21 @@ if(instwater) {
 else{
 	if(gravity=grav/(5/4)) 
 		gravity=grav;
+}
+#endregion
+#region 无敌时间
+crash=0;
+if(uninjure!=_uninjure) {
+	crash=1;
+	untime=untime_set;
+}
+_uninjure=uninjure;
+if(hp<=0) 
+	attack=0;
+if(untime>0) 
+	untime-=1;
+else{
+	untime=0;
+	uninjure=0;
 }
 #endregion

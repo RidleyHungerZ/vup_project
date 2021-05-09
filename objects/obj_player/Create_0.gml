@@ -26,7 +26,7 @@ global.player=id
 	
 	enemylist=ds_list_create()
 	bulletlist=ds_list_create()
-	bosslist=ds_list_create()
+	//bosslist=ds_list_create()
 	pricklist = ds_list_create()
 	windlist = ds_list_create()
 #endregion
@@ -237,12 +237,15 @@ for(var i=8;i>=0;i-=1){
 	px[i]=x;
 	py[i]=y;
 }
-aftercolor=$5328cc
+aftercolor=UIPINK
 #endregion
 #region 部分需要通用的变量
 airdashed=0; //冲刺次数限制
 #endregion
 #region 事件
+drawSelf = function() {
+	draw_self()
+}
 //清空子弹信息
 clearBullets = function() {
 	
@@ -287,7 +290,7 @@ enum PYJUMP {
 	kickSt=6,
 	kick=7,
 	kickJump=8,
-	guild=9,
+	glide=9,
 	airdash=10,
 	airDashChop=11,
 	flyChop=17,

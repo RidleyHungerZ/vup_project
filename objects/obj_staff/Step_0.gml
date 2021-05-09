@@ -1,6 +1,6 @@
 #region 玩家死亡
 //非BOSS战且非电子空间内
-//if global.boss_war==0 {
+if global.boss_war==0 {
 	if player_death_action==1{
 		player_death_action=2
 		alarm[0]=60
@@ -9,7 +9,7 @@
 	//	if scr_view_transition_Isover(1)
 	//		scr_view_transition(1, 2)
 	//}
-//}
+}
 #endregion
 #region 音量设置
 //音效音量
@@ -80,6 +80,18 @@ else if global.skip==2{
 #region debug测试
 if keyboard_check_pressed(vk_delete) {
 	global.player_hp=0
+} 
+else if keyboard_check_pressed(vk_f9) {
+	if !instance_exists(obj_ui_warning)
+		instance_create_depth(x, y, obj_view.depth-1, obj_ui_warning)
+}
+else if keyboard_check_pressed(vk_f10) {
+	if !instance_exists(obj_ui_mission_start)
+		instance_create_depth(x, y, obj_view.depth-1, obj_ui_mission_start)
+}
+else if keyboard_check_pressed(vk_f11) {
+	if !instance_exists(obj_ui_warning)
+		instance_create_depth(x, y, obj_view.depth-1, obj_ui_mission_complete)
 }
 if keyboard_check(vk_control) 
 &&(global.fps_curr mod 3 == 0){
@@ -96,6 +108,15 @@ if keyboard_check(vk_control)
 	} else if keyboard_check(vk_left) {
 		global.player_mp--
 		scr_sound_play(se_item_mp)
+	}
+	if global.boss_war==1 {
+		if keyboard_check(vk_numpad1) {
+			global.boss_hp++
+			scr_sound_play(se_item_mp)
+		} else if keyboard_check(vk_numpad2) {
+			global.boss_hp--
+			scr_sound_play(se_item_mp)
+		}
 	}
 }
 #endregion

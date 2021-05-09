@@ -89,7 +89,7 @@ if(ice==1 && jump==0) {
 if(jump!=0) {
 	var fall=false,jumpup=false;
 	#region 下降中
-	if(in(jump, [PYJUMP.fall, PYJUMP.craw, PYJUMP.guild, PYJUMP.kick])
+	if(in(jump, [PYJUMP.fall, PYJUMP.craw, PYJUMP.glide, PYJUMP.kick])
 	||(in(jump, [-1]) && vsp>0)) {
 		fall=true;
 		/*if(!place_meeting(x,y+0.25*image_yscale*sign(vsp),obj_ground)
@@ -132,7 +132,7 @@ if(jump!=0) {
 	#region 重力作用
 	if(jump!=PYJUMP.craw //滑墙
 	&& jump!=PYJUMP.ladding //爬梯子
-	&& jump!=PYJUMP.guild //悬浮
+	&& jump!=PYJUMP.glide //悬浮
 	&& jump!=PYJUMP.airdash //空冲
 	&& jump!=PYJUMP.airDashChop //空冲砍
 	&& jump!=PYJUMP.kick //斜下踢
@@ -430,7 +430,7 @@ if((collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_sin
 #endregion
 var dx=x-ox,dy=y-oy;
 #region 出镜头
-obj_player.x = clamp(obj_player.x, 8, room_width-8);
+x = clamp(x, 8, room_width-8);
 //上爬无效，下爬无效
 var topwall=collision_rectangle(bbox_right,1,bbox_left,0,obj_ground,1,1),
 	bottomwall=collision_rectangle(bbox_right,room_height,bbox_left,room_height-1,obj_ground,1,1);

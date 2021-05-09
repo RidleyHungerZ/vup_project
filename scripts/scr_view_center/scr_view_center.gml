@@ -7,7 +7,7 @@ function scr_view_set_with_inst_center(inst) {
 /// @desc 根据玩家位置将镜头直接移动到位
 /// @arg id
 function scr_view_set_with_inst(inst) {
-	scr_view_inroom()
+	scr_viewroom_inroom()
 	scr_view_set_with_inst_center(inst)
 	if view_xpos(0)<global.room_xl 
 		obj_view.x=global.room_xl+view_wpos(0)/2

@@ -74,7 +74,6 @@ function scr_player_damage(otherobj) {
 							obj_boss,
 							obj_bullet,
 							obj_ground_block_bullet,
-							obj_boss,
 						], place_undm = false
 						for(var o=0;o<array_length(undm_obj_type);o++){
 							//判断子弹和目标敌人之间的直线链接上是否存在护盾且击中护盾
@@ -158,6 +157,7 @@ function scr_player_damage(otherobj) {
 						if(injure_unrepeat!=btn_or_sbr.unrepeat	//判断是否因为刀刃叠加重复伤害
 						|| injure_unrepeat=0		//或者敌人还没进入防重复保护
 						|| btn_or_sbr.unrepeat=0)	//或者剑刃没设置防重复
+						&&(uninjure<btn_or_sbr.uninjure_up)	//或者武器伤害等级高于敌人无敌等级
 						&& !place_undm		//判断是否砍到护盾
 						&& hp>0{			//判断HP是否大于0
 							//检测实例是否在上几帧碰撞检测中
@@ -207,6 +207,16 @@ function scr_player_damage(otherobj) {
 							//设置剑刃防重复保护
 							if btn_or_sbr.unrepeat!=0
 								injure_unrepeat=btn_or_sbr.unrepeat
+							
+							//设置无敌等级
+							if btn_or_sbr.uninjure_set=0 //赋值型
+								uninjure=btn_or_sbr.uninjure_change
+							else if btn_or_sbr.uninjure_set=1{ //叠加型
+								if uninjure<btn_or_sbr.uninjure_up-1
+									uninjure=btn_or_sbr.uninjure_up-1
+								uninjure+=btn_or_sbr.uninjure_change
+							}
+								
 							scr_player_cut_slow(btn_or_sbr) //打击感
 							last_in_element=injure_element //存储上一个被打击到的属性
 							//half_action=btn_or_sbr.half_action //砍开类型（普通砍开，抛尸等）
@@ -222,13 +232,6 @@ function scr_player_damage(otherobj) {
 								attsame=playerattack/2*DEF, //同属性伤害
 							    att_infact=attnor, //实际造成伤害
 								old_injure_element = injure_element; //记录之前受伤属性
-							//冰元素破冰1.5伤害，且不附带任何属性
-							//if att_infact>0 
-							//&& old_injure_element==ELEMENTS.ice {
-							//	att_infact = playerattack*1.5*DEF;
-							//	atkelement = ELEMENTS.none;
-							//	element_index=9999
-							//}
 							//敌人无属性
 							if element=ELEMENTS.none{
 								att_infact=attnor
@@ -277,7 +280,7 @@ function scr_player_damage(otherobj) {
 							//羁绊值增加
 							var supval=att_infact
 							if scr_itemb_isopen(ITEMB.supportGain) supval*=1.25
-							global.player_support+=floor(supval)
+							scr_player_support_add(floor(supval))
 							if global.player_support>100 
 								global.player_support=100
 					
@@ -290,6 +293,7 @@ function scr_player_damage(otherobj) {
 							}
 							flash=1 //闪白
 							hitedstp=1
+							untime=untime_set //进入无敌时间
 
 							btn_or_sbr.unrepeat_demage=0
 							damage_note=true //记录结果，确实有击中过敌人
@@ -314,7 +318,8 @@ function scr_player_damage(otherobj) {
 					#endregion
 					#region 击中了无敌中的敌人，属于击中无效
 						else if hp>0{
-							btn_or_sbr.hitstp=1
+							btn_or_sbr.hit=1
+							//btn_or_sbr.hitstp=1
 							btn_or_sbr.unrepeat_demage=1
 						}
 					#endregion

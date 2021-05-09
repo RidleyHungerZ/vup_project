@@ -43,6 +43,9 @@ else if sprite_index == SS_jump_shoot{
 else if sprite_index == SS_fall_shoot{
 	scr_sprite_change(-2,2,-2)
 }
+else if sprite_index == spr_player_armor_glide_shoot{
+	scr_sprite_change(-2,2,-2)
+}
 else if sprite_index == SS_dash_shoot{
 	scr_sprite_change(-2,2,-2)
 }
@@ -97,7 +100,8 @@ else if sprite_index == spr_player_armor_fall_spin_choped {
 	scr_sprite_change(spr_player_armor_fall_choped, 0, 0.25)
 }
 else if sprite_index == spr_player_armor_fall_choped {
-	if jump==1 scr_sprite_change(SS_jumping, 0, 0.25)
+	if jump==PYJUMP.jump scr_sprite_change(SS_jumping, 0, 0.25)
+	else if jump==PYJUMP.glide scr_sprite_change(spr_player_armor_glide, 0, 0.25)
 	else scr_sprite_change(SS_fall, 0, 0.25)
 }
 //升龙斩

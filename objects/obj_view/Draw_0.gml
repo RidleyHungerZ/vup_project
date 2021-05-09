@@ -8,7 +8,7 @@ if surface_exists(view0_surface_temp) {
 		xsc = apsw/v0sw,
 		ysc = apsh/v0sh;
 	surface_set_target(application_surface)
-	draw_clear_alpha(c_white, 1)
+	draw_clear_alpha(c_black, 0.5)
 	gpu_set_blendmode(bm_normal)
 	draw_surface_ext(view0_surface_temp, 0, 0, xsc, ysc, 0, c_white, 1)
 	surface_reset_target()
@@ -33,9 +33,9 @@ if surface_exists(view0_surface_temp) {
 //绘制UI时开启模糊
 gpu_set_texfilter(true)
 #region 界面内容
-if global.operate==1
-&& global.player_operate==1 {
-	var ifx=32, ify=32;
+#region 驾驶舱
+if operate_rate>0 {
+	var ifx=32, ify=80*operate_rate;
 	//发卡
 	draw_sprite(spr_ui_grd_board_bgs, 0, ifx, ify)
 	//hp 对应血条64=3倍长度
@@ -51,13 +51,13 @@ if global.operate==1
 		draw_sprite_ext(spr_ui_grd_hp_iframe, 0, hpifx, hpify, hpifcenlen/hpifw, 1, 0, c_white, 1)
 		draw_sprite(spr_ui_grd_hp_iframe, 1, hpifx+hpifcenlen, hpify)
 		//红血条
-		var hpaftsurf=get_hp_surface(global.player_hp_aft, hprate);
+		var hpaftsurf=get_hp_surface(global.player_hp_aft, global.player_hp_up, hprate);
 		if surface_exists(hpaftsurf) {
 			draw_surface_ext(hpaftsurf, hpx+0, hpy+8, 1, 1, 0, $130ecc, 11)
 			surface_free(hpaftsurf)
 		}
 		//血条
-		var hpsurf=get_hp_surface(global.player_hp, hprate);
+		var hpsurf=get_hp_surface(global.player_hp, global.player_hp_up, hprate);
 		if surface_exists(hpsurf) {
 			draw_surface(hpsurf, hpx+0, hpy+8)
 			surface_free(hpsurf)
@@ -98,17 +98,30 @@ if global.operate==1
 	#region 支援槽
 	var supifx=ifx+132, supify=ify+21;
 	draw_sprite(spr_ui_grd_support_iframe, 0, supifx, supify)
-	draw_sprite(spr_ui_grd_support_iframe, 1, supifx, supify)
-	var supstr="MAX";
+	if global.player_support<100 {
+		draw_sprite(spr_ui_grd_support_iframe, 1, supifx, supify)
+	} else {
+		if (global.fps_currmenu mod 60)<=30 {
+			var rate=(global.fps_currmenu mod 30)/30,
+				scale=1+1*rate,
+				alpha=1-rate;
+			draw_sprite_ext(spr_ui_grd_support_iframe, 0, supifx, supify, scale, scale, 0, c_white, alpha)
+		}
+	}
+	var supstr="MAX",
+		strcol=UIPINK;
 	if global.player_support<100 {
 		supstr=string(global.player_support)+"%"
 		if global.player_support<10 supstr=" "+supstr;
+	} else {
+		strcol=c_black
 	}
-	scr_draw_text_ext(UIPINK, 1, 0, font_jam_24, 0.5, 0.5, supstr, supifx, supify+1, 1, 1, -1, -1, c_black, 1);
+	scr_draw_text_ext(strcol, 1, 0, font_jam_24, 0.5, 0.5, supstr, supifx, supify+1, 1, 1, -1, -1, c_black, 1);
 	#endregion
+	
+	var bx=288, by=VIEW_H_UI-120*operate_rate
 	#region 腰带
 	with obj_menu {
-		var bx=288, by=960
 		//纹路底
 		draw_sprite(spr_ui_grd_cards_in, 0, bx, by)
 		with obj_staff {
@@ -216,5 +229,58 @@ if global.operate==1
 		draw_sprite(spr_ui_grd_belt, 0, bx, by)
 	}
 	#endregion
+	
+	var bifx=1888, bify=VIEW_H_UI-120*operate_rate
+	#region BOSS血条
+	if global.boss_war==1 {
+		var hpupmax=96
+		//黑背景
+		draw_sprite(spr_ui_grd_bosshp_bgs, 0, bifx, bify)
+		//图标
+		draw_sprite(spr_ui_grd_bosshp_icon, global.boss_icon, bifx-32, bify-10)
+		//血条框架
+		var hpx=bifx-46, hpy=bify+37, hprate=8;
+		var hpifx=hpx-8,hpify=hpy+2,
+			hpifw=sprite_get_width(spr_ui_grd_hp_iframe),
+			hpifh=sprite_get_height(spr_ui_grd_hp_iframe),
+			hpifcenlen=hpupmax*hprate-16;
+		draw_sprite_ext(spr_ui_grd_hp_iframe, 0, hpifx, hpify, -hpifcenlen/hpifw, 1, 0, c_white, 1)
+		draw_sprite_ext(spr_ui_grd_hp_iframe, 1, hpifx-hpifcenlen, hpify, -1, 1, 0, c_white, 1)
+		var hpcounts=(global.boss_hp div hpupmax),
+			hpcols=array_create(hpcounts+1, c_white)
+		hpcols[0]=c_white
+		hpcols[1]=$a0c53c
+		hpcols[2]=$bd7843
+		for(var i=0;i<=hpcounts;i++) {
+			var _hp=min(global.boss_hp-i*hpupmax, hpupmax),
+				_hpaft=min(global.boss_hp_aft-i*hpupmax, hpupmax);
+			//红血条
+			var bhpaftsurf=get_hp_surface(_hpaft, hpupmax, hprate);
+			if surface_exists(bhpaftsurf) {
+				draw_surface_ext(bhpaftsurf, hpx+19, hpy+12, -1, 1, 0, $130ecc, 11)
+				surface_free(bhpaftsurf)
+			}
+			//血条
+			var bhpsurf=get_hp_surface(_hp, hpupmax, hprate);
+			if surface_exists(bhpsurf) {
+				draw_surface_ext(bhpsurf, hpx+19, hpy+12, -1, 1, 0, hpcols[i], 11)
+				surface_free(bhpsurf)
+			}
+		}
+		//血条外白条
+		draw_sprite(spr_ui_grd_bosshp_top, 0, bifx-23, bify+3)
+		var hptopx=hpx-106, hptopy=hpy+4,
+			hptopw=sprite_get_width(spr_ui_grd_hp_top),
+			hptopcenlen=hpupmax*hprate-4*hptopw;
+		draw_sprite_ext(spr_ui_grd_hp_top, 1, hptopx, hptopy, -hptopcenlen/hptopw, 1, 0, c_white, 1)
+		draw_sprite_ext(spr_ui_grd_hp_top, 2, hptopx-hptopcenlen, hptopy, -1, 1, 0, c_white, 1)
+	}
+	#endregion
 }
+#endregion
+#region 对话框
+if global.talk!=0 {
+	
+}
+#endregion
 #endregion

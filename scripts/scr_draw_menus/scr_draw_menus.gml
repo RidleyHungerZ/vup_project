@@ -394,11 +394,11 @@ function scr_draw_menu_mission(dx, dy){
 	for(var i=0;i<2;i++) {
 		var selected = msel[0]==i, 
 			tabinx=1,
-			txtselup=0;
+			txtselup=12;
 		if selected tabinx=0
 		else txtselup=0
 		draw_sprite(spr_menu_mission_tab, tabinx, drawx+256*i, drawy)
-		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0.5, 0.5, missstruts[i].name, drawx+256*i+8, drawy-16-txtselup, 1, 1, -1, -1, -1, 0)
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0.5, 0.5, missstruts[i].name, drawx+256*i+8, drawy-12-txtselup, 1, 1, -1, -1, -1, 0)
 	}
 	//任务说明
 	if !is_undefined(missnow) {
@@ -492,7 +492,7 @@ function scr_draw_menu_skill(dx, dy){
 	//动作图像
 	
 	//技能说明
-	drawx=dx+128 drawy=dy+752
+	drawx=dx+128 drawy=dy+608
 	scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, skillnow.desc, drawx, drawy, 1, 1, -1, -1, -1, 0)
 	#endregion
 	#region 右侧列表
@@ -501,7 +501,7 @@ function scr_draw_menu_skill(dx, dy){
 		var btninx=0, yshift=(i-menu_skill_list_begin)*80;
 		if i==skillnowinx btninx=1;
 		draw_sprite(spr_menu_skill_items, btninx, drawx, drawy+yshift)
-		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0.5, 0.5, menu_skill_list[| i].txt, drawx, drawy+yshift+8, 1, 1, -1, -1, -1, 0)
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0.5, 0.5, menu_skill_list[| i].txt, drawx, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
 	}
 	//滚动条
 	drawx=dx+1792 drawy=dy+204

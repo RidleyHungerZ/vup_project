@@ -31,8 +31,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "logo",
-    "path": "folders/Objects/logo.yy",
+    "name": "ui",
+    "path": "folders/Objects/ui.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_logo",

@@ -33,18 +33,17 @@ if global.operate>0
 	}
 	#region 换场景判断门
 	if global.operate==0.6{
-		//with(obj_door_left){
-		//	if collision_double_rectangle(bbox_right+32,bbox_bottom,bbox_left-32,bbox_top,
-		//								obj_player.bbox_right,obj_player.bbox_bottom,obj_player.bbox_left,obj_player.bbox_top){
-		//		closeDoor();
-		//	}
-		//}
-		//with(obj_door_up){
-		//	if collision_double_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,
-		//								obj_player.bbox_right,obj_player.bbox_bottom,obj_player.bbox_left,obj_player.bbox_top){
-		//		closeDoor();
-		//	}
-		//}
+		with(obj_door_left){
+			if collision_double_rectangle(bbox_right+32,bbox_bottom,bbox_left-32,bbox_top,
+										obj_player.bbox_right,obj_player.bbox_bottom,obj_player.bbox_left,obj_player.bbox_top){
+				closeDoor();
+			}
+		}
+		with(obj_door_up){
+			if place_meeting(x, y, obj_player) {
+				closeDoor();
+			}
+		}
 	}
 	#endregion
 }

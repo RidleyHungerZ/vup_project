@@ -153,56 +153,57 @@ function scr_staff_key_state() {
 #endregion
 #region 玩家动作
 #region 自由操作
-	if global.operate==1
-	&& global.player_operate==1{
-		global.left_state = scr_allkey_state(global.left_allstate)
-		global.right_state = scr_allkey_state(global.right_allstate)
-		global.up_state = scr_allkey_state(global.up_allstate)
-		global.down_state = scr_allkey_state(global.down_allstate)
-		global.select_state = scr_allkey_state(global.select_allstate)
-		global.start_state = scr_allkey_state(global.start_allstate)
+	if global.operate==1 {
+		if global.player_operate==1 {
+			global.left_state = scr_allkey_state(global.left_allstate)
+			global.right_state = scr_allkey_state(global.right_allstate)
+			global.up_state = scr_allkey_state(global.up_allstate)
+			global.down_state = scr_allkey_state(global.down_allstate)
+			global.select_state = scr_allkey_state(global.select_allstate)
+			global.start_state = scr_allkey_state(global.start_allstate)
 	
-		global.att_state = scr_allkey_state(global.att_allstate)
-		global.jump_state = scr_allkey_state(global.jump_allstate)
-		global.dash_state = scr_allkey_state(global.dash_allstate)
-		global.sub_state = scr_allkey_state(global.sub_allstate)
-		global.trans_state = scr_allkey_state(global.trans_allstate)
-		global.true_state = scr_allkey_state(global.true_allstate)
-		global.tformL_state = scr_allkey_state(global.tformL_allstate)
-		global.tformR_state = scr_allkey_state(global.tformR_allstate)
-		//自设按键恢复0
-		global.left=0
-		global.right=0
-		global.up=0
-		global.down=0
-		global.jump=0
-		global.att=0
-		global.dash=0
-		global.sub=0
-		global.true=0
-		global.trans=0
-		global.select=0
-		global.start=0
-		global.tformL=0
-		global.tformR=0
-	}
-#endregion
-#region 脚本操纵
-	else{
-		global.left_state = scr_codekey_state(global.left_state, global.left)
-		global.right_state = scr_codekey_state(global.right_state, global.right)
-		global.up_state = scr_codekey_state(global.up_state, global.up)
-		global.down_state = scr_codekey_state(global.down_state, global.down)
-		global.jump_state = scr_codekey_state(global.jump_state, global.jump)
-		global.att_state = scr_codekey_state(global.att_state, global.att)
-		global.dash_state = scr_codekey_state(global.dash_state, global.dash)
-		global.sub_state = scr_codekey_state(global.sub_state, global.sub)
-		global.true_state = scr_codekey_state(global.true_state, global.true)
-		global.trans_state = scr_codekey_state(global.trans_state, global.trans)
-		global.select_state = scr_codekey_state(global.select_state, global.select)
-		global.start_state = scr_codekey_state(global.start_state, global.start)
-		global.tformL_state = scr_codekey_state(global.tformL_state, global.tformL)
-		global.tformR_state = scr_codekey_state(global.tformR_state, global.tformR)
+			global.att_state = scr_allkey_state(global.att_allstate)
+			global.jump_state = scr_allkey_state(global.jump_allstate)
+			global.dash_state = scr_allkey_state(global.dash_allstate)
+			global.sub_state = scr_allkey_state(global.sub_allstate)
+			global.trans_state = scr_allkey_state(global.trans_allstate)
+			global.true_state = scr_allkey_state(global.true_allstate)
+			global.tformL_state = scr_allkey_state(global.tformL_allstate)
+			global.tformR_state = scr_allkey_state(global.tformR_allstate)
+			//自设按键恢复0
+			global.left=0
+			global.right=0
+			global.up=0
+			global.down=0
+			global.jump=0
+			global.att=0
+			global.dash=0
+			global.sub=0
+			global.true=0
+			global.trans=0
+			global.select=0
+			global.start=0
+			global.tformL=0
+			global.tformR=0
+		} 
+		#region 脚本操纵
+		else{
+			global.left_state = scr_codekey_state(global.left_state, global.left)
+			global.right_state = scr_codekey_state(global.right_state, global.right)
+			global.up_state = scr_codekey_state(global.up_state, global.up)
+			global.down_state = scr_codekey_state(global.down_state, global.down)
+			global.jump_state = scr_codekey_state(global.jump_state, global.jump)
+			global.att_state = scr_codekey_state(global.att_state, global.att)
+			global.dash_state = scr_codekey_state(global.dash_state, global.dash)
+			global.sub_state = scr_codekey_state(global.sub_state, global.sub)
+			global.true_state = scr_codekey_state(global.true_state, global.true)
+			global.trans_state = scr_codekey_state(global.trans_state, global.trans)
+			global.select_state = scr_codekey_state(global.select_state, global.select)
+			global.start_state = scr_codekey_state(global.start_state, global.start)
+			global.tformL_state = scr_codekey_state(global.tformL_state, global.tformL)
+			global.tformR_state = scr_codekey_state(global.tformR_state, global.tformR)
+		}
+		#endregion
 	}
 #endregion
 #region 按键判定延长

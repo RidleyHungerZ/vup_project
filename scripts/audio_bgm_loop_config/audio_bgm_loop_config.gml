@@ -10,9 +10,6 @@ function audio_bgm_loop_config() {
 	
 #endregion
 #region 战斗曲目
-	
-#endregion
-#region 训练曲目
-	//map[? bgm_t1] = [8.07, 72.06]	//普通训练
+	map[? bgm_boss1] = [1.95, 40.37]
 #endregion
 }

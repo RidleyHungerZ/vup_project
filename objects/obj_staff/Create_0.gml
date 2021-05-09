@@ -267,7 +267,8 @@ global.room_change_rate=array_create(3,0)
 global.skip=0
 global.boss_war=0
 global.boss_hp=0
-global.boss_logo=0
+global.boss_hp_aft=0
+global.boss_icon=0
 global.player_def=1//实际伤害百分比
 global.prick_attack=6//尖刺伤害
 global.player_reversed=0//上下倒立
@@ -294,6 +295,7 @@ auto_sp_time=0
 #endregion
 #region 发射区
 instance_create_depth(0, 0, 0, obj_view)
+instance_create_depth(0, 0, 0, obj_room)
 instance_create_depth(0, 0, -10000, obj_menu)
 player[PLAYER_MODEL.HU]=obj_player_hu
 player[PLAYER_MODEL.ARMOR]=obj_player_armor

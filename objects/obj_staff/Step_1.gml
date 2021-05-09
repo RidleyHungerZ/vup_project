@@ -101,6 +101,17 @@ if scr_menu_trem() {
 	} else auto_sp_time=0
 }
 #endregion
+#region BOSS数值控制
+//血量控制
+if global.boss_hp<0
+	global.boss_hp=0
+//血量红条
+if global.boss_hp_aft<global.boss_hp
+	global.boss_hp_aft=global.boss_hp
+else if global.boss_hp_aft>global.boss_hp {
+	global.boss_hp_aft-=1/5
+}
+#endregion
 
 #region 玩家换卡
 if player_change_action==0 {

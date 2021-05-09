@@ -291,7 +291,9 @@ function date_format(sdf, times) {
 	sdf=string_replace(sdf, "ss", string_real_supply0(times[5], 2))
 	return sdf
 }
-
+/// @desc 数字补0
+/// @arg num 数字
+/// @arg digit 位数
 function string_real_supply0(num, digit) {
 	var str=string(num)
 	while string_length(str)<digit

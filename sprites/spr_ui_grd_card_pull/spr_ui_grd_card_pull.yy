@@ -67,6 +67,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"6fcc4b22-711c-42e3-a4d2-f0f0a7a95583","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "belt",
     "path": "folders/Sprites/UI/ground/belt.yy",

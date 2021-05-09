@@ -5,6 +5,10 @@ player_x=obj_player.x
 player_y=obj_player.y
 #endregion
 #region 镜头房间控制
+var posxy={
+	x : obj_player.x+global.view_xcen_shift,
+	y : obj_player.y+global.view_ycen_shift
+}
 //镜头偏移
 if(global.operate==1 && scr_menu_trem())
 || obj_player.death_cliff {
@@ -15,10 +19,6 @@ if(global.operate==1 && scr_menu_trem())
 	if(global.view_ycen_shift!=prev_view_ycen_shift){
 		global.room_change_yt=1
 		global.room_change_yb=1
-	}
-	var posxy={
-		x : obj_player.x+global.view_xcen_shift,
-		y : obj_player.y+global.view_ycen_shift
 	}
 	scr_view_freedom(posxy,true,true)
 	x=round(x)
@@ -47,13 +47,11 @@ if global.operate==1{
         global.room_change_yt=1
     else if lastroom_yb<global.room_yb
         global.room_change_yb=1
-    
-	if view_ycenpos(0)<=y
+	if view_ycenpos(0)<=posxy.y
 		global.room_change_yt=0
-	if view_ycenpos(0)>=y
+	if view_ycenpos(0)>=posxy.y
 		global.room_change_yb=0
-	if view_xcenpos(0)<=x+4
-	&& view_xcenpos(0)>=x-4{
+	if abs(view_xcenpos(0)-posxy.x)<=4{
 		global.room_change_xl=0
 		global.room_change_xr=0
 	}

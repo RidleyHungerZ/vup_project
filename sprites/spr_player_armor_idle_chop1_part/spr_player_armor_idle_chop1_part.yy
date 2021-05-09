@@ -107,6 +107,7 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 1","resourceVersion":"1.0","name":"3aed7bd4-7329-476f-a490-a12d06f3e269","tags":[],"resourceType":"GMImageLayer",},
     {"visible":false,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "part",
     "path": "folders/Sprites/player/armor/action/chop/part.yy",

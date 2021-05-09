@@ -385,7 +385,7 @@ for(var i=1;i<=2;i+=1){
 		#region 空中动作集体调整
 		//空中转向
 		if(in(jump, [PYJUMP.jump])
-		|| in(jump, [PYJUMP.fall, PYJUMP.guild])) {
+		|| in(jump, [PYJUMP.fall, PYJUMP.glide])) {
 			if(keystate_check(global.left_state) || keystate_check(global.right_state)) {
 				var old_xscale=image_xscale;
 				if(keystate_check(global.left_state))  image_xscale=-1;
@@ -434,7 +434,7 @@ for(var i=1;i<=2;i+=1){
 			|| jumptop
 			|| jump_released) {
 				if(vsp<0) vsp=0;
-				if(in(sprite_index, [SS_jump, SS_jumping, SS_crawjump]))
+				if(in(sprite_index, [SS_jump, SS_jumping, SS_crawjump, spr_player_armor_jump_double]))
 					scr_sprite_change(SS_jumped,0,0.25);
 				jump=PYJUMP.fall;
 			}
@@ -507,7 +507,7 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 下落中
-		if(in(jump, [PYJUMP.fall, PYJUMP.guild])) {
+		if(in(jump, [PYJUMP.fall, PYJUMP.glide])) {
 			//三角跳用变量
 			var dd=keystate_check(global.dash_state) ? 1 : 0,
 				craw_ground=collision_rectangle(bbox_right+1*image_xscale,
@@ -529,7 +529,7 @@ for(var i=1;i<=2;i+=1){
 				craw_ground = false;
 			//落地
 			if(scr_player_Is_fallover(0,0,4,3)
-			&& ((jump==PYJUMP.guild && vsp>=0) || jump!=PYJUMP.guild)) { //滑翔时下落才着地
+			&& ((jump==PYJUMP.glide && vsp>=0) || jump!=PYJUMP.glide)) { //滑翔时下落才着地
 				if(sprite_index==SS_craw) 
 					image_xscale*=-1;
 				scr_sprite_change(SS_fallover,0,0.25);

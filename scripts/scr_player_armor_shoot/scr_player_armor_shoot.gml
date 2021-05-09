@@ -16,7 +16,7 @@ function scr_player_armor_shoot(shx, shy) {
 			image_xscale=other.image_xscale
 			image_yscale=other.image_yscale
 			hspeed=(obj_player.x-obj_player.x_last)*(obj_player.imx_last*image_xscale)
-			scr_player_damage_set(6,ELEMENTS.none,ATK_TYPE.bullet,0,1,0,1,0)
+			scr_player_damage_set(6,ELEMENTS.none,ATK_TYPE.bullet,0,2,0,2,0)
 			scr_sound_play(se_player_armor_bullet_charge01)
 			scr_sound_play(se_player_armor_bullet_charge01_cv)
 		} 
@@ -33,7 +33,7 @@ function scr_player_armor_shoot(shx, shy) {
 					image_xscale=other.image_xscale
 					image_yscale=other.image_yscale
 					hspeed=(obj_player.x-obj_player.x_last)*(obj_player.imx_last*image_xscale)
-					scr_player_damage_set(12,ELEMENTS.fire,ATK_TYPE.through,0,1,0,1,0)
+					scr_player_damage_set(12,ELEMENTS.fire,ATK_TYPE.through,0,3,0,3,0)
 					scr_sound_play(se_player_armor_bullet_charge02)
 					scr_sound_play(se_player_armor_bullet_charge02_cv)
 					scr_player_mp_subtract(4)
@@ -46,7 +46,7 @@ function scr_player_armor_shoot(shx, shy) {
 				image_xscale=other.image_xscale
 				image_yscale=other.image_yscale
 				hspeed=(obj_player.x-obj_player.x_last)*(obj_player.imx_last*image_xscale)
-				scr_player_damage_set(12,ELEMENTS.none,ATK_TYPE.through,0,1,0,1,0)
+				scr_player_damage_set(12,ELEMENTS.none,ATK_TYPE.through,0,3,0,3,0)
 				scr_sound_play(se_player_armor_bullet_charge02)
 				scr_sound_play(se_player_armor_bullet_charge02_cv)
 			}

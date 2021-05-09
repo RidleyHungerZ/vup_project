@@ -8,6 +8,6 @@ if action==0 {
 } else if action==1 {
 	if scr_view_transition_Isover(1) {
 		//scr_view_transition(1, 1)
-		room_goto(room_test)
+		scr_room_goto(room_test)
 	}
 }

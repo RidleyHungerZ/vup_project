@@ -41,11 +41,14 @@ for(var j=array_length(part_spr[bgk])-1;j>=0;j--){
 			part_xsc[bgk,j],part_ysc[bgk,j],part_agl[bgk,j],part_bed[bgk,j],part_aph[bgk,j]);
 }
 //本体
-draw_self();
+drawSelf();
 //无敌闪
-if(flash==1) {
+if(flash==1 
+||(untime>0)) {
+	var alpha=global.fps_15*0.25
+	if flash==1 alpha=1
 	flash=0;
-	scr_draw_sprite_white(sprite_index,image_index,round(x),round(y),image_xscale,image_yscale,image_angle,c_white,image_alpha);
+	scr_draw_sprite_white(sprite_index,image_index,round(x),round(y),image_xscale,image_yscale,image_angle,c_white,alpha);
 }
 //前景
 bgk=0
@@ -64,20 +67,7 @@ for(var j=array_length(part_spr[bgk])-1;j>=0;j--){
 }
 #endregion
 #region 属性效果
-//var spr_elem1 = spr_enemy_element1,
-//	spr_elem2 = spr_enemy_element2,
-//	spr_elem3 = spr_enemy_element3;
-//if(element_size==2) {
-//	spr_elem1 = spr_boss_element1
-//	spr_elem2 = spr_boss_element2
-//	spr_elem3 = spr_boss_element3;
-//}
-//if(injure_element==ELEMENTS.fire) 
-//	draw_sprite(spr_elem1, element_index, x, y);
-//else if(injure_element==ELEMENTS.ice) 
-//	draw_sprite(spr_elem2, element_index, x, y);
-//else if(injure_element==ELEMENTS.elec) 
-//	draw_sprite(spr_elem3, element_index, x, y);
+drawElementEffect()
 #endregion
 x=perx;
 y=pery;

@@ -84,7 +84,6 @@ function scr_enmus(){
 		dbjump, //二段跳
 		airdash, //空冲
 		glide, //滑翔
-		kick, //骑士踢
 		defineBack, //防御击退
 		invinEx, //无敌延长
 		prickGuard, //陷阱防护

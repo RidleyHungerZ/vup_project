@@ -30,3 +30,18 @@ function scr_player_hp_have(val) {
 function scr_player_mp_have(val) {
 	return (global.player_mp+global.player_mp_ex)>=val
 }
+/// @desc 玩家剩余血量
+/// @arg val
+function scr_player_support_ismax() {
+	return global.player_support>=100
+}
+/// @desc 玩家剩余血量
+/// @arg val
+function scr_player_support_add(val) {
+	if !scr_player_support_ismax() {
+		global.player_support+=val
+		if scr_player_support_ismax() {
+			obj_view.support_max_trigger()
+		}
+	}
+}

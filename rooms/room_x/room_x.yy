@@ -17,7 +17,7 @@
         {"instances":[],"visible":true,"depth":0,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"viewrange","tags":[],"resourceType":"GMRInstanceLayer",},
         {"instances":[],"visible":true,"depth":1,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"viewrange_in","tags":[],"resourceType":"GMRInstanceLayer",},
         {"instances":[],"visible":true,"depth":2,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"viewrange_out","tags":[],"resourceType":"GMRInstanceLayer",},
-      ],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Folder_viewroom","tags":[],"resourceType":"GMRLayer",},
+      ],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"viewroom","tags":[],"resourceType":"GMRLayer",},
     {"instances":[],"visible":true,"depth":10,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"ground","tags":[],"resourceType":"GMRInstanceLayer",},
     {"visible":true,"depth":110,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[
         {"visible":true,"depth":210,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[
