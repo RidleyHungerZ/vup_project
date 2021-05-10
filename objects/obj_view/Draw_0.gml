@@ -280,7 +280,62 @@ if operate_rate>0 {
 #endregion
 #region 对话框
 if global.talk!=0 {
-	
+	draw_set_font(font_puhui_32)
+	var pos={
+		frame : [0, 0],
+		shoto : [198, 194],
+		namef : [348, 267],
+		name  : [400, 292],
+		txt   : [480, 1840, 40],
+	}, tfx=0, tfy=0;
+	//1上2下
+	for(var i=1;i<=2;i++) {
+		var ysc=sign(1.5-i),
+			xsc=-ysc*global.talk_inx_xscale
+		tfy=VIEW_H_UI/2+ysc*(VIEW_H_UI/2-400*(1-talk_rate))
+		//名字
+		var namefw=sprite_get_width(spr_ui_grd_talk_name),
+			nametxt=global.txt_names[global.talk_name[i]],
+			nametxtw=string_width(nametxt),
+			drawx=pos.namef[0],
+			txtleft=(xsc==1) ? 0 : 1;
+		draw_sprite_ext(spr_ui_grd_talk_name, 0, tfx+xsc*drawx, tfy+ysc*pos.namef[1],
+						xsc, ysc, 0, c_white, 1);
+		drawx+=namefw
+		draw_sprite_ext(spr_ui_grd_talk_name, 0, tfx+xsc*drawx, tfy+ysc*pos.namef[1],
+						xsc*ceil(nametxtw/namefw), ysc, 0, c_white, 1);
+		drawx+=ceil(nametxtw/namefw)
+		draw_sprite_ext(spr_ui_grd_talk_name, 0, tfx+xsc*drawx, tfy+ysc*pos.namef[1],
+						xsc, ysc, 0, c_white, 1);
+		scr_draw_text(c_white, 1, 0, font_puhui_32, txtleft, 0.5, nametxt, 
+						tfx+xsc*pos.name[0], tfy+ysc*pos.name[1], 1, 1, -1, -1, -1, 0);
+		//框架
+		draw_sprite_ext(spr_ui_grd_talk, 0, tfx+xsc*pos.frame[0], tfy+ysc*pos.frame[1], 
+						xsc, ysc, 0, c_white, 1);
+		//头像
+		var shotospr
+		if global.talk_shoto_type==TALK_SHOTO.player 
+			shotospr=spr_ui_grd_talk_shoto_player
+		else if global.talk_shoto_type==TALK_SHOTO.boss
+			shotospr=spr_ui_grd_talk_shoto_boss
+		else if global.talk_shoto_type==TALK_SHOTO.npc
+			shotospr=spr_ui_grd_talk_shoto_npc
+		draw_sprite_ext(shotospr, global.talk_shoto[i], tfx+xsc*pos.shoto[0], tfy+ysc*pos.shoto[1], 
+						1, 1, 0, c_white, 1);
+		//对话内容
+		var txtx;
+		if xsc==1 txtx=pos.txt[0]
+		else txtx=pos.txt[1]
+		scr_draw_text(c_white, 1, 0, font_puhui_32, 0, 0, global.talk_print, 
+						tfx+txtx, tfy+ysc*pos.txt[2], 1, 1, -1, -1, -1, 0);
+		//对话选项
+		if array_length(global.talk_options)>0 
+		&& scr_talk_print_over(){
+			var printh=string_height(global.talk_print);
+			
+			
+		}
+	}
 }
 #endregion
 #endregion

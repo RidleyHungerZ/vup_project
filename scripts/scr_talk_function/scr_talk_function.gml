@@ -27,10 +27,10 @@ function scr_talk_end(){
 /// @arg shoto 头像
 /// @arg name 名字
 /// @arg xscale 左右翻转
-/// @arg yscale 上下翻转
 /// @arg options 选项
-function scr_talk(now, txt, type, shoto, name, xscale, yscale, options){
+function scr_talk(now, txt, type, shoto, name, xscale, options){
 	global.talk_now=now
+	global.talk_inx_xscale=xscale
 	global.talk_txt[now]=txt
 	global.talk_txt_len[now]=string_length(txt)
 	global.talk_print[now]=""

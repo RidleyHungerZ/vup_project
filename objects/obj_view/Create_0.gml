@@ -95,6 +95,7 @@ room_range_list=ds_list_create()
 global.talk=0 //对话
 global.talk_inx=0 //对话，0全出，1上2下
 global.talk_now=1 //当前对话框，0为同时
+global.talk_inx_xscale=1 //方向，默认上右下左
 global.talk_txt=array_create(2, "") //对话内容
 global.talk_txt_len=array_create(2, 0) //对话内容
 global.talk_print=array_create(2, "") //对话输出内容（打字机当前）

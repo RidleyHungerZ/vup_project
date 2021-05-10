@@ -53,6 +53,13 @@ function scr_enmus(){
 		SKILL = 4,
 	}
 	#endregion
+	#region 对话头像类型
+	enum TALK_SHOTO {
+		player,
+		boss,
+		npc,
+	}
+	#endregion
 	#region 道具
 	enum ITEM {
 		A,
