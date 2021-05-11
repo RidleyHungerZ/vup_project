@@ -59,6 +59,11 @@ function scr_enmus(){
 		boss,
 		npc,
 	}
+	enum TALK_INX {
+		both,
+		up,
+		down
+	}
 	#endregion
 	#region 道具
 	enum ITEM {

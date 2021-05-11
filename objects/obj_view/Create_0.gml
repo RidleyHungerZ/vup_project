@@ -96,16 +96,22 @@ global.talk=0 //对话
 global.talk_inx=0 //对话，0全出，1上2下
 global.talk_now=1 //当前对话框，0为同时
 global.talk_inx_xscale=1 //方向，默认上右下左
-global.talk_txt=array_create(2, "") //对话内容
-global.talk_txt_len=array_create(2, 0) //对话内容
-global.talk_print=array_create(2, "") //对话输出内容（打字机当前）
-global.talk_print_len=array_create(2, 0) //对话输出内容长度
-global.talk_shoto_type=array_create(2, 0) //头像类型
-global.talk_shoto=array_create(2, 0) //头像
-global.talk_name=array_create(2, 0) //名称
-global.talk_options=array_create(2, []) //对话中的选项
-global.talk_select=array_create(2, 0) //当前选中选项
+talk_init = function() {
+	global.talk_txt=array_create(2, "") //对话内容
+	global.talk_txt_len=array_create(2, 0) //对话内容
+	global.talk_print=array_create(2, "") //对话输出内容（打字机当前）
+	global.talk_print_len=array_create(2, 0) //对话输出内容长度
+	global.talk_shoto_type=array_create(2, 0) //头像类型
+	global.talk_shoto=array_create(2, 0) //头像
+	global.talk_name=array_create(2, 0) //名称
+	global.talk_options=array_create(2, []) //对话中的选项
+	global.talk_select=array_create(2, 0) //当前选中选项
+	talk_select_begin=array_create(2, 0) //当前选项开始
+}
+talk_init()
 talk_rate=0 //对话框位置
+talk_print_fast=false //快速打印
+scr_talk_txt_name()
 #endregion
 #region 房间存储
 room_range_inst=noone //当前房间对应对象

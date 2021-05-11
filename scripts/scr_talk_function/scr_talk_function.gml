@@ -1,22 +1,17 @@
+/// @desc 对话是否进行中
+function scr_talk_ing() {
+	return global.talk!=0 
+}
 /// @desc 开启对话
 /// @arg inx 对话框使用，0全用，1上2下
 /// @arg now 当前开启对话框
-function scr_talk_start(inx, now){
+function scr_talk_start(inx, now) {
 	global.talk=0.5
 	global.talk_inx=inx
 	global.talk_now=now
-	global.talk_txt=array_create(2, "") //对话内容
-	global.talk_txt_len=array_create(2, 0) //对话内容
-	global.talk_print=array_create(2, "") //对话输出内容（打字机当前）
-	global.talk_print_len=array_create(2, 0) //对话输出内容长度
-	global.talk_shoto_type=array_create(2, 0) //头像类型
-	global.talk_shoto=array_create(2, 0) //头像
-	global.talk_name=array_create(2, 0) //名称
-	global.talk_options=array_create(2, []) //对话中的选项
-	global.talk_select=array_create(2, 0) //当前选中选项
+	obj_view.talk_init()
 }
-/// @desc 开启对话
-/// @arg num 对话框数量
+/// @desc 结束对话
 function scr_talk_end(){
 	global.talk=-0.5
 }
@@ -40,6 +35,8 @@ function scr_talk(now, txt, type, shoto, name, xscale, options){
 	global.talk_name[now]=name
 	global.talk_options[now]=options
 	global.talk_select[now]=0
+	obj_view.talk_select_begin[now]=0
+	obj_view.talk_print_fast=false
 }
 /// @desc 这句话是否输出完毕
 function scr_talk_print_over() {

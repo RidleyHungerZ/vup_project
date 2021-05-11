@@ -286,54 +286,81 @@ if global.talk!=0 {
 		shoto : [198, 194],
 		namef : [348, 267],
 		name  : [400, 292],
-		txt   : [480, 1840, 40],
-	}, tfx=0, tfy=0;
+		txtpx : [480, 64],
+		txtpy : [40, 864],
+	}, tfx=0, tfy=0, 
+	xmirror=function(px, xsc) {
+		if xsc==1 return px
+		else return VIEW_W_UI-px
+	}, 
+	yflip=function(py, ysc) {
+		if ysc==-1 return py
+		else return VIEW_H_UI-py
+	};
+	//黑幕
+	scr_draw_rectangle_view(c_black, 0.5*talk_rate, 1)
 	//1上2下
 	for(var i=1;i<=2;i++) {
-		var ysc=sign(1.5-i),
-			xsc=-ysc*global.talk_inx_xscale
-		tfy=VIEW_H_UI/2+ysc*(VIEW_H_UI/2-400*(1-talk_rate))
+		if global.talk_inx!=0 && global.talk_inx!=i continue
+		var ysc=sign(i-1.5),
+			xsc=-ysc*global.talk_inx_xscale,
+			blend=c_white
+		tfy=-(400*(1-talk_rate))
+		if i!=global.talk_now blend=merge_color(c_black, c_white, 0.5)
 		//名字
 		var namefw=sprite_get_width(spr_ui_grd_talk_name),
 			nametxt=global.txt_names[global.talk_name[i]],
 			nametxtw=string_width(nametxt),
 			drawx=pos.namef[0],
 			txtleft=(xsc==1) ? 0 : 1;
-		draw_sprite_ext(spr_ui_grd_talk_name, 0, tfx+xsc*drawx, tfy+ysc*pos.namef[1],
-						xsc, ysc, 0, c_white, 1);
+		draw_sprite_ext(spr_ui_grd_talk_name, 0, xmirror(tfx+drawx, xsc), yflip(tfy+pos.namef[1], ysc),
+						xsc, ysc, 0, blend, 1);
 		drawx+=namefw
-		draw_sprite_ext(spr_ui_grd_talk_name, 0, tfx+xsc*drawx, tfy+ysc*pos.namef[1],
-						xsc*ceil(nametxtw/namefw), ysc, 0, c_white, 1);
-		drawx+=ceil(nametxtw/namefw)
-		draw_sprite_ext(spr_ui_grd_talk_name, 0, tfx+xsc*drawx, tfy+ysc*pos.namef[1],
-						xsc, ysc, 0, c_white, 1);
-		scr_draw_text(c_white, 1, 0, font_puhui_32, txtleft, 0.5, nametxt, 
-						tfx+xsc*pos.name[0], tfy+ysc*pos.name[1], 1, 1, -1, -1, -1, 0);
+		draw_sprite_ext(spr_ui_grd_talk_name, 1, xmirror(tfx+drawx, xsc), yflip(tfy+pos.namef[1], ysc),
+						xsc*(ceil(nametxtw/namefw)-1), ysc, 0, blend, 1);
+		drawx+=(ceil(nametxtw/namefw)-1)*namefw
+		draw_sprite_ext(spr_ui_grd_talk_name, 2, xmirror(tfx+drawx, xsc), yflip(tfy+pos.namef[1], ysc),
+						xsc, ysc, 0, blend, 1);
+		scr_draw_text(blend, 1, 0, font_puhui_32, txtleft, 0.5, nametxt, 
+						xmirror(tfx+pos.name[0], xsc), yflip(tfy+pos.name[1], ysc)+(ysc==-1 ? 8 : 0), 1, 1, -1, -1, -1, 0);
 		//框架
-		draw_sprite_ext(spr_ui_grd_talk, 0, tfx+xsc*pos.frame[0], tfy+ysc*pos.frame[1], 
-						xsc, ysc, 0, c_white, 1);
+		draw_sprite_ext(spr_ui_grd_talk, 0, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
+						xsc, ysc, 0, blend, 1);
 		//头像
 		var shotospr
-		if global.talk_shoto_type==TALK_SHOTO.player 
+		if global.talk_shoto_type[i]==TALK_SHOTO.player 
 			shotospr=spr_ui_grd_talk_shoto_player
-		else if global.talk_shoto_type==TALK_SHOTO.boss
+		else if global.talk_shoto_type[i]==TALK_SHOTO.boss
 			shotospr=spr_ui_grd_talk_shoto_boss
-		else if global.talk_shoto_type==TALK_SHOTO.npc
+		else if global.talk_shoto_type[i]==TALK_SHOTO.npc
 			shotospr=spr_ui_grd_talk_shoto_npc
-		draw_sprite_ext(shotospr, global.talk_shoto[i], tfx+xsc*pos.shoto[0], tfy+ysc*pos.shoto[1], 
-						1, 1, 0, c_white, 1);
+		draw_sprite_ext(shotospr, global.talk_shoto[i], xmirror(tfx+pos.shoto[0], xsc), yflip(tfy+pos.shoto[1], ysc), 1, 1, 0, blend, 1);
 		//对话内容
-		var txtx;
-		if xsc==1 txtx=pos.txt[0]
-		else txtx=pos.txt[1]
-		scr_draw_text(c_white, 1, 0, font_puhui_32, 0, 0, global.talk_print, 
-						tfx+txtx, tfy+ysc*pos.txt[2], 1, 1, -1, -1, -1, 0);
+		var txtx, txty, txtdx, txtdy;
+		if xsc==1 txtx=pos.txtpx[0]
+		else txtx=pos.txtpx[1]
+		if ysc==1 txty=pos.txtpy[1]
+		else txty=pos.txtpy[0]
+		txtdx=tfx+txtx
+		txtdy=tfy*-ysc+txty
+		scr_draw_text(blend, 1, 0, font_puhui_32, 0, 0, global.talk_print[i], 
+						txtdx, txtdy, 1, 1, -1, -1, -1, 0);
 		//对话选项
-		if array_length(global.talk_options)>0 
+		if array_length(global.talk_options[i])>0 
 		&& scr_talk_print_over(){
-			var printh=string_height(global.talk_print);
-			
-			
+			var printh=string_height(global.talk_print[i]),
+				optiondy=0;
+			//默认最多两个选项
+			for(var o=0;o<min(array_length(global.talk_options[i]), talk_select_begin+2);o++) {
+				var optiontxt=global.talk_options[i][o];
+				scr_draw_text(blend, 1, 0, font_puhui_32, 0, 0, optiontxt, 
+								txtdx+128, txtdy+optiondy, 1, 1, -1, -1, -1, 0);
+				//游标
+				if global.talk_select[i]==o {
+					draw_sprite_ext(spr_ui_grd_talk_point, 0, txtdx+96, txtdy+optiondy, 1, 1, 0, blend, 1)
+				}
+				optiondy+=string_height(optiontxt);
+			}
 		}
 	}
 }
