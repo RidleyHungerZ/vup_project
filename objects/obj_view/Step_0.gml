@@ -37,13 +37,13 @@ if global.operate==1
 #endregion
 #region 对话框
 if global.talk==0.5 {
-	if talk_rate<1 talk_rate+=0.1
+	if talk_rate<1 talk_rate+=0.05
 	else {
 		talk_rate=1
 		global.talk=1
 	}
 } else if global.talk==-0.5 {
-	if talk_rate>0 talk_rate-=0.1
+	if talk_rate>0 talk_rate-=0.05
 	else {
 		talk_rate=0
 		global.talk=0
@@ -61,7 +61,7 @@ if global.talk==0.5 {
 	}
 	if global.talk_print_len[now]<global.talk_txt_len[now] {
 		var printspeed=0.25
-		if talk_print_fast printspeed=10
+		if talk_print_fast printspeed=4
 		repeat max(1, printspeed) {
 			//特殊标签处理
 			var nextpart = string_delete(global.talk_txt[now],1,floor(global.talk_print_len[now]))

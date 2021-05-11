@@ -14,7 +14,7 @@ if talk_action==0 {
 			image_xscale=sign_no0(obj_player.x-x)
 		else
 			obj_player.x=sign_no0(x-obj_player.x)
-		scr_talk_start(talk_inx, start_now)
+		scr_talk_start(talk_inx, start_now, -image_xscale)
 		talk_start()
 		txt_inx=0
 		global.operate=0

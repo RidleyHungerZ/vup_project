@@ -15,6 +15,6 @@ txts2=[
 ]
 //对话开始
 talk_start=function() {
-	scr_talk(TALK_INX.up, "", shoto_type, 0, 0, image_xscale, [])
-	scr_talk(TALK_INX.down, txts1[0], shoto_type, 0, 0, image_xscale, [])
+	scr_talk(TALK_INX.up, "", shoto_type, 0, 0, [])
+	scr_talk(TALK_INX.down, txts1[0], shoto_type, 0, 0, [])
 }

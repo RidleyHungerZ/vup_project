@@ -303,7 +303,7 @@ if global.talk!=0 {
 	for(var i=1;i<=2;i++) {
 		if global.talk_inx!=0 && global.talk_inx!=i continue
 		var ysc=sign(i-1.5),
-			xsc=-ysc*global.talk_inx_xscale,
+			xsc=ysc*global.talk_inx_xscale,
 			blend=c_white
 		tfy=-(400*(1-talk_rate))
 		if i!=global.talk_now blend=merge_color(c_black, c_white, 0.5)

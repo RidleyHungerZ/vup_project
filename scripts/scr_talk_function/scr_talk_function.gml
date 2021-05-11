@@ -5,10 +5,12 @@ function scr_talk_ing() {
 /// @desc 开启对话
 /// @arg inx 对话框使用，0全用，1上2下
 /// @arg now 当前开启对话框
-function scr_talk_start(inx, now) {
+/// @arg xscale 左右翻转
+function scr_talk_start(inx, now, xscale) {
 	global.talk=0.5
 	global.talk_inx=inx
 	global.talk_now=now
+	global.talk_inx_xscale=xscale
 	obj_view.talk_init()
 }
 /// @desc 结束对话
@@ -21,11 +23,9 @@ function scr_talk_end(){
 /// @arg type 人物类型
 /// @arg shoto 头像
 /// @arg name 名字
-/// @arg xscale 左右翻转
 /// @arg options 选项
-function scr_talk(now, txt, type, shoto, name, xscale, options){
+function scr_talk(now, txt, type, shoto, name, options){
 	global.talk_now=now
-	global.talk_inx_xscale=xscale
 	global.talk_txt[now]=txt
 	global.talk_txt_len[now]=string_length(txt)
 	global.talk_print[now]=""

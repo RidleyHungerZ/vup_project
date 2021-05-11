@@ -1,7 +1,9 @@
 function scr_room_beginstep_test(){
+var prg=0
 #region 测试BOSS
 if room==room_test 
 && !scr_boss_isget(0) {
+	prg=0
 	if between(obj_player.x, 1024, true, 1536, true) 
 	&& between(obj_player.y, 0, true, 288, true) {
 		#region 前戏
@@ -21,7 +23,8 @@ if room==room_test
 				time=60
 			}
 		}
-		else if action==3 && time==0 {
+		thread_talk_execute(prg, 3, 4, 30)
+		if action==4 && time==0 {
 			scr_room_bosswar_start(bgm_boss1, bgm_stage1)
 		}
 		#endregion

@@ -18,6 +18,17 @@ for(var i=0;i<4;i++) {
 	layerBgsBack[i]="back_bgs"+string_real_supply0(i, 2)
 }
 
+#region 文本
+//设置剧情演绎
+global.txt_thread_set=array_create(100, {})
+//具体演绎文本
+global.txt_thread=array_create(100, [])
+//演绎变量
+talk_action=0
+talk_txt_thread=-1
+talk_txt_index=0
+#endregion
+
 /// @desc 门关闭后可移动
 function scr_room_doorclose_canoper() {
 	if(global.operate==0.9 && global.player_hp>0) return true;
