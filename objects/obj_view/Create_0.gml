@@ -19,6 +19,7 @@ ui={
 	wport : VIEW_W_UI,
 	hport : VIEW_H_UI,
 	winsize : [
+		//{w: VIEW_W*1, h: VIEW_H*1},
 		{w: VIEW_W*2, h: VIEW_H*2},
 		{w: VIEW_W*3, h: VIEW_H*3},
 		{w: VIEW_W_UI, h: VIEW_H_UI},
@@ -111,7 +112,6 @@ talk_init = function() {
 talk_init()
 talk_rate=0 //对话框位置
 talk_print_fast=false //快速打印
-scr_talk_txt_name()
 #endregion
 #region 房间存储
 room_range_inst=noone //当前房间对应对象

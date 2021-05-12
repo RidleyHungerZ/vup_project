@@ -71,7 +71,7 @@ else if action==7 {
 		time=10
 	}
 }
-else if action==8 && time==0 {
+else if action==8 {
 	view_white_alpha=(time/10)
 	if time==0 {
 		view_white_alpha=0

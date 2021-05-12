@@ -64,6 +64,24 @@ function scr_enmus(){
 		up,
 		down
 	}
+	enum PLAYER_SHOTO {
+		normal, //平常
+		beiShang, //悲伤
+		chaoFeng, //嘲讽
+		chaoFeng2, //嘲讽2
+		huangZhang, //慌张
+		jianDing, //坚定
+		jingXi, //惊喜
+		kaiXin, //开心
+		kuMen, //苦闷
+		meiShuiXing, //没睡醒
+		meiShuiXing2, //没睡醒2
+		fenNu, //愤怒
+		weiXiao, //微笑
+		wuNai, //无奈
+		yiHuo, //疑惑
+		ziXin, //自信
+	}
 	#endregion
 	#region 道具
 	enum ITEM {

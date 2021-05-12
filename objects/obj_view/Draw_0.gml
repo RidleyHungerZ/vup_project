@@ -309,7 +309,7 @@ if global.talk!=0 {
 		if i!=global.talk_now blend=merge_color(c_black, c_white, 0.5)
 		//名字
 		var namefw=sprite_get_width(spr_ui_grd_talk_name),
-			nametxt=global.txt_names[global.talk_name[i]],
+			nametxt=global.txt_names[global.talk_shoto_type[i]][global.talk_name[i]],
 			nametxtw=string_width(nametxt),
 			drawx=pos.namef[0],
 			txtleft=(xsc==1) ? 0 : 1;
@@ -323,18 +323,23 @@ if global.talk!=0 {
 						xsc, ysc, 0, blend, 1);
 		scr_draw_text(blend, 1, 0, font_puhui_32, txtleft, 0.5, nametxt, 
 						xmirror(tfx+pos.name[0], xsc), yflip(tfy+pos.name[1], ysc)+(ysc==-1 ? 8 : 0), 1, 1, -1, -1, -1, 0);
-		//框架
-		draw_sprite_ext(spr_ui_grd_talk, 0, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
+		//头像黑底
+		draw_sprite_ext(spr_ui_grd_talk, 1, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
 						xsc, ysc, 0, blend, 1);
 		//头像
 		var shotospr
-		if global.talk_shoto_type[i]==TALK_SHOTO.player 
-			shotospr=spr_ui_grd_talk_shoto_player
+		if global.talk_shoto_type[i]==TALK_SHOTO.player {
+			if xsc==1 shotospr=spr_ui_grd_talk_shoto_player
+			else shotospr=spr_ui_grd_talk_shoto_player_left
+		}
 		else if global.talk_shoto_type[i]==TALK_SHOTO.boss
 			shotospr=spr_ui_grd_talk_shoto_boss
 		else if global.talk_shoto_type[i]==TALK_SHOTO.npc
 			shotospr=spr_ui_grd_talk_shoto_npc
 		draw_sprite_ext(shotospr, global.talk_shoto[i], xmirror(tfx+pos.shoto[0], xsc), yflip(tfy+pos.shoto[1], ysc), 1, 1, 0, blend, 1);
+		//框架
+		draw_sprite_ext(spr_ui_grd_talk, 0, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
+						xsc, ysc, 0, blend, 1);
 		//对话内容
 		var txtx, txty, txtdx, txtdy;
 		if xsc==1 txtx=pos.txtpx[0]

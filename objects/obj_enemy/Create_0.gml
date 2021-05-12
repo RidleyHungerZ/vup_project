@@ -273,4 +273,35 @@ deathBoomPart = function(partspr) {
 	if(variable_instance_exists(id,"death_repeat")) 
 		if death_repeat=0 instance_destroy();
 }
+//跑步判断前方
+walkGround = function(hspd) {
+	if collision_rectangle(bbox_right+4,bbox_bottom+GRDY-4,bbox_left,bbox_top,obj_ground,1,1)
+	|| collision_rectangle(bbox_right,bbox_bottom+GRDY-4,bbox_left-4,bbox_top,obj_ground,1,1)
+	||(!collision_rectangle(bbox_right+4,bbox_bottom+GRDY+8,bbox_right,bbox_bottom+GRDY,obj_ground,1,1)
+	&&!collision_rectangle(bbox_right+4,bbox_bottom+GRDY+8,bbox_right,bbox_bottom+GRDY,obj_floor,1,1)
+	&& sign(hspd)=1)
+	||(!collision_rectangle(bbox_left,bbox_bottom+GRDY+8,bbox_left-4,bbox_bottom+GRDY,obj_ground,1,1)
+	&&!collision_rectangle(bbox_left,bbox_bottom+GRDY+8,bbox_left-4,bbox_bottom+GRDY,obj_floor,1,1)
+	&& sign(hspd)=-1) {
+		return true
+	}
+}
+//杂兵发现目标（矩形）
+scr_enemy_find_target = function(frtx, bckx, topy, btny, colline) {
+	//var frtx=argument0,     //前方发现范围
+	//    bckx=argument1,     //后方发现范围
+	//    topy=argument2,     //上方发现范围
+	//    btny=argument3,     //下方发现范围
+	//    colline=argument4,  //是否检测中间墙壁
+	var target=noone
+	//先默认查看玩家是否在范围内
+	if (between((obj_player.x-x)*image_xscale, 0, true, frtx, true) 
+	 || between((x-obj_player.x)*image_xscale, 0, true, bckx, true))
+	&& (between((y-obj_player.y), 0, true, topy, true) 
+	 || between((obj_player.y-y), 0, true, btny, true))
+	&& ((colline && !collision_line(x, y, obj_player.x, obj_player.y, obj_ground, 1, 1))
+	 || !colline)
+	    target=obj_player
+	return target
+}
 #endregion
