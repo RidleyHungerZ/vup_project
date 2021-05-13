@@ -19,6 +19,15 @@ function scr_viewroom_inroom(){
 					global.room_xr=bbox_right+1
 					global.room_yb=bbox_bottom+1
 					other.room_range_inst=id
+					//房间边缘
+					if global.room_xl==0 
+						global.room_xl=0-VIEW_W
+					if global.room_xr==room_width 
+						global.room_xl=room_width+VIEW_W
+					if global.room_yt==0 
+						global.room_yt=0-VIEW_H
+					if global.room_yb==room_height 
+						global.room_yb=room_height+VIEW_H
 				}
 				if between(obj_player.x, range_out[0], true, range_out[2], true)
 				&& between(obj_player.y, range_out[1], true, range_out[3], true) {

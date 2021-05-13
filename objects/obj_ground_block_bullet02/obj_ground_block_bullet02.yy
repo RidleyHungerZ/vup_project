@@ -1,12 +1,15 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_ground_block_ground02",
+    "path": "sprites/spr_ground_block_ground02/spr_ground_block_ground02.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_flyground",
-    "path": "objects/obj_flyground/obj_flyground.yy",
+    "name": "obj_ground_block_bullet",
+    "path": "objects/obj_ground_block_bullet/obj_ground_block_bullet.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -20,9 +23,7 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-  ],
+  "eventList": [],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
@@ -30,7 +31,7 @@
     "path": "folders/Objects/ground/ground/block.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_ground_block",
+  "name": "obj_ground_block_bullet02",
   "tags": [],
   "resourceType": "GMObject",
 }

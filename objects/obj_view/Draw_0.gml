@@ -249,8 +249,8 @@ if operate_rate>0 {
 		var hpcounts=(global.boss_hp div hpupmax),
 			hpcols=array_create(hpcounts+1, c_white)
 		hpcols[0]=c_white
-		hpcols[1]=$a0c53c
-		hpcols[2]=$bd7843
+		hpcols[1]=$d4d42c
+		hpcols[2]=$c77638
 		for(var i=0;i<=hpcounts;i++) {
 			var _hp=min(global.boss_hp-i*hpupmax, hpupmax),
 				_hpaft=min(global.boss_hp_aft-i*hpupmax, hpupmax);
@@ -367,6 +367,19 @@ if global.talk!=0 {
 				optiondy+=string_height(optiontxt);
 			}
 		}
+	}
+}
+#endregion
+#region 小对话
+if global.tip_talk!=0 {
+	var tfx=1200, tfy=944;
+	if global.boss_war==1 tfy=848;
+	//底框
+	draw_sprite_ext(spr_ui_grd_info, 0, tfx, tfy, 1, tip_talk_rate, 0, c_white, 1)
+	//文字
+	if global.tip_talk==1 {
+		scr_draw_text(blend, 1, 0, font_puhui_32, 0, 0, global.tip_talk_print, 
+						tfx+64, tfy-32, 1, 1, -1, -1, -1, 0);
 	}
 }
 #endregion

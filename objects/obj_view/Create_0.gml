@@ -113,6 +113,21 @@ talk_init()
 talk_rate=0 //对话框位置
 talk_print_fast=false //快速打印
 #endregion
+#region 小提示
+global.tip_talk=0 //小提示
+tip_init = function() {
+	global.tip_talk_txt_list=[]
+	global.tip_talk_txt="" //对话内容
+	global.tip_talk_txt_len=0 //对话内容
+	global.tip_talk_print="" //对话输出内容（打字机当前）
+	global.tip_talk_print_len=0 //对话输出内容长度
+	tip_talk_index=0 //当前信息编号
+}
+tip_init()
+tip_talk_rate=0 //小提示缓动
+tip_talk_time=0 //等待时间
+tip_talk_time_up=180
+#endregion
 #region 房间存储
 room_range_inst=noone //当前房间对应对象
 room_range_sets=ds_map_create()
