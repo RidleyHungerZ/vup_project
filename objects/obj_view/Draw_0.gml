@@ -373,13 +373,13 @@ if global.talk!=0 {
 #region 小对话
 if global.tip_talk!=0 {
 	var tfx=1200, tfy=944;
-	if global.boss_war==1 tfy=848;
+	if global.boss_war==1 tfy=800;
 	//底框
 	draw_sprite_ext(spr_ui_grd_info, 0, tfx, tfy, 1, tip_talk_rate, 0, c_white, 1)
 	//文字
 	if global.tip_talk==1 {
-		scr_draw_text(blend, 1, 0, font_puhui_32, 0, 0, global.tip_talk_print, 
-						tfx+64, tfy-32, 1, 1, -1, -1, -1, 0);
+		scr_draw_text(c_white, 1, 0, font_puhui_32, 0, 0, global.tip_talk_print, 
+						tfx+64, tfy-48, 1, 1, -1, -1, -1, 0);
 	}
 }
 #endregion

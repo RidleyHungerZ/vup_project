@@ -23,7 +23,7 @@ function scr_enemy_step(){
 #region 判定恢复
 	if(injure_unrepeat!=0 
 	|| injure_unrepeat_undm!=0){
-		var damage=collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_player_attack,1,1),
+		var damage=instance_place(x, y, obj_player_attack),
 			noplace=false;
 		if(damage) {
 			if(damage.attack<=0) {
@@ -36,6 +36,22 @@ function scr_enemy_step(){
 			injure_unrepeat=0;
 			injure_unrepeat_undm=0;
 		}
+	}
+#endregion
+#region 无敌时间
+	crash=0;
+	if(uninjure!=_uninjure) {
+		crash=1;
+		untime=untime_set;
+	}
+	_uninjure=uninjure;
+	if(hp<=0) 
+		attack=0;
+	if(untime>0) 
+		untime-=1;
+	else{
+		untime=0;
+		uninjure=0;
 	}
 #endregion
 #region 属性伤害计时

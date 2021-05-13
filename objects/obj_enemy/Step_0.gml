@@ -214,19 +214,3 @@ else{
 		gravity=grav;
 }
 #endregion
-#region 无敌时间
-crash=0;
-if(uninjure!=_uninjure) {
-	crash=1;
-	untime=untime_set;
-}
-_uninjure=uninjure;
-if(hp<=0) 
-	attack=0;
-if(untime>0) 
-	untime-=1;
-else{
-	untime=0;
-	uninjure=0;
-}
-#endregion

@@ -104,58 +104,65 @@ if global.talk==0.5 {
 }
 #endregion
 #region 小提示
-if global.tip_talk==0.5 {
-	if tip_talk_rate<0 tip_talk_rate+=0.05
-	else {
-		tip_talk_rate=1
-		global.tip_talk=1
-		global.tip_talk_txt=global.tip_talk_txt_list[tip_talk_index]
-		global.tip_talk_txt_len=string_length(global.tip_talk_txt)
-	}
-} else if global.tip_talk==-0.5 {
-	if tip_talk_rate>0 tip_talk_rate-=0.05
-	else {
-		tip_talk_rate=0
-		global.tip_talk=0
-		tip_init()
-	}
-} else if global.tip_talk==1 {
-	if global.tip_talk_print_len<global.tip_talk_txt_len {
-		var printspeed=0.25
-		repeat max(1, printspeed) {
-			//特殊标签处理
-			var nextpart = string_delete(global.tip_talk_txt,1,floor(global.tip_talk_print_len))
-			if string_startwith(nextpart, TXT_COL_PERFIX) {
-				global.tip_talk_print_len+=string_pos(TXT_COL_SURFIX, nextpart)+1
-			} else if string_startwith(nextpart, TXT_ICON_PERFIX) {
-				global.tip_talk_print_len+=string_pos(TXT_ICON_SURFIX, nextpart)+1
-			} else {
-				global.tip_talk_print_len+=min(1, printspeed)
-			}
-			//快速跳过空格
-			if frac(global.tip_talk_print_len)==0{
-				while string_char_at(global.tip_talk_txt, global.tip_talk_print_len)==" " 
-				&& global.tip_talk_print_len<global.tip_talk_txt_len
-					global.tip_talk_print_len++
-			}
-			if global.tip_talk_print_len==global.tip_talk_txt_len break
-		}
-	} else {
-		if tip_talk_time<tip_talk_time_up tip_talk_time++
+if scr_menu_trem() {
+	if global.tip_talk==0.5 {
+		if tip_talk_rate<0 tip_talk_rate+=0.05
 		else {
-			tip_talk_time=0
-			tip_talk_index++
-			if tip_talk_index<array_length(global.tip_talk_txt_list) {
-				global.tip_talk_txt=global.tip_talk_txt_list[tip_talk_index]
-				global.tip_talk_txt_len=string_length(global.tip_talk_txt)
-				global.tip_talk_print_len=0
-				global.tip_talk_print=""
-			} else {
-				scr_tip_talk_end()
+			tip_talk_rate=1
+			global.tip_talk=1
+			global.tip_talk_txt=global.tip_talk_txt_list[tip_talk_index]
+			global.tip_talk_txt_len=string_length(global.tip_talk_txt)
+		}
+	} else if global.tip_talk==-0.5 {
+		if tip_talk_rate>0 tip_talk_rate-=0.05
+		else {
+			tip_talk_rate=0
+			global.tip_talk=0
+			tip_init()
+		}
+	} else if global.tip_talk==1 {
+		if global.tip_talk_print_len<global.tip_talk_txt_len {
+			var printspeed=0.25
+			repeat max(1, printspeed) {
+				//特殊标签处理
+				var nextpart = string_delete(global.tip_talk_txt,1,floor(global.tip_talk_print_len))
+				if string_startwith(nextpart, TXT_COL_PERFIX) {
+					global.tip_talk_print_len+=string_pos(TXT_COL_SURFIX, nextpart)+1
+				} else if string_startwith(nextpart, TXT_ICON_PERFIX) {
+					global.tip_talk_print_len+=string_pos(TXT_ICON_SURFIX, nextpart)+1
+				} else {
+					global.tip_talk_print_len+=min(1, printspeed)
+				}
+				//快速跳过空格
+				if frac(global.tip_talk_print_len)==0{
+					while string_char_at(global.tip_talk_txt, global.tip_talk_print_len)==" " 
+					&& global.tip_talk_print_len<global.tip_talk_txt_len
+						global.tip_talk_print_len++
+				}
+				if global.tip_talk_print_len==global.tip_talk_txt_len break
+			}
+		} else {
+			if tip_talk_time<tip_talk_time_up tip_talk_time++
+			else {
+				tip_talk_time=0
+				tip_talk_index++
+				if tip_talk_index<array_length(global.tip_talk_txt_list) {
+					global.tip_talk_txt=global.tip_talk_txt_list[tip_talk_index]
+					global.tip_talk_txt_len=string_length(global.tip_talk_txt)
+					global.tip_talk_print_len=0
+					global.tip_talk_print=""
+				} else {
+					scr_tip_talk_end()
+				}
 			}
 		}
+		//获得当前打印内容
+		global.tip_talk_print=string_copy(global.tip_talk_txt, 1, floor(global.tip_talk_print_len))
+		//非活动状态关闭
+		if global.operate!=1
+		|| global.player_operate!=1 {
+			scr_tip_talk_end()
+		}
 	}
-	//获得当前打印内容
-	global.tip_talk_print=string_copy(global.tip_talk_txt, 1, floor(global.tip_talk_print_len))
 }
 #endregion

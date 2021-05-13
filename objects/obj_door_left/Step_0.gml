@@ -20,12 +20,13 @@ if action==0 {
 			with obj_player {
 				image_xscale=other.open_xscale
 				if jump==0 {
+					if sprite_index!=SS_walk
+						scr_sprite_change(SS_walk, 0, 0.25)
 					walk=0
-					scr_sprite_change(SS_walk, 0, 0.25)
 					hsp=0
 				} else {
-					jump=PYJUMP.fall
 					scr_sprite_change(SS_jumped, 0, 0.25)
+					jump=PYJUMP.fall
 					hsp=0
 					vsp=0
 				}

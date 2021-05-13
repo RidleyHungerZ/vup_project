@@ -1,4 +1,3 @@
-scr_view_inroom()
 #region 场景切换过度
 if global.operate>0
 && global.operate<1{

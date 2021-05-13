@@ -2,7 +2,7 @@ function scr_player_flyobj_move() {
 	var ground1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_top,obj_flyground,1,1),		//全身+足下
 		ground3=collision_rectangle(bbox_right+2,bbox_bottom+GRDY,bbox_left-2,bbox_top,obj_flyground,1,1),	//左右
 		ground4=collision_rectangle(bbox_right,bbox_top,bbox_left,bbox_top-1,obj_flyground,1,1),		//头上
-		floor1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_flyfloor,1,1),	//足下
+		floor1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_flyfloor,1,1),	//半透板足下
 		//line=collision_rectangle(bbox_right,bbox_top,bbox_left,bbox_top-16,obj_flyline,1,1),			//头上
 		pre_flyobj=flyobj, //上一帧接触的飞行物
 		upfloor = false //是否踩在半透板上
@@ -37,14 +37,14 @@ function scr_player_flyobj_move() {
 		if abs(fhsp)>0{
 			//飞行物是墙壁，考虑挤压
 			if instance_is_object(flyobj, obj_flyground){
-				if !place_meeting(x-hsp,y,flyobj){//被推动
+				if !collision_rectangle(bbox_right-hsp, bbox_bottom+GRDY, bbox_left-hsp, bbox_top, flyobj, 1, 1){//被推动
 					var grd = noone
 					do{
 						grd = collision_rectangle(bbox_right+min(sign(fhsp),0),bbox_bottom+GRDY-1,bbox_left+max(sign(fhsp),0),bbox_top+1,obj_ground,1,1)
 						if instance_exists(grd) && grd!=flyobj x-=sign(fhsp)
 						else grd = noone
 					}until !(instance_exists(grd) && grd!=flyobj)
-				} //else while place_meeting(x,y,flyobj) x+=sign(hsp)
+				} //else while collision_rectangle(bbox_right, bbox_bottom+GRDY, bbox_left, bbox_top, flyobj, 1, 1) x+=sign(hsp)
 			}
 			//线或者板子，碰到墙壁强制挤压出来
 			else{
@@ -62,14 +62,14 @@ function scr_player_flyobj_move() {
 		if abs(fvsp)>0{
 			//飞行物是墙壁，考虑挤压
 			if instance_is_object(flyobj, obj_flyground){
-				if !place_meeting(x,y-fvsp,flyobj){//被推动抬上或者压下
+				if !collision_rectangle(bbox_right, bbox_bottom+GRDY-fvsp, bbox_left, bbox_top, flyobj, 1, 1){//被推动抬上或者压下
 					var grd = noone
 					do{
 						grd = collision_rectangle(bbox_right,bbox_bottom+GRDY+min(sign(fvsp),0),bbox_left,bbox_top+max(sign(fvsp),0),obj_ground,1,1)
 						if instance_exists(grd) && grd!=flyobj y-=sign(fvsp)
 						else grd = noone
 					}until !(instance_exists(grd) && grd!=flyobj)
-				} //else while place_meeting(x,y,flyobj) y+=sign(vsp)
+				} //else while collision_rectangle(bbox_right, bbox_bottom+GRDY, bbox_left, bbox_top, flyobj, 1, 1) y+=sign(vsp)
 			}
 			//线或者板子，碰到墙壁强制挤压出来
 			else{
@@ -87,19 +87,19 @@ function scr_player_flyobj_move() {
 		}
 		//如果是这一帧才接触，则强制坐标小数位校准
 		if !instance_exists(pre_flyobj){
-			if flyobj.hspeed>0 && in(flyobj, [ground3]){
+			if fhsp>0 && in(flyobj, [ground3]){
 				x=floor(x)
 				if x<flyobj.bbox_left x+=frac(flyobj.bbox_left)
 				else if x>flyobj.bbox_right x+=frac(flyobj.bbox_right)
-				while place_meeting(x,y,flyobj) 
-					x+=sign(flyobj.hspeed)
+				while collision_rectangle(bbox_right, bbox_bottom+GRDY, bbox_left, bbox_top, flyobj, 1, 1) 
+					x+=sign(fhsp)
 			}
-			if flyobj.vspeed>0 && in(flyobj, [ground1, ground4]){
+			if fvsp>0 && in(flyobj, [ground1, ground4]){
 				y=floor(y)
 				if y<flyobj.bbox_top y+=frac(flyobj.bbox_top)
 				else if y>flyobj.bbox_bottom y+=frac(flyobj.bbox_bottom)
-				while place_meeting(x,y,flyobj) 
-					y+=sign(flyobj.vspeed)
+				while collision_rectangle(bbox_right, bbox_bottom+GRDY, bbox_left, bbox_top, flyobj, 1, 1) 
+					y+=sign(fvsp)
 			}
 		}
 	}

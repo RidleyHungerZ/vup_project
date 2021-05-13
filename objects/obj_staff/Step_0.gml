@@ -82,16 +82,9 @@ if keyboard_check_pressed(vk_delete) {
 	global.player_hp=0
 } 
 else if keyboard_check_pressed(vk_f9) {
-	if !instance_exists(obj_ui_warning)
-		instance_create_depth(x, y, obj_view.depth-1, obj_ui_warning)
-}
-else if keyboard_check_pressed(vk_f10) {
-	if !instance_exists(obj_ui_mission_start)
-		instance_create_depth(x, y, obj_view.depth-1, obj_ui_mission_start)
-}
-else if keyboard_check_pressed(vk_f11) {
-	if !instance_exists(obj_ui_warning)
-		instance_create_depth(x, y, obj_view.depth-1, obj_ui_mission_complete)
+	if !scr_tip_talk_ing() {
+		scr_tip_talk(["提示对话1", "提示对话2\n换行测试"])
+	}
 }
 if keyboard_check(vk_control) 
 &&(global.fps_curr mod 3 == 0){
