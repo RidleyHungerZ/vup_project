@@ -91,11 +91,11 @@
     "PhysicsWorldPixToMetres": 0.1,
   },
   "parent": {
-    "name": "game_start",
-    "path": "folders/Rooms/game_start.yy",
+    "name": "Rooms",
+    "path": "folders/Rooms.yy",
   },
   "resourceVersion": "1.0",
-  "name": "room_start",
+  "name": "room_areax",
   "tags": [],
   "resourceType": "GMRoom",
 }
