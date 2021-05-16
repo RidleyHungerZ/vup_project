@@ -66,7 +66,7 @@
       ],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"back","tags":[],"resourceType":"GMRLayer",},
   ],
   "inheritLayers": false,
-  "creationCodeFile": "",
+  "creationCodeFile": "${project_dir}/rooms/room_start/RoomCreationCode.gml",
   "inheritCode": false,
   "instanceCreationOrder": [],
   "inheritCreationOrder": false,

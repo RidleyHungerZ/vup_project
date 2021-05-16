@@ -166,3 +166,29 @@ if scr_menu_trem() {
 	}
 }
 #endregion
+#region 任务开始/结束
+if mission_time>0 mission_time--
+else mission_time=0
+//任务开始
+if mission_action==1 {
+	if !instance_exists(obj_ui_mission_start) {
+		mission_action=1.1
+		mission_time=30
+	}
+} else if mission_action==1.1 {
+	mission_action=0
+	mission_time=0
+	scr_room_freedom()
+}
+//任务结束
+if mission_action==2 {
+	if !instance_exists(obj_ui_mission_complete) {
+		mission_action=2.1
+		mission_time=30
+	}
+} else if mission_action==2.1 {
+	mission_action=0
+	mission_time=0
+	scr_room_freedom()
+}
+#endregion

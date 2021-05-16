@@ -38,7 +38,7 @@ else {
 			var xrate=0, yrate=1;
 			if frac(action)==0 xrate=(time/10);
 			else {
-				yrate=max(0, (time-20)/10);
+				yrate=max(0, (time-25)/5);
 			}
 			draw_sprite(spr_logo_txt_bgs, 0, txtsx, drawy)
 			draw_sprite_ext(spr_logo_txt_frame, 0, txtsx-16*xrate, drawy-16*yrate, 1, 1, 0, c_white, 1)

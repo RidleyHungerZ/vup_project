@@ -56,6 +56,7 @@ else if select_type==1 {
 	else if action==1.2 {
 		if scr_view_transition_Isover(1) {
 			scr_room_goto(room_test)
+			testmode()
 		}
 	}
 	//设置
@@ -72,7 +73,7 @@ else if select_type==1 {
 			&& keystate_check_pressed(global.B_state) {
 				scr_sound_menu_play(se_menu_cancle)
 				scr_view_transition(1, 0)
-				menu_select[0]=0
+				menu_select[2][0]=0
 				other.action=1.32
 			} else scr_menu_option_code()
 		}
@@ -123,8 +124,7 @@ else if select_type==2 {
 	//黑屏结束
 	else if action==2.2 {
 		if scr_view_transition_Isover(1) {
-			//scr_room_goto(room_start)
-			scr_room_goto(room_area0_1)
+			scr_room_goto(room_start)
 		}
 	}
 }

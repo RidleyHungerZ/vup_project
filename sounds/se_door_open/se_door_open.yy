@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "se_door_open.wav",
-  "duration": 1.056156,
+  "duration": 1.712029,
   "parent": {
     "name": "door",
     "path": "folders/Sounds/door.yy",

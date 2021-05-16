@@ -6,7 +6,7 @@ bosswar_bgm=noone
 restart_bgm=noone
 direct=0
 
-for(var i=0;i<4;i++) {
+for(var i=1;i<=4;i++) {
 	layerInstFront[i]="front_inst"+string_real_supply0(i, 2)
 	layerTileFront[i]="front_tile"+string_real_supply0(i, 2)
 	layerBgsFront[i]="front_bgs"+string_real_supply0(i, 2)

@@ -26,7 +26,9 @@ if talk_action==0 {
 } else if talk_action==1 {
 	if global.talk==1
 		talk_action=2
-} else if talk_action==-1 {
+} 
+//对话结束
+else if talk_action==-1 {
 	scr_talk_end()
 	talk_action=-2
 } else if talk_action==-2 {

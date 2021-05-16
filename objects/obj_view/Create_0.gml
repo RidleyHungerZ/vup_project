@@ -189,4 +189,16 @@ get_hp_surface = function(hp, up, rate) {
 	return hpsurf
 }
 #endregion
+#region 任务开始/结束
+mission_action=0
+mission_time=0
+missionStart=function() {
+	instance_create_depth(0, 0, obj_view.depth-1, obj_ui_mission_start)
+	mission_action=1
+}
+missionComplete=function() {
+	instance_create_depth(0, 0, obj_view.depth-1, obj_ui_mission_start)
+	mission_action=2
+}
+#endregion
 event_perform(ev_other, ev_room_start)

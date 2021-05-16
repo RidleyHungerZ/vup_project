@@ -81,11 +81,6 @@ else if global.skip==2{
 if keyboard_check_pressed(vk_delete) {
 	global.player_hp=0
 } 
-else if keyboard_check_pressed(vk_f9) {
-	if !scr_tip_talk_ing() {
-		scr_tip_talk(["提示对话1", "提示对话2\n换行测试"])
-	}
-}
 if keyboard_check(vk_control) 
 &&(global.fps_curr mod 3 == 0){
 	if keyboard_check(vk_up) {
@@ -109,6 +104,30 @@ if keyboard_check(vk_control)
 		} else if keyboard_check(vk_numpad2) {
 			global.boss_hp--
 			scr_sound_play(se_item_mp)
+		}
+	}
+}
+if debug_mode {
+	if keyboard_check_pressed(vk_enter)
+	&& global.operate=1
+	&& global.player_operate=1{
+		var 
+		str=get_string("瞬移坐标：x,y,room(0),bgm",""),
+		pos=string_split(str,",")
+		if str!="" 
+		&& array_length(pos)>=3 {
+			obj_player.x=((pos[0]="x")?obj_player.x: real(pos[0]))
+			obj_player.y=((pos[1]="y")?obj_player.y: real(pos[1]))
+			var roompos=asset_get_index(pos[2])
+			if room_exists(roompos) scr_room_goto(roompos)
+			scr_view_set_with_inst(obj_player)
+			scr_relife_set_point(obj_player.x,obj_player.y+GRDY,obj_player.image_xscale)
+			if array_length(pos)=4 {
+				var bgmname = pos[3], bgm=asset_get_index(pos[3])
+				if audio_exists(bgm) audio_bgm_change(bgm)
+			}
+			instance_activate_all()
+			exit
 		}
 	}
 }

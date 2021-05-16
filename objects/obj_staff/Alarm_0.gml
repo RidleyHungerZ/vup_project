@@ -34,7 +34,7 @@ if player_death_action=2{
 		//global.player_life-=1
 		with obj_player{
 			x=global.re_x
-			y=global.re_y
+			y=global.re_y-GRDY
 			image_xscale=global.re_xscale
 			scr_sprite_change(SS_idle,0,0.25)
 		}

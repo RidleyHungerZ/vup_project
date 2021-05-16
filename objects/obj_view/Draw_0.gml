@@ -286,7 +286,7 @@ if global.talk!=0 {
 		shoto : [198, 194],
 		namef : [348, 267],
 		name  : [400, 292],
-		txtpx : [480, 64],
+		txtpx : [480, 48],
 		txtpy : [40, 864],
 	}, tfx=0, tfy=0, 
 	xmirror=function(px, xsc) {
@@ -321,23 +321,29 @@ if global.talk!=0 {
 		drawx+=(ceil(nametxtw/namefw)-1)*namefw
 		draw_sprite_ext(spr_ui_grd_talk_name, 2, xmirror(tfx+drawx, xsc), yflip(tfy+pos.namef[1], ysc),
 						xsc, ysc, 0, blend, 1);
-		scr_draw_text(blend, 1, 0, font_puhui_32, txtleft, 0.5, nametxt, 
+		scr_draw_text_ext(blend, 1, 0, font_puhui_32, txtleft, 0.5, nametxt, 
 						xmirror(tfx+pos.name[0], xsc), yflip(tfy+pos.name[1], ysc)+(ysc==-1 ? 8 : 0), 1, 1, -1, -1, -1, 0);
 		//头像黑底
 		draw_sprite_ext(spr_ui_grd_talk, 1, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
 						xsc, ysc, 0, blend, 1);
 		//头像
-		var shotospr
+		var shotospr, 
+			shotoxsc=xsc,
+			shotoinx=global.talk_shoto[i],
 		if global.talk_shoto_type[i]==TALK_SHOTO.player {
 			if xsc==1 shotospr=spr_ui_grd_talk_shoto_player
 			else shotospr=spr_ui_grd_talk_shoto_player_left
 		}
-		else if global.talk_shoto_type[i]==TALK_SHOTO.boss
+		else if global.talk_shoto_type[i]==TALK_SHOTO.boss {
 			shotospr=spr_ui_grd_talk_shoto_boss
-		else if global.talk_shoto_type[i]==TALK_SHOTO.npc
+		} else if global.talk_shoto_type[i]==TALK_SHOTO.npc {
 			shotospr=spr_ui_grd_talk_shoto_npc
-		draw_sprite_ext(shotospr, global.talk_shoto[i], xmirror(tfx+pos.shoto[0], xsc), yflip(tfy+pos.shoto[1], ysc), 1, 1, 0, blend, 1);
+			if shotoinx==0 shotoxsc=1
+		}
+		draw_sprite_ext(shotospr, shotoinx, xmirror(tfx+pos.shoto[0], xsc), yflip(tfy+pos.shoto[1], ysc), shotoxsc, 1, 0, blend, 1);
 		//框架
+		draw_sprite_ext(spr_ui_grd_talk_elecbgs, 0, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
+						xsc, ysc, 0, blend, 1);
 		draw_sprite_ext(spr_ui_grd_talk, 0, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
 						xsc, ysc, 0, blend, 1);
 		//对话内容
@@ -348,7 +354,7 @@ if global.talk!=0 {
 		else txty=pos.txtpy[0]
 		txtdx=tfx+txtx
 		txtdy=tfy*-ysc+txty
-		scr_draw_text(blend, 1, 0, font_puhui_32, 0, 0, global.talk_print[i], 
+		scr_draw_text_ext(blend, 1, 0, font_puhui_32, 0, 0, global.talk_print[i], 
 						txtdx, txtdy, 1, 1, -1, -1, -1, 0);
 		//对话选项
 		if array_length(global.talk_options[i])>0 
@@ -358,7 +364,7 @@ if global.talk!=0 {
 			//默认最多两个选项
 			for(var o=0;o<min(array_length(global.talk_options[i]), talk_select_begin+2);o++) {
 				var optiontxt=global.talk_options[i][o];
-				scr_draw_text(blend, 1, 0, font_puhui_32, 0, 0, optiontxt, 
+				scr_draw_text_ext(blend, 1, 0, font_puhui_32, 0, 0, optiontxt, 
 								txtdx+128, txtdy+optiondy, 1, 1, -1, -1, -1, 0);
 				//游标
 				if global.talk_select[i]==o {
@@ -378,7 +384,7 @@ if global.tip_talk!=0 {
 	draw_sprite_ext(spr_ui_grd_info, 0, tfx, tfy, 1, tip_talk_rate, 0, c_white, 1)
 	//文字
 	if global.tip_talk==1 {
-		scr_draw_text(c_white, 1, 0, font_puhui_32, 0, 0, global.tip_talk_print, 
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, global.tip_talk_print, 
 						tfx+64, tfy-48, 1, 1, -1, -1, -1, 0);
 	}
 }

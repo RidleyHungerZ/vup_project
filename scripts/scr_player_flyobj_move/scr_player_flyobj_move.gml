@@ -27,8 +27,8 @@ function scr_player_flyobj_move() {
 			fhsp=flyobj.hspeed
 			fvsp=flyobj.vspeed
 		} else if flyobj.path_speed!=0 {
-			fhsp=lengthdir_x(flyobj.path_speed, flyobj.direction)
-			fvsp=lengthdir_y(flyobj.path_speed, flyobj.direction)
+			fhsp=lengthdir_x(abs(flyobj.path_speed), flyobj.direction)
+			fvsp=lengthdir_y(abs(flyobj.path_speed), flyobj.direction)
 		}
 		//直球运行
 		x+=fhsp
@@ -50,11 +50,11 @@ function scr_player_flyobj_move() {
 			else{
 				while collision_rectangle(bbox_right+max(sign(fhsp),0),bbox_bottom+GRDY-1,bbox_left+min(sign(fhsp),0),bbox_top+1,obj_ground,1,1)
 					x-=sign(hsp)
-				//while collision_rectangle(bbox_right,bbox_bottom-1,bbox_right-1,bbox_top+1,obj_ground,1,1)
-				//&& !collision_rectangle(bbox_left+1,bbox_bottom-1,bbox_left,bbox_top+1,obj_ground,1,1)
+				//while collision_rectangle(bbox_right,bbox_bottom+GRDY-1,bbox_right-1,bbox_top+1,obj_ground,1,1)
+				//&& !collision_rectangle(bbox_left+1,bbox_bottom+GRDY-1,bbox_left,bbox_top+1,obj_ground,1,1)
 				//	x-=1
-				//while collision_rectangle(bbox_left+1,bbox_bottom-1,bbox_left,bbox_top+1,obj_ground,1,1)
-				//&& !collision_rectangle(bbox_right,bbox_bottom-1,bbox_right-1,bbox_top+1,obj_ground,1,1)
+				//while collision_rectangle(bbox_left+1,bbox_bottom+GRDY-1,bbox_left,bbox_top+1,obj_ground,1,1)
+				//&& !collision_rectangle(bbox_right,bbox_bottom+GRDY-1,bbox_right-1,bbox_top+1,obj_ground,1,1)
 				//	x+=1
 			}
 		}
@@ -77,11 +77,11 @@ function scr_player_flyobj_move() {
 					while collision_rectangle(bbox_right,bbox_bottom+GRDY+max(sign(fvsp),0),bbox_left,bbox_top+min(sign(fvsp),0),obj_ground,1,1)
 						y-=sign(fvsp)
 				}
-				//while collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-1,obj_ground,1,1)
+				//while collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-1,obj_ground,1,1)
 				//&& !collision_rectangle(bbox_right,bbox_top+1,bbox_left,bbox_top,obj_ground,1,1)
 				//	y-=1
 				//while collision_rectangle(bbox_right,bbox_top+1,bbox_left,bbox_top,obj_ground,1,1)
-				//&& !collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-1,obj_ground,1,1)
+				//&& !collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-1,obj_ground,1,1)
 				//	y+=1
 			}
 		}
@@ -89,15 +89,15 @@ function scr_player_flyobj_move() {
 		if !instance_exists(pre_flyobj){
 			if fhsp>0 && in(flyobj, [ground3]){
 				x=floor(x)
-				if x<flyobj.bbox_left x+=frac(flyobj.bbox_left)
-				else if x>flyobj.bbox_right x+=frac(flyobj.bbox_right)
+				if bbox_right<flyobj.bbox_left x+=frac(flyobj.bbox_left)
+				else if bbox_left>flyobj.bbox_right x+=frac(flyobj.bbox_right)
 				while collision_rectangle(bbox_right, bbox_bottom+GRDY, bbox_left, bbox_top, flyobj, 1, 1) 
 					x+=sign(fhsp)
 			}
 			if fvsp>0 && in(flyobj, [ground1, ground4]){
 				y=floor(y)
-				if y<flyobj.bbox_top y+=frac(flyobj.bbox_top)
-				else if y>flyobj.bbox_bottom y+=frac(flyobj.bbox_bottom)
+				if bbox_bottom+GRDY<flyobj.bbox_top y+=frac(flyobj.bbox_top)
+				else if bbox_top>flyobj.bbox_bottom+GRDY y+=frac(flyobj.bbox_bottom+GRDY)
 				while collision_rectangle(bbox_right, bbox_bottom+GRDY, bbox_left, bbox_top, flyobj, 1, 1) 
 					y+=sign(fvsp)
 			}

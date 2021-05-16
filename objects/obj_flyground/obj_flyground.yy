@@ -5,8 +5,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_ground",
-    "path": "objects/obj_ground/obj_ground.yy",
+    "name": "obj_ground_all",
+    "path": "objects/obj_ground_all/obj_ground_all.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

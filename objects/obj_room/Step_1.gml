@@ -57,3 +57,4 @@ else if action==1200 {
 #endregion
 
 scr_room_beginstep_test()
+scr_room_beginstep_area0()

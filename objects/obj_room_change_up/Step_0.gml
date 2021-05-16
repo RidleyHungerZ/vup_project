@@ -8,13 +8,17 @@ if action==0 {
 		if keystate_check_pressed(global.up_state) 
 		&& obj_player.jump==0
 		&& obj_player.walk==0 {
-			global.operate=0
-			with obj_player {
-				scr_sprite_change(SS_doorup, 0, 0.25)
-				uninjure_temp=1
+			if can_open {
+				global.operate=0
+				with obj_player {
+					scr_sprite_change(SS_doorup, 0, 0.25)
+					uninjure_temp=1
+				}
+				action=1
+				time=30
+			} else {
+				scr_sound_play(se_menu_error)
 			}
-			action=1
-			time=30
 		}
 	}
 }
@@ -52,9 +56,7 @@ else if action==4 {
 		}
 		if audio_exists(bgm)
 			audio_bgm_change(bgm)
-		global.re_x=obj_player.x
-		global.re_y=obj_player.y
-		global.re_xscale=obj_player.image_xscale
+		scr_relife_set_point(aim_x, aim_y, aim_xscale)
 		global.operate=0.5
 		global.player_operate=1
 		action=5

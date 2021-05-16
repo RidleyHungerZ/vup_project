@@ -15,7 +15,7 @@ if room==room_test
 				time=1
 			}
 		}
-		else if scr_room_fall_after(1, "s") {
+		if scr_room_fall_after(1, "s") {
 			if obj_player.x>=1104 {
 				codekey_Hdirect(0)
 				scr_room_player_xstop(1104)
@@ -23,8 +23,8 @@ if room==room_test
 				time=60
 			}
 		}
-		thread_talk_execute(prg, 3, 4, 30)
-		if action==4 && time==0 {
+		//thread_talk_execute(prg, 3, 4, 30)
+		if action==3 && time==0 {
 			scr_room_bosswar_start(bgm_boss1, bgm_stage1)
 		}
 		#endregion
