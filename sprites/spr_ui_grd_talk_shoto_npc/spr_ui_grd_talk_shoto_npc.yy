@@ -40,6 +40,10 @@
         {"FrameId":{"name":"fc1acc35-ce1e-461e-adbe-150ddde13dad","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"LayerId":{"name":"b37ecce0-6540-4899-87bf-a367bef8fa3e","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
         {"FrameId":{"name":"fc1acc35-ce1e-461e-adbe-150ddde13dad","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"LayerId":{"name":"e739e5d7-6ce9-4e19-ae3b-ea2fbde3221c","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_ui_grd_talk_shoto_npc","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","name":"fc1acc35-ce1e-461e-adbe-150ddde13dad","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"0a83de70-8951-46d3-a3f1-a7c426ffbd34","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"0a83de70-8951-46d3-a3f1-a7c426ffbd34","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"LayerId":{"name":"b37ecce0-6540-4899-87bf-a367bef8fa3e","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+        {"FrameId":{"name":"0a83de70-8951-46d3-a3f1-a7c426ffbd34","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"LayerId":{"name":"e739e5d7-6ce9-4e19-ae3b-ea2fbde3221c","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_ui_grd_talk_shoto_npc","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","name":"0a83de70-8951-46d3-a3f1-a7c426ffbd34","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_ui_grd_talk_shoto_npc","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},
@@ -49,7 +53,7 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 4.0,
+    "length": 5.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -58,6 +62,7 @@
             {"id":"e8884c49-42e0-45d5-973c-159a25257f96","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"dfe5f35a-2d6f-4d50-ab16-7c4031b1f32e","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"50ecde27-3be2-4e6c-a011-e9c75992def2","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"0059e189-4da0-4336-b8af-bbff021fcf97","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"8589dd3c-a0e5-47ff-b43e-9f9c14172efc","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"fc1acc35-ce1e-461e-adbe-150ddde13dad","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"c234df71-cbc8-4260-acf1-cf9687da1feb","Key":4.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"0a83de70-8951-46d3-a3f1-a7c426ffbd34","path":"sprites/spr_ui_grd_talk_shoto_npc/spr_ui_grd_talk_shoto_npc.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,

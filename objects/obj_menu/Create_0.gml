@@ -10,9 +10,12 @@ menu_page_count=5 //菜单页数
 menu_type=0 //菜单进度
 menu_page_change=0 //页切换
 menu_page_change_rate=0 //页切换进度
-for(var page=0;page<=20;page+=1)
-	for(var type=0;type<=5;type+=1)
+for(var page=0;page<=20;page+=1) {
+	for(var type=0;type<=5;type+=1) {
 		menu_select[page][type]=0
+		menu_curr[type]=0
+	}
+}
 menu_exit_time=0 //自动退出计时
 //道具页面list
 menu_item_list_max=10 //列表显示最大数量

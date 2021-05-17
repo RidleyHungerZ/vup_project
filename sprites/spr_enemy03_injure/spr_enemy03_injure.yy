@@ -24,9 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"1a1547a5-23f0-4b0e-a057-18f15d185127","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"1a1547a5-23f0-4b0e-a057-18f15d185127","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"LayerId":{"name":"5a48e3f4-3c0d-4777-b2f5-fe61a5b5cbb6","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_enemy03_injure","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"resourceVersion":"1.0","name":"1a1547a5-23f0-4b0e-a057-18f15d185127","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f701b7a2-0e26-4cb3-9e41-db678eb0aab8","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f701b7a2-0e26-4cb3-9e41-db678eb0aab8","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"LayerId":{"name":"5a48e3f4-3c0d-4777-b2f5-fe61a5b5cbb6","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy03_injure","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"resourceVersion":"1.0","name":"f701b7a2-0e26-4cb3-9e41-db678eb0aab8","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_enemy03_injure","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"68adc068-0751-4e06-995b-f27db589d7fa","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1a1547a5-23f0-4b0e-a057-18f15d185127","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"106cf0c7-8bc9-4195-ac3a-5e4ebff5f09f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f701b7a2-0e26-4cb3-9e41-db678eb0aab8","path":"sprites/spr_enemy03_injure/spr_enemy03_injure.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,

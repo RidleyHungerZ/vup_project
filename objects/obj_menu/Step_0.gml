@@ -88,6 +88,12 @@ else if menu_page_change==-1{
 	}
 }
 #endregion
+#region 菜单计时
+for(var i=0;i<array_length(menu_curr);i++) {
+	if menu_type==i menu_curr[i]++
+	else menu_curr[i]=0
+}
+#endregion
 #region 菜单操作
 if global.menu==1 {
 	if menu_exit_time>0 menu_exit_time--

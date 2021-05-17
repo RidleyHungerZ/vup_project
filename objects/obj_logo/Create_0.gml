@@ -53,4 +53,6 @@ testmode=function() {
 	scr_mission_add(MISSION_TYPE.sub, 0)
 	scr_mission_add(MISSION_TYPE.sub, 1)
 
+	//global.boss_war=1
+	//global.boss_hp=64
 }

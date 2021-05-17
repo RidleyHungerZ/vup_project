@@ -234,18 +234,20 @@ if operate_rate>0 {
 	#region BOSS血条
 	if global.boss_war==1 {
 		var hpupmax=96
-		//黑背景
-		draw_sprite(spr_ui_grd_bosshp_bgs, 0, bifx, bify)
-		//图标
-		draw_sprite(spr_ui_grd_bosshp_icon, global.boss_icon, bifx-32, bify-10)
 		//血条框架
 		var hpx=bifx-46, hpy=bify+37, hprate=8;
-		var hpifx=hpx-8,hpify=hpy+2,
-			hpifw=sprite_get_width(spr_ui_grd_hp_iframe),
-			hpifh=sprite_get_height(spr_ui_grd_hp_iframe),
+		var hpifx=hpx-8,hpify=hpy,
+			hpifw=sprite_get_width(spr_ui_grd_bosshp_frame),
+			hpifh=sprite_get_height(spr_ui_grd_bosshp_frame),
 			hpifcenlen=hpupmax*hprate-16;
-		draw_sprite_ext(spr_ui_grd_hp_iframe, 0, hpifx, hpify, -hpifcenlen/hpifw, 1, 0, c_white, 1)
-		draw_sprite_ext(spr_ui_grd_hp_iframe, 1, hpifx-hpifcenlen, hpify, -1, 1, 0, c_white, 1)
+		draw_sprite_ext(spr_ui_grd_bosshp_frame, 0, hpifx, hpify, hpifcenlen/hpifw, 1, 0, c_white, 1)
+		draw_sprite_ext(spr_ui_grd_bosshp_frame_top, 0, hpifx-hpifcenlen+8, hpify, 1, 1, 0, c_white, 1)
+		//图标
+		//global.boss_icon
+		var iconum=sprite_get_number(spr_ui_grd_bosshp_icon)
+		draw_sprite(spr_ui_grd_bosshp_icon, (global.fps_currmenu mod iconum*4)/4, bifx-48, bify-16)
+		//黑背景
+		draw_sprite(spr_ui_grd_bosshp_bgs, 0, bifx-160, bify+78)
 		var hpcounts=(global.boss_hp div hpupmax),
 			hpcols=array_create(hpcounts+1, c_white)
 		hpcols[0]=c_white
@@ -267,13 +269,6 @@ if operate_rate>0 {
 				surface_free(bhpsurf)
 			}
 		}
-		//血条外白条
-		draw_sprite(spr_ui_grd_bosshp_top, 0, bifx-23, bify+3)
-		var hptopx=hpx-106, hptopy=hpy+4,
-			hptopw=sprite_get_width(spr_ui_grd_hp_top),
-			hptopcenlen=hpupmax*hprate-4*hptopw;
-		draw_sprite_ext(spr_ui_grd_hp_top, 1, hptopx, hptopy, -hptopcenlen/hptopw, 1, 0, c_white, 1)
-		draw_sprite_ext(spr_ui_grd_hp_top, 2, hptopx-hptopcenlen, hptopy, -1, 1, 0, c_white, 1)
 	}
 	#endregion
 }

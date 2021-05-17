@@ -119,10 +119,16 @@ function scr_draw_menu_status(dx, dy){
 			scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0.5, 0.5, txtstruts.option[i].name, drawx-12, drawy+txtshfy, 1, 1, -1, -1, -1, 0)
 		}
 		#region 卡片
+		{
 			drawx=dx+896 drawy=dy+256
-			var circuit_blend=c_white
+			var circuit_blend=c_white,
+				circuit_index=0;
 			if msel[0]!=0 circuit_blend=c_gray
-			draw_sprite_ext(spr_menu_status_right_circuit_card, 0, drawx, drawy, 1, 1, 0, circuit_blend, 1)
+			else if menu_type>0 {
+				var cirnum=sprite_get_number(spr_menu_status_right_circuit_card)
+				circuit_index=(menu_curr[1] mod cirnum*4)/4
+			}
+			draw_sprite_ext(spr_menu_status_right_circuit_card, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+816 drawy=dy+384
 			draw_sprite(spr_menu_status_right_card_bgs, 0, drawx, drawy)
 			if msel[0]==0 && menu_type!=0 {
@@ -160,12 +166,19 @@ function scr_draw_menu_status(dx, dy){
 					else desctxt=txtstruts.option[msel[0]].desc[2]
 				}
 			}
+		}
 		#endregion
 		#region 武器
+		{
 			drawx=dx+912 drawy=dy+512
-			var circuit_blend=c_white
+			var circuit_blend=c_white,
+				circuit_index=0;
 			if msel[0]!=1 circuit_blend=c_gray
-			draw_sprite_ext(spr_menu_status_right_circuit_weapon, 0, drawx, drawy, 1, 1, 0, circuit_blend, 1)
+			else {
+				var cirnum=sprite_get_number(spr_menu_status_right_circuit_weapon)
+				circuit_index=(menu_curr[0] mod cirnum*4)/4
+			}
+			draw_sprite_ext(spr_menu_status_right_circuit_weapon, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+1264 drawy=dy+512
 			draw_sprite(spr_menu_status_right_weapon_bgs, 0, drawx, drawy)
 			//箭头
@@ -195,12 +208,19 @@ function scr_draw_menu_status(dx, dy){
 					desctxt=txtstruts.option[msel[0]].desc[1]
 				else desctxt=txtstruts.option[msel[0]].desc[0]
 			}
+		}
 		#endregion
 		#region Rtank
+		{
 			drawx=dx+896 drawy=dy+640
-			var circuit_blend=c_white
+			var circuit_blend=c_white,
+				circuit_index=0;
 			if msel[0]!=2 circuit_blend=c_gray
-			draw_sprite_ext(spr_menu_status_right_circuit_rtank, 0, drawx, drawy, 1, 1, 0, circuit_blend, 1)
+			else if menu_type>0 {
+				var cirnum=sprite_get_number(spr_menu_status_right_circuit_rtank)
+				circuit_index=(menu_curr[1] mod cirnum*4)/4
+			}
+			draw_sprite_ext(spr_menu_status_right_circuit_rtank, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+1264 drawy=dy+640
 			draw_sprite(spr_menu_status_right_rtank_bgs, 0, drawx, drawy)
 			drawx=dx+1232 drawy=dy+640
@@ -234,12 +254,15 @@ function scr_draw_menu_status(dx, dy){
 					desctxt=string_format_vals(txtstruts.option[msel[0]].desc[3], [val])
 				}
 			}
+		}
 		#endregion
 		#region 紧急脱出
+		{
 			//下方文本
 			if msel[0]==3 {
 				desctxt=txtstruts.option[msel[0]].desc[0]
 			}
+		}
 		#endregion
 		//下方文本
 		drawx=dx+752 drawy=dy+848
