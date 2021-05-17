@@ -1,15 +1,14 @@
 function scr_player_flyobj_move() {
-	var ground1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_top,obj_flyground,1,1),		//全身+足下
-		ground3=collision_rectangle(bbox_right+2,bbox_bottom+GRDY,bbox_left-2,bbox_top,obj_flyground,1,1),	//左右
-		ground4=collision_rectangle(bbox_right,bbox_top,bbox_left,bbox_top-1,obj_flyground,1,1),		//头上
-		floor1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_flyfloor,1,1),	//半透板足下
-		//line=collision_rectangle(bbox_right,bbox_top,bbox_left,bbox_top-16,obj_flyline,1,1),			//头上
+	var ground1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_top,obj_ground,1,1),		//全身+足下
+		ground3=collision_rectangle(bbox_right+2,bbox_bottom+GRDY,bbox_left-2,bbox_top,obj_ground,1,1),	//左右
+		ground4=collision_rectangle(bbox_right,bbox_top,bbox_left,bbox_top-1,obj_ground,1,1),		//头上
+		floor1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_floor,1,1),	//半透板足下
 		pre_flyobj=flyobj, //上一帧接触的飞行物
 		upfloor = false //是否踩在半透板上
-	if ground1 && jump<=0		flyobj=ground1	//脚下
-	else if ground3				flyobj=ground3	//左右
-	else if ground4 && jump>0	flyobj=ground4	//头顶
-	else if floor1 && jump<=0{
+	if ground_is_flyobj(ground1) && jump<=0		flyobj=ground1	//脚下
+	else if ground_is_flyobj(ground3)			flyobj=ground3	//左右
+	else if ground_is_flyobj(ground4) && jump>0	flyobj=ground4	//头顶
+	else if ground_is_flyobj(floor1) && jump<=0 {
 		flyobj=floor1	//脚下
 		upfloor = true
 	} else {
@@ -36,7 +35,7 @@ function scr_player_flyobj_move() {
 		//横向矫正
 		if abs(fhsp)>0{
 			//飞行物是墙壁，考虑挤压
-			if instance_is_object(flyobj, obj_flyground){
+			if instance_is_object(flyobj, obj_ground){
 				if !collision_rectangle(bbox_right-hsp, bbox_bottom+GRDY, bbox_left-hsp, bbox_top, flyobj, 1, 1){//被推动
 					var grd = noone
 					do{
@@ -61,7 +60,7 @@ function scr_player_flyobj_move() {
 		//纵向矫正
 		if abs(fvsp)>0{
 			//飞行物是墙壁，考虑挤压
-			if instance_is_object(flyobj, obj_flyground){
+			if instance_is_object(flyobj, obj_ground){
 				if !collision_rectangle(bbox_right, bbox_bottom+GRDY-fvsp, bbox_left, bbox_top, flyobj, 1, 1){//被推动抬上或者压下
 					var grd = noone
 					do{

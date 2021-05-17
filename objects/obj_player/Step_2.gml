@@ -237,8 +237,7 @@ global.player_def=1;
 	//}
 	#endregion
 	#region 尖刺撞击
-	if(collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_prick,1,1)
-	|| collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_flyground_prick,1,1)) {
+	if collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_prick,1,1) {
 		var matrix_pos = [
 			[1, 0, 0, 0],
 			[0, 1, 0, 0],
@@ -253,15 +252,8 @@ global.player_def=1;
 			prick_meeting = (prick_list_cnt>0) || prick_meeting
 			for(var j=0;j<prick_list_cnt;j++){
 				var prick=pricklist[| j];
-				//冷却岩浆
-				if(instance_is_object(prick, obj_flyground_prick)) {
-					if(!prick.damage) {
-						prick_meeting=false;
-						break;
-					}
-				} 
 				//普通墙壁
-				else if(!instance_is_object(prick, obj_prick)) {
+				if(!instance_is_object(prick, obj_prick)) {
 					prick_meeting=false;
 					break;
 				} 

@@ -245,7 +245,7 @@ if operate_rate>0 {
 		//图标
 		//global.boss_icon
 		var iconum=sprite_get_number(spr_ui_grd_bosshp_icon)
-		draw_sprite(spr_ui_grd_bosshp_icon, (global.fps_currmenu mod iconum*4)/4, bifx-48, bify-16)
+		draw_sprite(spr_ui_grd_bosshp_icon, (global.fps_currmenu mod (iconum*10))/10, bifx-48, bify-16)
 		//黑背景
 		draw_sprite(spr_ui_grd_bosshp_bgs, 0, bifx-160, bify+78)
 		var hpcounts=(global.boss_hp div hpupmax),

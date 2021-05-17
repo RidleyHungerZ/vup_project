@@ -1,10 +1,10 @@
 function scr_enemy_flyobj() {
 	if sprite_index==spr_boom exit
 	if scr_menu_trem(){
-		var flyobj1=collision_rectangle(bbox_right+2,bbox_bottom+4,bbox_left-2,bbox_top-2,obj_flyground,1,1),
+		var flyobj1=collision_rectangle(bbox_right+2,bbox_bottom+4,bbox_left-2,bbox_top-2,obj_ground,1,1),
 			flyobj2=collision_rectangle(bbox_right-1,bbox_bottom+4,bbox_left+1,bbox_bottom-2,obj_floor,1,1)
-		if flyobj1 flyobj=flyobj1
-		else if flyobj2 flyobj=flyobj2
+		if ground_is_flyobj(flyobj1) flyobj=flyobj1
+		else if ground_is_flyobj(flyobj2) flyobj=flyobj2
 		else flyobj=noone
 		if flyobj{
 			var hs=0,vs=0

@@ -126,7 +126,7 @@ function scr_draw_menu_status(dx, dy){
 			if msel[0]!=0 circuit_blend=c_gray
 			else if menu_type>0 {
 				var cirnum=sprite_get_number(spr_menu_status_right_circuit_card)
-				circuit_index=(menu_curr[1] mod cirnum*4)/4
+				circuit_index=(menu_curr[1] mod (cirnum*10))/10
 			}
 			draw_sprite_ext(spr_menu_status_right_circuit_card, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+816 drawy=dy+384
@@ -176,7 +176,7 @@ function scr_draw_menu_status(dx, dy){
 			if msel[0]!=1 circuit_blend=c_gray
 			else {
 				var cirnum=sprite_get_number(spr_menu_status_right_circuit_weapon)
-				circuit_index=(menu_curr[0] mod cirnum*4)/4
+				circuit_index=(menu_curr[0] mod (cirnum*10))/10
 			}
 			draw_sprite_ext(spr_menu_status_right_circuit_weapon, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+1264 drawy=dy+512
@@ -218,7 +218,7 @@ function scr_draw_menu_status(dx, dy){
 			if msel[0]!=2 circuit_blend=c_gray
 			else if menu_type>0 {
 				var cirnum=sprite_get_number(spr_menu_status_right_circuit_rtank)
-				circuit_index=(menu_curr[1] mod cirnum*4)/4
+				circuit_index=(menu_curr[1] mod (cirnum*10))/10
 			}
 			draw_sprite_ext(spr_menu_status_right_circuit_rtank, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+1264 drawy=dy+640

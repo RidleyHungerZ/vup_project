@@ -8,8 +8,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_flyground",
-    "path": "objects/obj_flyground/obj_flyground.yy",
+    "name": "obj_ground_all",
+    "path": "objects/obj_ground_all/obj_ground_all.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -23,9 +23,14 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
   "properties": [],
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"propertyId":{"name":"fly","path":"objects/obj_ground/obj_ground.yy",},"objectId":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+  ],
   "parent": {
     "name": "flyground",
     "path": "folders/Objects/ground/ground/flyground.yy",

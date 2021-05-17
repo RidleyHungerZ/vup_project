@@ -90,7 +90,7 @@ if(hp<=0 && use_death_system==1) {
 				enemy=other.id;
 				//悬浮敌人
 				if(other.enemy_type==1) {
-					other.hspeed=2*other.image_xscale;
+					other.hspeed=1*other.image_xscale;
 					hspeed=-other.hspeed;
 				}
 				//半身动作

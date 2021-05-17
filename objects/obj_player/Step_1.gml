@@ -435,7 +435,7 @@ x = clamp(x, 8, room_width-8);
 var topwall=collision_rectangle(bbox_right,1,bbox_left,0,obj_ground,1,1),
 	bottomwall=collision_rectangle(bbox_right,room_height,bbox_left,room_height-1,obj_ground,1,1);
 if(instance_exists(topwall) && obj_player.bbox_bottom<=0) {
-	if(!instance_is_object(topwall,obj_flyground)) {
+	if(!topwall.fly) {
 		while(topwall) {
 			if(dx!=0) x-=sign(dx);
 			else if(dx==0) {
@@ -450,7 +450,7 @@ if(instance_exists(topwall) && obj_player.bbox_bottom<=0) {
 	}
 }
 if(instance_exists(bottomwall) && obj_player.bbox_top>=room_height) {
-	if(!instance_is_object(bottomwall,obj_flyground)) {
+	if(!bottomwall.fly) {
 		while(bottomwall) {
 			if(dx!=0) x-=sign(dx);
 			else if(dx==0) {

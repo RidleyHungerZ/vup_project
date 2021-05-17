@@ -135,8 +135,7 @@ if !inst_of(obj_enemy) exit
 #region 尖刺炸死
 	if enemy_prick=1
 	&& hp>0{
-		if collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_prick,1,1)
-		|| collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_flyground_prick,1,1){
+		if collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_prick,1,1) {
 			var prick1list=ds_list_create(),
 				prick1listcnt=0,
 				prick2list=ds_list_create(),
@@ -149,15 +148,8 @@ if !inst_of(obj_enemy) exit
 			if prick1listcnt>0 prick1=true
 			for(var i=0;i<prick1listcnt;i++){
 				var prick=prick1list[| i]
-				//冷却岩浆
-				if instance_is_object(prick, obj_flyground_prick){
-					if prick.damage<=0{
-						prick1=false
-						break
-					}
-				} 
 				//普通墙壁
-				else if!instance_is_object(prick, obj_prick){
+				if!instance_is_object(prick, obj_prick){
 					prick1=false
 					break
 				} 
@@ -166,15 +158,8 @@ if !inst_of(obj_enemy) exit
 			if prick2listcnt>0 prick2=true
 			for(var i=0;i<prick2listcnt;i++){
 				var prick=prick2list[| i]
-				//冷却岩浆
-				if instance_is_object(prick, obj_flyground_prick){
-					if prick.damage<=0{
-						prick2=false
-						break
-					}
-				} 
 				//普通墙壁
-				else if!instance_is_object(prick, obj_prick){
+				if!instance_is_object(prick, obj_prick){
 					prick2=false
 					break
 				} 
@@ -190,9 +175,9 @@ if !inst_of(obj_enemy) exit
 	if hp>0
 	&& enemy_or_bullet==1
 	&& enemy_ground==1{
-		var flyobj=collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_flyground,1,1),
+		var flyobj=collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_ground,1,1),
 			block=collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_ground_block_bullet,1,1)
-		if(flyobj && flyobj.speed>0)
+		if(flyobj && flyobj.speed!=0)
 		||(block){
 			final_selfBoom();
 			if scr_in_view(view_edge) scr_sound_play(se_enemy_damage)

@@ -548,8 +548,7 @@ for(var i=1;i<=2;i+=1){
 			//记录的半透板
 			if(scr_player_floordown_exists(flordown)) flordown=noone;
 			if(((combojump_ground
-			 && !instance_is_object(combojump_ground, obj_prick) 
-			 && !(instance_is_object(combojump_ground, obj_flyground_prick) && combojump_ground.damage>0))
+			 && !instance_is_object(combojump_ground, obj_prick))
 			||(image_yscale==1
 			 && flordown
 			 &&!collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-1,obj_floor,1,1))

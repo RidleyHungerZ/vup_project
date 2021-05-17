@@ -133,7 +133,7 @@ function scr_enemy_boompart(partsprs) {
 			else part=instance_create_depth(x,y,depth,obj_enemy_part)
 			part.image_xscale=image_xscale
 			part.image_yscale=image_yscale
-			part.dspeed=random(10)*-image_xscale*image_yscale
+			part.dspeed=random(8)*-image_xscale*image_yscale
 			with(part){
 				scr_sprite_change(spr,i,0)
 				gravity=G
