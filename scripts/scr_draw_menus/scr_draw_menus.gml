@@ -17,7 +17,9 @@ function scr_draw_menu_tab(dx, dy, index){
 	draw_sprite_ext(spr_menu_tab_lr, 0, dx+VIEW_W_UI, dy, -1, 1, 0, c_white, 1)
 	draw_sprite_ext(spr_menu_tab_lr_txt, 1, dx+VIEW_W_UI-96, dy+80, 1, 1, 0, c_white, 1)
 	//name
-	draw_sprite(spr_menu_tab_center, 0, cenx, dy)
+	var tabcenum=sprite_get_number(spr_menu_tab_center);
+	draw_sprite(spr_menu_tab_center, scr_image_index_fpscurr(false, 0.1, tabcenum), cenx, dy)
+	draw_sprite(spr_menu_tab_center_frame, 0, cenx, dy)
 	draw_sprite(spr_nemu_tab_center_name, index, cenx, dy+64)
 	//箭头
 	var af = sin(global.fps_curr*pi/30);

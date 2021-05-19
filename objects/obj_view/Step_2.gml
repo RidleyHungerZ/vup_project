@@ -47,6 +47,9 @@ if global.operate>0
 	#endregion
 }
 #endregion
+#region 背景移动
+scr_viewroom_background(true)
+#endregion
 #region 手柄震动
 if gaypad_exists() {
 	gamepad_set_vibration(global.joy, global.gaypad_shock[0], global.gaypad_shock[1])

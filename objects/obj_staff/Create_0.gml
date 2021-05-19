@@ -259,6 +259,34 @@ global.re_y=0
 global.re_xscale=0
 global.player_es_max=99999
 #endregion
+#region 计时区
+global.fps_60=0
+global.fps_30=0
+global.fps_20=0
+global.fps_15=0
+global.fps_12=0
+global.fps_10=0
+global.fps_6=0
+global.fps_5=0
+global.fps_4=0
+global.fps_3=0
+global.fps_2=0
+global.fps_1=0
+global.fps_curr=0//运行开始到现在共多少帧
+global.fps_currmenu=0//运行开始到现在活动状态
+global.fps_roommenu=0//房间开始到现在活动状态
+#endregion
+#region 暂停区
+global.operate=0//完全代码操纵
+global.player_operate=0//仅关闭按键操纵，依然可用自带移动体系
+global.stop=0//暂停游戏
+//打击感
+global.saber_pause=0
+global.boss_pause=0
+boss_pause_time=0
+//传送房间中
+global.transing=0
+#endregion
 #region 其他变量
 global.player_change_flash=0
 global.player_change_flash_rate=0
@@ -309,34 +337,6 @@ global.re_x=obj_player.x
 global.re_y=obj_player.y
 global.re_xscale=obj_player.image_xscale
 global.room_prev=room
-#endregion
-#region 计时区
-global.fps_60=0
-global.fps_30=0
-global.fps_20=0
-global.fps_15=0
-global.fps_12=0
-global.fps_10=0
-global.fps_6=0
-global.fps_5=0
-global.fps_4=0
-global.fps_3=0
-global.fps_2=0
-global.fps_1=0
-global.fps_curr=0//运行开始到现在共多少帧
-global.fps_currmenu=0//运行开始到现在活动状态
-global.fps_roommenu=0//房间开始到现在活动状态
-#endregion
-#region 暂停区
-global.operate=0//完全代码操纵
-global.player_operate=0//仅关闭按键操纵，依然可用自带移动体系
-global.stop=0//暂停游戏
-//打击感
-global.saber_pause=0
-global.boss_pause=0
-boss_pause_time=0
-//传送房间中
-global.transing=0
 #endregion
 #region 音乐区
 global.music=-1//当前音乐

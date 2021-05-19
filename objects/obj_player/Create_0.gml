@@ -220,6 +220,8 @@ death_cliff=false; //是否坠崖死亡
 sprite_per=noone
 sprite_part=noone
 sprite_frtpart=noone
+
+call_screen=false //对话屏幕
 #endregion
 #region 蓄力
 //蓄力属性

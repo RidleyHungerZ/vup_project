@@ -63,5 +63,11 @@ if in(sprite_index, [SS_change_idle_ing, SS_change_fall_ing]) {
 					image_xscale, image_yscale, image_alpha, image_blend, image_alpha)
 }
 #endregion
+#region 对话屏幕
+if call_screen {
+	draw_sprite_ext(spr_player_call_screen, global.fps_currmenu, x, y, 
+					image_xscale, image_yscale, 0, c_white, 1)
+}
+#endregion
 x=perx;
 y=pery;

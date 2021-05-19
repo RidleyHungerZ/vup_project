@@ -7,11 +7,11 @@ if surface_exists(view0_surface_temp) {
 		v0sh = surface_get_height(view0_surface_temp),
 		xsc = apsw/v0sw,
 		ysc = apsh/v0sh;
-	surface_set_target(application_surface)
+	//surface_set_target(application_surface)
 	draw_clear_alpha(c_black, 0.5)
 	gpu_set_blendmode(bm_normal)
 	draw_surface_ext(view0_surface_temp, 0, 0, xsc, ysc, 0, c_white, 1)
-	surface_reset_target()
+	//surface_reset_target()
 	//滤镜划线
 	var pixFilter = global.pix_filter,
 		pixAlpha = 0.2
@@ -37,7 +37,8 @@ gpu_set_texfilter(true)
 if operate_rate>0 {
 	var ifx=32, ify=80*operate_rate;
 	//发卡
-	draw_sprite(spr_ui_grd_board_bgs, 0, ifx, ify)
+	var bbnum=sprite_get_number(spr_ui_grd_board_bgs)
+	draw_sprite(spr_ui_grd_board_bgs, scr_image_index_fpscurr(false, 0.1, bbnum), ifx, ify)
 	//hp 对应血条64=3倍长度
 	#region HP
 	if true {
@@ -51,16 +52,14 @@ if operate_rate>0 {
 		draw_sprite_ext(spr_ui_grd_hp_iframe, 0, hpifx, hpify, hpifcenlen/hpifw, 1, 0, c_white, 1)
 		draw_sprite(spr_ui_grd_hp_iframe, 1, hpifx+hpifcenlen, hpify)
 		//红血条
-		var hpaftsurf=get_hp_surface(global.player_hp_aft, global.player_hp_up, hprate);
-		if surface_exists(hpaftsurf) {
-			draw_surface_ext(hpaftsurf, hpx+0, hpy+8, 1, 1, 0, $130ecc, 11)
-			surface_free(hpaftsurf)
+		get_hp_surface(global.player_hp_aft, global.player_hp_up, hprate);
+		if surface_exists(hp_surface) {
+			draw_surface_ext(hp_surface, hpx+0, hpy+8, 1, 1, 0, $130ecc, 11)
 		}
 		//血条
-		var hpsurf=get_hp_surface(global.player_hp, global.player_hp_up, hprate);
-		if surface_exists(hpsurf) {
-			draw_surface(hpsurf, hpx+0, hpy+8)
-			surface_free(hpsurf)
+		get_hp_surface(global.player_hp, global.player_hp_up, hprate);
+		if surface_exists(hp_surface) {
+			draw_surface(hp_surface, hpx+0, hpy+8)
 		}
 		//血条外白条
 		var hptopx=hpx-4, hptopy=hpy,
@@ -245,7 +244,7 @@ if operate_rate>0 {
 		//图标
 		//global.boss_icon
 		var iconum=sprite_get_number(spr_ui_grd_bosshp_icon)
-		draw_sprite(spr_ui_grd_bosshp_icon, (global.fps_currmenu mod (iconum*10))/10, bifx-48, bify-16)
+		draw_sprite(spr_ui_grd_bosshp_icon, scr_image_index_fpscurr(true, 0.1, iconum), bifx-48, bify-16)
 		//黑背景
 		draw_sprite(spr_ui_grd_bosshp_bgs, 0, bifx-160, bify+78)
 		var hpcounts=(global.boss_hp div hpupmax),
@@ -257,16 +256,14 @@ if operate_rate>0 {
 			var _hp=min(global.boss_hp-i*hpupmax, hpupmax),
 				_hpaft=min(global.boss_hp_aft-i*hpupmax, hpupmax);
 			//红血条
-			var bhpaftsurf=get_hp_surface(_hpaft, hpupmax, hprate);
-			if surface_exists(bhpaftsurf) {
-				draw_surface_ext(bhpaftsurf, hpx+19, hpy+12, -1, 1, 0, $130ecc, 11)
-				surface_free(bhpaftsurf)
+			get_hp_surface(_hpaft, hpupmax, hprate);
+			if surface_exists(hp_surface) {
+				draw_surface_ext(hp_surface, hpx+19, hpy+12, -1, 1, 0, $130ecc, 11)
 			}
 			//血条
-			var bhpsurf=get_hp_surface(_hp, hpupmax, hprate);
-			if surface_exists(bhpsurf) {
-				draw_surface_ext(bhpsurf, hpx+19, hpy+12, -1, 1, 0, hpcols[i], 11)
-				surface_free(bhpsurf)
+			get_hp_surface(_hp, hpupmax, hprate);
+			if surface_exists(hp_surface) {
+				draw_surface_ext(hp_surface, hpx+19, hpy+12, -1, 1, 0, hpcols[i], 11)
 			}
 		}
 	}
@@ -337,7 +334,8 @@ if global.talk!=0 {
 		}
 		draw_sprite_ext(shotospr, shotoinx, xmirror(tfx+pos.shoto[0], xsc), yflip(tfy+pos.shoto[1], ysc), shotoxsc, 1, 0, blend, 1);
 		//框架
-		draw_sprite_ext(spr_ui_grd_talk_elecbgs, 0, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
+		var talkebnum=sprite_get_number(spr_ui_grd_talk_elecbgs)
+		draw_sprite_ext(spr_ui_grd_talk_elecbgs, scr_image_index_fpscurr(true, 0.1, talkebnum), xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
 						xsc, ysc, 0, blend, 1);
 		draw_sprite_ext(spr_ui_grd_talk, 0, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
 						xsc, ysc, 0, blend, 1);

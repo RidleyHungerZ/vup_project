@@ -1,0 +1,2 @@
+event_inherited();
+SE_mission=se_mission_complete

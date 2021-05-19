@@ -33,3 +33,5 @@ ds_list_sort(room_range_list, true)
 //镜头聚焦中心
 if instance_exists(obj_player)
 	scr_view_set_with_inst(obj_player)
+//背景刷新
+scr_background_get();

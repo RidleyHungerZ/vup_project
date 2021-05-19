@@ -32,6 +32,7 @@ else if action==3 {
 	frame_red_alpha=(time/10)
 	if time==0 {
 		frame_red_alpha=0
+		scr_sound_play(SE_mission)
 		action=4
 		//time=20
 	}

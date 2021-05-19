@@ -30,11 +30,11 @@ if room==room_start {
 }
 #endregion
 #region 仓库办公室
-else if room==room_kanaroom 
+else if (room==room_kanaroom || room==room_area0_1)
 && !scr_thread_isover(1){
 	prg=1
 	if action==0 {
-		
+		scr_thread_over(prg)
 	}
 }
 #endregion

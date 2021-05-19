@@ -132,6 +132,29 @@ tip_talk_time_up=180
 room_range_inst=noone //当前房间对应对象
 room_range_sets=ds_map_create()
 #endregion
+#region 背景
+background_count=30
+for(var i=1;i<=background_count;i+=1){
+	background_sprite[i]=-4
+	background_index[i]=0
+	background_imspd[i]=0
+	background_xscale[i]=1
+	background_yscale[i]=1
+	background_alpha[i]=1
+	background_blend[i]=c_white
+	background_htiled[i]=true
+	background_vtiled[i]=true
+	background_stretch[i]=0
+	background_visible[i]=true
+	
+	background_x[i]=0
+	background_y[i]=0
+	background_hspeed[i]=0
+	background_vspeed[i]=0
+	background_width[i]=0
+	background_height[i]=0
+}
+#endregion
 #region 黑幕
 black_surface=noone//黑幕surface
 black_display=false//黑幕是否显示
@@ -158,15 +181,17 @@ support_max_trigger=function() {
 	scr_sound_play(se_support_max)
 }
 //血条
+hp_surface = noone
 get_hp_surface = function(hp, up, rate) {
 	var hpw=sprite_get_width(spr_ui_grd_hp),
 		hph=sprite_get_height(spr_ui_grd_hp),
 		//hptopw=sprite_get_width(spr_ui_grd_hp_top),
 		//hptoph=sprite_get_height(spr_ui_grd_hp_top),
 		realenmax=up*rate, //只看上边的真实最大长度
-		realen=hp*rate, //只看上边的真实长度
-		hpsurf=surface_create(realenmax+hpw, hph);
-	surface_set_target(hpsurf)
+		realen=hp*rate; //只看上边的真实长度
+	if !surface_exists(hp_surface)
+		hp_surface=surface_create(VIEW_W_UI, hph); //realenmax+hpw
+	surface_set_target(hp_surface)
 	draw_clear_alpha(c_white, 0)
 	//绘制白条
 	var hpx=0, hpy=0, cenlen=realenmax-hpw;
@@ -186,7 +211,6 @@ get_hp_surface = function(hp, up, rate) {
 	draw_set_color_alpha_init()
 	gpu_set_blendmode(bm_normal)
 	surface_reset_target()
-	return hpsurf
 }
 #endregion
 #region 任务开始/结束
