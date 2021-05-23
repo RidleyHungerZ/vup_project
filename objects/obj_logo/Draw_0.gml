@@ -64,7 +64,7 @@ if operate_setting_display {
 		draw_sprite(spr_menu_bgs, 0, 0, 0)
 		draw_sprite(spr_menu_tab, 0, dx, dy)
 		var tabcenum=sprite_get_number(spr_menu_tab_center);
-		draw_sprite(spr_menu_tab_center, scr_image_index_fpscurr(false, 0.1, tabcenum), cenx, dy)
+		draw_sprite(spr_menu_tab_center, scr_image_index_fpscurr(false, 0.25, tabcenum), cenx, dy)
 		draw_sprite(spr_menu_tab_center_frame, 0, cenx, dy)
 		draw_sprite(spr_nemu_tab_center_name, index, cenx, dy+64)
 		scr_menu_option_draw(0, 0)

@@ -222,6 +222,8 @@ sprite_part=noone
 sprite_frtpart=noone
 
 call_screen=false //对话屏幕
+
+dyinghp=8 //受伤动作血量
 #endregion
 #region 蓄力
 //蓄力属性
@@ -296,5 +298,6 @@ enum PYJUMP {
 	airdash=10,
 	airDashChop=11,
 	flyChop=17,
+	cliffProtect=20,
 }
 #endregion

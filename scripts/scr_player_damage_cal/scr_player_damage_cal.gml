@@ -16,7 +16,9 @@ function scr_player_damage_cal(enemy) {
 	//受伤等级
 	injure_level=enemy.damage_level
 	//子弹记录击中
-	if instance_is_object(enemy, obj_bullet) enemy.hit=1
+	if enemy.inst_of(obj_bullet)
+	||(enemy.inst_of(obj_enemy) && enemy.enemy_or_bullet==2)
+		enemy.hit=1
 	//特殊效果
 	injure_element=enemy.element
 	injure_attack_type=enemy.attack_type

@@ -5,7 +5,7 @@ room_set_view_enabled(room, true)
 view_visible[0]=true
 camera_set_view_size(view_camera[0], view.width, view.height)
 camera_set_view_border(view_camera[0], view.width/2, view.height/2)
-camera_set_view_target(view_camera[0], self.id)
+//camera_set_view_target(view_camera[0], self.id)
 view_set_xport(0, view.xport)
 view_set_yport(0, view.yport)
 view_set_wport(0, view.wport)

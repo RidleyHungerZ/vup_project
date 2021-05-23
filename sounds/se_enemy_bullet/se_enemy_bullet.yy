@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "se_enemy_bullet.wav",
-  "duration": 0.763844,
+  "duration": 0.599422,
   "parent": {
     "name": "enemy",
     "path": "folders/Sounds/enemy.yy",

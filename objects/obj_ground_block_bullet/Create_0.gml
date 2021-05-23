@@ -23,8 +23,8 @@ drawSelf = function() {
 					image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 }
 scr_block_fall = function() {
-	if !collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY,obj_ground,1,1)
-	&& !collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY,obj_floor,1,1){
+	if !collision_rectangle(bbox_right,bbox_bottom+1,bbox_left,bbox_bottom,obj_ground,1,1)
+	&& !collision_rectangle(bbox_right,bbox_bottom+1,bbox_left,bbox_bottom,obj_floor,1,1){
 		gravity=grav
 		if place_meeting(x,y,obj_water)
 			gravity=grav/2
@@ -32,21 +32,21 @@ scr_block_fall = function() {
 	else{
 		vspeed=0
 		gravity=0
-		while collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-8,obj_ground,1,1)
-		|| collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-8,obj_floor,1,1){
+		while collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-8,obj_ground,1,1)
+		|| collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-8,obj_floor,1,1){
 			y-=image_yscale
 			if collision_rectangle(bbox_right,bbox_top+1,bbox_left,bbox_top,obj_player,1,1)
 				obj_player.y-=image_yscale
 		}
 	}
-	var trans=collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_top,obj_trans,1,1)
+	var trans=collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_trans,1,1)
 	if trans 
-	&& collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_ground,1,1)
+	&& collision_rectangle(bbox_right,bbox_bottom+1,bbox_left,bbox_top,obj_ground,1,1)
 	&& vsp>=0{
 		trans_spd=trans.trans_hsp
 		hspeed=trans_spd
-		if collision_rectangle(bbox_right+sign(hspeed),bbox_bottom+GRDY,bbox_left+sign(hspeed),bbox_top,obj_ground,1,1){
-			while collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_top,obj_ground,1,1) 
+		if collision_rectangle(bbox_right+sign(hspeed),bbox_bottom,bbox_left+sign(hspeed),bbox_top,obj_ground,1,1){
+			while collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_ground,1,1) 
 				x-=sign(hspeed)
 			hspeed=0
 		}

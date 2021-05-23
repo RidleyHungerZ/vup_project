@@ -181,7 +181,6 @@ for(var i=1;i<=2;i+=1){
 		#endregion
 		#region 站立待机
 		if(walk==0) {
-			var dyinghp=8
 		    //普通站立动作（仅与受伤站立切换）
 			if(sprite_index==SS_idle
 			&& global.player_hp<=dyinghp) {
@@ -696,7 +695,7 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 悬崖保护
-		if(jump==20) {
+		if(jump==PYJUMP.cliffProtect) {
 			if(cliff_protect_time>0) {
 				cliff_protect_time--;
 				image_alpha=cliff_protect_time mod 3;

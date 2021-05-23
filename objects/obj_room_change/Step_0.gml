@@ -48,6 +48,8 @@ else if action==4 {
 		obj_player.image_xscale=aim_xscale
 		with obj_player {
 			scr_sprite_change(SS_idle, 0, 0.25)
+			walk=0
+			jump=0
 		}
 		if audio_exists(bgm)
 			audio_bgm_change(bgm)

@@ -13,8 +13,8 @@
   "soundFile": "bgm_boss1.ogg",
   "duration": 97.9114151,
   "parent": {
-    "name": "bgm",
-    "path": "folders/Sounds/bgm.yy",
+    "name": "fight",
+    "path": "folders/Sounds/bgm/fight.yy",
   },
   "resourceVersion": "1.0",
   "name": "bgm_boss1",

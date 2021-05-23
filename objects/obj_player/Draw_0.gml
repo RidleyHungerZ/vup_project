@@ -32,7 +32,7 @@ if sprite_exists(partspr) {
 #endregion
 #region 受伤
 if(uninjure==1 && scr_menu_trem()) {
-	var alpha=global.fps_15*0.25
+	var alpha=(global.fps_currmenu mod 4)*0.25
 	scr_draw_sprite_white(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,c_white,image_alpha*alpha);
 }
 #endregion

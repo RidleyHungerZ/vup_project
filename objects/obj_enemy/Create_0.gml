@@ -24,6 +24,7 @@ last_in_element=ELEMENTS.none; //收到攻击前的受伤属性
 now_in_element=ELEMENTS.none; //本次受到的属性，仅记录用
 element=ELEMENTS.none;
 attack_type=ATK_TYPE.bullet;
+hit=0;
 DEF=1;
 flash=0;
 inxscale=0;
@@ -125,7 +126,7 @@ death_boom=false; //死亡是否立刻爆炸
 /// @arg death_type_use=1
 death_type_use=true; //死亡爆炸效果使用
 /// @arg enemy_or_bullet=1
-enemy_or_bullet=true; //是子弹还是敌人
+enemy_or_bullet=1; //是子弹还是敌人
 /// @arg boom_number=1
 boom_number=1; //死亡爆炸数
 /// @parga boom_type=0
@@ -287,7 +288,7 @@ walkGround = function(hspd) {
 	}
 }
 //杂兵发现目标（矩形）
-scr_enemy_find_target = function(frtx, bckx, topy, btny, colline) {
+findTarget = function(frtx, bckx, topy, btny, colline) {
 	//var frtx=argument0,     //前方发现范围
 	//    bckx=argument1,     //后方发现范围
 	//    topy=argument2,     //上方发现范围
@@ -303,5 +304,9 @@ scr_enemy_find_target = function(frtx, bckx, topy, btny, colline) {
 	 || !colline)
 	    target=obj_player
 	return target
+}
+//设定在地面上的杂兵需要调整位置
+adjustGRDY = function() {
+	while place_meeting(x, y+GRDY, obj_soild) y--
 }
 #endregion

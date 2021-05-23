@@ -3,7 +3,7 @@ function scr_txt_area0(){
 var prg=0, inx=0
 #region 神秘对话
 prg=0 inx=0
-thread_talk(prg, TALK_INX.both, 1, TALK_SHOTO.npc, 2, 0)
+thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.npc, 2, 0)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, false,
 @"NEO巴比伦准备的怎么样了？")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 2, 0, false,
@@ -15,20 +15,21 @@ thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 2, 0, false,
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, false,
 @"科技的下一次进步关键点应该就在这里了。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, false,
-@"还有，把小型『存在支持度』实验机项目的安全等级拉到最高，除了我们两人之外，其他任何人不可访问相关资料和数据。")
+@"还有，把小型『存在支持度』实验机项目的安全等级拉到最高，
+除了我们两人之外，其他任何人不可访问相关资料和数据。")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 2, 0, false,
 @"另外两位负责人也不能吗？")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, false,
 @"不能。")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 2, 0, false,
-@"博士，我还是想问一下，"+TXT_KEY+@"让全人类都进到虚拟世界"+TXT_W+@"真的是好事吗？")
+@"博士，我还是想问一下，让全人类都进到虚拟世界真的是好事吗？")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, true,
 @"……我不知道。")
 #endregion
 #region 仓库办公室
-prg=1 inx=0
+prg=2 inx=0
 //新闻
-thread_talk(prg, TALK_INX.both, -1, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1)
+thread_talk(prg, inx, TALK_INX.both, -1, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1)
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 1, false,
 @"和平纪念日临近，各区域住民有条不紊的准备着庆典仪式，
 交通路况日渐繁忙，各位住民请务必注意出行安全，
@@ -48,7 +49,7 @@ thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 1, false,
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.kuMen, 1, true,
 @""+TXT_KEY+@"K区……旧街区"+TXT_W+@"那边嘛……希望物流跟货物不要出什么问题吧……")
 //物语电话
-thread_talk(prg, TALK_INX.both, -1, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1)
+thread_talk(prg, inx, TALK_INX.both, -1, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1)
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 2, false,
 @"加奈最近过得怎么样，作息正常了么？")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.wuNai, 1, false,
@@ -75,13 +76,13 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.kuMen
 @"嗯？信号不好吗？
 真是的，有那么夸张吗……窝可是看得好好的……")
 //爆炸
-thread_talk(prg, TALK_INX.down, -1, -1, -1, -1)
+thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, false,
 @"怎么回事？……刚才是爆炸？")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, true,
 @"先看下监控镜头……")
 //监控器
-thread_talk(prg, TALK_INX.down, -1, -1, -1, -1)
+thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"这是……有"+TXT_KEY+@"电子暴徒"+TXT_W+@"跑到仓库里来了！
 这群蟑螂怎么到处跑！
@@ -89,18 +90,18 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
 @"大门那边情况怎么样……")
 //监控切到大门
-thread_talk(prg, TALK_INX.down, -1, -1, -1, -1)
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
+thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
 @"没信号……仓库大门的监控器被破坏了！
 难道刚才的爆炸是发生在大门那里？")
+//关闭监控
+thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"有点不妙……得出去看看，弄清楚状况……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
 @"这个东西……先带在身上吧，防止这群家伙溜到办公室来！")
-#endregion
-#region 仓库办公室门口
-prg=2 inx=0
-thread_talk(prg, TALK_INX.both, 1, TALK_SHOTO.npc, 0, 2)
+//仓库办公室门口
+thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.npc, 0, 2)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"对了，先叫物语stor帮忙支援一下！")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
@@ -116,7 +117,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 #endregion
 #region 通风管道
 prg=3 inx=0
-thread_talk(prg, TALK_INX.down, 1, -1, -1, -1)
+thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"可恶……怎么偏偏这个时候门坏了！")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
@@ -126,7 +127,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 #endregion
 #region 仓库大门外
 prg=4 inx=0
-thread_talk(prg, TALK_INX.down, 1, -1, -1, -1)
+thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"果然……仓库大门被强行打开了，监控器也被他们炸飞了。
 都到这里了，应该可以用外面的网络联络一下物语stor了吧。")
@@ -142,7 +143,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
 @"啊！好烦！怎么偏偏是窝碰上这种事！")
 //暴徒冒出
-thread_talk(prg, TALK_INX.down, 1, -1, -1, -1)
+thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, false,
 @"咦……咦？！！
 怎么突然冒出来这么多蟑螂！
@@ -157,7 +158,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 @"难道……他们是来找什么东西的？
 可窝这里哪有什么贵重的货物？")
 //腰带闪光
-thread_talk(prg, TALK_INX.both, 1, TALK_SHOTO.npc, 0, 2)
+thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.npc, 0, 2)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"物语stor交给窝的这玩意怎么开始闪光了？
 ……难道说，这群家伙是来找这个的？")
@@ -173,7 +174,7 @@ thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 3, 3, true,
 
 #region BOSS
 prg=0 inx=0
-//thread_talk(prg, TALK_INX.both, 1, TALK_SHOTO.boss, 0, 0)
+//thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.boss, 0, 0)
 //thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, false,
 //@"这是……什么东西？")
 //thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 0, 0, false,

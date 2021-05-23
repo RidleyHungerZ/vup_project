@@ -1,12 +1,13 @@
 /// @desc 设置剧情对话
 /// @arg thread 剧情编号
+/// @arg inx 对话序号
 /// @arg talk_inx 对话类型，枚举TALK_INX
 /// @arg xscale 1为左下右上
 /// @arg unow_shoto_type 头像类型
 /// @arg unow_shoto 头像编号
 /// @arg unow_name 名称编号
-function thread_talk(thread, _talk_inx, _xscale, _unow_shoto_type, _unow_shoto, _unow_name) {
-	global.txt_thread_set[thread]={
+function thread_talk(thread, inx, _talk_inx, _xscale, _unow_shoto_type, _unow_shoto, _unow_name) {
+	global.txt_thread_set[thread][inx]={
 		talk_inx : _talk_inx,
 		xscale : _xscale,
 		unow : {
@@ -44,6 +45,7 @@ function thread_talk_start(thread) {
 			talk_txt_thread=thread
 			talk_txt_index=0
 		}
+		talk_txt_index_st=talk_txt_index
 	}
 }
 //演绎中插入对话

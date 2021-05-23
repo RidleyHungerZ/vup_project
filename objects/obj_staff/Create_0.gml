@@ -322,9 +322,9 @@ global.rtank_val_max=64
 auto_sp_time=0
 #endregion
 #region 发射区
-instance_create_depth(0, 0, 0, obj_view)
+instance_create_depth(0, 0, -10000, obj_view)
 instance_create_depth(0, 0, 0, obj_room)
-instance_create_depth(0, 0, -10000, obj_menu)
+instance_create_depth(0, 0, -20000, obj_menu)
 player[PLAYER_MODEL.HU]=obj_player_hu
 player[PLAYER_MODEL.ARMOR]=obj_player_armor
 with instance_create_layer(x,y,"player",player[PLAYER_MODEL.HU]) {

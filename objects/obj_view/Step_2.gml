@@ -19,7 +19,7 @@ if global.operate>0
 	}
 	else if global.operate==0.7{
 		if global.room_change_rate[1]==0{
-			global.operate=1
+			global.operate=0.8
 			//global.player_operate=1
 		}
 	}

@@ -80,7 +80,7 @@ if !inst_of(obj_enemy)
 //以下内容为enemy单独使用
 if !inst_of(obj_enemy) exit
 #region 受伤击退
-	if hp>0{
+	if hp>0 {
 		element_ssinjure=0
 		//元素僵硬
 		if in(injure_element, [ELEMENTS.ice, ELEMENTS.elec])
@@ -108,11 +108,11 @@ if !inst_of(obj_enemy) exit
 			}
 		}
 		//属性击退
-		else{
+		else if enemy_or_bullet==1{
 			if injure_type!=ATK_TYPE.push && use_speed_system=1 
 				gravity=0
 			if flash=1
-			&& injure_back=1{
+			&& injure_back=1 {
 				scr_sprite_change(SS_injure,0,1/10)
 				action=-1
 				if inxscale!=0 hsp=1*inxscale
@@ -123,7 +123,7 @@ if !inst_of(obj_enemy) exit
 		if sprite_index=SS_injure
 		&& element_ssinjure=1
 		&& injure_elementback
-		&& element_index=0{
+		&& element_index=0 {
 			scr_sprite_change(SS_idle,0,1/60)
 			hsp=0
 			element_ssinjure=0
@@ -134,6 +134,7 @@ if !inst_of(obj_enemy) exit
 #endregion
 #region 尖刺炸死
 	if enemy_prick=1
+	&& enemy_or_bullet==1
 	&& hp>0{
 		if collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_prick,1,1) {
 			var prick1list=ds_list_create(),

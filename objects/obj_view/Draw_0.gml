@@ -1,41 +1,7 @@
 if view_current!=1 exit
-#region 使用镜头0内容覆盖app
-if surface_exists(view0_surface_temp) {
-	var apsw = surface_get_width(application_surface), 
-		apsh = surface_get_height(application_surface), 
-		v0sw = surface_get_width(view0_surface_temp), 
-		v0sh = surface_get_height(view0_surface_temp),
-		xsc = apsw/v0sw,
-		ysc = apsh/v0sh;
-	//surface_set_target(application_surface)
-	draw_clear_alpha(c_black, 0.5)
-	gpu_set_blendmode(bm_normal)
-	draw_surface_ext(view0_surface_temp, 0, 0, xsc, ysc, 0, c_white, 1)
-	//surface_reset_target()
-	//滤镜划线
-	var pixFilter = global.pix_filter,
-		pixAlpha = 0.2
-	//pixFilter=true
-	if pixFilter{
-		draw_set_color_alpha(c_black, pixAlpha)
-		for(var i=0;i<apsw;i+=xsc) {
-			draw_line(i, 0, i, apsh)
-			//scr_draw_line(c_black, pixAlpha, 1, false, i, 0, i, apsh)
-		}
-		for(var i=0;i<apsh;i+=ysc) {
-			//scr_draw_line(c_black, pixAlpha, 1, false, 0, i, apsw, i)
-			draw_line(0, i, apsw, i)
-		}
-		draw_set_color_alpha_init()
-	}
-}
-#endregion
-//绘制UI时开启模糊
-gpu_set_texfilter(true)
-#region 界面内容
 #region 驾驶舱
 if operate_rate>0 {
-	var ifx=32, ify=80*operate_rate;
+	var ifx=32, ify=32*operate_rate;
 	//发卡
 	var bbnum=sprite_get_number(spr_ui_grd_board_bgs)
 	draw_sprite(spr_ui_grd_board_bgs, scr_image_index_fpscurr(false, 0.1, bbnum), ifx, ify)
@@ -244,7 +210,7 @@ if operate_rate>0 {
 		//图标
 		//global.boss_icon
 		var iconum=sprite_get_number(spr_ui_grd_bosshp_icon)
-		draw_sprite(spr_ui_grd_bosshp_icon, scr_image_index_fpscurr(true, 0.1, iconum), bifx-48, bify-16)
+		draw_sprite(spr_ui_grd_bosshp_icon, scr_image_index_fpscurr(true, 0.25, iconum), bifx-48, bify-16)
 		//黑背景
 		draw_sprite(spr_ui_grd_bosshp_bgs, 0, bifx-160, bify+78)
 		var hpcounts=(global.boss_hp div hpupmax),
@@ -334,8 +300,10 @@ if global.talk!=0 {
 		}
 		draw_sprite_ext(shotospr, shotoinx, xmirror(tfx+pos.shoto[0], xsc), yflip(tfy+pos.shoto[1], ysc), shotoxsc, 1, 0, blend, 1);
 		//框架
-		var talkebnum=sprite_get_number(spr_ui_grd_talk_elecbgs)
-		draw_sprite_ext(spr_ui_grd_talk_elecbgs, scr_image_index_fpscurr(true, 0.1, talkebnum), xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
+		var talkebnum=sprite_get_number(spr_ui_grd_talk_elecbgs),
+			talkebinx=scr_image_index_fpscurr(true, 0.25, talkebnum);
+		//if i!=global.talk_now talkebinx=0;
+		draw_sprite_ext(spr_ui_grd_talk_elecbgs, talkebinx, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
 						xsc, ysc, 0, blend, 1);
 		draw_sprite_ext(spr_ui_grd_talk, 0, xmirror(tfx+pos.frame[0], xsc), yflip(tfy+pos.frame[1], ysc), 
 						xsc, ysc, 0, blend, 1);
@@ -382,4 +350,49 @@ if global.tip_talk!=0 {
 	}
 }
 #endregion
+#region 加载画面
+if loading_index>=0 {
+	//背景
+	draw_sprite(spr_ui_loading_bgs, 0, 0, 0)
+	//立绘
+	draw_sprite(spr_ui_loading_draft, loading_index, 544, 544)
+	//chapter
+	draw_sprite(spr_ui_loading_chapter, 0, 1216, 192)
+	//章节名称
+	var SS_loading_name=spr_ui_loading_name
+	draw_sprite(SS_loading_name, loading_index, 1568, 288)
+	//章节内容
+	var desctxts=global.txt_chapter[loading_index]
+	for(var i=0;i<array_length(desctxts);i++) {
+		var dtxt=desctxts[i], dtxtx=1216+i*40, dtxty=384+80*i
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, dtxt, dtxtx, dtxty, 
+							1, 1, -1, -1, -1, 0)
+	}
+	//进度条
+	var ratesprw=sprite_get_width(spr_ui_loading_line),
+		ratex=976, 
+		ratey=368,
+		xscmax=58;
+	draw_sprite(spr_ui_loading_line, 0, ratex, ratey)
+	draw_sprite_ext(spr_ui_loading_line, 1, ratex+ratesprw, ratey, xscmax, 1, 0, c_white, 1)
+	draw_sprite(spr_ui_loading_line, 2, ratex, ratey)
+	draw_sprite_ext(spr_ui_loading_line, 3, ratex+ratesprw, ratey, xscmax*(loading_rate/100), 1, 0, c_white, 1)
+	//logo
+	draw_sprite(spr_ui_loading_logo, 0, 1520, 880)
+	//六边形
+	var hexpos=[
+		[1841, 939],
+		[1881, 972],
+		[1872, 1023],
+		[1821, 1041],
+		[1780, 1009],
+		[1791, 958]
+	]
+	for(var i=0;i<array_length(hexpos);i++) {
+		var colrate=((i+floor(global.fps_curr*0.1)) mod 6)/6,
+			hexcol=merge_color(UIPINK, c_white, colrate)
+		draw_sprite_ext(spr_ui_loading_hex, 0, hexpos[i][0], hexpos[i][1],
+						1, 1, 0, hexcol, 1)
+	}
+}
 #endregion

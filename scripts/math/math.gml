@@ -41,6 +41,21 @@ function shift_xy_angle(lenx, leny, rot) {
 function triangle_hypotenuse(side1, side2) {
 	return point_distance(side1,0,0,side2)
 }
+/// @desc 角度逐渐向某方向靠拢
+/// @arg aimpos[] 目标坐标
+/// @arg rotspd 角速度
+/// @arg direction 方向值（用于应对非direction变量）
+function direction_goto(aimpos, rotspd, dir) {
+	var rtndir=dir
+	var da=point_direction(x, y, aimpos[0], aimpos[1]),
+	    diff=angle_difference(dir, da)
+	if abs(diff)>rotspd
+	    rtndir+=rotspd*sign(angle_difference(da, dir))
+	else
+	    rtndir=da
+	return rtndir
+}
+
 #endregion
 #region 线运算
 /// @function line_get_point(point1, point2, t)

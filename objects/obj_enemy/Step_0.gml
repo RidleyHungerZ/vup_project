@@ -4,7 +4,8 @@ scr_time_alarm();
 scr_enemy_step();
 #region 出视野刷新
 //进入过视野
-if(view==0) {
+if(view==0 
+&& enemy_or_bullet==1) {
 	if(auto_xscale==1) 
 		image_xscale=sign_no0(obj_player.x-x);
 	if(scr_in_view(view_edge) && view_edge>=0)
@@ -15,9 +16,10 @@ if(view==0) {
 //离开房间
 if(!scr_in_roomall(view_edge)
 && view_edge>=0)
-	event_user(0);
+	final_selfBoom()
 //如果死亡后复活(不复活的不考虑刷新)
-if(death_repeat==1) {
+if(death_repeat==1
+&& enemy_or_bullet==1 ) {
     //出视野复活判断临时变量
     var init_disx=init_x-obj_player.x,
 		init_disy=init_y-obj_player.y,
@@ -42,7 +44,9 @@ if(death_repeat==1) {
 #endregion
 #region 消灭
 #region 其他死亡
-if(hp<=0 && use_death_system==1) {
+if(hp<=0 
+&& use_death_system==1
+&& enemy_or_bullet==1) {
 	gravity_direction=270;
 	if(abs(vspeed)>=abs(gravity)*vspmaxn
 	&& gravity!=0) {

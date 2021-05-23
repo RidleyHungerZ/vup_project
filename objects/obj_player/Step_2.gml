@@ -192,6 +192,9 @@ global.player_def=1;
 				konjo=true;
 				scr_player_damage_cal(enemy);
 			}
+			else if enemy.enemy_or_bullet==2 {
+				enemy.hit=1;
+			}
 		}
 		//ds_list_destroy(enemylist);
 		ds_list_clear(enemylist);
@@ -209,7 +212,7 @@ global.player_def=1;
 					konjo=true;
 					scr_player_damage_cal(bullet);
 				}
-				else{
+				else {
 					bullet.hit=1;
 				}
 			}

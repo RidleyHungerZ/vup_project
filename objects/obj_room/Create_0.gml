@@ -5,6 +5,7 @@ time=0
 bosswar_bgm=noone
 restart_bgm=noone
 direct=0
+npc=array_create(20, noone)
 
 for(var i=1;i<=4;i++) {
 	layerInstFront[i]="front_inst"+string_real_supply0(i, 2)
@@ -27,6 +28,7 @@ global.txt_thread=array_create(100, [])
 talk_action=0
 talk_txt_thread=-1
 talk_txt_index=0
+talk_txt_index_st=0
 #endregion
 
 /// @desc 门关闭后可移动

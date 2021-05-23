@@ -25,7 +25,7 @@ if room==room_test
 		}
 		//thread_talk_execute(prg, 3, 4, 30)
 		if action==3 && time==0 {
-			scr_room_bosswar_start(bgm_boss1, bgm_stage1)
+			scr_room_bosswar_start(bgm_boss1, bgm_area0)
 		}
 		#endregion
 		#region 战斗中
@@ -45,7 +45,7 @@ if room==room_test
 		#region BOSS死亡
 		else if scr_room_bosswar_boss_hp0() {
 			scr_boss_get(0)
-			audio_bgm_change(bgm_stage1)
+			audio_bgm_change(bgm_area0)
 			scr_room_freedom()
 			action=0
 		}

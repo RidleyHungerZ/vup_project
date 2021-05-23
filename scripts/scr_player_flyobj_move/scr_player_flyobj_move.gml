@@ -5,11 +5,18 @@ function scr_player_flyobj_move() {
 		floor1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_floor,1,1),	//半透板足下
 		pre_flyobj=flyobj, //上一帧接触的飞行物
 		upfloor = false //是否踩在半透板上
-	if ground_is_flyobj(ground1) && jump<=0		flyobj=ground1	//脚下
-	else if ground_is_flyobj(ground3)			flyobj=ground3	//左右
-	else if ground_is_flyobj(ground4) && jump>0	flyobj=ground4	//头顶
-	else if ground_is_flyobj(floor1) && jump<=0 {
-		flyobj=floor1	//脚下
+	//脚下
+	if ground_is_flyobj(ground1)// && jump<=0		
+		flyobj=ground1
+	//左右 且有横向速度
+	else if ground_is_flyobj(ground3) && cos_de(ground3.direction)!=0 
+		flyobj=ground3	
+	//头顶 且有向下速度
+	else if ground_is_flyobj(ground4) && sin_de(ground4.direction)>0 && jump>0
+		flyobj=ground4
+	//脚下
+	else if ground_is_flyobj(floor1) {// && jump<=0
+		flyobj=floor1	
 		upfloor = true
 	} else {
 		flyobj=noone

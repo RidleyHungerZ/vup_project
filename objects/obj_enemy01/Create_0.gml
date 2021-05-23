@@ -1,6 +1,7 @@
 hp=10
 attack=6
 event_inherited();
+adjustGRDY();
 
 SS_idle=spr_enemy01_idle
 SS_injure=spr_enemy01_injure
@@ -11,5 +12,5 @@ SS_part2=spr_enemy01_part2
 xrange=128
 
 find_player = function() {
-	return scr_enemy_find_target(128, 96, 64, 64, true)
+	return findTarget(128, 96, 64, 64, true)
 }

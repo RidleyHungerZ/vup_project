@@ -4,22 +4,22 @@ if global.full_screen==1 {
 	global.resolution=1
 } else {
 	if window_size_change==0 {
-		if last_resolution!=global.full_screen {
+		if last_resolution!=global.resolution {
 			window_size_change=1
-			last_resolution=global.full_screen
 		}
-		if last_full_screen!=global.resolution {
+		if last_full_screen!=global.full_screen {
 			window_size_change=1
-			last_full_screen=global.resolution
 		}
 	} else if window_size_change==1 {
-		window_center()
 		window_size_change=0
+		window_center()
 		window_set_fullscreen(false)
 		window_set_size(ui.winsize[global.resolution].w, ui.winsize[global.resolution].h)
 		window_set_caption(CAPTION);
 	}
 }
+last_resolution=global.resolution
+last_full_screen=global.full_screen
 #endregion
 #region 小房间判断
 scr_viewroom_inroom()
@@ -170,25 +170,66 @@ if scr_menu_trem() {
 if mission_time>0 mission_time--
 else mission_time=0
 //任务开始
-if mission_action==1 {
+if mission_action==1 && mission_time==0 {
+	instance_create_depth(0, 0, obj_view.depth-1, obj_ui_mission_start)
+	mission_action=1.1
+} else if mission_action==1.1 {
 	if !instance_exists(obj_ui_mission_start) {
-		mission_action=1.1
+		mission_action=1.2
 		mission_time=30
 	}
-} else if mission_action==1.1 {
+} else if mission_action==1.2 && mission_time=0 {
 	mission_action=0
 	mission_time=0
 	scr_room_freedom()
 }
 //任务结束
-if mission_action==2 {
+if mission_action==2 && mission_time==0 {
+	instance_create_depth(0, 0, obj_view.depth-1, obj_ui_mission_complete)
+	mission_action=2.1
+} else if mission_action==2.1 {
 	if !instance_exists(obj_ui_mission_complete) {
-		mission_action=2.1
+		mission_action=2.2
 		mission_time=30
 	}
-} else if mission_action==2.1 {
+} else if mission_action==2.2 && mission_time=0 {
 	mission_action=0
 	mission_time=0
 	scr_room_freedom()
+}
+#endregion
+#region 加载画面
+if loading_time>0 loading_time--
+else loading_time=0
+if loading_action==1 {
+	scr_view_transition(1, 0)
+	loading_action=2
+} else if loading_action==2 {
+	if scr_view_transition_Isover(1) {
+		loading_action=2.5
+	}
+} else if loading_action==2.5 {
+	loading_index=loading_index_temp
+	loading_rate=0
+	loading_action=3
+	loading_time=30
+} else if loading_action==3 && loading_time==0 {
+	loading_rate+=1
+	if in(loading_rate, [30, 50, 80, 90]) {
+		loading_time=30
+	}
+	if loading_rate>=100 {
+		loading_rate=100
+		loading_action=4
+		loading_time=30
+	}
+} else if loading_action==4 && loading_time==0 {
+	scr_view_transition(1, 0)
+	loading_action=5
+} else if loading_action==5 {
+	if scr_view_transition_Isover(1) {
+		loading_index=-1
+		loading_action=0
+	}
 }
 #endregion

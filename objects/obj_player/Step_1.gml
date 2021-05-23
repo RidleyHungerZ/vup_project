@@ -471,7 +471,7 @@ if(obj_player.y>global.room_yb+24) {
 	&& !cliff_protect
 	&& global.player_operate==1) {
 		scr_player_hp_subtract(4);
-		jump=20;
+		jump=PYJUMP.cliffProtect;
 		hsp=0;
 		vsp=0;
 		dash=0;

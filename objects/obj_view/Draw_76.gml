@@ -28,8 +28,9 @@ if view_current==0 {
 		//scr_setroom_background(obj_view0)
 		//震动一次
 		if global.view_shock==1 {
-			if viewShock mod shockT == 0 
+			if viewShock mod shockT == 0 {
 				global.view_shock=0;
+			}
 		}
 		//持续震动
 		else if global.view_shock==2 {
@@ -38,5 +39,8 @@ if view_current==0 {
 		}
 		gaypad_shock(min(cur_val_x, 0), max(0, cur_val_x), -1)
 	}
+	//记录震动
+	if global.view_shock!=0 
+		view_shock_curr=true
 	#endregion
 }

@@ -31,20 +31,26 @@ function view_hpos(view) {
 /// @desc 相机x坐标增减
 /// @arg addx
 function view_addx(addx) {
+	var vx=view_xpos(0), vy=view_ypos(0)
 	obj_view.x+=addx
+	camera_set_view_pos(view_camera[0],vx+addx,vy)
 }
 /// @desc 相机y坐标增减
 /// @arg addy
 function view_addy(addy) {
+	var vx=view_xpos(0), vy=view_ypos(0)
 	obj_view.y+=addy
+	camera_set_view_pos(view_camera[0],vx,vy+addy)
 }
 /// @desc 相机x坐标设置
 /// @arg x
 function view_setx(setx) {
 	obj_view.x=setx+view_wpos(0)/2
+	camera_set_view_pos(view_camera[0],setx,view_ypos(0))
 }
 /// @desc 相机y坐标设置
 /// @arg y
 function view_sety(sety) {
 	obj_view.y=sety+view_hpos(0)/2
+	camera_set_view_pos(view_camera[0],view_xpos(0),sety)
 }

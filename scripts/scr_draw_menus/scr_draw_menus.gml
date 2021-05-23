@@ -17,8 +17,9 @@ function scr_draw_menu_tab(dx, dy, index){
 	draw_sprite_ext(spr_menu_tab_lr, 0, dx+VIEW_W_UI, dy, -1, 1, 0, c_white, 1)
 	draw_sprite_ext(spr_menu_tab_lr_txt, 1, dx+VIEW_W_UI-96, dy+80, 1, 1, 0, c_white, 1)
 	//name
-	var tabcenum=sprite_get_number(spr_menu_tab_center);
-	draw_sprite(spr_menu_tab_center, scr_image_index_fpscurr(false, 0.1, tabcenum), cenx, dy)
+	var tabcenum=sprite_get_number(spr_menu_tab_center),
+		tabceinx=scr_image_index_fpscurr(false, 0.25, tabcenum);
+	draw_sprite(spr_menu_tab_center, tabceinx, cenx, dy)
 	draw_sprite(spr_menu_tab_center_frame, 0, cenx, dy)
 	draw_sprite(spr_nemu_tab_center_name, index, cenx, dy+64)
 	//箭头
@@ -96,7 +97,8 @@ function scr_draw_menu_status(dx, dy){
 	{
 		var txtstruts=txtstu.right,
 			desctxt="", //下方注释文本
-			selectalpha=0.5+0.5*sin(global.fps_curr*pi/30)
+			selectalpha=0.5+0.5*sin(global.fps_curr*pi/30),
+			elecspd=0.25;
 		drawx=dx+1248 drawy=dy+592
 		draw_sprite(spr_menu_status_right_bgs, 0, drawx, drawy)
 		//按钮
@@ -126,9 +128,10 @@ function scr_draw_menu_status(dx, dy){
 			var circuit_blend=c_white,
 				circuit_index=0;
 			if msel[0]!=0 circuit_blend=c_gray
-			else if menu_type>0 {
-				var cirnum=sprite_get_number(spr_menu_status_right_circuit_card)
-				circuit_index=(menu_curr[1] mod (cirnum*10))/10
+			else { //if menu_type>0 
+				var cirnum=sprite_get_number(spr_menu_status_right_circuit_card);
+				//circuit_index=(menu_curr[1] mod (cirnum/elecspd))*elecspd
+				circuit_index=scr_image_index_fpscurr(false, elecspd, cirnum);
 			}
 			draw_sprite_ext(spr_menu_status_right_circuit_card, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+816 drawy=dy+384
@@ -177,8 +180,9 @@ function scr_draw_menu_status(dx, dy){
 				circuit_index=0;
 			if msel[0]!=1 circuit_blend=c_gray
 			else {
-				var cirnum=sprite_get_number(spr_menu_status_right_circuit_weapon)
-				circuit_index=(menu_curr[0] mod (cirnum*10))/10
+				var cirnum=sprite_get_number(spr_menu_status_right_circuit_weapon);
+				//circuit_index=(menu_curr[0] mod (cirnum*elecspd))/elecspd
+				circuit_index=scr_image_index_fpscurr(false, elecspd, cirnum);
 			}
 			draw_sprite_ext(spr_menu_status_right_circuit_weapon, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+1264 drawy=dy+512
@@ -218,9 +222,10 @@ function scr_draw_menu_status(dx, dy){
 			var circuit_blend=c_white,
 				circuit_index=0;
 			if msel[0]!=2 circuit_blend=c_gray
-			else if menu_type>0 {
-				var cirnum=sprite_get_number(spr_menu_status_right_circuit_rtank)
-				circuit_index=(menu_curr[1] mod (cirnum*10))/10
+			else { //if menu_type>0
+				var cirnum=sprite_get_number(spr_menu_status_right_circuit_rtank);
+				//circuit_index=(menu_curr[1] mod (cirnum*elecspd))/elecspd
+				circuit_index=scr_image_index_fpscurr(false, elecspd, cirnum);
 			}
 			draw_sprite_ext(spr_menu_status_right_circuit_rtank, circuit_index, drawx, drawy, 1, 1, 0, circuit_blend, 1)
 			drawx=dx+1264 drawy=dy+640

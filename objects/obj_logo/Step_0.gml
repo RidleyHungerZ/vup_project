@@ -118,12 +118,14 @@ else if select_type==2 {
 	//缓动动画
 	else if action==2.1 && time==0 {
 		scr_view_transition(1, 0)
-		global.mode=select[select_type]
 		action=2.2
 	}
 	//黑屏结束
 	else if action==2.2 {
 		if scr_view_transition_Isover(1) {
+			global.game_start=1
+			data_save_variable_single()
+			global.mode=select[select_type]
 			scr_room_goto(room_start)
 		}
 	}

@@ -64,6 +64,7 @@ view_oldy=view_ypos(0)
 
 view_shock_prex=view_xpos(0)
 view_shock_prey=view_ypos(0)
+view_shock_curr=false
 
 lastroom_xl=0
 lastroom_xr=0
@@ -216,13 +217,20 @@ get_hp_surface = function(hp, up, rate) {
 #region 任务开始/结束
 mission_action=0
 mission_time=0
-missionStart=function() {
-	instance_create_depth(0, 0, obj_view.depth-1, obj_ui_mission_start)
+missionStart=function(time) {
 	mission_action=1
+	mission_time=time
 }
-missionComplete=function() {
-	instance_create_depth(0, 0, obj_view.depth-1, obj_ui_mission_start)
+missionComplete=function(time) {
 	mission_action=2
+	mission_time=time
 }
+#endregion
+#region 加载页面
+loading_index_temp=-1
+loading_index=-1 //显示内容编号
+loading_rate=0 //加载率
+loading_action=0
+loading_time=0
 #endregion
 event_perform(ev_other, ev_room_start)
