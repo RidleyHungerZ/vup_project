@@ -8,7 +8,7 @@ global.txt_names[stype][1]="相沢加奈"
 #region BOSS
 stype=TALK_SHOTO.boss
 global.txt_names[stype][0]="？？？"
-global.txt_names[stype][1]="杂兵队长"
+global.txt_names[stype][1]="草翦葱Negi"
 #endregion
 #region npc
 stype=TALK_SHOTO.npc

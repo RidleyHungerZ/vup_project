@@ -55,4 +55,15 @@ testmode=function() {
 
 	//global.boss_war=1
 	//global.boss_hp=64
+	
+	scr_room_goto(room_area0_test)
+	with obj_player {
+		x=64
+		y=512-GRDY
+		scr_relife_set_point(x, y+GRDY, 1)
+		scr_sprite_change(SS_idle, 0, 0.25)
+	}
+	audio_bgm_change(bgm_area0)
+	global.operate=0.5
+	global.player_operate=1
 }

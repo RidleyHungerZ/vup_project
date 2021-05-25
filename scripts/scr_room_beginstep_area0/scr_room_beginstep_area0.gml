@@ -152,9 +152,17 @@ else if (room==room_kanaroom || room==room_area0_1)
 		action=3
 		time=60
 	}
-	thread_talk_execute(prg, 3, 4, 30)
+	thread_talk_execute(prg, 3, 3.2, 30)
+	//信号阻断
+	if action==3.2 && time==0 {
+		scr_sound_loop(se_env_wave_noise)
+		action=3.6
+		time=60
+	}
+	thread_talk_execute(prg, 3.6, 4, 30)
 	//爆炸震动
 	if action==4 && time==0 {
+		scr_sound_stop(se_env_wave_noise)
 		audio_bgm_change(bgm_danger)
 		scr_sound_play(se_boom)
 		scr_view_shock(1)
@@ -311,8 +319,16 @@ else if (room==room_kanaroom || room==room_area0_1)
 			time=60
 		}
 	}
-	thread_talk_execute(prg, 14, 15, 30)
+	thread_talk_execute(prg, 14, 14.2, 30)
+	//信号阻断
+	if action==14.2 && time==0 {
+		scr_sound_loop(se_env_wave_noise)
+		action=14.6
+		time=60
+	}
+	thread_talk_execute(prg, 14.6, 15, 30)
 	if action==15 && time==0 {
+		scr_sound_stop(se_env_wave_noise)
 		audio_bgm_change(bgm_area0)
 		obj_view.missionStart(0)
 		scr_thread_over(prg)

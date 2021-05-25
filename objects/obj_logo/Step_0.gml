@@ -55,7 +55,6 @@ else if select_type==1 {
 	//读档
 	else if action==1.2 {
 		if scr_view_transition_Isover(1) {
-			scr_room_goto(room_test)
 			testmode()
 		}
 	}
