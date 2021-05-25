@@ -67,7 +67,8 @@ thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 2, true,
 thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.ziXin, 1, true,
 @"咦，信号不好吗？
-放心~安全的不得了，那个跟游戏机一样的东西就在手边，窝可是看得好好的……")
+唉，那个跟游戏机一样的东西可安全的不得了，
+反正就在手边，窝可是看得好好的……")
 //爆炸
 thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, false,
@@ -78,7 +79,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huang
 thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"这是……暴乱体！
-怎么会跑到我这里来？
+怎么会跑到窝这里来？
 可恶……都已经快到这里了嘛……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
 @"大门那边情况怎么样……")
@@ -90,13 +91,18 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 //关闭监控
 thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
-@"我这里又没有什么贵重货物，他们怎么会到这里来？")
+@"窝这里又没有什么贵重货物，他们怎么会到这里来？")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
 @"等一下……他们的目标不会是这个东西吧？
 『虚拟驱动器』……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
-@"不管怎么样，再这样下去他们就要到这里来了。
-我得出去主动“排除危险”了，到大门那边看看到底怎么回事。")
+@"不管怎么样，再这样下去他们就要到这里来了。")
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
+@"看起来他们每个个体都是单独行动的……
+还好，窝还能应付得了。")
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
+@"窝得出去主动“排除危险”了，
+到大门那边看看到底怎么回事。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, true,
 @"这个货物……为确保货物安全还是带在身上为妙！")
 //仓库办公室门口
@@ -151,11 +157,15 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huang
 @"咦……咦？！！
 怎么突然冒出来这么多暴乱体！
 到底是从哪里跑出来的！")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
-@"糟了！被包围了！
-这么多的数量窝可打不过啊！")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
-@"到此为止了嘛……")
+@"糟了！被包围了！")
+//开枪射击
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, false,
+@"啊！好痛！")
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.beiShang, 1, true,
+@"没办法突围了……
+到此为止了吗……
+可恶……好不甘心……")
 //腰带闪光
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 3, 3, true,
 @"Virtua Ride System……
@@ -166,10 +176,10 @@ thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, false,
 @"呼……呼……
 刚刚……发生了什么了……")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, false,
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, false,
 @"感觉身体好轻，
 体内又像是有什么在涌动似的……")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, false,
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, false,
 @"这个腰带……是那个货物变的？
 还有这些卡片跟装甲……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, true,
@@ -179,12 +189,23 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingX
 #endregion
 #region BOSS
 prg=5 inx=0
-thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1)
-thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 1, false,
-@"一群杂碎……连个看仓库的女人都摆不平，还得本大爷亲自出马。")
+thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.boss, 1, 1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
 @"这……这不是窝上个月刚买的ES-02型么！
 乃们这些家伙……太过份了！")
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 1, false,
+@"一群杂碎……连个看仓库的女人都摆不平，还得本大爷亲自出马。")
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 1, false,
+@"直接干掉这女人算了，然后不光是什么"+TXT_KEY+@"『驱动器』"+TXT_W+@"，
+整个仓库的东西都是本大爷的了！")
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
+@""+TXT_KEY+@"『驱动器』"+TXT_W+@"？
+乃是要来抢"+TXT_KEY+@"『虚拟驱动器』"+TXT_W+@"的？
+乃是谁？")
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 1, true,
+@"本大爷是草翦葱Negi！
+现在本大爷心情很差，所以本大爷要做掉你！
+记住本大爷的名字然后下地狱去吧！")
 #endregion
 #region BOSS结束
 prg=6 inx=0
