@@ -13,7 +13,7 @@
     {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":256,"hview":192,"xport":0,"yport":0,"wport":256,"hport":192,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
   ],
   "layers": [
-    {"pathId":{"name":"Path_test02","path":"paths/Path_test02/Path_test02.yy",},"colour":4278190335,"visible":false,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Path_2","tags":[],"resourceType":"GMRPathLayer",},
+    {"pathId":{"name":"Path_test02","path":"paths/Path_test02/Path_test02.yy",},"colour":4278190335,"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Path_2","tags":[],"resourceType":"GMRPathLayer",},
     {"pathId":{"name":"Path_test01","path":"paths/Path_test01/Path_test01.yy",},"colour":4278190335,"visible":false,"depth":100,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Path_1","tags":[],"resourceType":"GMRPathLayer",},
     {"assets":[
         {"spriteId":{"name":"spr_ui_loading_draft","path":"sprites/spr_ui_loading_draft/spr_ui_loading_draft.yy",},"headPosition":0.0,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"animationSpeed":1.0,"colour":4294967295,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":544.0,"y":544.0,"resourceVersion":"1.0","name":"graphic_31A13090","tags":[],"resourceType":"GMRSpriteGraphic",},

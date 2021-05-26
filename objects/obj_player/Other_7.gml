@@ -29,14 +29,14 @@ else if sprite_index==SS_talk{
 else if sprite_index==SS_talked{
 	scr_sprite_change(SS_idle,0,0.25);
 }
-//else if sprite_index==SS_squat{
-//	scr_sprite_change(SS_squating,0,0.25);
-//}
-//else if sprite_index==SS_squated{
-//	scr_sprite_change(SS_idle,4,0.25);
-//	walk=0;
-//	jump=0;
-//}
+else if sprite_index==SS_squat{
+	scr_sprite_change(-2,image_number-0.5,0);
+}
+else if sprite_index==SS_squated{
+	scr_sprite_change(SS_idle, 4, 0.25);
+	walk=0;
+	jump=0;
+}
 else if sprite_index==SS_trip{
 	scr_sprite_change(SS_climb,0,0.25);
 }

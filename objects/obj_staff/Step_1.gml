@@ -90,6 +90,20 @@ else if global.player_support<0
 //	global.player_life=0
 //else if global.player_life>9 
 //	global.player_life=9
+//连击羁绊加成
+if scr_menu_trem() {
+	if global.combo_time>0 global.combo_time--
+	else {
+		global.combo_time=0
+		global.combo=0
+		global.support_mult=1
+	}
+	if global.combo>0 {
+		//每击中三下，羁绊获得倍率就会提升1倍，最大不超过10倍
+		global.support_mult=1+1*(global.combo div 3)
+		global.support_mult=min(10, global.support_mult)
+	}
+}
 //自动回复能量
 if scr_menu_trem() {
 	if global.player_mp<global.player_mp_up {
@@ -303,5 +317,32 @@ if player_change_action==0 {
 	
 	//缓动，统一为15帧
 	player_change_outsert_rate = player_change_time/15
+}
+#endregion
+#region 快速换卡，仅限装甲之间
+if scr_menu_trem() 
+&& global.operate==1
+&& global.player_operate==1 
+&& global.player_hp>0
+&& global.player_saber.sprite_index==spr_none 
+&& global.model_get_number>=3 
+&& !instance_exists(obj_player_change_circle) {
+	var changedir = 0, 
+		card = global.model
+	if keystate_check_pressed(global.tformL_state) {
+		changedir=-1
+	} else if keystate_check_pressed(global.tformR_state) {
+		changedir=1
+	}
+	//在变为已获得并且不是人形的装甲前会一直切换
+	if changedir!=0 {
+		do {
+			card+=changedir
+			if card<=0 card=global.model_number-1
+			if card>=global.model_number card=1
+		} until(scr_model_isget(card) && card!=0)
+		global.model=card
+		instance_create_depth(obj_player.x, obj_player.y, obj_player.depth-50, obj_player_change_circle)
+	}
 }
 #endregion

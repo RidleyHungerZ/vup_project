@@ -385,5 +385,89 @@ else if room==room_area0_1
 	}
 }
 #endregion
-
+#region 仓库大门外
+else if room==room_area0_2 
+&& !scr_thread_isover(4) {
+	prg=4
+	if action==0 {
+		if scr_room_doorclose_canoper() {
+			global.player_operate=0
+			action=1
+			time=60
+		}
+	}
+	thread_talk_execute(prg, 1, 2, 30)
+	//信号阻断
+	if action==2 && time==0 {
+		scr_sound_loop(se_env_wave_noise)
+		action=3
+		time=60
+	}
+	thread_talk_execute(prg, 3, 4, 30)
+	//前进到网格查看
+	if action==4 && time==0 {
+		scr_sound_stop(se_env_wave_noise)
+		action=4.1
+		time=30
+	}
+	if action==4.1 && time==0 {
+		codekey_Hdirect(1)
+		action=4.2
+	}
+	if action==4.2 {
+		if obj_player.x>=1216 {
+			codekey_Hdirect(0)
+			scr_room_player_xstop(1216)
+			action=4.3
+			time=30
+		}
+	}
+	if action==4.3 && time==0 {
+		with obj_player {
+			scr_sprite_change(SS_squat, 0, 0.25)
+		}
+		action=5
+		time=60
+	}
+	thread_talk_execute(prg, 5, 6, 30)
+	//敌人出现
+	if action==6 && time==0 {
+		with instance_create_layer(1456, -16, layerInst[3], obj_bullet_enemy01) {
+			speed=6
+			direction=225
+		}
+		scr_sound_play(se_enemy_bullet)
+		action=6.1
+	}
+	if action==6.1 {
+		with obj_player {
+			if uninjure!=0 {
+				injure_t=9999
+				walk=0
+				jump=0
+				other.action=6.2
+			}
+		}
+	}
+	if action==6.2 {
+		with obj_player {
+			if sprite_index==SS_idle {
+				scr_sprite_change(SS_climb, 0, 0)
+				global.operate=0
+				other.action=6.3
+				other.time=30
+			}
+		}
+	}
+	if action==6.3 && time==0 {
+		obj_player.image_index=1
+		action=6.4
+		time=30
+	}
+	//飞行暴乱体出现
+	if action==6.4 && time==0 {
+		
+	}
+}
+#endregion
 }

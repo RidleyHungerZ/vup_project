@@ -138,24 +138,29 @@ function scr_draw_menu_status(dx, dy){
 			draw_sprite(spr_menu_status_right_card_bgs, 0, drawx, drawy)
 			if msel[0]==0 && menu_type!=0 {
 				for(var i=0;i<global.model_number;i++) {
-					var imx=1, imy=1, xof=i*88
+					var imx=1, imy=1, xof=i*88, sprinx=i
 					if menu_type==0.1 {
 						xof*=1-menutime/15
 					} else if menu_type==0.9 {
 						xof*=menutime/15
 					}
-					draw_sprite(spr_menu_status_right_cards, i, drawx+xof, drawy)
+					//未获得卡片用11帧
+					if !scr_model_isget(i) sprinx=11
+					draw_sprite(spr_menu_status_right_cards, sprinx, drawx+xof, drawy)
 				}
 				//当前选中
 				if menu_type!=0 {
 					var imx=1+0.2*(1-menutime/10),
-						xof=msel[1]*88
+						xof=msel[1]*88, 
+						sprinx=msel[1]
 					if menu_type==0.1 {
 						xof*=1-menutime/15
 					} else if menu_type==0.9 {
 						xof*=menutime/15
 					}
-					draw_sprite_ext(spr_menu_status_right_cards, msel[1], drawx+xof, drawy, imx, imx, 0, c_white, 1)
+					//未获得卡片用11帧
+					if !scr_model_isget(i) sprinx=11
+					draw_sprite_ext(spr_menu_status_right_cards, sprinx, drawx+xof, drawy, imx, imx, 0, c_white, 1)
 				}
 			} else {
 				draw_sprite(spr_menu_status_right_cards, global.model, drawx, drawy)

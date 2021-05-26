@@ -151,20 +151,25 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 @"可恶，怎么偏偏是窝碰上这种事……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
 @"再往前走走看看吧！")
+//观察网格
+thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
+@"这里的隔离网被开了个洞，
+看来是从这里侵入进来的……")
 //暴徒冒出
 thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, false,
-@"咦……咦？！！
-怎么突然冒出来这么多暴乱体！
-到底是从哪里跑出来的！")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
-@"糟了！被包围了！")
-//开枪射击
+@"好痛！")
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, true,
+@"这是……飞行暴乱体？
+怎么连这样的家伙都出现了？")
+//包围
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, false,
-@"啊！好痛！")
+@"糟了……被包围了！")
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.beiShang, 1, false,
+@"好痛……身体没有力气……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.beiShang, 1, true,
-@"没办法突围了……
-到此为止了吗……
+@"到此为止了吗……
 可恶……好不甘心……")
 //腰带闪光
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 3, 3, true,

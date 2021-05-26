@@ -1,6 +1,13 @@
 if view_current!=1 exit
 #region 驾驶舱
 if operate_rate>0 {
+	//连击
+	scr_draw_text(c_white, 1, 0, font_butter_support, 0, 0, 
+				string(global.support_mult) + "/" + string(global.combo), 
+				0, 0, 1, 1, -1, -1, c_black, 2)
+	//时间条
+	scr_draw_rectangle(c_aqua, 1, 32, 32, 4*global.combo_time, 24)
+	
 	var ifx=32, ify=32*operate_rate;
 	//发卡
 	var bbnum=sprite_get_number(spr_ui_grd_board_bgs)
@@ -171,8 +178,8 @@ if operate_rate>0 {
 							cinx=0
 							//alpha=0
 						}
-						//未获得的卡片使用第8帧
-						if !scr_model_isget(cinx) cinx=8
+						//未获得的卡片使用第11帧
+						if !scr_model_isget(cinx) cinx=11
 						draw_sprite_ext(cspr, cinx, bx+(i+cardshx)*112, by-144, cardimx, cardimy, 0, c_white, alpha)
 					}
 				}

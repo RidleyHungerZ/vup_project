@@ -258,6 +258,9 @@ global.re_x=0
 global.re_y=0
 global.re_xscale=0
 global.player_es_max=99999
+global.combo=0 //当前连击数
+global.combo_time=0 //连击倒计时
+global.support_mult=1 //羁绊值倍率
 #endregion
 #region 计时区
 global.fps_60=0

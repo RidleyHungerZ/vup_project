@@ -5,7 +5,8 @@ function scr_player_change_trim(){
 	&& global.player_operate==1 
 	&& global.player_hp>0
 	&& global.player_saber.sprite_index==spr_none 
-	&& global.model_get_number>=2 {
+	&& global.model_get_number>=2 
+	&& !instance_exists(obj_player_change_circle) {
 		//动作条件
 		with obj_player {
 			if jump==0 {

@@ -215,7 +215,11 @@ function sign_no0(value) {
 function between(X, XL, closeL, XR, closeR) {
 	var leftOK=false,
 		rightOK=false;
-
+	if XL>XR {
+		var temp=XL
+		XL=XR
+		XR=temp
+	}
 	if((closeL && X>=XL)
 	|| X>XL)
 		leftOK=true;

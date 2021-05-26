@@ -277,12 +277,14 @@ function scr_player_damage(otherobj) {
 						    hp-=att_infact
 							scr_sound_play(se_enemy_damage) //播放音效
 							
-							//羁绊值增加
-							var supval=att_infact
+							//计算连击，并获得羁绊值
+							global.combo++
+							//每4点伤害获得1秒结算时间，如果剩余时间更多则按剩余时间计算
+							global.combo_time=max(global.combo_time, 60*(att_infact/4)) 
+							//按照倍率获得羁绊值
+							var supval=1*global.support_mult
 							if scr_itemb_isopen(ITEMB.supportGain) supval*=1.25
 							scr_player_support_add(floor(supval))
-							if global.player_support>100 
-								global.player_support=100
 					
 							//反馈给武器攻击结果
 							if hp>0 btn_or_sbr.hit=1 //击中
