@@ -99,8 +99,8 @@ if scr_menu_trem() {
 		global.support_mult=1
 	}
 	if global.combo>0 {
-		//每击中三下，羁绊获得倍率就会提升1倍，最大不超过10倍
-		global.support_mult=1+1*(global.combo div 3)
+		//每击中两下，羁绊获得倍率就会提升1倍，最大不超过10倍
+		global.support_mult=1+1*(global.combo div 2)
 		global.support_mult=min(10, global.support_mult)
 	}
 }

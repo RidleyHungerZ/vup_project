@@ -224,6 +224,7 @@ sprite_frtpart=noone
 call_screen=false //对话屏幕
 
 dyinghp=8 //受伤动作血量
+unoperate_injure=false //非活动时是否可以受伤
 #endregion
 #region 蓄力
 //蓄力属性

@@ -415,9 +415,9 @@ else if room==room_area0_2
 		action=4.2
 	}
 	if action==4.2 {
-		if obj_player.x>=1216 {
+		if obj_player.x>=1200 {
 			codekey_Hdirect(0)
-			scr_room_player_xstop(1216)
+			scr_room_player_xstop(1200)
 			action=4.3
 			time=30
 		}
@@ -432,41 +432,140 @@ else if room==room_area0_2
 	thread_talk_execute(prg, 5, 6, 30)
 	//敌人出现
 	if action==6 && time==0 {
-		with instance_create_layer(1456, -16, layerInst[3], obj_bullet_enemy01) {
+		audio_bgm_stop()
+		with instance_create_layer(1440, -16, layerInst[1], obj_bullet_enemy01) {
 			speed=6
 			direction=225
 		}
 		scr_sound_play(se_enemy_bullet)
+		obj_player.unoperate_injure=true
 		action=6.1
 	}
 	if action==6.1 {
 		with obj_player {
 			if uninjure!=0 {
+				hsp=0
 				injure_t=9999
-				walk=0
-				jump=0
+				unoperate_injure=false
 				other.action=6.2
+				other.time=10
 			}
 		}
 	}
-	if action==6.2 {
+	if action==6.2 && time==0 {
 		with obj_player {
-			if sprite_index==SS_idle {
-				scr_sprite_change(SS_climb, 0, 0)
-				global.operate=0
-				other.action=6.3
-				other.time=30
-			}
+			scr_sprite_change(SS_trip, 0, 0)
+			walk=0
+			jump=0
+			global.operate=0
+			other.action=6.3
+			other.time=60
 		}
 	}
 	if action==6.3 && time==0 {
-		obj_player.image_index=1
+		with obj_player {
+			scr_sprite_change(SS_climb, 0, 0)
+		}
 		action=6.4
 		time=30
 	}
 	//飞行暴乱体出现
 	if action==6.4 && time==0 {
-		
+		npc[0]=instance_create_layer(1456, -32, layerInst[3], obj_thread_enemy05)
+		with npc[0] {
+			scr_sprite_change(spr_enemy05_idle, 0, 0.5)
+			image_xscale=-1
+		}
+		action=6.5
+	}
+	if action==6.5 {
+		var eyaimx=1312, eyaimy=144;
+		with npc[0] {
+			var eydis = point_distance(x, y, eyaimx, eyaimy),
+				eydir = point_direction(x, y, eyaimx, eyaimy);
+			if eydis>4 {
+				direction=eydir
+				speed=max(eydis/32, 4)
+			} else {
+				direction=0
+				speed=0
+				x=eyaimx
+				y=eyaimy
+				other.action=6.7
+			}
+		}
+	}
+	if action==6.7 {
+		audio_bgm_change(bgm_danger)
+		action=7
+		time=30
+	}
+	thread_talk_execute(prg, 7, 8, 30)
+	//被包围
+	if action==8 && time==0 {
+		npc[1]=instance_create_layer(1568, 224, layerInst[3], obj_thread_enemy01)
+		with npc[1] {
+			scr_sprite_change(spr_enemy01_walk, 0, 0.2)
+			image_xscale=-1
+			hspeed=3*image_xscale
+		}
+		npc[2]=instance_create_layer(896, 224, layerInst[3], obj_thread_enemy01)
+		with npc[2] {
+			scr_sprite_change(spr_enemy01_walk, 0, 0.2)
+			image_xscale=1
+			hspeed=3*image_xscale
+		}
+		npc[3]=instance_create_layer(720, 224, layerInst[3], obj_thread_enemy01)
+		with npc[3] {
+			scr_sprite_change(spr_enemy01_walk, 0, 0.2)
+			image_xscale=1
+			hspeed=3*image_xscale
+		}
+		action=8.1
+	}
+	if action==8.1 {
+		var allok=true
+		with npc[1] {
+			if hspeed!=0 {
+				allok=false
+				if x<=1392 {
+					scr_sprite_change(spr_enemy01_shoot, 0, 0.25)
+					hspeed=0
+					x=1392
+				} 
+			}
+		}
+		with npc[2] {
+			if hspeed!=0 {
+				allok=false
+				if x>=1088 {
+					scr_sprite_change(spr_enemy01_shoot, 0, 0.25)
+					hspeed=0
+					x=1088
+				} 
+			}
+		}
+		with npc[3] {
+			if hspeed!=0 {
+				allok=false
+				if x>=1008 {
+					scr_sprite_change(spr_enemy01_shoot, 0, 0.25)
+					hspeed=0
+					x=1008
+				} 
+			}
+		}
+		if allok {
+			action=9
+			time=60
+		}
+	}
+	thread_talk_execute(prg, 9, 10, 30)
+	//腰带闪光
+	if action==10 && time==0 {
+		scr_thread_over(prg)
+		scr_room_freedom()
+		action=0
 	}
 }
 #endregion

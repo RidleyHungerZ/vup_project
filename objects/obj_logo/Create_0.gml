@@ -55,20 +55,21 @@ testmode=function() {
 	scr_mission_add(MISSION_TYPE.sub, 0)
 	scr_mission_add(MISSION_TYPE.sub, 1)
 	
-	//scr_room_goto(room_area0_test)
-	//with obj_player {
-	//	x=64
-	//	y=512-GRDY
-	//	scr_relife_set_point(x, y+GRDY, 1)
-	//	scr_sprite_change(SS_idle, 0, 0.25)
-	//}
-	scr_room_goto(room_test)
+	scr_room_goto(room_area0_test)
 	with obj_player {
-		x=464
+		x=64
 		y=512-GRDY
 		scr_relife_set_point(x, y+GRDY, 1)
 		scr_sprite_change(SS_idle, 0, 0.25)
 	}
+	
+	//scr_room_goto(room_test)
+	//with obj_player {
+	//	x=464
+	//	y=512-GRDY
+	//	scr_relife_set_point(x, y+GRDY, 1)
+	//	scr_sprite_change(SS_idle, 0, 0.25)
+	//}
 	
 	audio_bgm_change(bgm_area0)
 	global.operate=0.5

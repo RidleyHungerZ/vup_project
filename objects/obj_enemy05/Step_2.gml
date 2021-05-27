@@ -25,10 +25,8 @@ if fall_return=1{
 }
 //绕圈
 else if fall_return=0{
-	if auto_fly {
-		speed=rad*degtorad(dirspeed)
-		direction+=dirspeed
-	}
+	speed=rad*degtorad(dirspeed)
+	direction+=dirspeed
 	image_xscale=sign_no0(obj_player.x-x)
 	if image_xscale=0 image_xscale=1
 	//准备射击

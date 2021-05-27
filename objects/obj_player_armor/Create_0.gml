@@ -5,7 +5,7 @@ uncharge[2]=false
 sub_unuse=false
 
 kick_type=0 //0下踢1斜下
-kick_support=5 //飞踢恢复羁绊
+kick_support=2 //飞踢恢复羁绊
 glide_close=false //关闭滑翔的一帧
 
 saber_combo=0 //记录按键combo

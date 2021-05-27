@@ -164,6 +164,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huang
 @"这是……飞行暴乱体？
 怎么连这样的家伙都出现了？")
 //包围
+thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, false,
 @"糟了……被包围了！")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.beiShang, 1, false,
@@ -172,6 +173,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.beiSh
 @"到此为止了吗……
 可恶……好不甘心……")
 //腰带闪光
+thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 3, 3, true,
 @"Virtua Ride System……
 Accessing……CodeName:AizawaKana……

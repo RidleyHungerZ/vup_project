@@ -121,7 +121,7 @@ if debug_mode {
 			var roompos=asset_get_index(pos[2])
 			if room_exists(roompos) scr_room_goto(roompos)
 			scr_view_set_with_inst(obj_player)
-			scr_relife_set_point(obj_player.x,obj_player.y+GRDY,obj_player.image_xscale)
+			scr_relife_set_point(obj_player.x,obj_player.y,obj_player.image_xscale)
 			if array_length(pos)=4 {
 				var bgmname = pos[3], bgm=asset_get_index(pos[3])
 				if audio_exists(bgm) audio_bgm_change(bgm)

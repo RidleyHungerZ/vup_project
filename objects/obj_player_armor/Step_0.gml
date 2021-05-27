@@ -164,6 +164,12 @@ else if jump==PYJUMP.kick {
 				x+=sign(xof) 
 				y+=sign(yof)
 			}
+			with instance_create_depth(kickinst.x, kickinst.y, depth, obj_player_bullet) {
+				scr_sprite_change(spr_white, 0, 0)
+				visible=false
+				scr_player_damage_set(4, ELEMENTS.none, ATK_TYPE.bullet,3,20,0,20,0)
+				death_time=5
+			}
 			uninjure_temp=1;
 			jump=PYJUMP.kickJump
 			hsp=dashspd*hspd

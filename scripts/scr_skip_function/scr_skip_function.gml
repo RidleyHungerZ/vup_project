@@ -73,6 +73,7 @@ function scr_skip(view, bgm, ply_scale, ply_x, ply_y, thread, action, time) {
 				scr_sprite_change(SS_idle2,-2,-2)
 			image_xscale=ply_scale
 		}
+		unoperate_injure=false
 		walk=0
 		jump=0
 		vsp=0

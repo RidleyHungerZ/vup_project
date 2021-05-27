@@ -282,7 +282,7 @@ function scr_player_damage(otherobj) {
 							//每4点伤害获得1秒结算时间，如果剩余时间更多则按剩余时间计算
 							global.combo_time=max(global.combo_time, 60*(att_infact/4)) 
 							//按照倍率获得羁绊值
-							var supval=1*global.support_mult
+							var supval=2*global.support_mult
 							if scr_itemb_isopen(ITEMB.supportGain) supval*=1.25
 							scr_player_support_add(floor(supval))
 					

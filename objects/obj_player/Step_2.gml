@@ -161,7 +161,7 @@ global.player_def=1;
 #region 受伤
 {
 	var place=false, 
-		operator = (global.player_operate==1 && global.operate==1);
+		operator = ((global.player_operate==1 || unoperate_injure) && global.operate==1);
 	#region 伤害数值和属性修改
 	ds_list_clear(enemylist);
 	ds_list_clear(bulletlist);

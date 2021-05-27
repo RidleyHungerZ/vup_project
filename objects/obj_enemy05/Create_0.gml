@@ -14,8 +14,7 @@ injure_elementfall=true; //飞行属性被属性击中是否下落
 /// @arg death_xscale=1
 death_xscale=true; //是否使用受伤对准的死亡方向
 
-auto_fly=true //自动飞行
-dirspeed=4
+dirspeed=2
 rad=80
 
 SS_idle=spr_enemy05_idle
@@ -29,6 +28,6 @@ find_player = function() {
 		player=point_distance(x, y, obj_player.x, obj_player.y)<=96
 			&& between(point_direction(x, y, obj_player.x, obj_player.y), 270, false, 270+90*image_xscale, false)
 	if player {
-		return !collision_line(x, y, player.x, player.y, obj_ground, 1, 1)
+		return !collision_line(x, y, obj_player.x, obj_player.y, obj_ground, 1, 1)
 	}
 }
