@@ -13,29 +13,35 @@ if talk_action!=0 {
 			if talkset.now==TALK_INX.up unow=TALK_INX.down
 			scr_talk(unow, "", threadset.unow.shoto_type, threadset.unow.shoto, threadset.unow.name, [])
 		}
-		scr_talk(talkset.now, talkset.txt, talkset.shoto_type, talkset.shoto, talkset.name, [])
+		scr_talk(talkset.now, "", talkset.shoto_type, talkset.shoto, talkset.name, [])
 		talk_action=2
 	} else if talk_action==2 {
-		if scr_talk_print_over() {
+		if global.talk==1 {
 			talk_action=3
+		}
+	} else if talk_action==3 {
+		talkset=global.txt_thread[talk_txt_thread][talk_txt_index];
+		scr_talk(talkset.now, talkset.txt, talkset.shoto_type, talkset.shoto, talkset.name, [])
+		talk_action=4
+	} else if talk_action==4 {
+		if scr_talk_print_over() {
+			talk_action=5
 			time=10
 		}
-	} else if talk_action==3 && time==0 {
-		if scr_talk_print_over() 
-		&& scr_talk_next() {
+	} else if talk_action==5 && time==0 {
+		if scr_talk_next() {
 			talk_txt_index++
 			if talk_txt_index<array_length(global.txt_thread[talk_txt_thread])
 			&& !talkset.tend{
-				talkset=global.txt_thread[talk_txt_thread][talk_txt_index];
-				scr_talk(talkset.now, talkset.txt, talkset.shoto_type, talkset.shoto, talkset.name, [])
+				talk_action=3
 				time=10
 			} else {
 				talk_txt_index--
 				scr_talk_end()
-				talk_action=4
+				talk_action=6
 			}
 		}
-	} else if talk_action==4 {
+	} else if talk_action==6 {
 		if !scr_talk_ing() {
 			talk_txt_index++
 			talk_action=0

@@ -1,13 +1,6 @@
 if view_current!=1 exit
 #region 驾驶舱
 if operate_rate>0 {
-	//连击
-	scr_draw_text(c_white, 1, 0, font_butter_support, 0, 0, 
-				string(global.support_mult) + "/" + string(global.combo), 
-				0, 0, 1, 1, -1, -1, c_black, 2)
-	//时间条
-	scr_draw_rectangle(c_aqua, 1, 32, 32, 4*global.combo_time, 24)
-	
 	var ifx=32, ify=32*operate_rate;
 	//发卡
 	var bbnum=sprite_get_number(spr_ui_grd_board_bgs)
@@ -70,25 +63,40 @@ if operate_rate>0 {
 	#region 支援槽
 	var supifx=ifx+132, supify=ify+21;
 	draw_sprite(spr_ui_grd_support_iframe, 0, supifx, supify)
-	if global.player_support<100 {
-		draw_sprite(spr_ui_grd_support_iframe, 1, supifx, supify)
-	} else {
-		if (global.fps_currmenu mod 60)<=30 {
-			var rate=(global.fps_currmenu mod 30)/30,
-				scale=1+1*rate,
-				alpha=1-rate;
-			draw_sprite_ext(spr_ui_grd_support_iframe, 0, supifx, supify, scale, scale, 0, c_white, alpha)
+	//获得装甲后才会有支援
+	if scr_model_isget(PLAYER_MODEL.ARMOR) {
+		if global.player_support<100 {
+			draw_sprite(spr_ui_grd_support_iframe, 1, supifx, supify)
+		} else {
+			if (global.fps_currmenu mod 60)<=30 {
+				var rate=(global.fps_currmenu mod 30)/30,
+					scale=1+1*rate,
+					alpha=1-rate;
+				draw_sprite_ext(spr_ui_grd_support_iframe, 0, supifx, supify, scale, scale, 0, c_white, alpha)
+			}
 		}
+		var supstr="MAX",
+			strcol=UIPINK;
+		if global.player_support<100 {
+			supstr=string(global.player_support)+"%"
+			if global.player_support<10 supstr=" "+supstr;
+		} else {
+			strcol=c_black
+		}
+		scr_draw_text_ext(strcol, 1, 0, font_jam_24, 0.5, 0.5, supstr, supifx, supify+1, 1, 1, -1, -1, c_black, 1);
 	}
-	var supstr="MAX",
-		strcol=UIPINK;
-	if global.player_support<100 {
-		supstr=string(global.player_support)+"%"
-		if global.player_support<10 supstr=" "+supstr;
-	} else {
-		strcol=c_black
+	#endregion
+	#region 连击数
+	if global.combo_time>0 {
+		var comboifx=ifx+32, comboify=ify+128, alpha=1;
+		if global.combo_time<10 alpha=global.combo_time/10
+		//文字
+		var combotxt = string_real_supply0(global.support_mult, -1) + " x Damage " + string(global.combo)
+		scr_draw_text_ext(UIPINK, alpha, 0, font_jam_24, 0, 0.5, combotxt, comboifx, comboify, 1, 1, -1, -1, c_black, 2)
+		//时间条
+		scr_draw_linecircle(c_black, alpha, 12, comboifx-2, comboify+32, comboifx+2+2*global.combo_time, comboify+32)
+		scr_draw_linecircle(UIPINK, alpha, 8, comboifx, comboify+32, comboifx+2*global.combo_time, comboify+32)
 	}
-	scr_draw_text_ext(strcol, 1, 0, font_jam_24, 0.5, 0.5, supstr, supifx, supify+1, 1, 1, -1, -1, c_black, 1);
 	#endregion
 	
 	var bx=288, by=VIEW_H_UI-120*operate_rate
@@ -282,8 +290,8 @@ if global.talk!=0 {
 						xsc, ysc, 0, blend, 1);
 		drawx+=namefw
 		draw_sprite_ext(spr_ui_grd_talk_name, 1, xmirror(tfx+drawx, xsc), yflip(tfy+pos.namef[1], ysc),
-						xsc*(ceil(nametxtw/namefw)-1), ysc, 0, blend, 1);
-		drawx+=(ceil(nametxtw/namefw)-1)*namefw
+						xsc*(ceil(nametxtw/namefw)-0.5), ysc, 0, blend, 1);
+		drawx+=(ceil(nametxtw/namefw)-0.5)*namefw
 		draw_sprite_ext(spr_ui_grd_talk_name, 2, xmirror(tfx+drawx, xsc), yflip(tfy+pos.namef[1], ysc),
 						xsc, ysc, 0, blend, 1);
 		scr_draw_text_ext(blend, 1, 0, font_puhui_32, txtleft, 0.5, nametxt, 
@@ -328,15 +336,18 @@ if global.talk!=0 {
 		if array_length(global.talk_options[i])>0 
 		&& scr_talk_print_over(){
 			var printh=string_height(global.talk_print[i]),
-				optiondy=0;
+				optiondy=printh,
+				selectbg=talk_select_begin[i];
 			//默认最多两个选项
-			for(var o=0;o<min(array_length(global.talk_options[i]), talk_select_begin+2);o++) {
-				var optiontxt=global.talk_options[i][o];
+			for(var o=selectbg;o<min(array_length(global.talk_options[i]), selectbg+2);o++) {
+				var optiontxt=global.talk_options[i][o],
+					optionh=string_height(optiontxt),
+					optiony=txtdy+optiondy;
 				scr_draw_text_ext(blend, 1, 0, font_puhui_32, 0, 0, optiontxt, 
-								txtdx+128, txtdy+optiondy, 1, 1, -1, -1, -1, 0);
+								txtdx+128, optiony, 1, 1, -1, -1, -1, 0);
 				//游标
 				if global.talk_select[i]==o {
-					draw_sprite_ext(spr_ui_grd_talk_point, 0, txtdx+96, txtdy+optiondy, 1, 1, 0, blend, 1)
+					draw_sprite_ext(spr_ui_grd_talk_point, 0, txtdx+96, optiony+optionh/2-4, 1, 1, 0, blend, 1)
 				}
 				optiondy+=string_height(optiontxt);
 			}

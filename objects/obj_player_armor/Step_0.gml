@@ -190,7 +190,7 @@ else if jump==PYJUMP.kick {
 			}
 			scr_sound_play(se_player_kick_catch)
 			global.player_mp+=2
-			scr_player_support_add(kick_support)
+			//scr_player_support_add(kick_support)
 			//清空半透板记录
 			scr_player_floordown_clear()
 		}

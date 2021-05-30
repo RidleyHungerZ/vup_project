@@ -65,7 +65,7 @@ if in(sprite_index, [SS_change_idle_ing, SS_change_fall_ing]) {
 #endregion
 #region 对话屏幕
 if call_screen {
-	draw_sprite_ext(spr_player_call_screen, global.fps_currmenu, x, y, 
+	draw_sprite_ext(spr_player_call_screen, global.fps_currmenu*0.5, x, y, 
 					image_xscale, image_yscale, 0, c_white, 1)
 }
 #endregion

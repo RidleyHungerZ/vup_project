@@ -305,8 +305,4 @@ findTarget = function(frtx, bckx, topy, btny, colline) {
 	    target=obj_player
 	return target
 }
-//设定在地面上的杂兵需要调整位置
-adjustGRDY = function() {
-	while place_meeting(x, y+GRDY, obj_soild) y--
-}
 #endregion

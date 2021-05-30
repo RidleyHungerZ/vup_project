@@ -20,3 +20,7 @@ inst_of = function(obj) {
 			return false;
 	}
 }
+//设定在地面上的需要调整位置
+adjustGRDY = function() {
+	while place_meeting(x, y+GRDY, obj_soild) y--
+}

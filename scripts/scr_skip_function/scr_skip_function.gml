@@ -41,7 +41,8 @@ function scr_skip(view, bgm, ply_scale, ply_x, ply_y, thread, action, time) {
 	//instance_destroy(obj_time_once)
 	//instance_destroy(obj_fly_outdestroy)
 	instance_destroy(obj_physics_part)
-	//instance_destroy(obj_room_tile)
+	instance_destroy(obj_player_flash_circle)
+	instance_destroy(obj_ui_cg)
 	with obj_animation {
 		if animation_once instance_destroy()
 		else if death_time>=0 instance_destroy()
@@ -74,6 +75,8 @@ function scr_skip(view, bgm, ply_scale, ply_x, ply_y, thread, action, time) {
 			image_xscale=ply_scale
 		}
 		unoperate_injure=false
+		operate_charge_release=false
+		call_screen=false
 		walk=0
 		jump=0
 		vsp=0

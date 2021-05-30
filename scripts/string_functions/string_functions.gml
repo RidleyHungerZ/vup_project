@@ -293,10 +293,22 @@ function date_format(sdf, times) {
 }
 /// @desc 数字补0
 /// @arg num 数字
-/// @arg digit 位数
+/// @arg digit 位数，负数为小数
 function string_real_supply0(num, digit) {
 	var str=string(num)
-	while string_length(str)<digit
-		str = "0" + str
+	if digit>0 {
+		while string_length(str)<digit
+			str = "0" + str
+	} else {
+		digit = -digit
+		if !string_count(".", str) str+="."
+		var dnum=string_length(string_split(str, ".")[1])
+		repeat digit-dnum 
+			str += "0"
+		if dnum>digit && string_endwith(str, "0") {
+			repeat dnum-digit 
+				str = string_copy(str, 1, string_length(str)-1)
+		}
+	}
 	return str
 }

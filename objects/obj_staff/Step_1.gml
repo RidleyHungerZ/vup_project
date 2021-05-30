@@ -99,9 +99,11 @@ if scr_menu_trem() {
 		global.support_mult=1
 	}
 	if global.combo>0 {
-		//每击中两下，羁绊获得倍率就会提升1倍，最大不超过10倍
-		global.support_mult=1+1*(global.combo div 2)
-		global.support_mult=min(10, global.support_mult)
+		//每击中3下，羁绊获得倍率就会提升1倍，最大不超过5倍
+		//每造成5点伤害，羁绊获取倍率就会提升50%
+		//global.support_mult=1+1*(global.combo div 3)
+		global.support_mult=1+0.5*(global.combo div 5)
+		global.support_mult=min(5, global.support_mult)
 	}
 }
 //自动回复能量

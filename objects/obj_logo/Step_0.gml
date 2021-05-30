@@ -125,6 +125,7 @@ else if select_type==2 {
 			global.game_start=1
 			data_save_variable_single()
 			global.mode=select[select_type]
+			startVars()
 			scr_room_goto(room_start)
 		}
 	}

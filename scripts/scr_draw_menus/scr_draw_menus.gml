@@ -145,7 +145,7 @@ function scr_draw_menu_status(dx, dy){
 						xof*=menutime/15
 					}
 					//未获得卡片用11帧
-					if !scr_model_isget(i) sprinx=11
+					if !scr_model_isget(sprinx) sprinx=11
 					draw_sprite(spr_menu_status_right_cards, sprinx, drawx+xof, drawy)
 				}
 				//当前选中
@@ -159,7 +159,7 @@ function scr_draw_menu_status(dx, dy){
 						xof*=menutime/15
 					}
 					//未获得卡片用11帧
-					if !scr_model_isget(i) sprinx=11
+					if !scr_model_isget(sprinx) sprinx=11
 					draw_sprite_ext(spr_menu_status_right_cards, sprinx, drawx+xof, drawy, imx, imx, 0, c_white, 1)
 				}
 			} else {
@@ -527,7 +527,8 @@ function scr_draw_menu_skill(dx, dy){
 	drawx=dx+96 drawy=dy+208
 	draw_sprite(spr_menu_skill_bgs, 0, drawx, drawy)
 	//动作图像
-	
+	drawx=dx+496 drawy=dy+400
+	scr_draw_menu_skill_image(drawx, drawy, msel[0])
 	//技能说明
 	drawx=dx+128 drawy=dy+608
 	scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, skillnow.desc, drawx, drawy, 1, 1, -1, -1, -1, 0)
@@ -544,6 +545,143 @@ function scr_draw_menu_skill(dx, dy){
 	drawx=dx+1792 drawy=dy+204
 	if skillcount>menu_skill_list_max {
 		scr_draw_menu_scroll(drawx, drawy, 1, 49, skillnowinx, menu_skill_list_begin, menu_skill_list_max, skillcount)
+	}
+	#endregion
+}
+/// @desc 绘制技能详情
+/// @arg x
+/// @arg y
+/// @arg msel0
+function scr_draw_menu_skill_image(dx, dy, msel0) {
+	#region 人形
+	if global.model==PLAYER_MODEL.HU {
+		#region 爬行
+		if msel0==0 {
+			draw_sprite_ext(spr_ground_all, 0, dx+48, dy-96, 6, 4, 0, c_white, 1)
+			draw_sprite_ext(spr_ground_all, 0, dx+48, dy+32, 6, 4, 0, c_white, 1)
+			draw_sprite(spr_player_hu_creeping, 0, dx, dy)
+		}
+		#endregion
+		#region 射击
+		else if msel0==1 {
+			draw_sprite(spr_player_hu_idle_shoot, 0, dx-48, dy)
+			draw_sprite(spr_player_hu_bullet01, 0, dx+16, dy-16)
+			draw_sprite(spr_player_hu_bullet01, 0, dx+64, dy-16)
+		}
+		#endregion
+	} 
+	#endregion
+	#region 装甲
+	else {
+		#region 冲刺
+		if msel0==0 {
+			draw_sprite(spr_player_armor_dash, 2, dx, dy)
+			draw_sprite(spr_player_dash_boost, 3, dx-16, dy)
+		}
+		#endregion
+		#region 踢墙跳
+		else if msel0==1 {
+			draw_sprite_ext(spr_ground_all, 0, dx+16, dy-64, 4, 8, 0, c_white, 1)
+			draw_sprite(spr_player_armor_crawjump, 1, dx-16, dy)
+		}
+		#endregion
+		#region 速降飞踢
+		else if msel0==2 {
+			draw_sprite(spr_player_armor_kick_down, 1, dx, dy)
+			draw_sprite_ext(spr_player_dash_boost, 3, dx, dy-32, 1, 1, 270, c_white, 1)
+		}
+		#endregion
+		#region 斜下飞踢
+		else if msel0==3 {
+			draw_sprite(spr_player_armor_kick_below, 1, dx, dy)
+			draw_sprite_ext(spr_player_dash_boost, 3, dx-32, dy-32, 1, 1, 315, c_white, 1)
+		}
+		#endregion
+		#region 斩击
+		else if msel0==4 {
+			draw_sprite(spr_player_armor_idle_chop1_part, 1, dx, dy)
+			draw_sprite(spr_player_armor_idle_chop1, 1, dx, dy)
+			draw_sprite(spr_player_armor_idle_chop1_saber, 1, dx, dy)
+		}
+		#endregion
+		#region 蓄力斩
+		else if msel0==5 {
+			draw_sprite(spr_player_armor_idle_chop_charge_part, 4, dx, dy)
+			draw_sprite(spr_player_armor_idle_chop_charge, 4, dx, dy)
+			var saberele=scr_player_saber_element()
+			if saberele==ELEMENTS.none
+				draw_sprite(spr_player_armor_idle_chop_charge_saber, 4, dx, dy)
+			else if saberele==ELEMENTS.fire
+				draw_sprite(spr_player_armor_idle_chop_charge_saber_fire, 4, dx, dy)
+			else if saberele==ELEMENTS.ice
+				draw_sprite(spr_player_armor_idle_chop_charge_saber_ice, 4, dx, dy)
+			else if saberele==ELEMENTS.elec
+				draw_sprite(spr_player_armor_idle_chop_charge_saber_elec, 4, dx, dy)
+		}
+		#endregion
+		#region 回旋斩
+		else if msel0==6 {
+			draw_sprite(spr_player_armor_fall_spin_chop_part, 2, dx, dy)
+			draw_sprite(spr_player_armor_fall_spin_chop, 2, dx, dy)
+			var saberele=scr_player_saber_element()
+			if saberele==ELEMENTS.none
+				draw_sprite(spr_player_armor_fall_spin_chop_saber, 2, dx, dy)
+			else if saberele==ELEMENTS.fire
+				draw_sprite(spr_player_armor_fall_spin_chop_saber_fire, 2, dx, dy)
+			else if saberele==ELEMENTS.ice
+				draw_sprite(spr_player_armor_fall_spin_chop_saber_ice, 2, dx, dy)
+			else if saberele==ELEMENTS.elec
+				draw_sprite(spr_player_armor_fall_spin_chop_saber_elec, 2, dx, dy)
+		}
+		#endregion
+		#region 射击
+		else if msel0==7 {
+			draw_sprite(spr_player_armor_idle_shoot, 0, dx-48, dy)
+			draw_sprite(spr_player_armor_bullet01, 0, dx+16, dy-16)
+			draw_sprite(spr_player_armor_bullet01, 0, dx+64, dy-16)
+		}
+		#endregion
+		#region 蓄力射击
+		else if msel0==8 {
+			draw_sprite(spr_player_armor_idle_shoot, 0, dx-48, dy)
+			var saberele=scr_player_saber_element()
+			if saberele==ELEMENTS.none
+				draw_sprite(spr_player_armor_bullet_charge02, 0, dx+64, dy-16)
+			else if saberele==ELEMENTS.fire
+				draw_sprite(spr_player_armor_bullet_charge02_fire, 2, dx+64, dy-16)
+			else if saberele==ELEMENTS.ice
+				draw_sprite(spr_player_armor_bullet_charge02_ice, 2, dx+64, dy-16)
+			else if saberele==ELEMENTS.elec
+				draw_sprite(spr_player_armor_bullet_charge02_elec, 2, dx+64, dy-16)
+		}
+		#endregion
+		#region 二段跳
+		else if msel0==9 {
+			draw_sprite(spr_player_armor_jump_double, 1, dx, dy)
+			draw_sprite_ext(spr_player_dash_boost, 3, dx, dy+16, 1, 1, 90, c_white, 1)
+		}
+		#endregion
+		#region 空中冲刺
+		else if msel0==10 {
+			draw_sprite(spr_player_armor_dash, 2, dx, dy)
+			draw_sprite(spr_player_dash_boost, 3, dx-16, dy)
+		}
+		#endregion
+		#region 滑翔
+		else if msel0==11 {
+			draw_sprite(spr_player_armor_glide, 2, dx, dy)
+		}
+		#endregion
+		#region 升龙斩
+		else if msel0==12 {
+			draw_sprite(spr_player_armor_fly_choping_part, 0, dx, dy)
+			draw_sprite(spr_player_armor_fly_choping, 0, dx, dy)
+			if global.model==PLAYER_MODEL.YANZX
+				draw_sprite(spr_player_armor_fly_choping_saber_fire, 0, dx, dy)
+			else
+				draw_sprite(spr_player_armor_fly_choping_saber, 0, dx, dy)
+		}
+		#endregion
 	}
 	#endregion
 }

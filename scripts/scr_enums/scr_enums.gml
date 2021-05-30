@@ -62,7 +62,7 @@ function scr_enmus(){
 	enum TALK_INX {
 		both,
 		up,
-		down
+		down,
 	}
 	enum PLAYER_SHOTO {
 		normal, //平常
@@ -127,6 +127,7 @@ function scr_enmus(){
 		
 	}
 	enum ITEMC {
+		belt, //腰带
 		esGun, //es能量手枪
 		esSaber, //es剑
 		starGuard, //星守

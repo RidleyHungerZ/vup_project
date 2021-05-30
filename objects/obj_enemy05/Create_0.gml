@@ -16,6 +16,7 @@ death_xscale=true; //是否使用受伤对准的死亡方向
 
 dirspeed=2
 rad=80
+audofly=true
 
 SS_idle=spr_enemy05_idle
 SS_injure=spr_enemy05_injure

@@ -99,16 +99,16 @@ global.talk_inx=0 //对话，0全出，1上2下
 global.talk_now=1 //当前对话框，0为同时
 global.talk_inx_xscale=1 //方向，默认上右下左
 talk_init = function() {
-	global.talk_txt=array_create(2, "") //对话内容
-	global.talk_txt_len=array_create(2, 0) //对话内容
-	global.talk_print=array_create(2, "") //对话输出内容（打字机当前）
-	global.talk_print_len=array_create(2, 0) //对话输出内容长度
-	global.talk_shoto_type=array_create(2, 0) //头像类型
-	global.talk_shoto=array_create(2, 0) //头像
-	global.talk_name=array_create(2, 0) //名称
-	global.talk_options=array_create(2, []) //对话中的选项
-	global.talk_select=array_create(2, 0) //当前选中选项
-	talk_select_begin=array_create(2, 0) //当前选项开始
+	global.talk_txt=array_create(3, "") //对话内容
+	global.talk_txt_len=array_create(3, 0) //对话内容
+	global.talk_print=array_create(3, "") //对话输出内容（打字机当前）
+	global.talk_print_len=array_create(3, 0) //对话输出内容长度
+	global.talk_shoto_type=array_create(3, 0) //头像类型
+	global.talk_shoto=array_create(3, 0) //头像
+	global.talk_name=array_create(3, 0) //名称
+	global.talk_options=array_create(3, []) //对话中的选项
+	global.talk_select=array_create(3, 0) //当前选中选项
+	talk_select_begin=array_create(3, 0) //当前选项开始
 }
 talk_init()
 talk_rate=0 //对话框位置
@@ -217,12 +217,19 @@ get_hp_surface = function(hp, up, rate) {
 #region 任务开始/结束
 mission_action=0
 mission_time=0
-missionStart=function(time) {
+mission_index=-1
+/// @arg index
+/// @arg wait
+function missionStart(index, time) {
 	mission_action=1
+	mission_index=index
 	mission_time=time
 }
-missionComplete=function(time) {
+/// @arg index
+/// @arg wait
+function missionComplete(index, time) {
 	mission_action=2
+	mission_index=index
 	mission_time=time
 }
 #endregion

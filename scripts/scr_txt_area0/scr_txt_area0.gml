@@ -31,8 +31,8 @@ prg=2 inx=0
 //新闻
 thread_talk(prg, inx, TALK_INX.both, -1, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1)
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 1, false,
-@"和平纪念日临，近各区域住民有条不紊的准备着庆典仪式，交通路况日渐繁忙，
-各位住民请务必注意出行安全。
+@"和平纪念日临近，各区域住民有条不紊的准备着庆典仪式，
+交通路况日渐繁忙，各位住民请务必注意出行安全。
 道路千万条，安全第一条，行驶不规范，亲人两行泪。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1, false,
 @"庆典啊……看来最近有的要忙了呢。")
@@ -51,7 +51,8 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.kuMen
 //物语电话
 thread_talk(prg, inx, TALK_INX.both, -1, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1)
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 2, false,
-@"您好，我叫物语stor，您可以称呼我为物语，是您本次管理委托任务的联络人。")
+@"您好，我叫物语stor，您可以称呼我为物语，
+是您本次管理委托任务的联络人。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, false,
 @"啊……是"+TXT_KEY+@"『NEO巴比伦』"+TXT_W+@"委托的那件嘛？")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 2, false,
@@ -74,7 +75,7 @@ thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, false,
 @"刚才是爆炸？怎么回事……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.huangZhang, 1, true,
-@"有点不妙，得先看下监控镜头……弄清楚状况……")
+@"有点不妙，得先看下监控镜头……")
 //监控器
 thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
@@ -94,15 +95,14 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianD
 @"窝这里又没有什么贵重货物，他们怎么会到这里来？")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
 @"等一下……他们的目标不会是这个东西吧？
-『虚拟驱动器』……")
+"+TXT_KEY+@"『虚拟驱动器』"+TXT_W+@"……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
 @"不管怎么样，再这样下去他们就要到这里来了。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
 @"看起来他们每个个体都是单独行动的……
 还好，窝还能应付得了。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
-@"窝得出去主动“排除危险”了，
-到大门那边看看到底怎么回事。")
+@"先到大门那边看看到底怎么回事。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, true,
 @"这个货物……为确保货物安全还是带在身上为妙！")
 //仓库办公室门口
@@ -173,23 +173,26 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.beiSh
 @"到此为止了吗……
 可恶……好不甘心……")
 //腰带闪光
-thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
-thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 3, 3, true,
+thread_talk(prg, inx, TALK_INX.up, -1, -1, -1, -1)
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 3, true,
 @"Virtua Ride System……
 Accessing……CodeName:AizawaKana……
 Ride On！")
 //变身
-thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
+thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, false,
 @"呼……呼……
 刚刚……发生了什么了……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, false,
 @"感觉身体好轻，
+刚才的伤口完全不痛了，
 体内又像是有什么在涌动似的……")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, false,
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, true,
 @"这个腰带……是那个货物变的？
 还有这些卡片跟装甲……")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, true,
+//变身
+thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
 @"这都什么跟什么嘛……
 不管了！先离开这里，联系上物语要紧！
 得汇报货物的情况。")

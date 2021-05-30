@@ -10,6 +10,7 @@ function audio_bgm_loop_config() {
 	map[? bgm_story] = [1.25, 31.25]
 	map[? bgm_kanaroom] = 0//[57.975, 101.61]
 	map[? bgm_danger] = [12.4, 89.82]
+	map[? bgm_beforewar] = [37.85, 95.42]
 #endregion
 #region 战斗曲目
 	map[? bgm_boss1] = [1.95, 40.37]

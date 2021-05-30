@@ -203,6 +203,10 @@ function scr_txt_menu(){
 		desc : "任务或剧情需要用到的道具，\n十分珍贵，无法主动使用",
 		list : [],
 	}
+	global.txt_menu[page].items[ITEM.C].list[ITEMC.belt]={
+		name : "虚拟驱动器",
+		desc : "物语stor托付的货物，似乎对『NEO巴比伦』而言非常重要",
+	}
 	global.txt_menu[page].items[ITEM.C].list[ITEMC.esGun]={
 		name : "ES能量手枪",
 		desc : "基础武器，可以三连发",
@@ -591,12 +595,8 @@ function scr_txt_menu(){
 		skills : {
 			human : [
 				{
-					txt : "下蹲",
-					desc : "站立时按下键可以蹲下",
-					trim : function(){return true;},
-				}, {
 					txt : "爬行",
-					desc : "蹲下时按左右键可以爬行，\n可以爬过狭窄的缝隙",
+					desc : "站立时按下键可以蹲下，\n此时按左右键可以爬行，\n可以爬过狭窄的缝隙",
 					trim : function(){return true;},
 				}, {
 					txt : "射击",
@@ -607,19 +607,19 @@ function scr_txt_menu(){
 			armor : [
 				{
 					txt : "冲刺",
-					desc : "按冲刺键或快速按两下方向键，\n可以进行冲刺并进入冲刺状态，\n冲刺状态下跳跃时水平速度会大幅提升",
+					desc : "按冲刺键或快速按两下方向键，\n可以进行冲刺并进入冲刺状态，\n可以降低身位躲避部分攻击，\n冲刺状态下跳跃时水平速度会大幅提升",
 					trim : function(){return true;},
 				}, {
-					txt : "蹬墙跳",
+					txt : "踢墙跳",
 					desc : "接触墙壁时按跳键，可以跳起，\n按住冲刺键发动，水平速度会更快",
 					trim : function(){return true;},
 				}, {
 					txt : "速降飞踢",
-					desc : "按住下键按跳跃键发动，\n会快速向下方降下，击中物体会弹飞\n命中敌人时回复2点羁绊值",
+					desc : "按住下键按跳跃键发动，\n会快速向下方降下，击中物体会弹飞",
 					trim : function(){return true;},
 				}, {
 					txt : "斜下飞踢",
-					desc : "按住下键和左右键按跳跃键，\n消耗10点羁绊值发动，\n会快速向斜下方降下，击中物体会弹飞\n命中墙体时回复5点羁绊值，\n命中敌人时回复10点羁绊值",
+					desc : "按住下键和左右键按跳跃键，\n消耗10点羁绊值发动，\n会快速向斜下方降下，击中物体会弹飞",
 					trim : function(){return true;},
 				}, {
 					txt : "斩击",
@@ -627,11 +627,11 @@ function scr_txt_menu(){
 					trim : function(){return true;},
 				}, {
 					txt : "蓄力斩",
-					desc : "按住攻击键蓄力到黄色状态，\n在地面时释放，\n可发动大范围斩击",
+					desc : "按住攻击键蓄力到黄色状态，\n在地面时释放，\n可发动大范围斩击，\n可附加卡片属性",
 					trim : function(){return true;},
 				}, {
 					txt : "回旋斩",
-					desc : "按住攻击键蓄力到黄色状态，\n在空中时释放，\n可发动圆形范围斩击",
+					desc : "按住攻击键蓄力到黄色状态，\n在空中时释放，\n可发动圆形范围斩击，\n可附加卡片属性",
 					trim : function(){return true;},
 				}, {
 					txt : "射击",

@@ -87,19 +87,19 @@ if global.talk==0.5 {
 	if scr_talk_print_over() 
 	&& array_length(global.talk_options[now])>0 {
 		if keystate_check_pressed(global.Up_state) {
-			global.talk_select--
+			global.talk_select[now]--
 			scr_sound_play(se_menu_select)
 		} else if keystate_check_pressed(global.Down_state) {
-			global.talk_select++
+			global.talk_select[now]++
 			scr_sound_play(se_menu_select)
 		}
-		var len=array_length(global.talk_options)
-		while global.talk_select<0 global.talk_select+=len
-		while global.talk_select>=len global.talk_select-=len
-		if talk_select_begin>global.talk_select
-			talk_select_begin=global.talk_select
-		else if talk_select_begin+1<global.talk_select
-			talk_select_begin=global.talk_select-1
+		var len=array_length(global.talk_options[now])
+		while global.talk_select[now]<0 global.talk_select[now]+=len
+		while global.talk_select[now]>=len global.talk_select[now]-=len
+		if talk_select_begin[now]>global.talk_select[now]
+			talk_select_begin[now]=global.talk_select[now]
+		else if talk_select_begin[now]+1<global.talk_select[now]
+			talk_select_begin[now]=global.talk_select[now]-1
 	}
 }
 #endregion
@@ -181,6 +181,8 @@ if mission_action==1 && mission_time==0 {
 } else if mission_action==1.2 && mission_time=0 {
 	mission_action=0
 	mission_time=0
+	scr_mission_add(MISSION_TYPE.main, mission_index)
+	scr_mission_set_status(MISSION_TYPE.main, mission_index, MISSION_STATIS.inProcess)
 	scr_room_freedom()
 }
 //任务结束
@@ -195,6 +197,8 @@ if mission_action==2 && mission_time==0 {
 } else if mission_action==2.2 && mission_time=0 {
 	mission_action=0
 	mission_time=0
+	scr_mission_add(MISSION_TYPE.main, mission_index)
+	scr_mission_set_status(MISSION_TYPE.main, mission_index, MISSION_STATIS.complete)
 	scr_room_freedom()
 }
 #endregion

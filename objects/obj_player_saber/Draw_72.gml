@@ -87,3 +87,5 @@ if sprite_index==spr_player_armor_fly_chop_saber
 	scr_player_damage_set(12,ELEMENTS.fire,ATK_TYPE.cut,2,10,0,10,1)
 }
 #endregion
+if sprite_index!=spr_none
+	global.player.bullet_time=-1;

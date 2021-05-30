@@ -25,22 +25,26 @@ if fall_return=1{
 }
 //绕圈
 else if fall_return=0{
-	speed=rad*degtorad(dirspeed)
-	direction+=dirspeed
-	image_xscale=sign_no0(obj_player.x-x)
-	if image_xscale=0 image_xscale=1
+	if audofly {
+		speed=rad*degtorad(dirspeed)
+		direction+=dirspeed
+		image_xscale=sign_no0(obj_player.x-x)
+		if image_xscale=0 image_xscale=1
+	}
 	//准备射击
 	if action=0 && time==0 {
 		if find_player() {
-			scr_sprite_change(spr_enemy05_shoot,0,0.5)
-			for(var i=0;i<3;i+=1){
-				with instance_create_depth(x+28*image_xscale, y+10*image_yscale,depth, obj_bullet_enemy01){
-					speed=6
-					direction=270+30*i*other.image_xscale
-				}
-			}
-			scr_sound_play(se_enemy_bullet)
 			action=1
 		}
+	} else if action==1 {
+		scr_sprite_change(spr_enemy05_shoot,0,0.5)
+		for(var i=0;i<3;i+=1){
+			with instance_create_depth(x+28*image_xscale, y+10*image_yscale,depth, obj_bullet_enemy01){
+				speed=6
+				direction=270+30*i*other.image_xscale
+			}
+		}
+		scr_sound_play(se_enemy_bullet)
+		action=2
 	}
 }

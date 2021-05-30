@@ -1,7 +1,7 @@
 /// @desc 设置剧情对话
 /// @arg thread 剧情编号
 /// @arg inx 对话序号
-/// @arg talk_inx 对话类型，枚举TALK_INX
+/// @arg talk_inx 对话类型;枚举TALK_INX
 /// @arg xscale 1为左下右上
 /// @arg unow_shoto_type 头像类型
 /// @arg unow_shoto 头像编号

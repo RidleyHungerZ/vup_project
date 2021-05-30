@@ -6,6 +6,7 @@ bosswar_bgm=noone
 restart_bgm=noone
 direct=0
 npc=array_create(20, noone)
+temp=array_create(20, 0)
 
 for(var i=1;i<=4;i++) {
 	layerInstFront[i]="front_inst"+string_real_supply0(i, 2)

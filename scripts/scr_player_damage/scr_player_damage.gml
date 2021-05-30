@@ -277,14 +277,19 @@ function scr_player_damage(otherobj) {
 						    hp-=att_infact
 							scr_sound_play(se_enemy_damage) //播放音效
 							
-							//计算连击，并获得羁绊值
-							global.combo++
-							//每4点伤害获得1秒结算时间，如果剩余时间更多则按剩余时间计算
-							global.combo_time=max(global.combo_time, 60*(att_infact/4)) 
-							//按照倍率获得羁绊值
-							var supval=2*global.support_mult
-							if scr_itemb_isopen(ITEMB.supportGain) supval*=1.25
-							scr_player_support_add(floor(supval))
+							//活动装甲后才有连击
+							if scr_model_isget(PLAYER_MODEL.ARMOR) {
+								//计算连击，并获得羁绊值
+								global.combo+=att_infact
+								//每4点伤害获得1秒结算时间，如果剩余时间更多则按剩余时间计算
+								//global.combo_time=max(global.combo_time, 60*(att_infact div 4)) 
+								//每5点伤害获得0.5秒时间延长
+								global.combo_time+=60*0.5*max(1, floor(att_infact div 5))
+								//按照倍率获得羁绊值，每8点伤害获得一层倍率
+								var supval=2*global.support_mult
+								if scr_itemb_isopen(ITEMB.supportGain) supval*=1.25
+								scr_player_support_add(floor(supval))
+							}
 					
 							//反馈给武器攻击结果
 							if hp>0 btn_or_sbr.hit=1 //击中
@@ -385,7 +390,8 @@ function scr_player_damage_block() {
 				if undamage=0{
 					if btn_or_sbr.only_hit_once{
 						if in(id, btn_or_sbr.only_hit_once_insts) continue
-						else btn_or_sbr.only_hit_once_insts = array_add_value(btn_or_sbr.only_hit_once_insts, id)
+						else //btn_or_sbr.only_hit_once_insts = array_add_value(btn_or_sbr.only_hit_once_insts, id)
+							array_push(btn_or_sbr.only_hit_once_insts, id)
 					}
 					damage+=1
 					undamage=1

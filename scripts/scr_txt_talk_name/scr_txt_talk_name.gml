@@ -16,5 +16,6 @@ global.txt_names[stype][0]="？？？"
 global.txt_names[stype][1]="新闻报道"
 global.txt_names[stype][2]="物语stor"
 global.txt_names[stype][3]="Virtua Ride System"
+global.txt_names[stype][4]="纯蓝Blue"
 #endregion
 }

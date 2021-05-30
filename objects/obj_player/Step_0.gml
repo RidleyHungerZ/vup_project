@@ -161,7 +161,7 @@ for(var i=1;i<=2;i+=1){
 			//释放
 			else if(((scr_player_charge_mainkey_status()<=1 && i==1)
 				||(scr_player_charge_subkey_status()<=1 && i==2))
-			&& global.player_operate==1)
+			&& (global.player_operate==1 || operate_charge_release))
 				scr_player_charge_release(i);
 		}
 	}

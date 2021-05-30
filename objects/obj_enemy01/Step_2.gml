@@ -33,25 +33,28 @@ else if action==2 && time==0 {
 //发现敌人
 if action<10 {
 	if find_player() {
-		scr_sprite_change(spr_enemy01_shoot, 0, 0.25)
-		hsp=0
-		image_xscale=sign_no0(obj_player.x-x)
-		while place_meeting(x, y, obj_ground) x+=image_xscale
 		action=10
-		time=30
 	}
 }
-else if action==10 && time==0 {
+else if action==10 {
+	scr_sprite_change(spr_enemy01_shoot, 0, 0.25)
+	hsp=0
+	image_xscale=sign_no0(obj_player.x-x)
+	while place_meeting(x, y, obj_ground) x+=image_xscale
+	action=11
+	time=30
+}
+else if action==11 && time==0 {
 	scr_sprite_change(spr_enemy01_shoot2, 0, 0.5)
 	with instance_create_depth(x+34*image_xscale, y-8*image_yscale, depth-1, obj_bullet_enemy01) {
 		image_xscale=other.image_xscale
 		hspeed=8*image_xscale
 	}
 	scr_sound_play(se_enemy_bullet)
-	action=11
+	action=12
 	time=30
 }
-else if action==11 && time==0 {
+else if action==12 && time==0 {
 	if find_player() {
 		image_xscale=sign_no0(obj_player.x-x)
 		while place_meeting(x, y, obj_ground) x+=image_xscale

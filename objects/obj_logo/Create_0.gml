@@ -6,6 +6,12 @@ time=0
 
 operate_setting_display=false
 
+startVars=function() {
+	scr_model_get(PLAYER_MODEL.HU)
+	scr_item_gain(ITEM.C, ITEMC.belt)
+	scr_item_gain(ITEM.C, ITEMC.esGun)
+}
+
 testmode=function() {
 	global.player_hp_up=32
 	global.player_hp=global.player_hp_up
@@ -13,10 +19,10 @@ testmode=function() {
 	global.player_mp=global.player_mp_up
 	//global.player_es=62345
 	global.model_get_number=3
-	global.model_get[PLAYER_MODEL.ARMOR]=1
-	global.model_get[2]=1
-	global.model_get[5]=1
-	global.model_get[7]=1
+	scr_model_get(PLAYER_MODEL.ARMOR)
+	scr_model_get(2)
+	scr_model_get(5)
+	scr_model_get(7)
 	global.model=PLAYER_MODEL.ARMOR
 	global.rtank[1]=1
 	global.rtank[2]=1
@@ -55,21 +61,21 @@ testmode=function() {
 	scr_mission_add(MISSION_TYPE.sub, 0)
 	scr_mission_add(MISSION_TYPE.sub, 1)
 	
-	scr_room_goto(room_area0_test)
-	with obj_player {
-		x=64
-		y=512-GRDY
-		scr_relife_set_point(x, y+GRDY, 1)
-		scr_sprite_change(SS_idle, 0, 0.25)
-	}
-	
-	//scr_room_goto(room_test)
+	//scr_room_goto(room_area0_test)
 	//with obj_player {
-	//	x=464
+	//	x=64
 	//	y=512-GRDY
 	//	scr_relife_set_point(x, y+GRDY, 1)
 	//	scr_sprite_change(SS_idle, 0, 0.25)
 	//}
+	
+	scr_room_goto(room_test)
+	with obj_player {
+		x=464
+		y=512-GRDY
+		scr_relife_set_point(x, y+GRDY, 1)
+		scr_sprite_change(SS_idle, 0, 0.25)
+	}
 	
 	audio_bgm_change(bgm_area0)
 	global.operate=0.5
