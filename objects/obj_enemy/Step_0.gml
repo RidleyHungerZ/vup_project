@@ -86,6 +86,10 @@ if(hp<=0
 				image_angle=other.image_angle;
 				speed=other.speed;
 				direction=other.direction;
+				if other.speed==0 {
+					speed=triangle_hypotenuse(other.hsp, other.vsp)
+					direction=point_direction(0, 0, other.hsp, other.vsp)
+				}
 				dis_dir=other.image_angle;
 				fall=other.enemy_type;
 				wait_time=other.wait_time;

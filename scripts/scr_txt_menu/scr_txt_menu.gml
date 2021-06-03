@@ -49,7 +49,14 @@ function scr_txt_menu(){
 				{
 					name : "紧急脱出",
 					desc : [
-						"按确认键选择离开该区域，返回基地",
+						"按确认键选择离开该区域",
+						"请选择要回退的目标：",
+						"当前无法返回行动据点！",
+						"当前无法返回标题画面！",
+					],
+					itemdesc : [
+						"行动据点",
+						"标题画面"
 					]
 				},
 			]
@@ -205,7 +212,7 @@ function scr_txt_menu(){
 	}
 	global.txt_menu[page].items[ITEM.C].list[ITEMC.belt]={
 		name : "虚拟驱动器",
-		desc : "物语stor托付的货物，似乎对『NEO巴比伦』而言非常重要",
+		desc : "物语stor托付的货物，\n似乎对『NEO巴比伦』而言非常重要",
 	}
 	global.txt_menu[page].items[ITEM.C].list[ITEMC.esGun]={
 		name : "ES能量手枪",
@@ -619,7 +626,7 @@ function scr_txt_menu(){
 					trim : function(){return true;},
 				}, {
 					txt : "斜下飞踢",
-					desc : "按住下键和左右键按跳跃键，\n消耗10点羁绊值发动，\n会快速向斜下方降下，击中物体会弹飞",
+					desc : "按住下键和左右键按跳跃键，\n会快速向斜下方降下，击中物体会弹飞",
 					trim : function(){return true;},
 				}, {
 					txt : "斩击",

@@ -5,6 +5,8 @@ if player_death_action=2{
 	scr_sound_stopall_dpl()
 	with obj_room {
 		action=0
+		//道具记录清空
+		item_not_set = 1
 	}
 	//命归零
 	if false { //global.player_life<=0 && 
@@ -37,6 +39,9 @@ if player_death_action=2{
 			y=global.re_y-GRDY
 			image_xscale=global.re_xscale
 			scr_sprite_change(SS_idle,0,0.25)
+			walk=0
+			jump=0
+			injure_attack_type=ATK_TYPE.bullet
 		}
 		//scr_view_set_with_player()
 		room_restart()

@@ -16,6 +16,7 @@ for(var page=0;page<=20;page+=1) {
 		menu_curr[type]=0
 	}
 }
+
 menu_exit_time=0 //自动退出计时
 //道具页面list
 menu_item_list_max=10 //列表显示最大数量

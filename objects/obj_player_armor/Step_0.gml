@@ -134,13 +134,13 @@ else if jump==PYJUMP.kick {
 		scr_sound_play(se_player_kick_fallover)
 	}
 	//撞墙
-	else if place_meeting(x+hsp*image_xscale, y+vsp*image_yscale, obj_ground) 
+	else if place_meeting(x+sign(hsp*image_xscale), y+sign(vsp*image_yscale), obj_ground) 
 	&& kick_type==1 {
-		var xof=hsp*image_xscale, yof=vsp*image_yscale;
-		while !place_meeting(x+sign(xof), y+sign(yof), obj_ground) {
-			x+=sign(xof) 
-			y+=sign(yof)
-		}
+		//var xof=hsp*image_xscale, yof=vsp*image_yscale;
+		//while !place_meeting(x+sign(xof), y+sign(yof), obj_ground) {
+		//	x+=sign(xof) 
+		//	y+=sign(yof)
+		//}
 		scr_sprite_change(spr_player_armor_kick_craw_jump, 0, 0.5)
 		jump=PYJUMP.kickJump
 		hsp=-dashspd*hspd
@@ -157,7 +157,7 @@ else if jump==PYJUMP.kick {
 			bullet=instance_place(x+xof, y+yof, obj_bullet),
 			kickinst=noone;
 		if(enemy && enemy.can_dmg && enemy.hp>0) 
-		||(bullet && boss.undm==1) {
+		||(bullet && bullet.undm==1) {
 			if enemy kickinst=enemy
 			else if bullet kickinst=bullet
 			while !place_meeting(x+sign(xof), y+sign(yof), kickinst) {

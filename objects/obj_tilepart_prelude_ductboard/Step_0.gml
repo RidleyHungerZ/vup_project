@@ -5,7 +5,7 @@ if action==0 {
 		image_index=1
 		action=1
 		vspeed=-1
-		scr_sound_play(se_door_open)
+		scr_sound_play(se_door_s_open)
 	}
 }
 //开门
@@ -22,7 +22,7 @@ else if action==2 {
 	if !collision_rectangle(bbox_right+16, bbox_bottom+openy, bbox_left-16, bbox_top, obj_player, 1, 1) {
 		action=3
 		vspeed=1
-		scr_sound_play(se_door_open)
+		scr_sound_play(se_door_s_open)
 	}
 }
 else if action==3 {

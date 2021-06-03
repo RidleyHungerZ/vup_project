@@ -42,6 +42,7 @@ else if sprite_index==SS_trip{
 }
 else if sprite_index==SS_climb{
 	scr_sprite_change(SS_idle,0,0.25);
+	walk=0;
 }
 else if sprite_index==SS_doorup{
 	scr_sprite_change(-2,image_number-0.5,0);

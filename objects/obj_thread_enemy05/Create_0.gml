@@ -9,6 +9,7 @@ death_repeat=false; //死亡后复活
 out_reflash=false; //出镜头刷新
 
 audofly=false
+float=false
 
 shoot=function() {
 	action=1

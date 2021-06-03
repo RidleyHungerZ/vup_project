@@ -269,11 +269,36 @@ function scr_draw_menu_status(dx, dy){
 		}
 		#endregion
 		#region 紧急脱出
-		{
-			//下方文本
-			if msel[0]==3 {
-				desctxt=txtstruts.option[msel[0]].desc[0]
+		if msel[0]==3 {
+			//弹窗
+			if menu_type>0 {
+				var infoysc=1, _struct=txtstruts.option[msel[0]]
+				if menu_type==0.1 infoysc=1-menutime/15
+				else if menu_type==0.9 infoysc=menutime/15
+				drawx=VIEW_W_UI/2 drawy=VIEW_H_UI/2
+				draw_sprite_ext(spr_menu_status_right_info, 0, drawx, drawy, 1, infoysc, 0, c_white, 1)
+				
+				drawx=VIEW_W_UI/2-18*16 drawy=VIEW_H_UI/2-48
+				var infotxt=_struct.desc[1]
+				if menu_type==1.9 {
+					if msel[1]==0 infotxt=_struct.desc[2]
+					else if msel[1]==1 infotxt=_struct.desc[3]
+				}
+				if menu_type>=1 
+					scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, infotxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
+				//选项
+				if between(menu_type, 1, true, 1.5, false) {
+					for(var i=0;i<array_length(_struct.itemdesc);i++) {
+						var txtx=drawx+48, txty=drawy+56*(i+1)
+						scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, _struct.itemdesc[i], txtx, txty, 1, 1, -1, -1, -1, 0)
+						//箭头
+						if msel[1]==i 
+							draw_sprite(spr_ui_grd_talk_point, 0, txtx-16, txty)
+					}
+				}
 			}
+			//下方文本
+			desctxt=txtstruts.option[msel[0]].desc[0]
 		}
 		#endregion
 		//下方文本
@@ -379,26 +404,28 @@ function scr_draw_menu_item(dx, dy){
 	#endregion
 	#region 右侧列表
 	drawx=dx+1368 drawy=dy+232
+	var btncol=c_white;
+	if menu_type==0 btncol=c_gray
 	for(var i=menu_item_list_begin; i<min(menu_item_list_end+1, itemcount); i++) {
 		var itinx=itemlist[| i],
 			btninx=0, 
 			yshift=(i-menu_item_list_begin)*80;
 		if i==itemnowinx && menu_type>=1
 			btninx=1;
-		draw_sprite(spr_menu_item_items, btninx, drawx, drawy+yshift)
-		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, itstruts[msel[0]].list[itinx].name, drawx-192, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
+		draw_sprite_ext(spr_menu_item_items, btninx, drawx, drawy+yshift, 1, 1, 0, btncol, 1)
+		scr_draw_text_ext(btncol, 1, 0, font_puhui_32, 0, 0.5, itstruts[msel[0]].list[itinx].name, drawx-192, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
 		if msel[0]==ITEM.B {
-			//scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, "["+string(itstruts[msel[0]].list[itinx].byte)+"]", drawx-224, drawy+yshift+8, 1, 1, -1, -1, -1, 0)
+			//scr_draw_text_ext(btncol, 1, 0, font_puhui_32, 0, 0.5, "["+string(itstruts[msel[0]].list[itinx].byte)+"]", drawx-224, drawy+yshift+8, 1, 1, -1, -1, -1, 0)
 			if global.item[ITEM.B][itinx]==ITEMB_STATUS.open
-				scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, itstruts[msel[0]].tag, drawx-272, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
+				scr_draw_text_ext(btncol, 1, 0, font_puhui_32, 0, 0.5, itstruts[msel[0]].tag, drawx-272, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
 		} else if msel[0]==ITEM.C {
-			scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, "[x"+string(global.item[ITEM.C][itemnow])+"]", drawx-272, drawy+yshift, 1, 1, -1, -1, -1, 0)
+			scr_draw_text_ext(btncol, 1, 0, font_puhui_32, 0, 0.5, "[x"+string(global.item[ITEM.C][itemnow])+"]", drawx-272, drawy+yshift, 1, 1, -1, -1, -1, 0)
 		}
 	}
 	//滚动条
 	drawx=dx+1792 drawy=dy+204
 	if itemcount>menu_item_list_max {
-		scr_draw_menu_scroll(drawx, drawy, 1, 49, itemnowinx, menu_item_list_begin, menu_item_list_max, itemcount)
+		scr_draw_menu_scroll(drawx, drawy, 1, 49, itemnowinx, menu_item_list_begin, menu_item_list_max, itemcount, btncol, 1)
 	}
 	#endregion
 }
@@ -491,6 +518,8 @@ function scr_draw_menu_mission(dx, dy){
 	#endregion
 	#region 右侧列表
 	drawx=dx+1368 drawy=dy+232
+	var btncol=c_white;
+	if menu_type==0 btncol=c_gray
 	for(var i=menu_miss_list_begin; i<min(menu_miss_list_end+1, misscount); i++) {
 		var itinx=misslist[| i],
 			btninx=0, 
@@ -498,18 +527,19 @@ function scr_draw_menu_mission(dx, dy){
 			statuscol=c_white;
 		if i==missnowinx && menu_type>=1
 			btninx=1;
-		draw_sprite(spr_menu_mission_items, btninx, drawx, drawy+yshift)
+		draw_sprite_ext(spr_menu_mission_items, btninx, drawx, drawy+yshift, 1, 1, 0, btncol, 1)
 		var missst = global.mission[msel[0]][itinx]
 		if missst==MISSION_STATIS.unstart statuscol=c_white
 		else if missst==MISSION_STATIS.inProcess statuscol=c_yellow
 		else if missst==MISSION_STATIS.waitReport statuscol=c_orange
 		else if missst==MISSION_STATIS.complete statuscol=c_green
+		statuscol=color_blend(statuscol, btncol)
 		scr_draw_text_ext(statuscol, 1, 0, font_puhui_32, 0, 0.5, missstruts[msel[0]].list[itinx].name, drawx-192, drawy+yshift+4, 1, 1, -1, -1, -1, 0)
 	}
 	//滚动条
 	drawx=dx+1792 drawy=dy+204
 	if misscount>menu_miss_list_max {
-		scr_draw_menu_scroll(drawx, drawy, 1, 49, missnowinx, menu_miss_list_begin, menu_miss_list_max, misscount)
+		scr_draw_menu_scroll(drawx, drawy, 1, 49, missnowinx, menu_miss_list_begin, menu_miss_list_max, misscount, btncol, 1)
 	}
 	#endregion
 }
@@ -528,7 +558,7 @@ function scr_draw_menu_skill(dx, dy){
 	draw_sprite(spr_menu_skill_bgs, 0, drawx, drawy)
 	//动作图像
 	drawx=dx+496 drawy=dy+400
-	scr_draw_menu_skill_image(drawx, drawy, msel[0])
+	scr_draw_menu_skill_image(skillnow.index, drawx, drawy, 2)
 	//技能说明
 	drawx=dx+128 drawy=dy+608
 	scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, skillnow.desc, drawx, drawy, 1, 1, -1, -1, -1, 0)
@@ -544,29 +574,30 @@ function scr_draw_menu_skill(dx, dy){
 	//滚动条
 	drawx=dx+1792 drawy=dy+204
 	if skillcount>menu_skill_list_max {
-		scr_draw_menu_scroll(drawx, drawy, 1, 49, skillnowinx, menu_skill_list_begin, menu_skill_list_max, skillcount)
+		scr_draw_menu_scroll(drawx, drawy, 1, 49, skillnowinx, menu_skill_list_begin, menu_skill_list_max, skillcount, c_white, 1)
 	}
 	#endregion
 }
 /// @desc 绘制技能详情
 /// @arg x
 /// @arg y
-/// @arg msel0
-function scr_draw_menu_skill_image(dx, dy, msel0) {
+/// @arg skinx
+function scr_draw_menu_skill_image(skinx, dx, dy, scl) {
+	var inx=0
 	#region 人形
 	if global.model==PLAYER_MODEL.HU {
 		#region 爬行
-		if msel0==0 {
-			draw_sprite_ext(spr_ground_all, 0, dx+48, dy-96, 6, 4, 0, c_white, 1)
-			draw_sprite_ext(spr_ground_all, 0, dx+48, dy+32, 6, 4, 0, c_white, 1)
-			draw_sprite(spr_player_hu_creeping, 0, dx, dy)
+		if skinx==(inx++) {
+			draw_sprite_ext(spr_ground_all, 0, dx-48*scl, dy-64*scl, 6*scl, 3*scl, 0, c_white, 1)
+			draw_sprite_ext(spr_ground_all, 0, dx-48*scl, dy+32*scl, 6*scl, 3*scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_hu_creeping, 0, dx, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 射击
-		else if msel0==1 {
-			draw_sprite(spr_player_hu_idle_shoot, 0, dx-48, dy)
-			draw_sprite(spr_player_hu_bullet01, 0, dx+16, dy-16)
-			draw_sprite(spr_player_hu_bullet01, 0, dx+64, dy-16)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_hu_idle_shoot, 0, dx-48*scl, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_hu_bullet01, 0, dx+16*scl, dy-16*scl, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_hu_bullet01, 0, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 	} 
@@ -574,112 +605,112 @@ function scr_draw_menu_skill_image(dx, dy, msel0) {
 	#region 装甲
 	else {
 		#region 冲刺
-		if msel0==0 {
-			draw_sprite(spr_player_armor_dash, 2, dx, dy)
-			draw_sprite(spr_player_dash_boost, 3, dx-16, dy)
+		if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_dash, 2, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_dash_boost, 3, dx-16*scl, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 踢墙跳
-		else if msel0==1 {
-			draw_sprite_ext(spr_ground_all, 0, dx+16, dy-64, 4, 8, 0, c_white, 1)
-			draw_sprite(spr_player_armor_crawjump, 1, dx-16, dy)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_ground_all, 0, dx+16*scl, dy-64*scl, 4*scl, 8*scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_crawjump, 1, dx-16*scl, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 速降飞踢
-		else if msel0==2 {
-			draw_sprite(spr_player_armor_kick_down, 1, dx, dy)
-			draw_sprite_ext(spr_player_dash_boost, 3, dx, dy-32, 1, 1, 270, c_white, 1)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_kick_down, 1, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_dash_boost, 3, dx, dy-32*scl, scl, scl, 270, c_white, 1)
 		}
 		#endregion
 		#region 斜下飞踢
-		else if msel0==3 {
-			draw_sprite(spr_player_armor_kick_below, 1, dx, dy)
-			draw_sprite_ext(spr_player_dash_boost, 3, dx-32, dy-32, 1, 1, 315, c_white, 1)
+		if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_kick_below, 1, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_dash_boost, 3, dx-32*scl, dy-32*scl, scl, scl, 315, c_white, 1)
 		}
 		#endregion
 		#region 斩击
-		else if msel0==4 {
-			draw_sprite(spr_player_armor_idle_chop1_part, 1, dx, dy)
-			draw_sprite(spr_player_armor_idle_chop1, 1, dx, dy)
-			draw_sprite(spr_player_armor_idle_chop1_saber, 1, dx, dy)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_idle_chop1_part, 1, dx-32*scl, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_idle_chop1, 1, dx-32*scl, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_idle_chop1_saber, 1, dx-32*scl, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 蓄力斩
-		else if msel0==5 {
-			draw_sprite(spr_player_armor_idle_chop_charge_part, 4, dx, dy)
-			draw_sprite(spr_player_armor_idle_chop_charge, 4, dx, dy)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_idle_chop_charge_part, 4, dx-32*scl, dy+32*scl, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_idle_chop_charge, 4, dx-32*scl, dy+32*scl, scl, scl, 0, c_white, 1)
 			var saberele=scr_player_saber_element()
 			if saberele==ELEMENTS.none
-				draw_sprite(spr_player_armor_idle_chop_charge_saber, 4, dx, dy)
+				draw_sprite_ext(spr_player_armor_idle_chop_charge_saber, 4, dx-32*scl, dy+32*scl, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.fire
-				draw_sprite(spr_player_armor_idle_chop_charge_saber_fire, 4, dx, dy)
+				draw_sprite_ext(spr_player_armor_idle_chop_charge_saber_fire, 4, dx-32*scl, dy+32*scl, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.ice
-				draw_sprite(spr_player_armor_idle_chop_charge_saber_ice, 4, dx, dy)
+				draw_sprite_ext(spr_player_armor_idle_chop_charge_saber_ice, 4, dx-32*scl, dy+32*scl, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.elec
-				draw_sprite(spr_player_armor_idle_chop_charge_saber_elec, 4, dx, dy)
+				draw_sprite_ext(spr_player_armor_idle_chop_charge_saber_elec, 4, dx-32*scl, dy+32*scl, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 回旋斩
-		else if msel0==6 {
-			draw_sprite(spr_player_armor_fall_spin_chop_part, 2, dx, dy)
-			draw_sprite(spr_player_armor_fall_spin_chop, 2, dx, dy)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_fall_spin_chop_part, 2, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_fall_spin_chop, 2, dx, dy, scl, scl, 0, c_white, 1)
 			var saberele=scr_player_saber_element()
 			if saberele==ELEMENTS.none
-				draw_sprite(spr_player_armor_fall_spin_chop_saber, 2, dx, dy)
+				draw_sprite_ext(spr_player_armor_fall_spin_chop_saber, 2, dx, dy, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.fire
-				draw_sprite(spr_player_armor_fall_spin_chop_saber_fire, 2, dx, dy)
+				draw_sprite_ext(spr_player_armor_fall_spin_chop_saber_fire, 2, dx, dy, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.ice
-				draw_sprite(spr_player_armor_fall_spin_chop_saber_ice, 2, dx, dy)
+				draw_sprite_ext(spr_player_armor_fall_spin_chop_saber_ice, 2, dx, dy, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.elec
-				draw_sprite(spr_player_armor_fall_spin_chop_saber_elec, 2, dx, dy)
+				draw_sprite_ext(spr_player_armor_fall_spin_chop_saber_elec, 2, dx, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 射击
-		else if msel0==7 {
-			draw_sprite(spr_player_armor_idle_shoot, 0, dx-48, dy)
-			draw_sprite(spr_player_armor_bullet01, 0, dx+16, dy-16)
-			draw_sprite(spr_player_armor_bullet01, 0, dx+64, dy-16)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_idle_shoot, 0, dx-48*scl, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_bullet01, 0, dx+16*scl, dy-16*scl, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_bullet01, 0, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 蓄力射击
-		else if msel0==8 {
-			draw_sprite(spr_player_armor_idle_shoot, 0, dx-48, dy)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_idle_shoot, 0, dx-48*scl, dy, scl, scl, 0, c_white, 1)
 			var saberele=scr_player_saber_element()
 			if saberele==ELEMENTS.none
-				draw_sprite(spr_player_armor_bullet_charge02, 0, dx+64, dy-16)
+				draw_sprite_ext(spr_player_armor_bullet_charge02, 0, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.fire
-				draw_sprite(spr_player_armor_bullet_charge02_fire, 2, dx+64, dy-16)
+				draw_sprite_ext(spr_player_armor_bullet_charge02_fire, 2, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.ice
-				draw_sprite(spr_player_armor_bullet_charge02_ice, 2, dx+64, dy-16)
+				draw_sprite_ext(spr_player_armor_bullet_charge02_ice, 2, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
 			else if saberele==ELEMENTS.elec
-				draw_sprite(spr_player_armor_bullet_charge02_elec, 2, dx+64, dy-16)
+				draw_sprite_ext(spr_player_armor_bullet_charge02_elec, 2, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 二段跳
-		else if msel0==9 {
-			draw_sprite(spr_player_armor_jump_double, 1, dx, dy)
-			draw_sprite_ext(spr_player_dash_boost, 3, dx, dy+16, 1, 1, 90, c_white, 1)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_jump_double, 1, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_dash_boost, 3, dx, dy+16*scl, scl, scl, 90, c_white, 1)
 		}
 		#endregion
 		#region 空中冲刺
-		else if msel0==10 {
-			draw_sprite(spr_player_armor_dash, 2, dx, dy)
-			draw_sprite(spr_player_dash_boost, 3, dx-16, dy)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_dash, 2, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_dash_boost, 3, dx-16*scl, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 滑翔
-		else if msel0==11 {
-			draw_sprite(spr_player_armor_glide, 2, dx, dy)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_glide, 2, dx, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 		#region 升龙斩
-		else if msel0==12 {
-			draw_sprite(spr_player_armor_fly_choping_part, 0, dx, dy)
-			draw_sprite(spr_player_armor_fly_choping, 0, dx, dy)
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_fly_choping_part, 0, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_fly_choping, 0, dx, dy, scl, scl, 0, c_white, 1)
 			if global.model==PLAYER_MODEL.YANZX
-				draw_sprite(spr_player_armor_fly_choping_saber_fire, 0, dx, dy)
+				draw_sprite_ext(spr_player_armor_fly_choping_saber_fire, 0, dx, dy, scl, scl, 0, c_white, 1)
 			else
-				draw_sprite(spr_player_armor_fly_choping_saber, 0, dx, dy)
+				draw_sprite_ext(spr_player_armor_fly_choping_saber, 0, dx, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 	}

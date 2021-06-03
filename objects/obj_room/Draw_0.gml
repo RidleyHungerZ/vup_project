@@ -10,25 +10,36 @@ with obj_view {
 			ysc = apsh/v0sh;
 		//surface_set_target(application_surface)
 		draw_clear_alpha(c_black, 0.5)
-		gpu_set_blendmode(bm_normal)
-		draw_surface_ext(view0_surface_temp, 0, 0, xsc, ysc, 0, c_white, 1)
-		//surface_reset_target()
-		//滤镜划线
-		var pixFilter = global.pix_filter,
-			pixAlpha = 0.2
-		//pixFilter=true
-		if pixFilter{
-			draw_set_color_alpha(c_black, pixAlpha)
-			for(var i=0;i<apsw;i+=xsc) {
-				draw_line(i, 0, i, apsh)
-				//scr_draw_line(c_black, pixAlpha, 1, false, i, 0, i, apsh)
-			}
-			for(var i=0;i<apsh;i+=ysc) {
-				//scr_draw_line(c_black, pixAlpha, 1, false, 0, i, apsw, i)
-				draw_line(0, i, apsw, i)
-			}
-			draw_set_color_alpha_init()
+		//gpu_set_blendmode(bm_normal)
+		//模糊
+		if global.pix_filter==1 {
+			gpu_set_texfilter(true)
+		} 
+		//扫描线
+		else if global.pix_filter==2 {
+			
+		} 
+		//柔化
+		else if global.pix_filter==3 {
+			
 		}
+		draw_surface_ext(view0_surface_temp, 0, 0, xsc, ysc, 0, c_white, 1)
+		if shader_current()!=-1 shader_reset()
+		//滤镜划线
+		//var pixFilter = global.pix_filter,
+		//	pixAlpha = 0.2
+		//if pixFilter{
+		//	draw_set_color_alpha(c_black, pixAlpha)
+		//	for(var i=0;i<apsw;i+=xsc) {
+		//		draw_line(i, 0, i, apsh)
+		//		//scr_draw_line(c_black, pixAlpha, 1, false, i, 0, i, apsh)
+		//	}
+		//	for(var i=0;i<apsh;i+=ysc) {
+		//		//scr_draw_line(c_black, pixAlpha, 1, false, 0, i, apsw, i)
+		//		draw_line(0, i, apsw, i)
+		//	}
+		//	draw_set_color_alpha_init()
+		//}
 	}
 }
 //绘制UI时开启模糊

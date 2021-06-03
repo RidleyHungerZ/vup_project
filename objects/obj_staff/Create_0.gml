@@ -330,7 +330,7 @@ instance_create_depth(0, 0, 0, obj_room)
 instance_create_depth(0, 0, -20000, obj_menu)
 player[PLAYER_MODEL.HU]=obj_player_hu
 player[PLAYER_MODEL.ARMOR]=obj_player_armor
-with instance_create_layer(x,y,"player",player[PLAYER_MODEL.HU]) {
+with instance_create_layer(x,y,"inst02",player[PLAYER_MODEL.HU]) {
 	scr_sprite_change(spr_none, 0, 0)
 	instance_create_depth(x,y,depth-10,obj_player_saber)
 }

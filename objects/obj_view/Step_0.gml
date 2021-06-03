@@ -1,7 +1,7 @@
 #region 全屏转换
 if global.full_screen==1 {
 	window_set_fullscreen(true)
-	global.resolution=1
+	//global.resolution=1
 } else {
 	if window_size_change==0 {
 		if last_resolution!=global.resolution {
@@ -215,6 +215,7 @@ if loading_action==1 {
 } else if loading_action==2.5 {
 	loading_index=loading_index_temp
 	loading_rate=0
+	scr_sound_play(se_loading)
 	loading_action=3
 	loading_time=30
 } else if loading_action==3 && loading_time==0 {

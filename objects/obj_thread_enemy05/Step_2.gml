@@ -7,3 +7,6 @@ if view!=1{
 	y=init_y
 	exit
 }
+if float {
+	y+=4*(pi/60)*sin(global.fps_currmenu*pi/60)
+}

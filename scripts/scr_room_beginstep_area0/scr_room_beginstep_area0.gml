@@ -1,7 +1,7 @@
 function scr_room_beginstep_area0(){
 var prg=0
 #region 开局对话
-if room==room_start 
+if room==room_story 
 && !scr_thread_isover(0){
 	prg=0
 	if action==0 {
@@ -38,7 +38,7 @@ if room==room_start
 }
 #endregion
 #region 剧情概述
-else if room==room_start 
+else if room==room_story 
 && !scr_thread_isover(1){
 	prg=1
 	if action==0 {
@@ -526,6 +526,7 @@ else if room==room_area0_2
 				speed=0
 				x=eyaimx
 				y=eyaimy
+				float=true
 				other.action=6.7
 			}
 		}
@@ -624,6 +625,7 @@ else if room==room_area0_2
 			scr_model_get(PLAYER_MODEL.ARMOR)
 			scr_item_gain(ITEM.C, ITEMC.esSaber)
 			global.model=PLAYER_MODEL.ARMOR
+			global.player_hp=global.player_hp_up
 			action=12.3
 			time=30
 		}
@@ -677,11 +679,9 @@ else if room==room_area0_2
 		codekey_dash(0)
 		action=20.4
 	}
-	//发射蓄力炮
 	if action==20.4 {
 		if obj_player.walk==0 {
 			obj_player.image_xscale=-1
-			codekey_sub(0)
 			action=20.5
 			time=20
 		}
@@ -715,16 +715,18 @@ else if room==room_area0_2
 			}
 		}
 		if obj_player.jump==0 {
-			obj_player.unoperate_injure=false
-			obj_player.operate_charge_release=false
 			codekey_Hdirect(0)
 			codekey_jump(0)
 			codekey_dash(0)
+			//发射蓄力炮
+			codekey_sub(0)
 			action=20.9
-			time=30
+			time=60
 		}
 	}
 	if action==20.9 && time==0 {
+		obj_player.unoperate_injure=false
+		obj_player.operate_charge_release=false
 		audio_bgm_change(bgm_area0)
 		action=21
 		time=30

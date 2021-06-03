@@ -99,16 +99,16 @@ if(jump!=0) {
 			y+=0.25*image_yscale*sign(vsp)*V;*/
 		var flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY+vsp+1,bbox_left,bbox_bottom+GRDY,obj_floor,1,1);
 		if(scr_player_floordown_exists(flordown)) flordown=noone;
-		if(!place_meeting(x,y+vsp+1,obj_ground)
-		&& !place_meeting(x,y+4,obj_sink)
+		if(!place_meeting(x,y+GRDY+vsp+1,obj_ground)
+		&& !place_meeting(x,y+GRDY+4,obj_sink)
 	    &&!(flordown && !collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-1,obj_floor,1,1))){
 	        y+=vsp*V;
 		} else {
 	        y=floor(y);
 			flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY,obj_floor,1,1);
 			if(scr_player_floordown_exists(flordown)) flordown=noone;
-	        while(!place_meeting(x,y+1,obj_ground)
-			&& !place_meeting(x,y,obj_sink)
+	        while(!place_meeting(x,y+GRDY+1,obj_ground)
+			&& !place_meeting(x,y+GRDY,obj_sink)
 	        && !flordown) {
 				y+=1;
 				flordown = collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_bottom+GRDY,obj_floor,1,1);
@@ -236,35 +236,26 @@ if(hsp!=0 ||wind_spd!=0
 		else if(abs(H*hhh)>0) {
 			var xs=H*hhh,xsg=xs;
 			xsg=ceil(abs(xsg))*sign(xsg);
-			var precoll=place_meeting(x,y,obj_ground),
-				bbox_bottom_coll = bbox_bottom,
-				bbox_top_coll = bbox_top;
-			if(image_yscale==1) {
-				bbox_bottom_coll = bbox_bottom-2;
-				bbox_top_coll = bbox_top;
-			} else if(image_yscale==-1) {
-				bbox_bottom_coll = bbox_bottom;
-				bbox_top_coll = bbox_top+2;
-			}
+			var precoll=collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_top,obj_ground,1,1);
 			var flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GRDY+1,bbox_left+xsg,bbox_bottom+GRDY,obj_floor,1,1);
 			if(scr_player_floordown_exists(flordown)) flordown=noone;
-			if(!collision_rectangle(bbox_right+xsg, bbox_bottom_coll+GRDY, bbox_left+xsg, bbox_top_coll, obj_ground, 1, 1)
+			if(!collision_rectangle(bbox_right+xsg, bbox_bottom+GRDY, bbox_left+xsg, bbox_top, obj_ground, 1, 1)
 			&& !(flordown && !collision_rectangle(bbox_right+xsg,bbox_bottom+GRDY,bbox_left+xsg,bbox_bottom+GRDY-1,obj_floor,1,1)))
 				x+=xs;
 			else{
 				flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GRDY+1,bbox_left+xsg,bbox_bottom+GRDY,obj_floor,1,1);
 				if(scr_player_floordown_exists(flordown)) flordown=noone;
-				while((!collision_rectangle(bbox_right+sign(xs), bbox_bottom_coll+GRDY, bbox_left+sign(xs),  bbox_top_coll, obj_ground, 1, 1) 
-					 && collision_rectangle(bbox_right+xsg,		 bbox_bottom_coll+GRDY, bbox_left+xsg,		bbox_top_coll, obj_ground, 1, 1))
+				while((!collision_rectangle(bbox_right+sign(xs), bbox_bottom+GRDY, bbox_left+sign(xs),  bbox_top, obj_ground, 1, 1) 
+					 && collision_rectangle(bbox_right+xsg,		 bbox_bottom+GRDY, bbox_left+xsg,		bbox_top, obj_ground, 1, 1))
 					||(!collision_rectangle(bbox_right+sign(xs),bbox_bottom+GRDY+1,bbox_left+sign(xs),bbox_bottom+GRDY,obj_floor,1,1) && flordown
-						&& !place_meeting(x+sign(xs),y,obj_ground))) {
+						&& !collision_rectangle(bbox_right+sign(xs), bbox_bottom+GRDY, bbox_left+sign(xs), bbox_top, obj_ground, 1, 1))) {
 						x+=sign(xs);
 					flordown = collision_rectangle(bbox_right+xsg,bbox_bottom+GRDY+1,bbox_left+xsg,bbox_bottom+GRDY,obj_floor,1,1);
 					if(scr_player_floordown_exists(flordown)) flordown=noone;
 				}
 			}
 			//如果是因为移动造成卡在墙里，就立刻拉出来
-			while(!precoll && place_meeting(x,y,obj_ground)) 
+			while(!precoll && collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_top,obj_ground,1,1)) 
 				x-=sign(xs);
 			//斜坡
 			if(image_yscale==1) {

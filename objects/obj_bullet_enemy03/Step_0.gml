@@ -11,7 +11,8 @@ if action==0 {
 		with instance_create_depth(smoke_pos[0], smoke_pos[1], depth, obj_animation_once)
 			scr_sprite_change(spr_smoke,0,0.5)
 	}
-	if place_meeting(x,y,obj_soild)
+	if place_meeting(x,y,obj_ground)
+	|| place_meeting(x,y,obj_sink)
 	|| hit==1
 	|| hp<=0 {
 		scr_sprite_change(spr_boom,0,0.5)

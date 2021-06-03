@@ -7,6 +7,7 @@ function audio_bgm_loop_config() {
 	map[? bgm_area0] = [28.83, 157.28]	//stage1
 #endregion
 #region 剧情曲目
+	map[? bgm_logo] = [5.53, 123.7]
 	map[? bgm_story] = [1.25, 31.25]
 	map[? bgm_kanaroom] = 0//[57.975, 101.61]
 	map[? bgm_danger] = [12.4, 89.82]

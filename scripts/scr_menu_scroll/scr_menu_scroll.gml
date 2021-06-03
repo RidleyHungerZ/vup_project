@@ -23,10 +23,10 @@ function scr_menu_scroll_set(val, _begin, _end, _max){
 /// @arg begin 最上数字
 /// @arg max 最大显示量
 /// @arg allcount 实际总量
-function scr_draw_menu_scroll(xx, yy, imx, imy, val, _begin, _max, allcount){
-	draw_sprite_ext(spr_menu_scroll_line, 0, xx, yy, 1, imy, 0, c_white, 1)
+function scr_draw_menu_scroll(xx, yy, imx, imy, val, _begin, _max, allcount, col, alpha){
+	draw_sprite_ext(spr_menu_scroll_line, 0, xx, yy, 1, imy, 0, col, alpha)
 	var rate=min(1, _begin/(allcount-_max)),
 		scroll_button_h=sprite_get_height(spr_menu_scroll_button)
 	if(val>=0) rate=min(1, val/(allcount-1))
-	draw_sprite_ext(spr_menu_scroll_button, 0, xx+16*imx, yy+(16*imy-scroll_button_h)*rate, imx, 1, 0, c_white, 1)
+	draw_sprite_ext(spr_menu_scroll_button, 0, xx+16*imx, yy+(16*imy-scroll_button_h)*rate, imx, 1, 0, col, alpha)
 }

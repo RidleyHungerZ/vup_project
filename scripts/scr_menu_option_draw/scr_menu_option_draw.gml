@@ -3,7 +3,7 @@ function scr_menu_option_draw(dx, dy){
 	var drawx=dx, drawy=dy, page=2, txtstu=global.txt_menu[page]
 	//定义每个选项绘制方式
 	if !is_method(draw_option_item) {
-		draw_option_item = function(drx, dry, txtstruts, menupagesel, selected) {
+		draw_option_item = function(drx, dry, txtstruts, menupagesel, selected, col) {
 			var text = txtstruts.text,
 				option = txtstruts.option,
 				option_type = option.type,
@@ -13,27 +13,28 @@ function scr_menu_option_draw(dx, dy){
 				selectin = selected && (menu_type>1); //是否进入该选项
 			var txtshifty=4;
 			//底子
-			draw_sprite(spr_menu_option_item, 0, drx, dry)
+			draw_sprite_ext(spr_menu_option_item, 0, drx, dry, 1, 1, 0, col, 1)
 			//是否选中
 			if selected {
 				var alpha=1
 				if menu_type!=1 alpha=0.5
 				if option.type == menu_page2_option.line
-					draw_sprite_ext(spr_menu_option_item, 2, drx, dry, 1, 1, 0, c_white, alpha)
-				else draw_sprite_ext(spr_menu_option_item, 1, drx, dry, 1, 1, 0, c_white, alpha)
+					draw_sprite_ext(spr_menu_option_item, 2, drx, dry, 1, 1, 0, col, alpha)
+				else draw_sprite_ext(spr_menu_option_item, 1, drx, dry, 1, 1, 0, col, alpha)
 			}
 			//名称
-			scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, text, drx-704, dry+txtshifty, 1, 1, -1, -1, -1, 0)
+			scr_draw_text_ext(col, 1, 0, font_puhui_32, 0, 0.5, text, drx-704, dry+txtshifty, 1, 1, -1, -1, -1, 0)
 			//选项值
 			var option_txt_color=c_white,
 				flashaph = 0.5+0.5*sin(global.fps_curr*pi/15);
 			if selectin option_txt_color=c_white
+			option_txt_color=color_blend(option_txt_color, col)
 			switch option.type {
 				case menu_page2_option.list:
 					if selectin 
-						draw_sprite_ext(spr_menu_option_item_selects, 1, drx+528, dry, 1, 1, 0, c_white, flashaph)
+						draw_sprite_ext(spr_menu_option_item_selects, 1, drx+528, dry, 1, 1, 0, col, flashaph)
 					else 
-						draw_sprite(spr_menu_option_item_selects, 0, drx+528, dry)
+						draw_sprite_ext(spr_menu_option_item_selects, 0, drx+528, dry, 1, 1, 0, col, 1)
 					var value=variable_global_get(variable_list)
 					//值仅有一个时，视作普通字符串显示，否则显示当前选中列表
 					var txtval;
@@ -64,13 +65,13 @@ function scr_menu_option_draw(dx, dy){
 								alhpa2 = flashaph
 							}
 						}
-						draw_sprite_ext(spr_menu_option_item_selects, inx1, drx+528, dry, 1, 1, 0, c_white, alpha1)
-						draw_sprite_ext(spr_menu_option_item_selects, inx2, drx+528, dry, 1, 1, 0, c_white, alhpa2)
+						draw_sprite_ext(spr_menu_option_item_selects, inx1, drx+528, dry, 1, 1, 0, col, alpha1)
+						draw_sprite_ext(spr_menu_option_item_selects, inx2, drx+528, dry, 1, 1, 0, col, alhpa2)
 					}
 					else {
 						//未选中都是灰色
-						draw_sprite(spr_menu_option_item_selects, 3, drx+528, dry)
-						draw_sprite(spr_menu_option_item_selects, 4, drx+528, dry)
+						draw_sprite_ext(spr_menu_option_item_selects, 3, drx+528, dry, 1, 1, 0, col, 1)
+						draw_sprite_ext(spr_menu_option_item_selects, 4, drx+528, dry, 1, 1, 0, col, 1)
 					}
 					//绘制键盘，如果是字符串则视为变量，如果是数字则直接当做值
 					var keyvarstr = variable_list[0]
@@ -90,8 +91,8 @@ function scr_menu_option_draw(dx, dy){
 						var keyinx = global.keyboard_spr_map[? keyval];
 						if is_undefined(keyinx) 
 							keyinx = global.keyboard_spr_map[? "undefined"];
-						draw_sprite(spr_menu_option_keyboard, keyinx, drx+432, dry)
-						if lock draw_sprite(spr_menu_option_lock, 0, drx+432+16, dry+12)
+						draw_sprite_ext(spr_menu_option_keyboard, keyinx, drx+432, dry, 1, 1, 0, col, 1)
+						if lock draw_sprite_ext(spr_menu_option_lock, 0, drx+432+16, dry+12, 1, 1, 0, col, 1)
 					}
 					//绘制手柄，如果是字符串则视为变量，如果是数字则直接当做值
 					var joyvarstr = variable_list[1]
@@ -111,16 +112,16 @@ function scr_menu_option_draw(dx, dy){
 						var joyinx = global.gaypad_spr_map[? joyval];
 						if is_undefined(joyinx) 
 							joyinx = global.gaypad_spr_map[? "undefined"];
-						draw_sprite(spr_menu_option_gaypad, joyinx, drx+624, dry)
-						if lock draw_sprite(spr_menu_option_lock, 0, drx+624+16, dry+12)
+						draw_sprite_ext(spr_menu_option_gaypad, joyinx, drx+624, dry, 1, 1, 0, col, 1)
+						if lock draw_sprite_ext(spr_menu_option_lock, 0, drx+624+16, dry+12, 1, 1, 0, col, 1)
 					}
 					break;
 				case menu_page2_option.line:
 					//值
 					var lineimx=40, minv=option_list[0], maxv=option_list[1],
 						value=variable_global_get(variable_list)
-					draw_sprite_ext(spr_menu_option_volume_line, 0, drx+392, dry, lineimx, 1, 0, c_white, 1)
-					draw_sprite(spr_menu_option_volume_button, 0, drx+392+lineimx*16*(value-0.5), dry)
+					draw_sprite_ext(spr_menu_option_volume_line, 0, drx+392, dry, lineimx, 1, 0, col, 1)
+					draw_sprite_ext(spr_menu_option_volume_button, 0, drx+392+lineimx*16*(value-0.5), dry, 1, 1, 0, col, 1)
 					break;
 			}
 		}
@@ -150,10 +151,12 @@ function scr_menu_option_draw(dx, dy){
 		draw_sprite(spr_menu_option_tab, tabinx, drawx+224*i, drawy-2)
 		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0.5, 0.5, strutslist[i].name, drawx+224*i+8, drawy-16-txtselup, 1, 1, -1, -1, -1, 0)
 	}
+	var btncol=c_white;
+	if menu_type==0 btncol=c_gray
 	//滚动条
 	drawx=dx+1760 drawy=dy+304
 	if item_count>menu_option_list_max {
-		scr_draw_menu_scroll(drawx, drawy, 1, 40, menupagesel[1], menu_option_list_begin, menu_option_list_max, item_count+button_count)
+		scr_draw_menu_scroll(drawx, drawy, 1, 40, menupagesel[1], menu_option_list_begin, menu_option_list_max, item_count+button_count, btncol, 1)
 	}
 	//详细内容绘制
 	drawx=dx+960 drawy=dy+336
@@ -162,7 +165,7 @@ function scr_menu_option_draw(dx, dy){
 		//项目
 		if i<item_count {
 			var item = itemlist[i];
-			draw_option_item(drawx, drawy+(i-menu_option_list_begin)*64, item, menupagesel, selected);
+			draw_option_item(drawx, drawy+(i-menu_option_list_begin)*64, item, menupagesel, selected, btncol);
 		}
 		//按钮
 		else {
@@ -170,8 +173,8 @@ function scr_menu_option_draw(dx, dy){
 				btnnow = buttonlist[bi];
 			var btninx=0, txtshifty=4;;
 			if selected btninx=1;
-			draw_sprite(spr_menu_option_button, btninx, drawx-544, drawy+(i-menu_option_list_begin)*64)
-			scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0.5, btnnow.text, drawx-704, drawy+(i-menu_option_list_begin)*64+txtshifty, 1, 1, -1, -1, -1, 0)
+			draw_sprite_ext(spr_menu_option_button, btninx, drawx-544, drawy+(i-menu_option_list_begin)*64, 1 ,1, 0, btncol, 1)
+			scr_draw_text_ext(btncol, 1, 0, font_puhui_32, 0, 0.5, btnnow.text, drawx-704, drawy+(i-menu_option_list_begin)*64+txtshifty, 1, 1, -1, -1, -1, 0)
 		}
 	}
 }

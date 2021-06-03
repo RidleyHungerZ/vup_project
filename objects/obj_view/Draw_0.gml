@@ -62,9 +62,9 @@ if operate_rate>0 {
 	#endregion
 	#region 支援槽
 	var supifx=ifx+132, supify=ify+21;
-	draw_sprite(spr_ui_grd_support_iframe, 0, supifx, supify)
 	//获得装甲后才会有支援
 	if scr_model_isget(PLAYER_MODEL.ARMOR) {
+		draw_sprite(spr_ui_grd_support_iframe, 0, supifx, supify)
 		if global.player_support<100 {
 			draw_sprite(spr_ui_grd_support_iframe, 1, supifx, supify)
 		} else {
@@ -84,6 +84,8 @@ if operate_rate>0 {
 			strcol=c_black
 		}
 		scr_draw_text_ext(strcol, 1, 0, font_jam_24, 0.5, 0.5, supstr, supifx, supify+1, 1, 1, -1, -1, c_black, 1);
+	} else {
+		draw_sprite_ext(spr_ui_grd_support_iframe, 0, supifx, supify, 1, 1, 0, c_gray, 1)
 	}
 	#endregion
 	#region 连击数

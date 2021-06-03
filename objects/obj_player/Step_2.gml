@@ -27,6 +27,7 @@ if(scr_menu_trem()) {
 	if(sprite_index==SS_idle2) {
 		if between(image_index, 3, true, 3.1, false)
 		&& global.operate==1
+		&& global.player_operate==1
 			scr_sound_play(se_player_dying)
 	} else {
 		scr_sound_stop(se_player_dying)
@@ -103,7 +104,8 @@ if(scr_menu_trem()) {
 		}
 		if(newplayer!=noone) {
 			with instance_create_depth(x, y, depth, newplayer) {
-				scr_sprite_change(SS_idle, 0, 0.25)
+				if other.sprite_index!=spr_none
+					scr_sprite_change(SS_idle, 0, 0.25)
 				image_xscale=other.image_xscale
 				image_yscale=other.image_yscale
 				injure_t=other.injure_t
@@ -299,8 +301,8 @@ global.player_def=1;
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
 			if(jump==9) scr_player_outground();
-			hsp=4*hspd*(-uninjure);
-			vsp=-(5/6)*vspd;
+			hsp=8*hspd*(-uninjure);
+			vsp=-vspd;
 			//提前位移，否则会被直接判定为落在地上
 			if(!place_meeting(x,y-4*image_yscale,obj_ground))
 				y-=4*image_yscale;

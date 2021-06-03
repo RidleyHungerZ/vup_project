@@ -151,12 +151,13 @@ if global.menu==1 {
 		} else {
 			skarray=[skstruts.armor]
 			if global.model!=PLAYER_MODEL.ARMOR {
-				
+				//其他形态的技能放入skarray数组中
 			}
 		}
 		for(var i=0;i<array_length(skarray);i++) {
 			for(var j=0;j<array_length(skarray[i]);j++) {
 				if skarray[i][j].trim() {
+					skarray[i][j].index=j
 					ds_list_add(menu_skill_list, skarray[i][j])
 				}
 			}

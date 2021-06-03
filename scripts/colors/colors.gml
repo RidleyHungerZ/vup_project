@@ -20,3 +20,13 @@ function getRGB(col) {
 function getHSV(col) {
 	return [color_get_hue(col), color_get_saturation(col), color_get_value(col)]
 }
+/// @desc 两个颜色混合
+/// @arg col1
+/// @arg col2
+function color_blend(col1, col2) {
+	var rgb1=getRGB(col1),
+		rgb2=getRGB(col2);
+	return rgb(max(0, rgb1[0]-(255-rgb2[0])), 
+				max(0, rgb1[1]-(255-rgb2[1])), 
+				max(0, rgb1[2]-(255-rgb2[2])))
+}

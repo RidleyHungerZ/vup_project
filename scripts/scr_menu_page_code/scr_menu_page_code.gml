@@ -50,7 +50,9 @@ function scr_menu_page_status_code() {
 			}
 			//逃逸
 			else if menu_select[page][0]==3 {
-					
+				menu_type=0.1
+				menutime=15
+				scr_sound_play(se_menu_true)
 			}
 		}
 		if menu_select[page][0]<0 
@@ -150,7 +152,124 @@ function scr_menu_page_status_code() {
 		#endregion
 		#region 逃逸
 		if menu_select[page][0]==3 {
-			
+			//展开
+			if menu_type==0.1 {
+				if menutime==0 menu_type=1
+			} 
+			//关闭
+			else if menu_type==0.9 {
+				if menutime==0 menu_type=0
+			} 
+			//选择
+			else if menu_type==1 {
+				if keystate_check_pressed(global.Up_state) {
+					menu_select[page][1]-=1
+					scr_sound_play(se_menu_select)
+				} else if keystate_check_pressed(global.Down_state) {
+					menu_select[page][1]+=1
+					scr_sound_play(se_menu_select)
+				} else if keystate_check_pressed(global.A_state) {
+					var canexit=true
+					if menu_select[page][1]==0 {
+						canexit=false
+					}
+					if canexit {
+						menu_type=1.1
+						scr_sound_play(se_menu_true)
+					} else {
+						menu_type=1.9
+						menutime=60
+						scr_sound_play(se_menu_error)
+					}
+				} else if keystate_check_pressed(global.B_state) {
+					menu_type=0.9
+					menutime=15
+					scr_sound_play(se_menu_cancle)
+				}
+				var itemc=array_length(options[3].itemdesc)
+				if menu_select[page][1]<0 
+					menu_select[page][1]=itemc-1
+				else if menu_select[page][1]>=itemc
+					menu_select[page][1]=0
+			}
+			//退出
+			else if menu_type==1.1 {
+				scr_view_transition(1, 0)
+				audio_bgm_stop()
+				menu_type=1.2
+			} else if menu_type==1.2 {
+				if scr_view_transition_Isover(1) {
+					scr_view_transition(1,1)
+					audio_se_stop_all()
+					scr_sound_stopall_dpl()
+					scr_view_shock_stop()
+					global.stop=-0.5
+					global.menu=0
+					obj_view.operate_rate=0
+					//返回基地
+					if menu_select[page][1]==0 {
+						scr_room_goto(room_kanaroom)
+						audio_bgm_change(bgm_kanaroom)
+						with obj_player {
+							x=256
+							y=224-GRDY
+							scr_relife_set_point(x, y+GRDY, -1)
+						}
+						global.operate=0.5
+						global.boss_war=0
+						global.view_xcen_shift=0//镜头中心偏移
+						global.view_ycen_shift=0//镜头中心偏移
+						global.view_control=0
+						with obj_player_saber {
+							scr_sprite_change(spr_none, 0, 0)
+						}
+						//道具记录清空
+						with obj_room{
+							//道具记录清空
+							item_not_set = 1
+							//进度清空
+							action=0
+							time=0
+						}
+					} 
+					//返回标题界面
+					else if menu_select[page][1]==1 {
+						scr_room_goto(room_logo)
+						//scr_data_save_global(noone,noone)
+						//scr_data_set_note()
+						data_save_variable_single()
+						//scr_timecalcul_dis_close()
+						global.operate=0
+						global.player_operate=0
+						global.game_start=0
+						global.boss_war=0
+						global.view_xcen_shift=0//镜头中心偏移
+						global.view_ycen_shift=0//镜头中心偏移
+						global.view_control=0
+						with obj_player_saber {
+							scr_sprite_change(spr_none, 0, 0)
+						}
+						with obj_player {
+							scr_sprite_change(spr_none, 0, 0)
+						}
+						//道具记录清空
+						with obj_room{
+							//道具记录清空
+							item_not_set = 1
+							//进度清空
+							action=0
+							time=0
+						}
+					}
+					menu_select[page][1]=0
+					menu_type=0
+				}
+			}
+			//报错
+			else if menu_type==1.9 {
+				if menutime==0 
+					menu_type=1
+			}
 		}
 		#endregion
 	}
