@@ -160,12 +160,15 @@ else if jump==PYJUMP.kick {
 		||(bullet && bullet.undm==1) {
 			if enemy kickinst=enemy
 			else if bullet kickinst=bullet
-			while !place_meeting(x+sign(xof), y+sign(yof), kickinst) {
+			while !place_meeting(x, y, kickinst) {
 				x+=sign(xof) 
 				y+=sign(yof)
 			}
-			with instance_create_depth(kickinst.x, kickinst.y, depth, obj_player_bullet) {
-				scr_sprite_change(spr_white, 0, 0)
+			with instance_create_depth(x, y, depth, obj_player_bullet) {
+				scr_sprite_change(other.sprite_index, other.image_index, 0)
+				image_xscale=other.image_xscale
+				image_yscale=other.image_yscale
+				image_angle=other.image_alpha
 				visible=false
 				scr_player_damage_set(4, ELEMENTS.none, ATK_TYPE.bullet,3,20,0,20,0)
 				death_time=5
@@ -559,3 +562,4 @@ if scr_player_subuse(0,0)
 	}
 }
 #endregion
+updateMask()

@@ -7,7 +7,7 @@ dis_edge=96;
 hit_ground=function(xx, yy, destory) {
 	var hitanima = instance_create_depth(xx, yy, depth, obj_animation_once) 
 	with hitanima{
-		scr_sprite_change(spr_player_bullet_hit, 0, 0.25)
+		scr_sprite_change(spr_player_bullet_hit, 0, 0.5)
 		image_xscale=other.image_xscale
 		image_yscale=other.image_yscale
 	}
@@ -17,7 +17,7 @@ hit_ground=function(xx, yy, destory) {
 hit_invalid=function(xx, yy, destory) {
 	var hitanima = instance_create_depth(xx, yy, depth, obj_animation_once) 
 	with hitanima{
-		scr_sprite_change(spr_player_bullet_invalid, 0, 0.25)
+		scr_sprite_change(spr_player_bullet_invalid, 0, 0.5)
 		image_xscale=other.image_xscale
 		image_yscale=other.image_yscale
 	}

@@ -1,3 +1,4 @@
+updateMask()
 #region 常规动作
 if sprite_index==SS_walk{
 	scr_sprite_change(-2,2,-2);
@@ -183,3 +184,4 @@ else if sprite_index==spr_player_deathnone{
 	//}
 }
 #endregion
+updateMask()

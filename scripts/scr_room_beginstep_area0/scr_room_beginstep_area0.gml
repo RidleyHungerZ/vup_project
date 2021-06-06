@@ -139,15 +139,19 @@ else if (room==room_kanaroom || room==room_area0_1)
 	prg=2
 	//加载界面
 	if action==0 {
-		scr_loading_open_inblack(0)
 		action=0.1
+		time=30
 	}
-	if action==0.1 {
-		if !scr_loading_isopen() {
-			action=0.2
-		}
+	if action==0.1 && time==0 {
+		scr_loading_open_inblack(0)
+		action=0.2
 	}
 	if action==0.2 {
+		if !scr_loading_isopen() {
+			action=0.3
+		}
+	}
+	if action==0.3 {
 		audio_bgm_change(bgm_kanaroom)
 		with obj_player {
 			scr_sprite_change(SS_talking, 0, 0)
@@ -793,6 +797,7 @@ else if room==room_area0_2
 		global.main_sub_exchange[PLAYER_MODEL.ARMOR]=temp[1]
 		scr_thread_over(prg)
 		scr_room_freedom()
+		scr_relife_set_point(obj_player.x, obj_player.y+GRDY, obj_player.image_xscale)
 		action=0
 	}
 	///@skip
@@ -809,6 +814,140 @@ else if room==room_area0_2
 		instance_destroy(obj_player_bullet)
 		global.view_control=0
 		scr_room_freedom()
+		scr_relife_set_point(obj_player.x, obj_player.y+GRDY, obj_player.image_xscale)
+	}
+}
+#endregion
+#region BOSS战
+else if room==room_area0_2 
+&& !scr_boss_isget(0) {
+	prg=5
+	#region 开战前
+	if action==0 {
+		if between(obj_player.x, 2000, true, 2512, true) {
+			global.player_operate=0
+			direct=1
+			action=0.5
+			time=1
+		}
+	}
+	if scr_room_fall_after(1, "") {
+		if obj_player.x>=2256 {
+			codekey_Hdirect(0)
+			scr_room_player_xstop(2256)
+			inst_room_area0_2_boss.use=true
+			action=3
+			time=30
+		}
+	}
+	//发射导弹
+	if action==3 && time==0 {
+		audio_bgm_stop()
+		for(var i=0;i<6;i++) {
+			with instance_create_layer(2384-i*32, -64-64*i, layerInst[3], obj_boss_cjc_bullet_missile_s) {
+				scr_sprite_change(-2, -2, 0.5)
+				image_xscale/=image_xscale
+				view_edge=-1
+				action=-1
+			}
+		}
+		action=3.1
+		time=10
+	}
+	if between(action, 3, false, 4, false) && time==0 {
+		scr_sound_play(se_enemy_missile)
+		action+=0.1
+		time=15
+		if action>3.6 {
+			with obj_boss_cjc_bullet_missile_s {
+				vspeed=6
+			}
+			action=4
+			time=0
+		}
+	}
+	//冲刺往回躲
+	if action==4 {
+		codekey_Hdirect(-1)
+		codekey_dash(1)
+		action=4.1
+	}
+	if action==4.1 {
+		if obj_player.x<=2096 {
+			codekey_Hdirect(0)
+			codekey_dash(0)
+			scr_room_player_xstop(2096)
+			action=4.2
+			time=30
+		}
+	}
+	if action==4.2 && time==0 {
+		obj_player.image_xscale=1
+		action=5
+		time=60
+	}
+	//草剪葱出现
+	if action==5 && time==0 {
+		with obj_boss_cjc {
+			firedir=1
+			vspeed=2
+		}
+		audio_bgm_change(bgm_beforewar)
+		action=5.1
+	}
+	if action==5.1 {
+		if obj_boss_cjc.y>0 {
+			obj_boss_cjc.vspeed=max(0.5, 2*(1-y/96))
+		}
+		if obj_boss_cjc.y>=96 {
+			obj_boss_cjc.speed=0
+			obj_boss_cjc.y=96
+			action=6
+			time=30
+		}
+	}
+	thread_talk_execute(prg, 6, 7, 30)
+	if action==7 && time==0 {
+		scr_thread_over(prg)
+		scr_room_bosswar_start(bgm_boss1, bgm_area0, function() {
+			inst_room_area0_2_boss.use=false
+		})
+	}
+	#endregion
+	#region 战斗中
+	else if scr_room_bosswar_inwar() {
+		
+	}
+	#endregion
+	#region BOSS死亡
+	else if scr_room_bosswar_boss_hp0() {
+		scr_room_bosswar_boss_boomstart()
+		action=1204
+	}
+	else if action==1204 {
+		if scr_room_bosswar_boss_boomover() {
+			scr_boss_get(0)
+			audio_bgm_change(bgm_area0)
+			inst_room_area0_2_boss.use=false
+			scr_room_freedom()
+			action=0
+		}
+	}
+	#endregion
+	///@skip
+	if scr_can_skip_boss(prg) {
+		inst_room_area0_2_boss.use=true
+		scr_skip_boss(1, bgm_boss1, bgm_area0, 1, 2096, 224, prg, function() {
+			inst_room_area0_2_boss.use=false
+		})
+		with obj_boss_cjc {
+			y=80
+			speed=0
+			firedir=1
+		}
+		instance_destroy(obj_boss_cjc_bullet_missile_s)
+		instance_destroy(obj_bullet)
+		instance_destroy(obj_player_bullet)
 	}
 }
 #endregion

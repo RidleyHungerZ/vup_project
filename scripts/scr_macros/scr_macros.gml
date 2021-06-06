@@ -34,6 +34,7 @@ function scr_macro(){
 #region 文本颜色
 	#macro TXT_KEY "[$=ff0068]"
 	#macro TXT_W "[$=ffffff]"
+	#macro TXT_D "[$=def]"
 	#macro TXT_ERR "[$=ff0000]"
 	#macro TXT_COL_PERFIX "[$="
 	#macro TXT_COL_SURFIX "]"
@@ -44,6 +45,8 @@ function scr_macro(){
 	#macro GRAV 0.5
 	#macro GRDY 4 //角色脚离地距离
 	#macro UIPINK $6800ff //UI字体常用粉色
+	#macro dir_player point_direction(x, y, obj_player.x, obj_player.y)
+	#macro dis_player point_distance(x, y, obj_player.x, obj_player.y)
 #endregion
 #region 邪道语法
 #macro print								\

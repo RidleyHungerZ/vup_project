@@ -21,8 +21,8 @@ function scr_enemy_move_system(egd, etp, trans) {
 		} else tsp=0
 		hr=hsp+tsp
 		//横向移动
-		if !place_meeting(x+hr, y, obj_ground)
-		&& !collision_rectangle(bbox_right+hr, bbox_bottom+GRDY, bbox_left+hr, bbox_top, obj_floor, 1, 1) {
+		if !collision_rectangle(bbox_right+hr, bbox_bottom+GRDY, bbox_left+hr, bbox_top, obj_ground, 1, 1)
+		&& !collision_rectangle(bbox_right+hr, bbox_bottom+GRDY, bbox_left+hr, bbox_bottom+GRDY-8, obj_floor, 1, 1) {
 			x+=hr
 		} else {
 			repeat(abs(hr)*2){
@@ -107,7 +107,8 @@ function scr_enemy_move_system(egd, etp, trans) {
 						&& !collision_rectangle(bbox_right,bbox_top-GRDY+2,bbox_left,bbox_top-GRDY+1,obj_floor,1,1))
 			if !ground
 			&& !sink 
-			&& !(flor && vsp>0)
+			&& !flor
+			//&& !(flor && vsp>0)
 				vsp+=grav
 			else vsp=0
 		}

@@ -17,7 +17,24 @@ with obj_view {
 		} 
 		//扫描线
 		else if global.pix_filter==2 {
-			
+			scr_shader_CRT(v0sw, v0sh, 
+						false, 0,
+						false, 0, 0, 
+						false, 0, 
+						true, true, 1)
+			//shader_set(shd_CRT_shader);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_crt_sizes"),                apsw, apsh, apsw, apsh);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_radial_distortion_amount"), 0);  
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_use_radial_distortion"),    False);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_use_border"),               False);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_use_RGB_separation"),       False);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_use_scanlines"),            True);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_border_corner_size"),       0);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_border_corner_smoothness"), 0);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_brightness"),				 0);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_use_noise"),				 False);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_noise_strength"),			 0);
+			//shader_set_uniform_f(shader_get_uniform(shd_CRT_shader, "uni_timer"),					 get_timer());
 		} 
 		//柔化
 		else if global.pix_filter==3 {

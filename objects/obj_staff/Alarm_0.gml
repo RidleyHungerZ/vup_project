@@ -7,6 +7,9 @@ if player_death_action=2{
 		action=0
 		//道具记录清空
 		item_not_set = 1
+		if is_method(bosswar_fail) 
+			bosswar_fail()
+		bosswar_fail=noone
 	}
 	//命归零
 	if false { //global.player_life<=0 && 
@@ -32,6 +35,7 @@ if player_death_action=2{
 		global.player_hp=global.player_hp_up
 		global.player_mp=global.player_mp_up
 		global.player_support=0
+		global.combo_time=0
 		global.boss_hp=0
 		//global.player_life-=1
 		with obj_player{

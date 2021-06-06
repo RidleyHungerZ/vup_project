@@ -32,3 +32,4 @@ else if sprite_index == SS_fall_shoot{
 //else if sprite_index == SS_lad_shoot{
 //	scr_sprite_change(-2,2,0)
 //}
+updateMask()

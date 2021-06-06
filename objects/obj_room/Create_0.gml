@@ -4,6 +4,7 @@ action=0
 time=0
 bosswar_bgm=noone
 restart_bgm=noone
+bosswar_fail=noone
 direct=0
 npc=array_create(20, noone)
 temp=array_create(20, 0)

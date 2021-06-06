@@ -1,4 +1,10 @@
+event_inherited()
+if(global.boss_war==1
+|| global.player_hp<=0) {
+	globalhp_sync();
+}
 /// @description 房间坐标矫正
+if(scr_boss_isget(bs) || hp<=0) exit;
 if(!is_war_boss) exit;
 if(hitedstp!=0) {
     hited=hitedstp;
@@ -14,12 +20,7 @@ if(global.boss_war==1
 	rx=x-_xl;
 	ry=y-_yt;
 	rpos=true;
-	if(hp_only==1) 
-		global.boss_hp=hp;
 }
-#region 精灵播放帧速修改区
-if(scr_menu_trem())
-	sprspd_adjust();
-#endregion
 if(!scr_menu_trem()) exit;
-scr_time_alarm();
+//精灵播放帧速修改区
+sprspd_adjust();

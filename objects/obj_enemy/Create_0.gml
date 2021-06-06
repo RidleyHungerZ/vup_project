@@ -159,24 +159,26 @@ death_use_speed_system=false; //死亡时都能使用移动系统
 //fire_boom=true; //碰到燃烧的火是否爆炸
 /// @element_size=1
 //element_size=1; //属性特效尺寸
+/// @damage_agent=noone
+damage_agent=noone; //伤害代理
 #endregion
 #region 附属部件
 for(var i=0;i<2;i++){//0前景，1背景，j深度
 	for(var j=0;j<5;j++){
-		part_vis[i,j]=true;  	//显示
-		part_spr[i,j]=noone;	//精灵
-		part_inx[i,j]=0;		//帧数
-		part_spd[i,j]=0.25;		//帧速
-		part_xof[i,j]=0;		//x偏移
-		part_yof[i,j]=0;		//y偏移
-		part_xofix[i,j]=0;		//x偏移固定
-		part_yofix[i,j]=0;		//y偏移固定
-		part_xsc[i,j]=1;		//横向
-		part_ysc[i,j]=1;		//纵向
-		part_bed[i,j]=c_white;	//色彩
-		part_agl[i,j]=0;		//角度
-		part_aph[i,j]=1;		//透明度
-		part_flash[i,j]=true;	//部件是否闪白
+		part_vis[i][j]=true;  	//显示
+		part_spr[i][j]=noone;	//精灵
+		part_inx[i][j]=0;		//帧数
+		part_spd[i][j]=0.25;		//帧速
+		part_xof[i][j]=0;		//x偏移
+		part_yof[i][j]=0;		//y偏移
+		part_xofix[i][j]=0;		//x偏移固定
+		part_yofix[i][j]=0;		//y偏移固定
+		part_xsc[i][j]=1;		//横向
+		part_ysc[i][j]=1;		//纵向
+		part_bed[i][j]=c_white;	//色彩
+		part_agl[i][j]=0;		//角度
+		part_aph[i][j]=1;		//透明度
+		part_flash[i][j]=true;	//部件是否闪白
 	}
 }
 #endregion
@@ -277,14 +279,15 @@ deathBoomPart = function(partspr) {
 }
 //跑步判断前方
 walkGround = function(hspd) {
-	if collision_rectangle(bbox_right+4,bbox_bottom+GRDY-4,bbox_left,bbox_top,obj_ground,1,1)
-	|| collision_rectangle(bbox_right,bbox_bottom+GRDY-4,bbox_left-4,bbox_top,obj_ground,1,1)
-	||(!collision_rectangle(bbox_right+4,bbox_bottom+GRDY+8,bbox_right,bbox_bottom+GRDY,obj_ground,1,1)
-	&&!collision_rectangle(bbox_right+4,bbox_bottom+GRDY+8,bbox_right,bbox_bottom+GRDY,obj_floor,1,1)
-	&& sign(hspd)=1)
-	||(!collision_rectangle(bbox_left,bbox_bottom+GRDY+8,bbox_left-4,bbox_bottom+GRDY,obj_ground,1,1)
-	&&!collision_rectangle(bbox_left,bbox_bottom+GRDY+8,bbox_left-4,bbox_bottom+GRDY,obj_floor,1,1)
-	&& sign(hspd)=-1) {
+	var rightwall = collision_rectangle(bbox_right+4,bbox_bottom+GRDY-4,bbox_left,bbox_top,obj_ground,1,1) && sign(hspd)==1,
+		leftwall  = collision_rectangle(bbox_right,bbox_bottom+GRDY-4,bbox_left-4,bbox_top,obj_ground,1,1) && sign(hspd)==-1,
+		rightempty = !collision_rectangle(bbox_right+4,bbox_bottom+GRDY+8,x,bbox_bottom+GRDY,obj_ground,1,1)
+					 &&!collision_rectangle(bbox_right+4,bbox_bottom+GRDY+8,x,bbox_bottom+GRDY,obj_floor,1,1)
+					 && sign(hspd)==1,
+		leftempty = !collision_rectangle(x,bbox_bottom+GRDY+8,bbox_left-4,bbox_bottom+GRDY,obj_ground,1,1)
+					 &&!collision_rectangle(x,bbox_bottom+GRDY+8,bbox_left-4,bbox_bottom+GRDY,obj_floor,1,1)
+					 && sign(hspd)==-1
+	if(rightwall || leftwall || rightempty || leftempty) {
 		return true
 	}
 }

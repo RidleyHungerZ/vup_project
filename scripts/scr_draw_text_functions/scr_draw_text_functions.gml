@@ -126,8 +126,8 @@ function scr_draw_text_ext(col, alpha, angle, font, xcen, ycen, txt, xx, yy, xsc
 	else if top==fa_bottom	shift_y0=str_filter_h
 
 	var shift_xy=shift_xy_angle(shift_x0, shift_y0, angle)
-	xx-=shift_xy[0]
-	yy-=shift_xy[1]
+	xx-=shift_xy.x
+	yy-=shift_xy.y
 
 	//如果没有颜色标示符，直接绘制
 	if(!string_contain(txt, [TXT_COL_PERFIX, TXT_ICON_PERFIX])){
@@ -155,7 +155,7 @@ function scr_draw_text_ext(col, alpha, angle, font, xcen, ycen, txt, xx, yy, xsc
 					var _color_pos_end = string_pos(_col_tags[1], _txt_draw_1),//颜色文本结束位置
 						_txt_color_tag = string_copy(_txt_draw_1, 1, _color_pos_end),//"[$=000000]"
 						_txt_color = string_copy(_txt_color_tag, string_length(_col_tags[0])+1, string_length(_txt_color_tag)-string_length(_col_tags[0])-string_length(_col_tags[1])),//000000
-						_color_alpha = color_from_string(_txt_color);//[col, aph]
+						_color_alpha = color_from_string(_txt_color, col);//[col, aph]
 					_txt_draw_1 = string_delete(_txt_draw_1, 1, string_length(_txt_color_tag)) //"[$=000000]test" --> "test"
 					_txt_draw_tmp_1 = _txt_color_tag
 					//着色
@@ -204,8 +204,8 @@ function scr_draw_text_ext(col, alpha, angle, font, xcen, ycen, txt, xx, yy, xsc
 				//存在按键图标
 				if sprite_exists(keyspr) {
 					var _txt_sxy = shift_xy_angle(_txt_x*xscale, (_txt_y+1)*yscale, angle),
-						_txt_sx = _txt_sxy[0], 
-						_txt_sy = _txt_sxy[1]
+						_txt_sx = _txt_sxy.x, 
+						_txt_sy = _txt_sxy.y
 					if(stroke!=-1){
 						for(var isx=-1;isx<=1;isx++)
 							for(var isy=-1;isy<=1;isy++)
@@ -218,8 +218,8 @@ function scr_draw_text_ext(col, alpha, angle, font, xcen, ycen, txt, xx, yy, xsc
 				var _txt_final_draw = _txt_draw_2
 				{
 					var _txt_sxy = shift_xy_angle(_txt_x*xscale, _txt_y*yscale, angle),
-						_txt_sx = _txt_sxy[0], 
-						_txt_sy = _txt_sxy[1],
+						_txt_sx = _txt_sxy.x, 
+						_txt_sy = _txt_sxy.y,
 						nowcol = draw_get_color(),
 						nowaph = draw_get_alpha()
 					if(stroke!=-1){
@@ -325,7 +325,7 @@ function scr_draw_text_incolor(font, xx, yy, txt, col, alpha, sep, stroke, strok
 				var _color_pos_end = string_pos("]", _txt_row_part);//颜色文本结束位置
 				var _txt_color = string_copy(_txt_row_part, 1, _color_pos_end-1);//颜色文本
 				_txt_draw = string_copy(_txt_row_part, _color_pos_end+1, string_length(_txt_row_part)-_color_pos_end);//去除颜色文本和一位]
-				var _color_alpha = color_from_string(_txt_color);
+				var _color_alpha = color_from_string(_txt_color, col);
 				draw_set_color(_color_alpha[0]);
 				if(array_length(_color_alpha)>1) draw_set_alpha(_color_alpha[1]);
 			}

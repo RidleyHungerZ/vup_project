@@ -15,12 +15,17 @@ if action==0 {
 	|| place_meeting(x,y,obj_sink)
 	|| hit==1
 	|| hp<=0 {
-		scr_sprite_change(spr_boom,0,0.5)
-		scr_sound_play(se_boom)
-		speed=0
-		image_angle=0
-		image_xscale=1
-		image_yscale=1
-		action=1
+		//scr_sprite_change(spr_boom,0,0.5)
+		//scr_sound_play(se_boom)
+		//speed=0
+		//image_angle=0
+		//image_xscale=1
+		//image_yscale=1
+		//action=1
+		with instance_create_depth(x, y, depth, obj_animation_once) {
+			scr_sprite_change(spr_boom,0,0.5)
+			scr_sound_play(se_boom)
+		}
+		instance_destroy()
 	}
 }

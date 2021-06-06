@@ -3,21 +3,25 @@ scr_menu_stop()
 if !scr_menu_trem() exit
 #region BOSS战部分
 if action==1000 {
-	instance_create_depth(x, y, obj_view.depth-1, obj_ui_warning)
 	action=1001
-} else if action==1001 {
+	time=30
+} else if action==1001 && time==0 {
+	audio_bgm_stop()
+	instance_create_depth(x, y, obj_view.depth-1, obj_ui_warning)
+	action=1002
+} else if action==1002 {
 	if !instance_exists(obj_ui_warning) {
 		global.boss_war=1
-		action=1002
+		action=1003
 		time=30
 	}
-} else if action==1002 && time==0 {
+} else if action==1003 && time==0 {
 	scr_room_freedom()
 	audio_bgm_change(bosswar_bgm)
-	action=1003
+	action=1004
 } 
 //自由活动
-else if action==1003 {
+else if action==1004 {
 	if global.player_hp<=0 {
 		global.boss_war=0
 		action=1100

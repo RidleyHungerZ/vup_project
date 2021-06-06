@@ -156,3 +156,4 @@ else if sprite_index==spr_player_armor_change_fall_pull{
 	obj_staff.player_change_over=true
 }
 #endregion
+updateMask()

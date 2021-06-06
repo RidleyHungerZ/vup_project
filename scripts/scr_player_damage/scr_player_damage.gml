@@ -13,11 +13,15 @@ function scr_player_damage(otherobj) {
 		//}
 		//获得碰到的所有该对象
 		var list=ds_list_create(),
-			listcnt=instance_place_list(x, y, otherobj, list, false)
+			listcnt=instance_place_list(x, y, otherobj, list, false),
+			deallist=ds_list_create(); //已经处理过的对象
 		//遍历对象一个一个处理
 		for(var i=0;i<listcnt;i++){
 			var target = list[| i]
-		#region 如果有排除目标，则检测是否为此目标
+			//查看是否处理过
+			if ds_list_exists(deallist, target) continue;
+			else ds_list_add(deallist, target)
+			#region 如果有排除目标，则检测是否为此目标
 			if array_length(btn_or_sbr.exclude_target)>0{
 				var isexclude = false
 				for(var j=0;j<array_length(btn_or_sbr.exclude_target);j++){
@@ -32,8 +36,8 @@ function scr_player_damage(otherobj) {
 				}
 				if isexclude continue
 			}
-		#endregion
-		#region 如果有指定目标，则检测是否为此目标
+			#endregion
+			#region 如果有指定目标，则检测是否为此目标
 			if array_length(btn_or_sbr.only_target)>0{
 				var istag = false
 				for(var j=0;j<array_length(btn_or_sbr.only_target);j++){
@@ -48,8 +52,8 @@ function scr_player_damage(otherobj) {
 				}
 				if !istag continue
 			}
-		#endregion
-		#region 如果是光剑，则先判断其在这一帧是否已经处理过了
+			#endregion
+			#region 如果是光剑，则先判断其在这一帧是否已经处理过了
 			if sbr_is_ext{
 				var saber_enemy_list = btn_or_sbr.enemy_list
 				if ds_list_find_value(saber_enemy_list, target)>=0{
@@ -58,8 +62,8 @@ function scr_player_damage(otherobj) {
 					ds_list_add(saber_enemy_list, target)
 				}
 			}
-		#endregion
-			//切换到对象实例内处理
+			#endregion
+			#region 切换到对象实例内处理
 			with target{
 				btn_or_sbr.hitx=x
 				btn_or_sbr.hity=y
@@ -274,17 +278,21 @@ function scr_player_damage(otherobj) {
 							//	else att_infact=attnor
 							//}
 	        				//减血
-						    hp-=att_infact
+							if instance_exists(target.damage_agent) {
+								//伤害代理减被代理人的血
+								target.damage_agent.hp-=att_infact
+							} else hp-=att_infact
 							scr_sound_play(se_enemy_damage) //播放音效
 							
 							//活动装甲后才有连击
-							if scr_model_isget(PLAYER_MODEL.ARMOR) {
+							if scr_model_isget(PLAYER_MODEL.ARMOR) 
+							&& btn_or_sbr.can_combo {
 								//计算连击，并获得羁绊值
 								global.combo+=att_infact
 								//每4点伤害获得1秒结算时间，如果剩余时间更多则按剩余时间计算
 								//global.combo_time=max(global.combo_time, 60*(att_infact div 4)) 
 								//每5点伤害获得0.5秒时间延长
-								global.combo_time+=60*0.5*max(1, floor(att_infact div 5))
+								global.combo_time=60*0.5*max(1, floor(att_infact div 5))
 								//按照倍率获得羁绊值，每8点伤害获得一层倍率
 								var supval=2*global.support_mult
 								if scr_itemb_isopen(ITEMB.supportGain) supval*=1.25
@@ -363,8 +371,10 @@ function scr_player_damage(otherobj) {
 				#endregion
 				}
 			}
+			#endregion
 		}
 		ds_list_destroy(list)
+		ds_list_destroy(deallist)
 	}
 	return damage_note
 }

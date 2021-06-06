@@ -3,6 +3,8 @@ var cenx=VIEW_W_UI/2,
 	ceny=VIEW_H_UI/2;
 //背景图像
 var logox=x/VIEW_W*VIEW_W_UI, logoy=y/VIEW_H*VIEW_H_UI;
+scr_draw_rectangle_view(c_white, black_start, view_current)
+draw_sprite_ext(spr_logo_bgs, 0, 0, 0, 1, 1, 0, c_white, black_start)
 //draw_sprite(spr_logo_bgs, 0, cenx, ceny)
 draw_sprite(spr_logo_title, 0, logox, logoy)
 //文本

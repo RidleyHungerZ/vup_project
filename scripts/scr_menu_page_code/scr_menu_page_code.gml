@@ -261,8 +261,13 @@ function scr_menu_page_status_code() {
 							time=0
 						}
 					}
-					menu_select[page][1]=0
 					menu_type=0
+					for(var page=0;page<array_length(menu_select);page+=1) {
+						for(var type=0;type<array_length(menu_select[page]);type+=1) {
+							menu_select[page][type]=0
+							menu_curr[type]=0
+						}
+					}
 				}
 			}
 			//报错

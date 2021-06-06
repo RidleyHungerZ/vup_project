@@ -107,3 +107,4 @@ if scr_player_mainuse(0,0)
 	}
 }
 #endregion
+updateMask()

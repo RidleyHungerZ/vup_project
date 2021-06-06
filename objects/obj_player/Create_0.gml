@@ -304,3 +304,29 @@ enum PYJUMP {
 	cliffProtect=20,
 }
 #endregion
+#region mask
+enum PYMASK_TYPE {
+	idle,
+	dash,
+	creep,
+}
+mask_index=spr_player_mask_idle
+getMaskType=function() {
+	if in(sprite_index, [spr_player_hu_creep, spr_player_hu_creeping, spr_player_hu_injure3])
+		return PYMASK_TYPE.creep
+	else if in(sprite_index, [spr_player_armor_dash, spr_player_armor_dash_shoot, spr_player_armor_dash_chop])
+		return PYMASK_TYPE.dash
+	else 
+		return PYMASK_TYPE.idle
+}
+updateMask=function() {
+	/// @description mask更新
+	var mask_type=getMaskType();
+	if mask_type==PYMASK_TYPE.creep
+		mask_index=spr_player_mask_creep
+	else if mask_type==PYMASK_TYPE.dash
+		mask_index=spr_player_mask_dash
+	else 
+		mask_index=spr_player_mask_idle
+}
+#endregion

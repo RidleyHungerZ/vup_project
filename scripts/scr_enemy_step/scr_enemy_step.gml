@@ -39,6 +39,7 @@ function scr_enemy_step(){
 	}
 #endregion
 #region 无敌时间
+if(hp>0) {
 	crash=0;
 	if(uninjure!=_uninjure) {
 		crash=1;
@@ -53,6 +54,11 @@ function scr_enemy_step(){
 		untime=0;
 		uninjure=0;
 	}
+} else {
+	untime=0;
+	uninjure=0;
+	_uninjure=uninjure;
+}
 #endregion
 #region 属性伤害计时
 	//scr_enemy_element_recover()
@@ -64,21 +70,23 @@ if !inst_of(obj_enemy)
 #region 运动系统
 	if use_speed_system=1{
 		//击飞运动系统
-		if injure_type=ATK_TYPE.push {
+		if injure_type==ATK_TYPE.push {
 			if inst_of(obj_enemy){
 				scr_enemy_push_move_system()
 			}
 		} 
 		//普通移动
 		else if (hp>0 || death_use_speed_system)
-		&& ((inst_of(obj_boss) &&(global.boss_war=1||global.player_hp<=0))
+		&& ((inst_of(obj_boss) && (global.boss_war=1||global.player_hp<=0))
 			||!inst_of(obj_boss)){
 			scr_enemy_move_system()
 		}
 	}
 #endregion
 //以下内容为enemy单独使用
-if !inst_of(obj_enemy) exit
+if !inst_of(obj_enemy) 
+|| inst_of(obj_boss) 
+	exit
 #region 受伤击退
 	if hp>0 {
 		element_ssinjure=0

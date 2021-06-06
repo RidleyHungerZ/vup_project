@@ -30,9 +30,10 @@ function arctan_de(tanval) {
 /// @arg leny
 /// @arg rot
 function shift_xy_angle(lenx, leny, rot) {
-	var rtnxy=[0,0]
-	rtnxy[0]=leny*sin_de(rot)+lenx*cos_de(rot)
-	rtnxy[1]=leny*cos_de(rot)-lenx*sin_de(rot)
+	var rtnxy=new spoint(
+		leny*sin_de(rot)+lenx*cos_de(rot),
+		leny*cos_de(rot)-lenx*sin_de(rot)
+	)
 	return rtnxy
 }
 /// @desc 勾股定理
@@ -266,5 +267,11 @@ function probability() {
 			return val
 	}
 	return argument[argument_count-1]
+}
+#endregion
+#region 坐标对象
+function spoint(_x, _y) constructor {
+	x=_x;
+	y=_y;
 }
 #endregion

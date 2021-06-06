@@ -20,7 +20,6 @@ function scr_can_skip(thread) {
 	else
 		return false
 }
-
 /// @arg view[0白色1黑色]
 /// @arg bgm[""重播;"?"不变;"s"停止;bgm_a0变化]
 /// @arg ply_scale[0:玩家消失;1/-1:玩家站立+方向]
@@ -28,6 +27,7 @@ function scr_can_skip(thread) {
 /// @arg ply_y
 /// @arg thread[-1:不设置]
 /// @arg action
+/// @arg time
 function scr_skip(view, bgm, ply_scale, ply_x, ply_y, thread, action, time) {
 	global.view_control=0
 	global.start_state=2
@@ -90,7 +90,7 @@ function scr_skip(view, bgm, ply_scale, ply_x, ply_y, thread, action, time) {
 		friction=0
 		path_speed=0
 	}
-	//scr_viewroom_inroom()
+	scr_viewroom_inroom()
 	scr_view_set_with_inst(obj_player)
 	//按键
 	codekey_Hdirect(0)
@@ -120,4 +120,20 @@ function scr_skip(view, bgm, ply_scale, ply_x, ply_y, thread, action, time) {
 	//CG
 	//cg_cancle()
 	//no_gui_surf_ghost=false
+}
+/// @arg thread[-1:无限制]
+function scr_can_skip_boss(thread) {
+	return scr_can_skip(thread) && action<1000
+}
+/// @arg view[0白色1黑色]
+/// @arg war_bgm
+/// @arg relief_bgm
+/// @arg ply_scale[0:玩家消失;1/-1:玩家站立+方向]
+/// @arg ply_x
+/// @arg ply_y
+/// @arg thread[-1:不设置]
+/// @arg failfun 失败执行方法
+function scr_skip_boss(view, war_bgm, relief_bgm, ply_scale, ply_x, ply_y, thread, failfun) {
+	scr_skip(view, "s", ply_scale, ply_x, ply_y, thread, 0, 0)
+	scr_room_bosswar_start(war_bgm, relief_bgm, failfun)
 }

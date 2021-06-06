@@ -81,6 +81,12 @@ else if global.skip==2{
 if keyboard_check_pressed(vk_delete) {
 	global.player_hp=0
 } 
+if keyboard_check_pressed(vk_backspace) {
+	with obj_boss {
+		if is_war_boss
+			hp=0
+	}
+} 
 if keyboard_check(vk_control) 
 &&(global.fps_curr mod 3 == 0){
 	if keyboard_check(vk_up) {

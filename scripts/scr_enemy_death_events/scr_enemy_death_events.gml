@@ -74,6 +74,8 @@ function scr_enemy_create_item() {
 /// @desc 死亡时发生爆炸
 /// @arg x*
 /// @arg y*
+/// @arg number*
+/// @arg type*
 function scr_enemy_boom_number(xx, yy, number, type) {
 	if!xx xx=x;
 	if!yy yy=y;
@@ -99,6 +101,7 @@ function scr_enemy_boom_number(xx, yy, number, type) {
 						dis_edge=-1
 						scr_sprite_change(spr_boom2 ,0,0.5)
 						scr_player_damage_set(other.attack,0,0,1,1,0,1,0)
+						can_combo=false
 						animation_once=true
 					}
 				}

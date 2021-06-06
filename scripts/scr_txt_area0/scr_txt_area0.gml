@@ -9,9 +9,9 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, false,
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 2, 0, false,
 @"差不多了，服务器已经可以承载下目前的所有人类了。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, false,
-@""+TXT_KEY+@"『经营者』"+TXT_W+@"体系的原理还有进展吗？")
+@""+TXT_KEY+@"『经营者』"+TXT_D+@"体系的原理还有进展吗？")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 2, 0, false,
-@"没有……我们还是没法理解为什么人类可以从"+TXT_KEY+@"『存在支持度』"+TXT_W+@"中得到力量……")
+@"没有……我们还是没法理解为什么人类可以从"+TXT_KEY+@"『存在支持度』"+TXT_D+@"中得到力量……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, false,
 @"科技的下一次进步关键点应该就在这里了。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 1, 0, false,
@@ -37,7 +37,7 @@ thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 1, false,
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1, false,
 @"庆典啊……看来最近有的要忙了呢。")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 1, false,
-@"随着注册"+TXT_KEY+@"PRO经营者"+TXT_W+@"的申请日渐增多， 
+@"随着注册"+TXT_KEY+@"PRO经营者"+TXT_D+@"的申请日渐增多， 
 NEO巴比伦政府发起了“关于规范化经营者申请注册流程的题案”研讨。
 望广大经营者群体周知，积极参与，提供您的宝贵建议。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.normal, 1, false,
@@ -54,15 +54,15 @@ thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 2, false,
 @"您好，我叫物语stor，您可以称呼我为物语，
 是您本次管理委托任务的联络人。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, false,
-@"啊……是"+TXT_KEY+@"『NEO巴比伦』"+TXT_W+@"委托的那件嘛？")
+@"啊……是"+TXT_KEY+@"『NEO巴比伦』"+TXT_D+@"委托的那件嘛？")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 2, false,
 @"是的。本次任务的完成情况将直接关系到您的PRO经营者认证评定。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, false,
 @"这样啊，窝大概了解了……
-委托内容的货物是叫……"+TXT_KEY+@"『虚拟驱动器』"+TXT_W+@"？
+委托内容的货物是叫……"+TXT_KEY+@"『虚拟驱动器』"+TXT_D+@"？
 好奇怪的名字……")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 0, 2, true,
-@"是的，"+TXT_KEY+@"货物对『NEO巴比伦』非常重要"+TXT_W+@"。
+@"是的，"+TXT_KEY+@"货物对『NEO巴比伦』非常重要"+TXT_D+@"。
 相沢加奈，一定要保护好货物的安全，我会看……着……")
 //信号中断
 thread_talk(prg, inx, TALK_INX.down, -1, -1, -1, -1)
@@ -95,7 +95,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianD
 @"窝这里又没有什么贵重货物，他们怎么会到这里来？")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
 @"等一下……他们的目标不会是这个东西吧？
-"+TXT_KEY+@"『虚拟驱动器』"+TXT_W+@"……")
+"+TXT_KEY+@"『虚拟驱动器』"+TXT_D+@"……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
 @"不管怎么样，再这样下去他们就要到这里来了。")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
@@ -128,7 +128,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 也是那群家伙干得好事嘛？
 其他路线……")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.ziXin, 1, true,
-@"有了！"+TXT_KEY+@"上面有通风管道"+TXT_W+@"！
+@"有了！"+TXT_KEY+@"上面有通风管道"+TXT_D+@"！
 想困住窝可没有那么容易。")
 #endregion
 #region 仓库大门外
@@ -199,23 +199,23 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 #endregion
 #region BOSS
 prg=5 inx=0
-thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.boss, 1, 1)
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
+thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.boss, 1, 0)
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"这……这不是窝上个月刚买的ES-02型么！
 乃们这些家伙……太过份了！")
-thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 1, false,
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 0, false,
 @"一群杂碎……连个看仓库的女人都摆不平，还得本大爷亲自出马。")
-thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 1, false,
-@"直接干掉这女人算了，然后不光是什么"+TXT_KEY+@"『驱动器』"+TXT_W+@"，
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 0, false,
+@"直接干掉这女人算了，然后不光是什么"+TXT_KEY+@"『驱动器』"+TXT_D+@"，
 整个仓库的东西都是本大爷的了！")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, true,
-@""+TXT_KEY+@"『驱动器』"+TXT_W+@"？
-乃是要来抢"+TXT_KEY+@"『虚拟驱动器』"+TXT_W+@"的？
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
+@""+TXT_KEY+@"『驱动器』"+TXT_D+@"？
+乃是要来抢"+TXT_KEY+@"『虚拟驱动器』"+TXT_D+@"的？
 乃是谁？")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 1, true,
-@"本大爷是草翦葱Negi！
-现在本大爷心情很差，所以本大爷要做掉你！
-记住本大爷的名字然后下地狱去吧！")
+@"本大爷叫草翦葱Negi！
+现在老子心情很差，所以要做掉你！
+记住这个名字然后下地狱去吧！")
 #endregion
 #region BOSS结束
 prg=6 inx=0

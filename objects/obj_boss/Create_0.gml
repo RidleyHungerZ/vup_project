@@ -1,8 +1,8 @@
-attack=6
-hp=192
 event_inherited();
+enemy=noone;
 item=1;
 DEF=0.5;
+bs=-1; //当前boss编号
 #region 继承配置项
 /// @arg enemy_prick=1
 enemy_prick=0; //0无视尖刺，1碰尖刺爆
@@ -38,11 +38,11 @@ use_death_system=false; //是否采用死亡系统
 //fire_boom=false; //碰到燃烧的火是否爆炸
 /// @element_size=1
 //element_size=2; //属性特效尺寸
+view_edge=-1
 #endregion
 
 #region 特有变量
 is_war_boss=true; //是本场战斗的BOSS
-hp_only=1; //一只BOSS
 use_death_system_boss=true;
 action_round=0; //技能轮回
 injure=0; //受伤状态
@@ -51,6 +51,7 @@ injure_time_up=60; //受伤动作持续时间
 hpdmged=0; //上次被攻击时减血量
 boom=0; //爆炸时候的进度
 boom_time=0; //爆炸计算
+boom_white=noone; //爆炸时使用的白布
 #endregion
 
 #region 房间坐标转换
@@ -65,14 +66,55 @@ rpos=false; //是否使用r坐标计算
 
 used_skils=[]; //使用过的技能
 #region 函数
+/// desc 可以分配动作
+action_distribution=function() {
+	if global.boss_war=1
+	&& global.operate=1
+	&& injure=0
+	&& action<1 && action>=0
+		return true
+	else 
+		return false
+}
+/// @desc 技能是否全部用过
+/// @arg actions 参与的动作变量
+skill_useall=function(acts) {
+	if(action<1) return false;
+	//没使用过的技能，不拦截
+	if(!in(action,used_skils)) {
+		return false;
+	}
+	//使用过的技能，如果还有未使用技能，则拦截
+	else{
+		for(var i=0;i<array_length(acts);i++){
+			if(!in(acts[i],used_skils)) 
+				return true;
+		}
+		return false;
+	}
+}
+/// @arg 将使用的技能加入到used_skils中
+skill_addary=function() {
+	if in(action,used_skils) return;
+	else used_skils = array_add_value(used_skils,action)
+}
+//血量对标
+globalhp_sync=function() {
+	global.boss_hp=hp
+}
 //精灵帧数调整
 sprspd_adjust=function() {}
 //开始爆炸
 boom_start=function() {
+	can_dmg=false;
+	have_dmg=false;
 	boom=1;
-	boom_time=60;
 }
-//爆炸时发生
+//爆炸开始时发生
+boom_start_trigger=function() {
+	
+}
+//爆炸结束时发生
 boom_trigger = function() {}
 //绘制属性效果
 drawElementEffect = function() {}

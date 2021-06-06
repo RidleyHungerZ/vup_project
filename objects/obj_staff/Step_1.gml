@@ -98,6 +98,7 @@ if scr_menu_trem() {
 		global.combo=0
 		global.support_mult=1
 	}
+	global.combo=min(100, global.combo)
 	if global.combo>0 {
 		//每击中3下，羁绊获得倍率就会提升1倍，最大不超过5倍
 		//每造成5点伤害，羁绊获取倍率就会提升50%

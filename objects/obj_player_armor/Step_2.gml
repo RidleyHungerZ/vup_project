@@ -31,3 +31,4 @@ scr_sprite_imspd(spr_player_armor_idle_chop_charge,0.5,6,10)
 scr_sprite_imspd(spr_player_armor_idle_chop_charge,0.25,10,11)
 //////////////////////////////////////
 #endregion
+updateMask()

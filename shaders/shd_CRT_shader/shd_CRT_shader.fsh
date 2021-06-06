@@ -68,7 +68,9 @@ void main() {
   if (uni_use_scanlines) {
     vec4 weights  = scanline_weights(radial_distored_aspect_ratio.y , col);
     vec4 weights2 = scanline_weights(1.0 - radial_distored_aspect_ratio.y, col2);
-    output_color  = (col * weights + col2 * weights2).xyz;
+	//modify by HungerZ
+	//output_color  = (col * weights + col2 * weights2).xyz;
+    output_color  = col.xyz * 0.75 + (col * weights + col2 * weights2).xyz * 0.25;
   }
   
   //Apply RGB separation if enabled

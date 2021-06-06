@@ -65,16 +65,16 @@ else if sprite_index==spr_player_armor_idle_chop_charge_saber  {
 //回旋斩
 else if sprite_index==spr_player_armor_fall_spin_chop_saber
 || sprite_index==spr_player_armor_fall_spin_choped_saber  {
-	scr_player_damage_set(16,ELEMENTS.none,ATK_TYPE.bullet,2,9,0,9,1)
+	scr_player_damage_set(16,ELEMENTS.none,ATK_TYPE.bullet,2,9,1,0.5,1)
 } else if sprite_index==spr_player_armor_fall_spin_chop_saber_fire 
 || sprite_index==spr_player_armor_fall_spin_choped_saber_fire {
-	scr_player_damage_set(16,ELEMENTS.fire,ATK_TYPE.bullet,2,9,0,9,1)
+	scr_player_damage_set(16,ELEMENTS.fire,ATK_TYPE.bullet,2,9,1,0.5,1)
 } else if sprite_index==spr_player_armor_fall_spin_chop_saber_ice 
 || sprite_index==spr_player_armor_fall_spin_choped_saber_fire {
-	scr_player_damage_set(16,ELEMENTS.ice,ATK_TYPE.bullet,2,9,0,9,1)
+	scr_player_damage_set(16,ELEMENTS.ice,ATK_TYPE.bullet,2,9,1,0.5,1)
 } else if sprite_index==spr_player_armor_fall_spin_chop_saber_elec 
 || sprite_index==spr_player_armor_fall_spin_choped_saber_fire {
-	scr_player_damage_set(16,ELEMENTS.elec,ATK_TYPE.bullet,2,9,0,9,1)
+	scr_player_damage_set(16,ELEMENTS.elec,ATK_TYPE.bullet,2,9,1,0.5,1)
 } 
 //升龙斩
 if sprite_index==spr_player_armor_fly_chop_saber 

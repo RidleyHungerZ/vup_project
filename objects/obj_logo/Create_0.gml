@@ -4,12 +4,13 @@ select=[0] //当前选项
 select_type=0 //选择进度
 action=0
 time=0
+black_start=1
 
 operate_setting_display=false
 
 bgm_time=0
 //bgm_T=110
-bgm_t=20
+bgm_t=10
 
 startVars=function() {
 	scr_model_get(PLAYER_MODEL.HU)
@@ -73,6 +74,10 @@ testmode=function() {
 		scr_relife_set_point(x, y+GRDY, 1)
 		scr_sprite_change(SS_idle, 0, 0.25)
 	}
+	scr_thread_over(0)
+	scr_thread_over(2)
+	scr_thread_over(3)
+	scr_thread_over(4)
 	
 	//scr_room_goto(room_test)
 	//with obj_player {

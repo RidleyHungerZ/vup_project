@@ -564,8 +564,8 @@ function scr_txt_menu(){
 	global.txt_menu[page].status.list[MISSION_STATIS.complete]="已完成"
 	#region 主线任务
 	global.txt_menu[page].main.list[0]={
-		name : "撤离资源管理所",
-		desc : "资源管理所确认遭受到不明暴乱袭击，\n请携带货物从这里撤离",
+		name : "查看资源管理所受损情况",
+		desc : "资源管理所确认遭受到不明暴乱袭击，\n需要前往仓库大门位置确认具体情况。",
 		reward : {
 			es : 300,
 			item : [],

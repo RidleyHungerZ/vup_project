@@ -1,3 +1,4 @@
+updateMask()
 scr_menu_stop();
 if(global.operate!=1 || global.player_operate!=1) {
 	//if(!scr_player_debuff_is(DEBUFF.none)) {
@@ -760,3 +761,4 @@ if(!instance_exists(flyobj)
 		x=round(2*x)/2;
 }
 #endregion
+updateMask()

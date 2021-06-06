@@ -1,7 +1,8 @@
+updateMask()
 #region 数据设定
 if(scr_menu_trem()) {
 	#region 精灵播放帧速修改区
-	scr_sprite_imspd(SS_idle,1/90,0,1);
+	scr_sprite_imspd(SS_idle,1/60,0,1);
 	scr_sprite_imspd(SS_idle,0.1,1,2);
 	scr_sprite_imspd(SS_idle,0.025,2,3);
 	scr_sprite_imspd(SS_idle,0.1,3,6);
@@ -61,8 +62,14 @@ if(scr_menu_trem()) {
 		scr_sound_play(se_player_charge);
 	#endregion
 	#region 飞行物
-	if(global.player_hp>0) 
+	if(global.player_hp>0) {
+		var mask_type=getMaskType();
+		if mask_type==PYMASK_TYPE.dash
+			mask_index=spr_player_mask_idle
 		scr_player_flyobj_move();
+		if mask_type==PYMASK_TYPE.dash
+			mask_index=spr_player_mask_dash
+	}
 	#endregion
 	#region 死亡
 	if global.player_hp<=0
@@ -554,3 +561,4 @@ if(collision_rectangle(bbox_right-1,bbox_bottom+GRDY-2,bbox_left+1,bbox_top+2,ob
 	imx_last=image_xscale;
 	imy_last=image_yscale;
 #endregion
+updateMask()

@@ -28,17 +28,17 @@ if(afimg_count_now>0) {
 //背景
 bgk=1
 for(var j=array_length(part_spr[bgk])-1;j>=0;j--){
-	if(!sprite_exists(part_spr[bgk,j]) 
-	|| !part_vis[bgk,j]
+	if(!sprite_exists(part_spr[bgk][j]) 
+	|| !part_vis[bgk][j]
 	|| sprite_index==spr_boom
 	|| sprite_index==spr_none)
 		continue;
-	var shiftxy=shift_xy_angle(part_xof[bgk,j]*abs(part_xsc[bgk,j]), part_yof[bgk,j]*abs(part_ysc[bgk,j]), part_agl[bgk,j]);
-	draw_sprite_ext(part_spr[bgk,j],part_inx[bgk,j],round(x)+shiftxy[0]+part_xofix[bgk,j],round(y)+shiftxy[1]+part_yofix[bgk,j],
-			part_xsc[bgk,j],part_ysc[bgk,j],part_agl[bgk,j],part_bed[bgk,j],part_aph[bgk,j]);
+	var shiftxy=shift_xy_angle(part_xof[bgk][j]*abs(part_xsc[bgk][j]), part_yof[bgk][j]*abs(part_ysc[bgk][j]), part_agl[bgk][j]);
+	draw_sprite_ext(part_spr[bgk][j],part_inx[bgk][j],round(x)+shiftxy.x+part_xofix[bgk][j],round(y)+shiftxy.y+part_yofix[bgk][j],
+			part_xsc[bgk][j],part_ysc[bgk][j],part_agl[bgk][j],part_bed[bgk][j],part_aph[bgk][j]);
 	if(fsh=1) 
-		scr_draw_sprite_white(part_spr[bgk,j],part_inx[bgk,j],round(x)+shiftxy[0]+part_xofix[bgk,j],round(y)+shiftxy[1]+part_yofix[bgk,j],
-			part_xsc[bgk,j],part_ysc[bgk,j],part_agl[bgk,j],part_bed[bgk,j],part_aph[bgk,j]);
+		scr_draw_sprite_white(part_spr[bgk][j],part_inx[bgk][j],round(x)+shiftxy.x+part_xofix[bgk][j],round(y)+shiftxy.y+part_yofix[bgk][j],
+			part_xsc[bgk][j],part_ysc[bgk][j],part_agl[bgk][j],part_bed[bgk][j],part_aph[bgk][j]);
 }
 //本体
 drawSelf();
@@ -53,17 +53,17 @@ if(flash==1
 //前景
 bgk=0
 for(var j=array_length(part_spr[bgk])-1;j>=0;j--){
-	if(!sprite_exists(part_spr[bgk,j])
-	|| !part_vis[bgk,j]
+	if(!sprite_exists(part_spr[bgk][j])
+	|| !part_vis[bgk][j]
 	|| sprite_index==spr_boom
 	|| sprite_index==spr_none)
 		continue;
-	var shiftxy=shift_xy_angle(part_xof[bgk,j]*abs(part_xsc[bgk,j]), part_yof[bgk,j]*abs(part_ysc[bgk,j]), part_agl[bgk,j]);
-	draw_sprite_ext(part_spr[bgk,j],part_inx[bgk,j],round(x)+shiftxy[0]+part_xofix[bgk,j],round(y)+shiftxy[1]+part_yofix[bgk,j],
-			part_xsc[bgk,j],part_ysc[bgk,j],part_agl[bgk,j],part_bed[bgk,j],part_aph[bgk,j]);
+	var shiftxy=shift_xy_angle(part_xof[bgk][j]*abs(part_xsc[bgk][j]), part_yof[bgk][j]*abs(part_ysc[bgk][j]), part_agl[bgk][j]);
+	draw_sprite_ext(part_spr[bgk][j],part_inx[bgk][j],round(x)+shiftxy.x+part_xofix[bgk][j],round(y)+shiftxy.y+part_yofix[bgk][j],
+			part_xsc[bgk][j],part_ysc[bgk][j],part_agl[bgk][j],part_bed[bgk][j],part_aph[bgk][j]);
 	if(fsh=1) 
-		scr_draw_sprite_white(part_spr[bgk,j],part_inx[bgk,j],round(x)+shiftxy[0]+part_xofix[bgk,j],round(y)+shiftxy[1]+part_yofix[bgk,j],
-			part_xsc[bgk,j],part_ysc[bgk,j],part_agl[bgk,j],part_bed[bgk,j],part_aph[bgk,j]);
+		scr_draw_sprite_white(part_spr[bgk][j],part_inx[bgk][j],round(x)+shiftxy.x+part_xofix[bgk][j],round(y)+shiftxy.y+part_yofix[bgk][j],
+			part_xsc[bgk][j],part_ysc[bgk][j],part_agl[bgk][j],part_bed[bgk][j],part_aph[bgk][j]);
 }
 #endregion
 #region 属性效果

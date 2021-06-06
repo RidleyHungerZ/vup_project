@@ -42,7 +42,7 @@ else if action==3 && time==0 {
 		speed=4
 		aim_inst=obj_player
 	}
-	scr_sound_play(se_enemy_messile)
+	scr_sound_play(se_enemy_missile)
 	action=4
 	time=60
 }

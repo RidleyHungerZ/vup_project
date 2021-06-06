@@ -129,50 +129,55 @@ function string_compare(string1, string2) {
 }
 /// @desc 传入6位/8位颜色字符串[RRGGBBAA]，返回[颜色,透明度]
 /// @arg colstr
-function color_from_string(colstr68) {
-	var colstr = string_upper(colstr68),//强制大写，控制格式
-		colpart=[0,0,0],//颜色RGB值
-		color_alpha=[];//颜色和透明度，传入8位字符串则返回[col,aph]，否则只返回[col]
+/// @arg defcol
+function color_from_string(colstr68, defcol) {
+	if colstr68=="def" return [defcol]
+	var color_alpha=[];//颜色和透明度，传入8位字符串则返回[col,aph]，否则只返回[col]
+	try {
+		var colstr = string_upper(colstr68),//强制大写，控制格式
+			colpart=[0,0,0];//颜色RGB值
 
-	//如果长度超过8位就截取
-	if(string_length(colstr)>8){
-		colstr = string_copy(colstr, 1, 8);
-	}
-	//如果长度不到6位就补全F
-	while(string_length(colstr)<6){
-		colstr += "F";
-	}
+		//如果长度超过8位就截取
+		if(string_length(colstr)>8){
+			colstr = string_copy(colstr, 1, 8);
+		}
+		//如果长度不到6位就补全F
+		while(string_length(colstr)<6){
+			colstr += "F";
+		}
 
-	var _strlen = string_length(colstr);
-	for(var i=0;i<_strlen/2;i++){
-		var 
-		_part_txt = string_copy(colstr, (i+1)*2-1, (i+1)*2),//两位字符串
-		_pos_txt = [],//两位字符串
-		_pos_real = [],//两位数字
-		_num255 = 0;//转换为255后的数字
+		var _strlen = string_length(colstr);
+		for(var i=0;i<_strlen/2;i++){
+			var 
+			_part_txt = string_copy(colstr, (i+1)*2-1, (i+1)*2),//两位字符串
+			_pos_txt = [],//两位字符串
+			_pos_real = [],//两位数字
+			_num255 = 0;//转换为255后的数字
 	
-		_pos_txt[0] = string_char_at(_part_txt, 1);//第一位
-		_pos_txt[1] = string_char_at(_part_txt, 2);//第二位
+			_pos_txt[0] = string_char_at(_part_txt, 1);//第一位
+			_pos_txt[1] = string_char_at(_part_txt, 2);//第二位
 	
-		for(var j=0;j<2;j++){
-			//如果是字母
-			if(string_digits(_pos_txt[j]) == ""){
-				_pos_real[j] = 10 + string_ord_at(_pos_txt[j], 1) - ord("A");
-			}else{
-				_pos_real[j] = real(_pos_txt[j]);
+			for(var j=0;j<2;j++){
+				//如果是字母
+				if(string_digits(_pos_txt[j]) == ""){
+					_pos_real[j] = 10 + string_ord_at(_pos_txt[j], 1) - ord("A");
+				}else{
+					_pos_real[j] = real(_pos_txt[j]);
+				}
+			}
+			//两位转换为255数字
+			_num255 = _pos_real[0]*16 + _pos_real[1];
+	
+			if(i==3){//如果是透明度
+				color_alpha[1] = _num255 / 255;
+			}else{//如果是颜色
+				colpart[i] = _num255;
 			}
 		}
-		//两位转换为255数字
-		_num255 = _pos_real[0]*16 + _pos_real[1];
-	
-		if(i==3){//如果是透明度
-			color_alpha[1] = _num255 / 255;
-		}else{//如果是颜色
-			colpart[i] = _num255;
-		}
+		color_alpha[0] = rgb(colpart[0], colpart[1], colpart[2]);
+	} catch(e) {
+		color_alpha[0]=defcol
 	}
-	color_alpha[0] = rgb(colpart[0], colpart[1], colpart[2]);
-
 	return color_alpha;
 }
 /// @desc string_filter(str,regx) 用于过滤指定格式的内容

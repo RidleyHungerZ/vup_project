@@ -12,10 +12,14 @@ if select_type==0 {
 			action=0.5
 			time=30
 		}
-	} else if action==0.5 && time==0 {
-		action=1
-		select_type=1
-		select[select_type]=0
+	} else if action==0.5 {
+		black_start=time/30
+		if time==0 {
+			black_start=0
+			action=1
+			select_type=1
+			select[select_type]=0
+		}
 	}
 }
 #endregion

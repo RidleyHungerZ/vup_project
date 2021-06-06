@@ -10,6 +10,7 @@ uninjure_up=0//可行无敌上限
 uninjure_change=0//无敌改变为/增加数值
 speed_low=0//是否有打击感
 bullet_dispel=false //是否能消弹
+can_combo=true //是否算作连击
 hit=0//击中目标
 half_action=0//敌人半身动作，0无，1击飞，2旋转击飞
 charge_break=0
