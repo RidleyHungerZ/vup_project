@@ -1,5 +1,5 @@
 event_inherited();
-attack=0;
+if !variable_instance_exists(id ,"attack") attack=0;
 event_perform_object(obj_enemy,ev_create,ev_create);
 enemy_type=1; //0地上1浮空
 enemy_ground=0; //0无视墙壁，1接触墙壁
@@ -13,7 +13,9 @@ death_boom=1; //贯穿是否立刻爆炸
 enemy_or_bullet=1; //是子弹还是敌人
 undm_push=1; //无敌情况下能被打死
 trans_spd=0; //传送带速度
-boom=1; //爆炸数量
+boom_number=1; //爆炸数量
+boom_type=0; //爆炸类型
+boom_rad=32; //爆炸半径
 use_move_sys=true; //是否使用移动系统
 canboom=true; //延迟爆炸使用
 
@@ -22,6 +24,7 @@ drawSelf = function() {
 	draw_sprite_ext(sprite_index,floor(image_index),round(x),round(y),
 					image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 }
+//砖块落下
 scr_block_fall = function() {
 	if !collision_rectangle(bbox_right,bbox_bottom+1,bbox_left,bbox_bottom,obj_ground,1,1)
 	&& !collision_rectangle(bbox_right,bbox_bottom+1,bbox_left,bbox_bottom,obj_floor,1,1){
@@ -58,3 +61,15 @@ scr_block_fall = function() {
 		}
 	}
 }
+
+#region 可重写方法
+self_boom=function() {
+	//repeat(boom_number){
+	//	with(instance_create_depth(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),depth-1,obj_animation_once))
+	//		scr_sprite_change(spr_boom,0,0.5);
+	//}
+	scr_enemy_boom_number()
+	instance_destroy();
+	scr_sound_play(se_boom);
+}
+#endregion

@@ -1,8 +1,9 @@
-hp=6
+hp=4
 attack=6
 event_inherited();
 enemy_or_bullet=2
 use_speed_system=false
+use_death_system=false
 scr_sprite_change(-2, -2, 0)
 image_xscale/=5
 

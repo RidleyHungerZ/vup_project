@@ -26,6 +26,8 @@ element=ELEMENTS.none;
 attack_type=ATK_TYPE.bullet;
 hit=0;
 DEF=1;
+if scr_mode_Is_easy() 
+	DEF*=1.5;
 flash=0;
 inxscale=0;
 element_index=0; //属性伤害计时
@@ -130,6 +132,8 @@ enemy_or_bullet=1; //是子弹还是敌人
 boom_number=1; //死亡爆炸数
 /// @parga boom_type=0
 boom_type=0; //死亡爆炸类型0普通1伤害
+/// @arg boom_rad=24
+boom_rad=24; //爆炸半径
 /// @arg death_repeat=1
 death_repeat=true; //死亡后复活
 /// @arg out_reflash=1

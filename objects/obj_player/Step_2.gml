@@ -8,7 +8,7 @@ if(scr_menu_trem()) {
 	scr_sprite_imspd(SS_idle,0.1,3,6);
 	//////////////////////////////////////
 	//scr_sprite_imspd(SS_idle2,1/60,0,1);
-	scr_sprite_imspd(SS_idle2,0.1,0,1);
+	scr_sprite_imspd(SS_idle2,1/15,0,1);
 	scr_sprite_imspd(SS_idle2,0.1,1,7);
 	//////////////////////////////////////
 	scr_sprite_imspd(SS_injure_fall,0,0.2);
@@ -155,17 +155,17 @@ if(craw_trip_time>0) {
 global.player_def=1;
 #region 防御力设定
 //简单模式
-//if(scr_mode_Is_easy()) {
-//	global.player_def*=0.5;
-//}
-////普通模式
-//else if(scr_mode_Is_normal()) {
-//	global.player_def*=1;
-//}
-////困难模式
-//else if(scr_mode_Is_hard()) {
-//	global.player_def*=1.5;
-//}
+if(scr_mode_Is_easy()) {
+	global.player_def*=0.5;
+}
+//困难模式
+else if(scr_mode_Is_hard()) {
+	global.player_def*=1.5;
+}
+//普通模式
+else {
+	global.player_def*=1;
+}
 #endregion
 #region 受伤
 {
@@ -249,7 +249,7 @@ global.player_def=1;
 	//}
 	#endregion
 	#region 尖刺撞击
-	if collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_prick,1,1) {
+	if collision_rectangle(bbox_right+1,bbox_bottom+GRDY+1,bbox_left-1,bbox_top-1,obj_prick,1,1) {
 		var matrix_pos = [
 			[1, 0, 0, 0],
 			[0, 1, 0, 0],
@@ -258,8 +258,7 @@ global.player_def=1;
 			prick_meeting_all = false;
 		for(var i=0;i<array_length(matrix_pos);i++){
 			var pos = matrix_pos[i],
-				//pricklist = ds_list_create(),
-				prick_list_cnt = collision_rectangle_list(bbox_right+pos[0], bbox_bottom+pos[1], bbox_left-pos[2], bbox_top-pos[3], obj_ground, 1, 1, pricklist, false),
+				prick_list_cnt = collision_rectangle_list(bbox_right+pos[0], bbox_bottom+GRDY+pos[1], bbox_left-pos[2], bbox_top-pos[3], obj_ground, 1, 1, pricklist, false),
 				prick_meeting = false;
 			prick_meeting = (prick_list_cnt>0) || prick_meeting
 			for(var j=0;j<prick_list_cnt;j++){
@@ -270,7 +269,6 @@ global.player_def=1;
 					break;
 				} 
 			}
-			//ds_list_destroy(pricklist);
 			ds_list_clear(pricklist);
 			prick_meeting_all = prick_meeting || prick_meeting_all;
 		}
@@ -286,6 +284,10 @@ global.player_def=1;
 				&& (scr_mode_Is_easy()
 					|| scr_itemb_isopen(ITEMB.prickGuard))) {
 					scr_player_hp_subtract(damage+overload);
+					uninjure=1
+					injure_element=ELEMENTS.none
+					injure_attack_type=ATK_TYPE.bullet
+					injure_level=0
 				}
 				else 
 					global.player_hp=0;

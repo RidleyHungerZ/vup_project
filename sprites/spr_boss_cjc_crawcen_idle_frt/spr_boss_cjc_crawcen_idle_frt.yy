@@ -70,7 +70,7 @@
   "nineSlice": null,
   "parent": {
     "name": "frt",
-    "path": "folders/Sprites/boss/caoJianCong/claw/frt.yy",
+    "path": "folders/Sprites/boss/caoJianCong/craw/frt.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_crawcen_idle_frt",

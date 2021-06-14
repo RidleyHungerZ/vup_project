@@ -835,7 +835,7 @@ else if room==room_area0_2
 		if obj_player.x>=2256 {
 			codekey_Hdirect(0)
 			scr_room_player_xstop(2256)
-			inst_room_area0_2_boss.use=true
+			inst_room_area0_2_boss_roomrange.use=true
 			action=3
 			time=30
 		}
@@ -902,6 +902,7 @@ else if room==room_area0_2
 		if obj_boss_cjc.y>=96 {
 			obj_boss_cjc.speed=0
 			obj_boss_cjc.y=96
+			obj_boss_cjc.float=true
 			action=6
 			time=30
 		}
@@ -910,7 +911,7 @@ else if room==room_area0_2
 	if action==7 && time==0 {
 		scr_thread_over(prg)
 		scr_room_bosswar_start(bgm_boss1, bgm_area0, function() {
-			inst_room_area0_2_boss.use=false
+			inst_room_area0_2_boss_roomrange.use=false
 		})
 	}
 	#endregion
@@ -921,33 +922,236 @@ else if room==room_area0_2
 	#endregion
 	#region BOSS死亡
 	else if scr_room_bosswar_boss_hp0() {
-		scr_room_bosswar_boss_boomstart()
+		scr_room_bosswar_boss_boomstart(function() {
+			global.model=PLAYER_MODEL.HU
+			with obj_player {
+				x=2096
+				y=224-GRDY
+				image_xscale=1
+				walk=0
+				jump=0
+			}
+		})
 		action=1204
 	}
 	else if action==1204 {
 		if scr_room_bosswar_boss_boomover() {
 			scr_boss_get(0)
-			audio_bgm_change(bgm_area0)
-			inst_room_area0_2_boss.use=false
-			scr_room_freedom()
+			inst_room_area0_2_boss_roomrange.use=false
 			action=0
 		}
 	}
 	#endregion
 	///@skip
 	if scr_can_skip_boss(prg) {
-		inst_room_area0_2_boss.use=true
+		inst_room_area0_2_boss_roomrange.use=true
 		scr_skip_boss(1, bgm_boss1, bgm_area0, 1, 2096, 224, prg, function() {
-			inst_room_area0_2_boss.use=false
+			inst_room_area0_2_boss_roomrange.use=false
 		})
 		with obj_boss_cjc {
-			y=80
+			y=96
 			speed=0
 			firedir=1
+			float=true
 		}
 		instance_destroy(obj_boss_cjc_bullet_missile_s)
 		instance_destroy(obj_bullet)
 		instance_destroy(obj_player_bullet)
+	}
+}
+#endregion
+#region BOSS战结束
+else if room==room_area0_2 
+&& !scr_thread_isover(6) 
+&& scr_boss_isget(0) {
+	prg=6
+	if action==0 {
+		global.operate=1
+		action=1
+		time=60
+	}
+	//解除变身
+	if action==1 && time==0 {
+		global.model=PLAYER_MODEL.HU
+		instance_create_depth(obj_player.x, obj_player.y, obj_player.depth-50, obj_player_change_circle)
+		global.player_hp=1
+		action=2
+		time=60
+	}
+	thread_talk_execute(prg, 2, 3, 60)
+	//趴下
+	if action==3 && time==0 {
+		global.operate=0
+		with obj_player {
+			scr_sprite_change(spr_player_hu_faint, 0, 0.15)
+		}
+		action=4
+		time=90
+	}
+	//物语出现
+	if action==4 && time==0 {
+		audio_bgm_change(bgm_beforewar)
+		npc[0]=instance_create_layer(view_xpos(0)-64, 224-GRDY, layerInst[3], obj_another)
+		with npc[0] {
+			scr_sprite_change(spr_npc_wuyu_walk, 0, 0.1)
+			image_xscale=1
+			hspeed=1*image_xscale
+		}
+		action=4.1
+	}
+	if action==4.1 {
+		if npc[0].x>=2000 {
+			with npc[0] {
+				scr_sprite_change(spr_npc_wuyu, 0, 0)
+				hspeed=0
+				x=2000
+			}
+			action=4.2
+			time=30
+		}
+	}
+	if action==4.2 && time==0 {
+		with npc[0] {
+			scr_sprite_change(spr_npc_wuyu_glasses, 0, 0.15)
+		}
+		action=5
+		time=60
+	}
+	thread_talk_execute(prg, 5, 6, 60)
+	if action==6 && time==0 {
+		audio_bgm_stop()
+		action=6.1
+		time=30
+	}
+	if action==6.1 && time==0 {
+		obj_view.missionComplete(0, 0)
+		action=6.2
+	}
+	if action==6.2 {
+		if !obj_view.missionActivity() {
+			action=7
+			time=30
+		}
+	}
+	//黑屏
+	if action==7 && time==0 {
+		scr_view_transition(1, 0)
+		action=7.1
+	}
+	if action==7.1 {
+		if scr_view_transition_Isover(1) {
+			scr_view_transition(1, 2)
+			action=7.2
+			time=60
+		}
+	}
+	if action==7.2 && time==0 {
+		with obj_player {
+			scr_sprite_change(spr_none, 0, 0)
+		}
+		scr_room_goto(room_end)
+		scr_view_transition(1, 1)
+		action=0
+	}
+	///@skip
+	if scr_can_skip(prg) {
+		scr_skip(1, "s", 1, 0, 0, prg, 0, 0)
+		scr_mission_set_status(MISSION_TYPE.main, 0, MISSION_STATIS.complete)
+		with obj_player {
+			scr_sprite_change(spr_none, 0, 0)
+		}
+		global.operate=0
+		scr_room_goto(room_end)
+	}
+}
+#endregion
+#region demo结束staff
+else if room==room_end {
+	var stafftxt=global.txt_gamge_staff,
+		stafftxtw=string_width(stafftxt),
+		stafftxth=string_height(stafftxt);
+	//staff
+	if action==0 {
+		audio_bgm_change(bgm_story)
+		//staff
+		draw_set_font(font_puhui_32)
+		npc[0]=instance_create_depth(VIEW_W_UI/2-stafftxtw/2, VIEW_H_UI*(1+1/6), -1001, obj_ui_txt)
+		with npc[0] {
+			font=font_puhui_32
+			txt=stafftxt
+			left=0
+			top=0
+			image_xscale=1
+			image_yscale=1
+			stroke=c_black
+			strokew=2
+			vspeed=-(VIEW_H_UI/(6*60))
+			vspeedorg=vspeed
+		}
+		temp[0]=npc[0].vspeed
+		action=1
+	}
+	if action==1 {
+		if keystate_check(global.Start_state) {
+			npc[0].vspeed=temp[0]*2
+		} else {
+			npc[0].vspeed=temp[0]
+		}
+		if npc[0].y<=-(stafftxth+VIEW_H_UI*(1/6)) {
+			instance_destroy(npc[0])
+			action=2
+			time=30
+		}
+	}
+	//感谢声明
+	if action==2 && time==0 {
+		var thanktxt=global.txt_gamge_end,
+			thanktxtw=string_width(thanktxt),
+			thanktxth=string_height(thanktxt);
+		npc[0]=instance_create_depth(VIEW_W_UI/2-thanktxtw/2, VIEW_H_UI/2, -1001, obj_ui_txt)
+		with npc[0] {
+			font=font_puhui_32
+			txt=thanktxt
+			left=0
+			top=0.5
+			image_xscale=1
+			image_yscale=1
+			stroke=c_black
+			strokew=2
+			image_alpha=0
+		}
+		action=2.1
+	}
+	if action==2.1 {
+		if npc[0].image_alpha<1 npc[0].image_alpha+=1/30
+		else {
+			npc[0].image_alpha=1
+			action=3
+			time=30
+		}
+	}
+	if action==3 && time==0 {
+		if anykey_pressed() {
+			scr_sound_menu_play(se_logo_true)
+			action=3.1
+		}
+	}
+	if action==3.1 {
+		scr_view_transition(1, 0)
+		action=3.2
+	}
+	if action==3.2 {
+		if scr_view_transition_Isover(1) {
+			scr_view_transition(1, 2)
+			audio_bgm_stop()
+			action=3.3
+			time=30
+		}
+	}
+	if action==3.3 && time==0 {
+		scr_view_transition(1, 1)
+		scr_return_title()
+		action=0
 	}
 }
 #endregion

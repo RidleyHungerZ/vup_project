@@ -49,7 +49,6 @@ if action=21 && time==0 {
 	with instance_create_depth(x+0*image_xscale, y+6*image_yscale, depth-1, obj_boss_cjc_bullet_missile_b) {
 		direction=90-90*other.image_xscale
 		image_angle=direction
-		speed=4
 	}
 	scr_sound_play(se_enemy_missile)
 	action=22

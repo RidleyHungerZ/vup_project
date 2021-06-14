@@ -27,7 +27,7 @@ hity=y
 hit_target=noone//被击中的目标id
 only_target=[] //唯一指定攻击目标
 exclude_target=[] //需要排除的对象
-undm_exclude=[] //需要排除的护盾
+undm_exclude=[] //需要排除的护盾，存在all时无视护盾
 //跳帧攻击用
 skip_now_insts = [] //当前帧受到伤害的实例记录
 skip_attack_step = 0 //受到伤害间隔
@@ -39,3 +39,19 @@ only_hit_once_insts = []
 set_hit=0; //非击中设置
 //对击中对象处理
 hit_target=function(targets) {}
+#region 残影
+//是否使用残影
+afterimage=false; 
+//残影透明度
+afteralpha=1;
+//间隔多少个残影绘制一次
+afimg_step=0;
+//残影数量
+afimg_count=0; 
+//当前还残留的残影数
+afimg_count_now=0;
+for(var i=12;i>=0;i--){
+	afimg_x[i]=x;
+	afimg_y[i]=y;
+}
+#endregion

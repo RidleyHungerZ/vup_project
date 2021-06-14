@@ -1,6 +1,6 @@
 if scr_menu_trem() scr_time_alarm()
-if menutime>0 menutime--
-else menutime=0
+if menu_time>0 menu_time--
+else menu_time=0
 #region 屏幕光暗
 //变身
 if global.player_change_flash==1{//变白

@@ -197,9 +197,8 @@ if mission_action==2 && mission_time==0 {
 } else if mission_action==2.2 && mission_time=0 {
 	mission_action=0
 	mission_time=0
-	scr_mission_add(MISSION_TYPE.main, mission_index)
 	scr_mission_set_status(MISSION_TYPE.main, mission_index, MISSION_STATIS.complete)
-	scr_room_freedom()
+	//scr_room_freedom()
 }
 #endregion
 #region 加载画面

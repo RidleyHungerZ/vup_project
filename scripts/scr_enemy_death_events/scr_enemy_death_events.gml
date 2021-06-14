@@ -76,17 +76,19 @@ function scr_enemy_create_item() {
 /// @arg y*
 /// @arg number*
 /// @arg type*
-function scr_enemy_boom_number(xx, yy, number, type) {
+/// @arg rad*
+function scr_enemy_boom_number(xx, yy, number, type, rad) {
 	if!xx xx=x;
 	if!yy yy=y;
 	if!number number=boom_number;
 	if!type type=boom_type;
+	if!rad rad=boom_rad;
 	//按照爆炸数进行爆炸
 	if number>0{
 		for(var i=0;i<number;i+=1){
 			var ddd=90+i*(360/((number=1) ? number : (number-1)))
-			var lex=xx+lengthdir_x(24,ddd)*sign(i)
-			var ley=yy+lengthdir_y(24,ddd)*sign(i)
+			var lex=xx+lengthdir_x(rad, ddd)*sign(i)
+			var ley=yy+lengthdir_y(rad, ddd)*sign(i)
 			if type==0{
 				with(instance_create_depth(lex,ley,depth-1,obj_animation_once)){
 					scr_sprite_change(spr_boom,0,0.5)
@@ -132,6 +134,7 @@ function scr_enemy_boompart(partsprs) {
 			number=sprite_get_number(partsprs[s]);
 		for(var i=0;i<number;i+=1){
 			if spr==spr_none continue
+			var part;
 			if layer_exists(layer) part=instance_create_layer(x,y,layer,obj_enemy_part)
 			else part=instance_create_depth(x,y,depth,obj_enemy_part)
 			part.image_xscale=image_xscale
@@ -179,7 +182,36 @@ function scr_enemy_boompart_ext(partsprs, number, xx, yy) {
 		}
 	}
 }
-
+/// @arg spr_part
+/// @arg number
+/// @arg x
+/// @arg y
+function scr_ice_boompart_ext(partsprs, number, xx, yy) {
+	if !is_array(partsprs) partsprs=[partsprs]
+	if array_length(partsprs)==0 exit
+	for(var s=0;s<array_length(partsprs);s++) {
+		var spr=partsprs[s],
+			spr_num=sprite_get_number(partsprs[s]);
+		if spr=spr_none exit
+		for(var i=0;i<number;i+=1){
+			var part=instance_create_depth(xx,yy,depth,obj_ice_part)
+			part.image_xscale=image_xscale
+			part.image_yscale=image_yscale
+			part.dspeed=random(10)*-image_xscale*image_yscale
+			with(part){
+				scr_sprite_change(spr,i mod spr_num,0)
+				gravity=G
+				if place_meeting(x,y,obj_water)
+					gravity=G/2
+				hspeed=random_range(-10,10)
+				vspeed=image_yscale*random_range(-10,-6)
+				if place_meeting(x,y,obj_water)
+					vspeed*=1.5
+			}
+		}
+	}
+	scr_sound_play(se_ice_break)
+}
 /// @desc 死亡时晃动镜头
 function scr_enemy_boom_viewweak() {
 	scr_view_shock(1)

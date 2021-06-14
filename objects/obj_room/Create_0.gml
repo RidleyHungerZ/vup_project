@@ -38,6 +38,7 @@ global.item_area_map = ds_map_create()//记录道具情况
 item_not_set = 0//用于中断某几次
 #endregion
 
+#region 函数
 /// @desc 门关闭后可移动
 function scr_room_doorclose_canoper() {
 	if(global.operate==0.9 && global.player_hp>0) return true;
@@ -141,3 +142,7 @@ function scr_room_player_xstop(xpos) {
 	obj_player.x=xpos
 	obj_player.v_ice=0
 }
+#endregion
+#region 临时函数
+boss_boom_white=function(){}
+#endregion

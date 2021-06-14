@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "ground",
-    "path": "folders/Sprites/ground.yy",
+    "name": "prick",
+    "path": "folders/Sprites/ground/prick.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_prick",

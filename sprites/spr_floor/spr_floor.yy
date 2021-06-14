@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "ground",
-    "path": "folders/Sprites/ground.yy",
+    "name": "floor",
+    "path": "folders/Sprites/ground/floor.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_floor",

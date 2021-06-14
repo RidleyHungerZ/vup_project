@@ -30,9 +30,10 @@ function data_save_variable_single(){
 #region 道具
 	//上限道具
 	for(var i=0;i<4;i++) {
-		global.hpup[i]=0 //生命上限
-		global.mpup[i]=0 //能量上限
-		global.rtank[i]=0 //坦克上限
+		global.hpup_get[i]=0 //生命上限
+		global.mpup_get[i]=0 //能量上限
+		global.rtank_get[i]=0 //坦克道具获得
+		global.rtank_gain[i]=0 //坦克实装，可使用
 		global.rtank_val[i]=0 //坦克存储量
 	}
 	global.itemlist=[
@@ -63,6 +64,12 @@ function data_save_variable_single(){
 	for(var i=0;i<=500;i++){
 		global.thread[i]=0 //剧情已经开启过了
 		global.threaded[i]=0 //第一次进行时开启，以后可跳过
+	}
+	//小对话
+	for(var a=0;a<20;a++) {
+		for(var i=0;i<50;i++) {
+			global.thread_tip[a][i]=0
+		}
 	}
 	global.mission[MISSION_TYPE.main]=array_create(20, 0)
 	global.mission_list[MISSION_TYPE.main]=ds_list_create()

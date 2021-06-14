@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "ground",
-    "path": "folders/Sprites/ground.yy",
+    "name": "water",
+    "path": "folders/Sprites/ground/water.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_water",

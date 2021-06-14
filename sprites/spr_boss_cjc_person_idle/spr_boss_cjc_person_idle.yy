@@ -26,9 +26,6 @@
   "frames": [
     {"compositeImage":{"FrameId":{"name":"2cb1a5c6-da15-4708-bdfd-7205a19db0ee","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"2cb1a5c6-da15-4708-bdfd-7205a19db0ee","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"LayerId":{"name":"dfc4a81e-ed5d-4820-9527-5f3586e022bb","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"2cb1a5c6-da15-4708-bdfd-7205a19db0ee","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"LayerId":{"name":"37b5b957-93ce-4179-9077-1ba92690436a","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"2cb1a5c6-da15-4708-bdfd-7205a19db0ee","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"LayerId":{"name":"49bb8e00-d607-432c-85e7-5cdc989f236a","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"2cb1a5c6-da15-4708-bdfd-7205a19db0ee","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"LayerId":{"name":"91351c85-e257-45f4-97b4-30d367c70971","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_boss_cjc_person_idle","path":"sprites/spr_boss_cjc_person_idle/spr_boss_cjc_person_idle.yy",},"resourceVersion":"1.0","name":"2cb1a5c6-da15-4708-bdfd-7205a19db0ee","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {

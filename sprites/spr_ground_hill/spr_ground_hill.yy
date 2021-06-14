@@ -70,7 +70,7 @@
   "nineSlice": null,
   "parent": {
     "name": "ground",
-    "path": "folders/Sprites/ground.yy",
+    "path": "folders/Sprites/ground/ground.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_ground_hill",

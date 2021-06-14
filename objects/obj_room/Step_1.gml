@@ -26,6 +26,10 @@ else if action==1004 {
 		global.boss_war=0
 		action=1100
 	} else if global.boss_hp<=0 {
+		with obj_boss {
+			if is_war_boss 
+				boss_hp0_trigger();
+		}
 		global.boss_war=0
 		action=1200
 	}
@@ -56,6 +60,8 @@ else if action==1200 {
 		time=30
 	}
 } else if action==1202 && time==0 {
+	global.boss_war=0
+	bosswar_fail=noone
 	action=1203
 }
 #endregion

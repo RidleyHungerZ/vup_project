@@ -34,12 +34,12 @@ function scr_enmus(){
 		HU = 0,
 		ARMOR = 1,
 		YANZX = 2, //燕逐晓
-		ice = 3,
+		ice1 = 3,
 		elec = 4,
 		none = 5,
 		fire2 = 6,
-		ice2 = 7,
-		elec2 = 8,
+		ICE = 7,
+		TAILS = 8,
 		none2 = 9,
 		white = 10,
 	}
@@ -90,10 +90,10 @@ function scr_enmus(){
 		C,
 	}
 	enum ITEMA_TYPE {
+		OTHER,
 		HP,
 		MP,
 		RTANK,
-		OTHER,
 	}
 	enum ITEMB_STATUS {
 		null,

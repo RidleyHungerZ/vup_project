@@ -14,6 +14,6 @@ function audio_bgm_loop_config() {
 	map[? bgm_beforewar] = [37.85, 95.42]
 #endregion
 #region 战斗曲目
-	map[? bgm_boss1] = [1.95, 40.37]
+	map[? bgm_boss1] = [0.82, 86.3]
 #endregion
 }

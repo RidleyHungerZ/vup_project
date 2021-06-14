@@ -24,8 +24,8 @@ function scr_txt_menu(){
 						"插入4卡片",
 						"插入5卡片",
 						"插入6卡片",
-						"插入7卡片",
-						"插入8卡片",
+						"插入【ICE】卡片",
+						"插入【塔尔斯Tails】卡片",
 						"插入9卡片",
 						"插入白发卡片",
 					]
@@ -249,6 +249,62 @@ function scr_txt_menu(){
 			name : "按键",
 			items : [
 				{
+					text : "菜单",
+					option : {
+						type : menu_page2_option.keypad,
+						list : [],
+						variable : ["start_key", gp_start],
+						onChange : function() {},
+					},
+				}, {
+					text : "辅助菜单",
+					option : {
+						type : menu_page2_option.keypad,
+						list : [],
+						variable : ["select_key", gp_select],
+						onChange : function() {},
+					},
+				}, {
+					text : "菜单左切换",
+					option : {
+						type : menu_page2_option.keypad,
+						list : [],
+						variable : ["L_key", gp_l],
+						onChange : function() {},
+					},
+				}, {
+					text : "菜单右切换",
+					option : {
+						type : menu_page2_option.keypad,
+						list : [],
+						variable : ["R_key", gp_r],
+						onChange : function() {},
+					},
+				}, {
+					text : "确认",
+					option : {
+						type : menu_page2_option.keypad,
+						list : [],
+						variable : ["A_key", 
+						function() {
+							if global.joy_ab_invert==0 return gp_a
+							else return gp_b
+						}],
+						onChange : function() {},
+					},
+				}, {
+					text : "取消",
+					option : {
+						type : menu_page2_option.keypad,
+						list : [],
+						variable : ["B_key", 
+						function() {
+							if global.joy_ab_invert==0 return gp_b
+							else return gp_a
+						}],
+						onChange : function() {},
+					},
+				}, {
 					text : "上",
 					option : {
 						type : menu_page2_option.keypad,
@@ -344,63 +400,7 @@ function scr_txt_menu(){
 						variable : ["true_key", "true_joy"],
 						onChange : function() {},
 					},
-				}, {
-					text : "菜单",
-					option : {
-						type : menu_page2_option.keypad,
-						list : [],
-						variable : ["start_key", gp_start],
-						onChange : function() {},
-					},
-				}, {
-					text : "辅助菜单",
-					option : {
-						type : menu_page2_option.keypad,
-						list : [],
-						variable : ["select_key", gp_select],
-						onChange : function() {},
-					},
-				}, {
-					text : "菜单左切换",
-					option : {
-						type : menu_page2_option.keypad,
-						list : [],
-						variable : ["L_key", gp_l],
-						onChange : function() {},
-					},
-				}, {
-					text : "菜单右切换",
-					option : {
-						type : menu_page2_option.keypad,
-						list : [],
-						variable : ["R_key", gp_r],
-						onChange : function() {},
-					},
-				}, {
-					text : "确认",
-					option : {
-						type : menu_page2_option.keypad,
-						list : [],
-						variable : ["A_key", 
-						function() {
-							if global.joy_ab_invert==0 return gp_a
-							else return gp_b
-						}],
-						onChange : function() {},
-					},
-				}, {
-					text : "取消",
-					option : {
-						type : menu_page2_option.keypad,
-						list : [],
-						variable : ["B_key", 
-						function() {
-							if global.joy_ab_invert==0 return gp_b
-							else return gp_a
-						}],
-						onChange : function() {},
-					},
-				},
+				}, 
 			],
 		},
 		//指令
@@ -466,7 +466,7 @@ function scr_txt_menu(){
 					text : "像素滤镜",
 					option : {
 						type : menu_page2_option.list,
-						list : ["无", "模糊", "扫描线", "柔化"],
+						list : ["无", "模糊", "扫描线"], //, "柔化"
 						variable : "pix_filter",
 						onChange : function() {},
 					},
@@ -622,11 +622,11 @@ function scr_txt_menu(){
 					trim : function(){return true;},
 				}, {
 					txt : "速降飞踢",
-					desc : "按住下键按跳跃键发动，\n会快速向下方降下，击中物体会弹飞",
+					desc : "按住下键按跳跃键发动，\n会快速向下方降下，击中物体会弹飞，\n弹飞过程中处于无敌状态",
 					trim : function(){return true;},
 				}, {
 					txt : "斜下飞踢",
-					desc : "按住下键和左右键按跳跃键，\n会快速向斜下方降下，击中物体会弹飞",
+					desc : "按住下键和左右键按跳跃键，\n会快速向斜下方降下，击中物体会弹飞，\n弹飞过程中处于无敌状态",
 					trim : function(){return true;},
 				}, {
 					txt : "斩击",
@@ -634,20 +634,28 @@ function scr_txt_menu(){
 					trim : function(){return true;},
 				}, {
 					txt : "蓄力斩",
-					desc : "按住攻击键蓄力到黄色状态，\n在地面时释放，\n可发动大范围斩击，\n可附加卡片属性",
+					desc : "按住攻击键蓄力到黄色状态，\n在地面时释放，\n可发动大范围斩击，\n有足够ES值时可附加卡片属性",
 					trim : function(){return true;},
 				}, {
 					txt : "回旋斩",
-					desc : "按住攻击键蓄力到黄色状态，\n在空中时释放，\n可发动圆形范围斩击，\n可附加卡片属性",
+					desc : "按住攻击键蓄力到黄色状态，\n在空中时释放，\n可发动圆形范围斩击，\n有足够ES值时可附加卡片属性",
 					trim : function(){return true;},
 				}, {
 					txt : "射击",
 					desc : "按副武器键发射子弹，\n最多可连续发射三枚子弹",
 					trim : function(){return true;},
 				}, {
-					txt : "蓄力射击",
-					desc : "按住副武器键蓄力到出现蓄力光时释放，\n红色蓄力光为一段蓄力，\n黄色蓄力光为二段蓄力",
-					trim : function(){return true;},
+					txt : "普通蓄力射击",
+					desc : "按住副武器键蓄力到出现蓄力光时释放，\n红色蓄力光为一段蓄力，\n黄色蓄力光为二段蓄力，\n有足够ES值时可附加卡片属性",
+					trim : function(){return global.model!=PLAYER_MODEL.TAILS;},
+				}, {
+					txt : "冰之泪",
+					desc : "副武器二段蓄力释放，\n会根据剩余ES值\n发射最多六枚环绕的冰锥，\n冰锥命中敌人后破裂，\n释放时若已存在冰锥，\n则会将原来的冰锥发射出去",
+					trim : function(){return global.model==PLAYER_MODEL.ICE;},
+				}, {
+					txt : "魔导镭射",
+					desc : "按住副武器键蓄力到出现蓄力光时释放，\n一段蓄力会发射一枚魔法弹，\n之后镭射球会朝附近的敌人发射镭射，\n二段蓄力时会根据剩余ES值\n发射最多三枚魔法弹",
+					trim : function(){return global.model==PLAYER_MODEL.TAILS;},
 				}, {
 					txt : "二段跳",
 					desc : "装备二段跳后，在空中按跳键，\n可以进行一次额外跳跃",
@@ -658,12 +666,16 @@ function scr_txt_menu(){
 					trim : function(){return scr_itemb_isopen(ITEMB.airdash)},
 				}, {
 					txt : "滑翔",
-					desc : "装备滑翔后，在空中按跳键，\n会进入滑翔状态，进行缓速下落，\n再按一次跳键解除状态",
+					desc : "装备滑翔后，在空中按跳键，\n会进入滑翔状态，进行缓速下落，\n再按一次跳键解除状态，\n在水中无法使用",
 					trim : function(){return scr_itemb_isopen(ITEMB.glide)},
 				}, {
 					txt : "升龙斩",
 					desc : "地面按住上键时按攻击键发动，\n在地面跃起向前上方攻击",
-					trim : function(){return scr_player_exskill_isget(PLAYER_SKILL.flyChop)},
+					trim : function(){return scr_player_exskill_isget(PLAYER_SKILL.flyChop) && global.model!=PLAYER_MODEL.YANZX;},
+				}, {
+					txt : "烈焰升龙斩",
+					desc : "地面按住上键时按攻击键发动，\n在地面跃起向前上方攻击，\n攻击为火属性",
+					trim : function(){return scr_player_exskill_isget(PLAYER_SKILL.flyChop) && global.model==PLAYER_MODEL.YANZX;},
 				}, 
 			],
 			special : [

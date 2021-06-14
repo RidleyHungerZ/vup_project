@@ -137,7 +137,8 @@ if(jump!=0) {
 	&& jump!=PYJUMP.airdash //空冲
 	&& jump!=PYJUMP.airDashChop //空冲砍
 	&& jump!=PYJUMP.kick //斜下踢
-	&& jump!=20//悬崖漂浮
+	&& jump!=PYJUMP.cliffProtect //悬崖漂浮
+	&& jump!=PYJUMP.catched //被抓住
 	&& !(jump==-1 && injure_ingrd))//受伤且在地面上
 	{
 		if(vsp<vspmaxrate*grav*sign(grav)) 
@@ -153,7 +154,7 @@ else vsp=0;
 if(hsp!=0 ||wind_spd!=0
 ||(ice==1 && v_ice!=0)) {
 	if((jump==0 
-	||(jump>0 && w_j=1)
+	||(jump>0 && w_j==1)
 	|| jump==-1
 	|| wind_spd!=0)
 	&& !in(jump, [PYJUMP.craw, PYJUMP.ladding])){
@@ -295,23 +296,19 @@ if(hsp!=0 ||wind_spd!=0
 #endregion
 #region 水域管理&重定义H和V
 V=1;
-var instwater = instance_place(x,y,obj_water);
+var instwater = collision_rectangle(bbox_right, bbox_top+16, bbox_left, bbox_top, obj_water, 1, 1);
 if(instwater) {
 	water=1;
 	G=G_liq;
 	//粘液
 	if(instwater.mucus) {
-		if(in(jump, [11, 12, 13])) {
-			H=1;
-		} else {
-			//cspd=1;
-			if(water_free==0) 
-				H=0.4;
-			else if(water_free==1) 
-				H=0.5;
-			if(vsp<0) V=0.5;
-			else V=1;
-		}
+		//cspd=1;
+		if(water_free==0) 
+			H=0.4;
+		else if(water_free==1) 
+			H=0.5;
+		if(vsp<0) V=0.5;
+		else V=1;
 	} else {
 		//cspd=1;
 		if(water_free==0) 
@@ -331,11 +328,10 @@ if(instwater) {
 		scr_sound_stop(se_player_underwater);
 	}
 	//呼吸泡
-	if(global.fps_currmenu mod 120 == 0) {
-		//with(instance_create_depth(x+6*image_xscale, y-8*image_yscale, depth-1, obj_bubble)) {
-		//	breathe = true;
-		//	vspeed=-1;
-		//}
+	if(global.fps_currmenu mod 90 == 0) {
+		with(instance_create_depth(x+8*image_xscale, y-16*image_yscale, depth-1, obj_water_bubble)) {
+			breathe = true;
+		}
 	}
 }
 else{
@@ -347,25 +343,28 @@ else{
 	underwater=0;
 	scr_sound_stop(se_player_underwater);
 }
-if(waterboost==0) {
-	var waterup=instance_place(x, y, obj_water_top);
-	if(waterup) {
-		waterboost=1;
-		scr_sound_play(se_player_water);
-		var waterf = instance_create_depth(x,waterup.bbox_top+4,depth-1,obj_waterf),
-			waterf2 = instance_create_depth(x,waterup.bbox_top+2,depth-1,obj_waterf2);
-		with waterf{
-			scr_sprite_change(waterup.SS_waterf, 0, 0.25)
-			image_alpha=waterup.inst_waterf_alpha;
-		}
-		with waterf2{
-			scr_sprite_change(waterup.SS_waterf2, 0, 0.25)
-			image_alpha=waterup.inst_waterf_alpha;
+//出入水水花
+if scr_menu_trem() {
+	if(waterboost==0) {
+		var waterup=instance_place(x, y, obj_water_top);
+		if(waterup) {
+			waterboost=1;
+			scr_sound_play(se_player_water);
+			var waterf = instance_create_depth(x,waterup.bbox_top,depth-1,obj_animation_once),
+				waterf2 = instance_create_depth(x,waterup.bbox_top,depth-1,obj_waterf2);
+			with waterf{
+				scr_sprite_change(waterup.SS_waterf, 0, 0.25)
+				image_alpha=waterup.inst_waterf_alpha;
+			}
+			with waterf2{
+				scr_sprite_change(waterup.SS_waterf2, 0, 0.25)
+				image_alpha=waterup.inst_waterf_alpha;
+			}
 		}
 	}
+	else if(!place_meeting(x,y,obj_water_top)) 
+		waterboost=0;
 }
-else if(!place_meeting(x,y,obj_water_top)) 
-	waterboost=0;
 	
 //buff减速
 /*if(scr_player_debuff_is(DEBUFF.ice)) {

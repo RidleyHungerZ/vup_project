@@ -11,7 +11,8 @@ swim_can=0//可以下水
 bullet_time=-1
 bullet_set=30
 clearBullets = function() {
-	bullet_time=-1;
+	if bullet_time>0 
+		bullet_time=0;
 }
 //判断是否能射出子弹
 canShootBullets = function() {

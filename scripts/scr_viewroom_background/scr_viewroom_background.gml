@@ -28,7 +28,13 @@ function scr_viewroom_background(isfirst){
 			
 			#endregion
 			#region 小对话
-		
+				if scr_tip_thread_can() {
+					//办公室对话结束
+					if scr_thread_isover(2)
+						scr_tip_thread(0, 0)
+					if scr_thread_isover(3)
+						scr_tip_thread(0, 1)
+				}
 			#endregion
 		break } #endregion
 		case room_area0_2 : { #region
@@ -61,7 +67,11 @@ function scr_viewroom_background(isfirst){
 			
 			#endregion
 			#region 小对话
-		
+				if scr_tip_thread_can() {
+					//变身
+					if scr_thread_isover(4)
+						scr_tip_thread(0, 2)
+				}
 			#endregion
 		break } #endregion
 		#endregion

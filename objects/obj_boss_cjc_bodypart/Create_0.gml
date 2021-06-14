@@ -1,5 +1,5 @@
 if !variable_instance_exists(id, "hp") hp=9999
-if !variable_instance_exists(id, "attack") attack=6
+if !variable_instance_exists(id, "attack") attack=4
 event_inherited();
 item=1
 follow=true

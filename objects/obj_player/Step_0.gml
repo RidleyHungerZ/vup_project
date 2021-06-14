@@ -262,7 +262,18 @@ for(var i=1;i<=2;i+=1){
 				hsp=dashspd*hspd;
 				if(dash_order_time_H>0) dash_order_time_H=-1;
 				//发射烟雾
-				if(!place_meeting(x,y,obj_water)) {
+				if(place_meeting(x,y,obj_water)) {
+					//水下变为气泡
+					for(var i=-3;i<=0;i++) {
+						with(instance_create_depth(x,y+32*image_yscale, depth-1, obj_water_bubble)) {
+							hspeed=0.1*i*other.image_xscale
+							vspeed=random_range(0.5, 1)*vspeed
+							image_xscale=random_range(0.1, 0.5)
+							image_yscale=image_xscale
+							image_index=random(image_number)
+						}
+					}
+				} else {
 					with(instance_create_depth(x,y+32*image_yscale,depth-1,obj_animation_once)) {
 						scr_sprite_change(spr_player_dash_somke,0,0.25);
 						image_xscale=other.image_xscale//*1.5;
@@ -683,7 +694,7 @@ for(var i=1;i<=2;i+=1){
 		}
 		#endregion
 		#region 摔落
-		if(jump==19) {
+		if(jump==PYJUMP.tripFall) {
 			if(scr_player_Is_fallover(0,0,4,3)) {
 				scr_sprite_change(SS_fallover,0,0.25);
 				dash=0;
@@ -736,6 +747,21 @@ for(var i=1;i<=2;i+=1){
 				hsp=walkspd*hspd;
 				vsp=0;
 			}
+		}
+		#endregion
+		#region 被抓住
+		if(jump==PYJUMP.catched) {
+			w_j=0
+			vsp=0
+			dash=0
+			if sprite_index!=SS_injure_fall
+				scr_sprite_change(SS_injure_fall, 0, 0)
+			if(image_xscale==1 && keystate_check(global.right_state))
+			||(image_xscale==-1 && keystate_check(global.left_state))
+				image_index=1
+			else if(image_xscale==-1 && keystate_check(global.right_state))
+			||(image_xscale==1 && keystate_check(global.left_state))
+				image_index=0
 		}
 		#endregion
 		#region 受伤

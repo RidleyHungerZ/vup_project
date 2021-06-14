@@ -2,7 +2,7 @@ var inx=image_index,
 	inxorg=image_index;
 glide_close=false;
 event_inherited()
-if !scr_player_stop_trem() exit
+if !scr_menu_trem() exit
 #region 动画纠错
 if bullet_time>0{
 	inx=inx mod 3
@@ -78,6 +78,7 @@ if walk_saber_time>0 {
 		scr_sprite_change(SS_walk, -2, -2)
 }
 #endregion
+if !scr_player_stop_trem() exit
 #region 专属动作
 #region 飞行动作中
 if jump==0 {}
@@ -246,7 +247,8 @@ else if jump==PYJUMP.airdash {
 #region 空中滑翔
 else if jump==PYJUMP.glide {
 	if keystate_check_pressed(global.jump_state)
-	|| !scr_itemb_isopen(ITEMB.glide) {
+	|| !scr_itemb_isopen(ITEMB.glide)
+	|| water==1 {
 		if sprite_index==spr_player_armor_glide
 			scr_sprite_change(SS_fall, 0, 0.25)
 		jump=PYJUMP.fall
@@ -320,6 +322,18 @@ if in(jump, [PYJUMP.fall, PYJUMP.kick]) {
 			if(dash_order_time_H>0) dash_order_time_H=-1;
 			//清空半透板记录
 			scr_player_floordown_clear();
+			//水下气泡
+			if place_meeting(x, y, obj_water) {
+				for(var i=-3;i<=0;i++) {
+					with(instance_create_depth(x,y+32*image_yscale, depth-1, obj_water_bubble)) {
+						hspeed=0.1*i*other.image_xscale
+						vspeed=random_range(0.5, 1)*vspeed
+						image_xscale=random_range(0.1, 0.5)
+						image_yscale=image_xscale
+						image_index=random(image_number)
+					}
+				}
+			}
 			//发射爆圈
 			dash_boost_inst=instance_create_depth(x,y,depth-1,obj_animation_once);
 			with(dash_boost_inst) {
@@ -335,6 +349,7 @@ if jump==PYJUMP.fall {
 	if scr_itemb_isopen(ITEMB.glide) 
 	&& jump==PYJUMP.fall 
 	&&!glide_close
+	&& water==0
 	&& ((scr_itemb_isopen(ITEMB.dbjump) && !can_dbjump) || !scr_itemb_isopen(ITEMB.dbjump)){
 		if keystate_check_pressed(global.jump_state) {
 			if in(sprite_index, [SS_jumped, SS_fall])
@@ -398,6 +413,7 @@ if(scr_player_mainuse(0,0)
 				scr_sound_play(se_player_armor_chop)
 				scr_sound_play(se_player_armor_chop_cv1)
 				walk=PYWALK.attack
+				saber_combo=0
 			}
 		} else if walk==PYWALK.walk {
 			if walk_saber_time==-1 {
@@ -431,6 +447,15 @@ if(scr_player_mainuse(0,0)
 				scr_sprite_change(spr_player_armor_fall_chop, 0, 0.5)
 				scr_sound_play(se_player_armor_chop)
 				scr_sound_play(se_player_armor_chop_cv1)
+				saber_combo=0
+			}
+			//回旋斩积攒指令
+			else if sprite_index==spr_player_armor_fall_spin_chop {
+				saber_combo++
+			}
+			else if sprite_index==spr_player_armor_fall_spin_choped {
+				scr_sprite_change(spr_player_armor_fall_spin_chop, 2, 1)
+				scr_sound_play(se_player_armor_chop)
 			}
 		} else if jump==PYJUMP.airdash {
 			if sprite_index!=spr_player_armor_dash_chop {
@@ -477,10 +502,10 @@ if(scr_player_mainuse(0,0)
 				if global.model=PLAYER_MODEL.YANZX || global.model=PLAYER_MODEL.fire2 {
 					element=ELEMENTS.fire
 					change=true
-				} else if global.model=PLAYER_MODEL.ice || global.model=PLAYER_MODEL.ice2 {
+				} else if global.model=PLAYER_MODEL.ice1 || global.model=PLAYER_MODEL.ICE {
 					element=ELEMENTS.ice
 					change=true
-				} else if global.model=PLAYER_MODEL.elec || global.model=PLAYER_MODEL.elec2 {
+				} else if global.model=PLAYER_MODEL.elec || global.model=PLAYER_MODEL.TAILS {
 					element=ELEMENTS.elec
 					change=true
 				} 
@@ -506,10 +531,10 @@ if(scr_player_mainuse(0,0)
 				if global.model=PLAYER_MODEL.YANZX || global.model=PLAYER_MODEL.fire2 {
 					element=ELEMENTS.fire
 					change=true
-				} else if global.model=PLAYER_MODEL.ice || global.model=PLAYER_MODEL.ice2 {
+				} else if global.model=PLAYER_MODEL.ice1 || global.model=PLAYER_MODEL.ICE {
 					element=ELEMENTS.ice
 					change=true
-				} else if global.model=PLAYER_MODEL.elec || global.model=PLAYER_MODEL.elec2 {
+				} else if global.model=PLAYER_MODEL.elec || global.model=PLAYER_MODEL.TAILS {
 					element=ELEMENTS.elec
 					change=true
 				} 

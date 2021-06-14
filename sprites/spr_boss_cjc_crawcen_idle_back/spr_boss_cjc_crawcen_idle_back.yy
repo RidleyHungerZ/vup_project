@@ -74,7 +74,7 @@
   "nineSlice": null,
   "parent": {
     "name": "back",
-    "path": "folders/Sprites/boss/caoJianCong/claw/back.yy",
+    "path": "folders/Sprites/boss/caoJianCong/craw/back.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_crawcen_idle_back",

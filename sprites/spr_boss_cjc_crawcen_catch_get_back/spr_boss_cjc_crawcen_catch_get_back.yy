@@ -1,6 +1,6 @@
 {
   "bboxMode": 0,
-  "collisionKind": 1,
+  "collisionKind": 0,
   "type": 0,
   "origin": 9,
   "preMultiplyAlpha": false,
@@ -27,6 +27,9 @@
     {"compositeImage":{"FrameId":{"name":"81b69cd3-a325-4dd5-8445-194b6e6c31fd","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"81b69cd3-a325-4dd5-8445-194b6e6c31fd","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"LayerId":{"name":"53357511-0d5e-4e46-a292-fad7838d2440","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_boss_cjc_crawcen_catch_get_back","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"resourceVersion":"1.0","name":"81b69cd3-a325-4dd5-8445-194b6e6c31fd","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"de939371-5a40-433d-b80b-6e37a7e94bc9","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"de939371-5a40-433d-b80b-6e37a7e94bc9","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"LayerId":{"name":"53357511-0d5e-4e46-a292-fad7838d2440","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_boss_cjc_crawcen_catch_get_back","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"resourceVersion":"1.0","name":"de939371-5a40-433d-b80b-6e37a7e94bc9","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_boss_cjc_crawcen_catch_get_back","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},
@@ -36,12 +39,13 @@
     "playbackSpeedType": 1,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
+    "length": 2.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"a0f95981-48ae-40c6-bf95-36708930f460","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"81b69cd3-a325-4dd5-8445-194b6e6c31fd","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"5b51d100-3114-4317-bd8f-59a1c98f6dce","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"de939371-5a40-433d-b80b-6e37a7e94bc9","path":"sprites/spr_boss_cjc_crawcen_catch_get_back/spr_boss_cjc_crawcen_catch_get_back.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -70,7 +74,7 @@
   "nineSlice": null,
   "parent": {
     "name": "back",
-    "path": "folders/Sprites/boss/caoJianCong/claw/back.yy",
+    "path": "folders/Sprites/boss/caoJianCong/craw/back.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_crawcen_catch_get_back",

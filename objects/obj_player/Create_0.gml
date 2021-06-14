@@ -203,7 +203,7 @@ dis_x=0;
 dis_y=0; 
 water=0; //是否入水
 flyobj=-1; //接触飞行物体
-waterboost=0;
+waterboost=0; //是否接触水面时发生水花
 underwater=0;
 trip_time=0; //摔倒时间计时
 trip_time_up=90; //摔倒时间上限
@@ -301,7 +301,9 @@ enum PYJUMP {
 	airdash=10,
 	airDashChop=11,
 	flyChop=17,
+	tripFall=19,
 	cliffProtect=20,
+	catched=21, //被抓住
 }
 #endregion
 #region mask
@@ -328,5 +330,18 @@ updateMask=function() {
 		mask_index=spr_player_mask_dash
 	else 
 		mask_index=spr_player_mask_idle
+}
+#endregion
+#region 变身传递变量
+card_change_var=function(neo) {
+	with neo {
+		image_xscale=other.image_xscale
+		image_yscale=other.image_yscale
+		injure_t=other.injure_t
+		waterboost=other.waterboost
+		underwater=other.underwater
+		jump=0
+		walk=0
+	}
 }
 #endregion

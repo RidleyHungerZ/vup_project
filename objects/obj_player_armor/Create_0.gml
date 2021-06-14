@@ -15,8 +15,10 @@ bullet_set=30
 walk_saber_time=-1
 walk_saber_set=15
 clearBullets = function() {
-	bullet_time=-1;
-	walk_saber_time=-1;
+	if bullet_time>0 
+		bullet_time=0;
+	if walk_saber_time>0 
+		walk_saber_time=0;
 }
 //判断是否能射出子弹
 canShootBullets = function() {

@@ -21,7 +21,9 @@ function scr_room_bosswar_boss_hp0() {
 	return action==1203
 }
 /// @desc BOSS战BOSS是否死亡
-function scr_room_bosswar_boss_boomstart() {
+/// @arg whitefun 白屏执行内容
+function scr_room_bosswar_boss_boomstart(whitefun) {
+	boss_boom_white=whitefun
 	with obj_boss {
 		if is_war_boss && boom==0
 			boom_start()

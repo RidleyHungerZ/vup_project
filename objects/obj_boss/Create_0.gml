@@ -2,6 +2,8 @@ event_inherited();
 enemy=noone;
 item=1;
 DEF=0.5;
+if scr_mode_Is_easy() 
+	DEF*=1.5;
 bs=-1; //当前boss编号
 #region 继承配置项
 /// @arg enemy_prick=1
@@ -96,7 +98,7 @@ skill_useall=function(acts) {
 /// @arg 将使用的技能加入到used_skils中
 skill_addary=function() {
 	if in(action,used_skils) return;
-	else used_skils = array_add_value(used_skils,action)
+	else array_push(used_skils,action)
 }
 //血量对标
 globalhp_sync=function() {
@@ -111,7 +113,7 @@ boom_start=function() {
 	boom=1;
 }
 //爆炸开始时发生
-boom_start_trigger=function() {
+boss_hp0_trigger=function() {
 	
 }
 //爆炸结束时发生

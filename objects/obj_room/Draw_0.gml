@@ -10,7 +10,7 @@ with obj_view {
 			ysc = apsh/v0sh;
 		//surface_set_target(application_surface)
 		draw_clear_alpha(c_black, 0.5)
-		//gpu_set_blendmode(bm_normal)
+		gpu_set_blendmode(bm_normal)
 		//模糊
 		if global.pix_filter==1 {
 			gpu_set_texfilter(true)

@@ -26,8 +26,6 @@
   "frames": [
     {"compositeImage":{"FrameId":{"name":"69c28ca7-87b0-4bc5-994e-7da40558b008","path":"sprites/spr_boss_cjc_body_ruins/spr_boss_cjc_body_ruins.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"69c28ca7-87b0-4bc5-994e-7da40558b008","path":"sprites/spr_boss_cjc_body_ruins/spr_boss_cjc_body_ruins.yy",},"LayerId":{"name":"8dce4598-f64d-43b9-977b-fff2f172823b","path":"sprites/spr_boss_cjc_body_ruins/spr_boss_cjc_body_ruins.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"69c28ca7-87b0-4bc5-994e-7da40558b008","path":"sprites/spr_boss_cjc_body_ruins/spr_boss_cjc_body_ruins.yy",},"LayerId":{"name":"ede3d3d7-d0bb-4e1a-92ca-4242dcd251f3","path":"sprites/spr_boss_cjc_body_ruins/spr_boss_cjc_body_ruins.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"69c28ca7-87b0-4bc5-994e-7da40558b008","path":"sprites/spr_boss_cjc_body_ruins/spr_boss_cjc_body_ruins.yy",},"LayerId":{"name":"45588205-31e3-47b6-9506-76e8650a546b","path":"sprites/spr_boss_cjc_body_ruins/spr_boss_cjc_body_ruins.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_boss_cjc_body_ruins","path":"sprites/spr_boss_cjc_body_ruins/spr_boss_cjc_body_ruins.yy",},"resourceVersion":"1.0","name":"69c28ca7-87b0-4bc5-994e-7da40558b008","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {

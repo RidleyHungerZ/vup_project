@@ -26,12 +26,12 @@ testmode=function() {
 	//global.player_es=62345
 	global.model_get_number=3
 	scr_model_get(PLAYER_MODEL.ARMOR)
-	scr_model_get(2)
-	scr_model_get(5)
-	scr_model_get(7)
+	scr_model_get(PLAYER_MODEL.YANZX)
+	scr_model_get(PLAYER_MODEL.ICE)
+	scr_model_get(PLAYER_MODEL.TAILS)
 	global.model=PLAYER_MODEL.ARMOR
-	global.rtank[1]=1
-	global.rtank[2]=1
+	global.rtank_get[1]=1
+	global.rtank_get[2]=1
 	global.item2_byte_max=30
 	
 	scr_item_gain(ITEM.A, ITEMA.milk)

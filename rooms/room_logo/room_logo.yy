@@ -15,7 +15,6 @@
   "layers": [
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_logo","path":"objects/obj_logo/obj_logo.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":0.25,"scaleY":0.25,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":256.0,"y":96.0,"resourceVersion":"1.0","name":"inst_71ADC1FD","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_staff","path":"objects/obj_staff/obj_staff.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":0.0,"resourceVersion":"1.0","name":"inst_1642FB27","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":-100,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Instances_1","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_logo_hex","path":"objects/obj_logo_hex/obj_logo_hex.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":0.25,"scaleY":0.25,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":508.0,"y":264.0,"resourceVersion":"1.0","name":"inst_67CA95C3","tags":[],"resourceType":"GMRInstance",},
@@ -134,7 +133,6 @@
   "inheritCode": false,
   "instanceCreationOrder": [
     {"name":"inst_71ADC1FD","path":"rooms/room_logo/room_logo.yy",},
-    {"name":"inst_1642FB27","path":"rooms/room_logo/room_logo.yy",},
     {"name":"inst_67CA95C3","path":"rooms/room_logo/room_logo.yy",},
     {"name":"inst_6E169A5C","path":"rooms/room_logo/room_logo.yy",},
     {"name":"inst_FC30C99","path":"rooms/room_logo/room_logo.yy",},

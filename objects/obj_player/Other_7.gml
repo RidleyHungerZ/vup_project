@@ -63,15 +63,10 @@ else if sprite_index==SS_change_idle_ed{
 		if global.model!=0 neoobjinx=obj_staff.player[PLAYER_MODEL.ARMOR]
 		var neo=instance_create_depth(x, y, depth, neoobjinx)
 		with neo {
-			image_xscale=other.image_xscale
-			image_yscale=other.image_yscale
-			injure_t=other.injure_t
 			scr_sprite_change(SS_idle, 0, 0)
 			menu_imspd=0.25
-			jump=0
-			walk=0
-			hsp=0
 		}
+		card_change_var(neo)
 		instance_destroy()
 	} else {
 		scr_sprite_change(SS_idle,0,0);
@@ -103,15 +98,11 @@ else if sprite_index==SS_change_fall_ed{
 		if global.model!=0 neoobjinx=obj_staff.player[PLAYER_MODEL.ARMOR]
 		var neo=instance_create_depth(x, y, depth, neoobjinx)
 		with neo {
-			image_xscale=other.image_xscale
-			image_yscale=other.image_yscale
-			injure_t=other.injure_t
 			scr_sprite_change(SS_fall, 0, 0)
-			menu_imspd=0.25
-			jump=2
 			hsp=walkspd*hspd;
 			vsp=0
 		}
+		card_change_var(neo)
 		instance_destroy()
 	} else {
 		scr_sprite_change(SS_fall,0,0);

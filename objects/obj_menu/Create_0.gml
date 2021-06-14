@@ -2,7 +2,7 @@ event_inherited()
 global.menu=0
 #region 菜单操作变量
 time=0
-menutime=0 //不受暂停影响计时
+menu_time=0 //不受暂停影响计时
 menu_open_action=0 //开启菜单动作
 menu_open_rate=0 //开启菜单黑屏
 menu_page=0 //菜单当前页
@@ -19,6 +19,9 @@ for(var page=0;page<=20;page+=1) {
 
 menu_exit_time=0 //自动退出计时
 //道具页面list
+menu_item_operate=0 //道具操作类型
+menu_item_operate_var=0 //操作数值
+menu_item_operate_temp=0 //临时变量，如记录R罐编号
 menu_item_list_max=10 //列表显示最大数量
 menu_item_list_begin=0 //列表最上项
 menu_item_list_end=menu_item_list_max-1 //列表最下项

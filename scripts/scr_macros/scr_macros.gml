@@ -32,7 +32,7 @@ function scr_macro(){
 	#macro axis_min 0.5 //摇杆有用的最小幅度（0-1）
 #endregion
 #region 文本颜色
-	#macro TXT_KEY "[$=ff0068]"
+	#macro TXT_K "[$=ff0068]"
 	#macro TXT_W "[$=ffffff]"
 	#macro TXT_D "[$=def]"
 	#macro TXT_ERR "[$=ff0000]"

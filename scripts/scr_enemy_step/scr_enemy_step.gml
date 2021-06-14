@@ -9,7 +9,7 @@ function scr_enemy_step(){
 		for(var i=afimg_count;i>=0;i-=1){
 			if i<=(afimg_count-afimg_count_now){
 				afimg_x[i]=x
-				afimg_y[i]=y-GRDY
+				afimg_y[i]=y
 			}
 			else if i>0{
 				afimg_x[i]=afimg_x[i-1]

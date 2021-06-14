@@ -27,7 +27,9 @@
     {"isDnD":false,"eventNum":1,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"propertyId":{"name":"fly","path":"objects/obj_ground/obj_ground.yy",},"objectId":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+  ],
   "parent": {
     "name": "block",
     "path": "folders/Objects/ground/ground/block.yy",

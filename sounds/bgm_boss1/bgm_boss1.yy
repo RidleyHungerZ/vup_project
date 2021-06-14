@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "bgm_boss1.ogg",
-  "duration": 97.9114151,
+  "duration": 99.45704,
   "parent": {
     "name": "fight",
     "path": "folders/Sounds/bgm/fight.yy",

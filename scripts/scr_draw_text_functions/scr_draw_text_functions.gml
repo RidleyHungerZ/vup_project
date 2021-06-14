@@ -183,11 +183,11 @@ function scr_draw_text_ext(col, alpha, angle, font, xcen, ycen, txt, xx, yy, xsc
 					//切分点是"[@=key:"，每次分完前半段后，后半段开头就是"[@=key:"，所以要先判断
 					if string_pos(_key_tags[0], _txt_draw_2) == 1 {// "[@=key:A] keyset "
 						var _key_pos_end = string_pos(_key_tags[1], _txt_draw_2),//颜色文本结束位置
-							_txt_key_tag = string_copy(_txt_draw_2, 1, _key_pos_end),//"[@=key:A]"
-							_txt_key = string_copy(_txt_key_tag, string_length(_key_tags[0])+1, string_length(_txt_key_tag)-string_length(_key_tags[0])-string_length(_key_tags[1])),//A
-							keysprset = string_get_icon(_txt_key)
-						_txt_draw_tmp_2 = _txt_key_tag
-						_txt_draw_2 = string_delete(_txt_draw_2, 1, string_length(_txt_key_tag)) //"[@=key:A] keyset " --> "keyset "
+							_TXT_K_tag = string_copy(_txt_draw_2, 1, _key_pos_end),//"[@=key:A]"
+							_TXT_K = string_copy(_TXT_K_tag, string_length(_key_tags[0])+1, string_length(_TXT_K_tag)-string_length(_key_tags[0])-string_length(_key_tags[1])),//A
+							keysprset = string_get_icon(_TXT_K)
+						_txt_draw_tmp_2 = _TXT_K_tag
+						_txt_draw_2 = string_delete(_txt_draw_2, 1, string_length(_TXT_K_tag)) //"[@=key:A] keyset " --> "keyset "
 						//设置按钮精灵
 						keyspr = keysprset[0]
 						keysprinx = keysprset[1]

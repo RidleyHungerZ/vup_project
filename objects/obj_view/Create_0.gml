@@ -232,6 +232,10 @@ function missionComplete(index, time) {
 	mission_index=index
 	mission_time=time
 }
+//返回任务是否还在显示
+function missionActivity() {
+	return mission_action!=0
+}
 #endregion
 #region 加载页面
 loading_index_temp=-1

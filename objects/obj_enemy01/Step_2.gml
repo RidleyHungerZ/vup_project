@@ -48,7 +48,7 @@ else if action==11 && time==0 {
 	scr_sprite_change(spr_enemy01_shoot2, 0, 0.5)
 	with instance_create_depth(x+34*image_xscale, y-8*image_yscale, depth-1, obj_bullet_enemy01) {
 		image_xscale=other.image_xscale
-		hspeed=8*image_xscale
+		hspeed=6*image_xscale
 	}
 	scr_sound_play(se_enemy_bullet)
 	action=12

@@ -25,8 +25,8 @@ if !scr_menu_trem() exit
 		untime=untime_set;
 	}
 	_uninjure=uninjure;
-	if(hp<=0) 
-		attack=0;
+	//if(hp<=0) 
+	//	attack=0;
 	if(untime>0) 
 		untime-=1;
 	else{
@@ -47,20 +47,6 @@ if(use_speed_system==1) {
 #endregion
 #region 爆炸
 if(canboom && hp<=0) {
-	//for(var i=1;i<=8;i+=1){
-	//	with(instance_create_depth(x,y,depth-1,obj_enemy_part)){
-	//		scr_sprite_change(spr_enemy_through_part,i-1,0);
-	//		gravity=G;
-	//		direction=random_range(0,180);
-	//		speed=random_range(4,8);
-	//		dspeed=random(6)*-image_xscale*image_yscale;
-	//	}
-	//}
-	repeat(boom){
-		with(instance_create_depth(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),depth-1,obj_animation_once))
-			scr_sprite_change(spr_boom,0,0.5);
-	}
-	instance_destroy();
-	scr_sound_play(se_boom);
+	self_boom()
 }
 #endregion

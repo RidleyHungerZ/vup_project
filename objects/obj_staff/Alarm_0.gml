@@ -46,6 +46,7 @@ if player_death_action=2{
 			walk=0
 			jump=0
 			injure_attack_type=ATK_TYPE.bullet
+			underwater=0
 		}
 		//scr_view_set_with_player()
 		room_restart()

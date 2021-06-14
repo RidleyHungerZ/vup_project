@@ -140,9 +140,9 @@ function scr_draw_menu_status(dx, dy){
 				for(var i=0;i<global.model_number;i++) {
 					var imx=1, imy=1, xof=i*88, sprinx=i
 					if menu_type==0.1 {
-						xof*=1-menutime/15
+						xof*=1-menu_time/15
 					} else if menu_type==0.9 {
-						xof*=menutime/15
+						xof*=menu_time/15
 					}
 					//未获得卡片用11帧
 					if !scr_model_isget(sprinx) sprinx=11
@@ -150,13 +150,13 @@ function scr_draw_menu_status(dx, dy){
 				}
 				//当前选中
 				if menu_type!=0 {
-					var imx=1+0.2*(1-menutime/10),
+					var imx=1+0.2*(1-menu_time/10),
 						xof=msel[1]*88, 
 						sprinx=msel[1]
 					if menu_type==0.1 {
-						xof*=1-menutime/15
+						xof*=1-menu_time/15
 					} else if menu_type==0.9 {
-						xof*=menutime/15
+						xof*=menu_time/15
 					}
 					//未获得卡片用11帧
 					if !scr_model_isget(sprinx) sprinx=11
@@ -194,7 +194,7 @@ function scr_draw_menu_status(dx, dy){
 			draw_sprite(spr_menu_status_right_weapon_bgs, 0, drawx, drawy)
 			//箭头
 			var arrowxof=0
-			if msel[0]==1 arrowxof=8*(menutime/10)
+			if msel[0]==1 arrowxof=8*(menu_time/10)
 			draw_sprite_ext(spr_menu_status_right_weapon_arrow, 0, drawx+arrowxof, drawy, 1, 1, 0, c_white, 1)
 			draw_sprite_ext(spr_menu_status_right_weapon_arrow, 0, drawx-arrowxof, drawy, 1, 1, 180, c_white, 1)
 			var weap1=-1, weap2=-1
@@ -273,8 +273,8 @@ function scr_draw_menu_status(dx, dy){
 			//弹窗
 			if menu_type>0 {
 				var infoysc=1, _struct=txtstruts.option[msel[0]]
-				if menu_type==0.1 infoysc=1-menutime/15
-				else if menu_type==0.9 infoysc=menutime/15
+				if menu_type==0.1 infoysc=1-menu_time/15
+				else if menu_type==0.9 infoysc=menu_time/15
 				drawx=VIEW_W_UI/2 drawy=VIEW_H_UI/2
 				draw_sprite_ext(spr_menu_status_right_info, 0, drawx, drawy, 1, infoysc, 0, c_white, 1)
 				
@@ -686,6 +686,26 @@ function scr_draw_menu_skill_image(skinx, dx, dy, scl) {
 				draw_sprite_ext(spr_player_armor_bullet_charge02_elec, 2, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
 		}
 		#endregion
+		#region 冰霜六星
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_idle_shoot, 0, dx, dy, scl, scl, 0, c_white, 1)
+			for(var i=0;i<6;i++) {
+				var len=48*scl,
+					dir=60*i,
+					icx=lengthdir_x(len, dir),
+					icy=lengthdir_y(len, dir);
+				draw_sprite_ext(spr_player_armor_bullet_ice_cone, 0, dx+icx, dy+icy, scl, scl, dir, c_white, 1)
+			}
+		}
+		#endregion
+		#region 镭射光线
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_idle_shoot, 0, dx-48*scl, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_bullet_elec_laser_ball, 1, dx+32*scl, dy-16*scl, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_bullet_elec_laser_top, 1, dx+32*scl, dy-16*scl, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_bullet_elec_laser_line, 1, dx+(32+64)*scl, dy-16*scl, scl, scl, 0, c_white, 1)
+		}
+		#endregion
 		#region 二段跳
 		else if skinx==(inx++) {
 			draw_sprite_ext(spr_player_armor_jump_double, 1, dx, dy, scl, scl, 0, c_white, 1)
@@ -707,10 +727,14 @@ function scr_draw_menu_skill_image(skinx, dx, dy, scl) {
 		else if skinx==(inx++) {
 			draw_sprite_ext(spr_player_armor_fly_choping_part, 0, dx, dy, scl, scl, 0, c_white, 1)
 			draw_sprite_ext(spr_player_armor_fly_choping, 0, dx, dy, scl, scl, 0, c_white, 1)
-			if global.model==PLAYER_MODEL.YANZX
-				draw_sprite_ext(spr_player_armor_fly_choping_saber_fire, 0, dx, dy, scl, scl, 0, c_white, 1)
-			else
-				draw_sprite_ext(spr_player_armor_fly_choping_saber, 0, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_fly_choping_saber, 0, dx, dy, scl, scl, 0, c_white, 1)
+		}
+		#endregion
+		#region 升龙斩
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_fly_choping_part, 0, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_fly_choping, 0, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_fly_choping_saber_fire, 0, dx, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 	}

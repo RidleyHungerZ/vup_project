@@ -90,7 +90,13 @@ else if sprite_index == spr_player_armor_fall_chop {
 	scr_sprite_change(spr_player_armor_fall_choped, 0, 0.25)
 }
 else if sprite_index == spr_player_armor_fall_spin_chop {
-	scr_sprite_change(spr_player_armor_fall_spin_choped, 0, 0.5)
+	if saber_combo>0 {
+		scr_sprite_change(-2, 2, -2)
+		scr_sound_play(se_player_armor_chop)
+		saber_combo=0
+	} else {
+		scr_sprite_change(spr_player_armor_fall_spin_choped, 0, 0.5)
+	}
 }
 else if sprite_index == spr_player_armor_fall_spin_choped {
 	scr_sprite_change(spr_player_armor_fall_choped, 0, 0.25)

@@ -81,8 +81,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "bullet",
-    "path": "folders/Sprites/player/armor/bullet.yy",
+    "name": "fire",
+    "path": "folders/Sprites/player/armor/bullet/fire.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_player_armor_bullet_charge02_st_fire",

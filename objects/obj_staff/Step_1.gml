@@ -59,8 +59,8 @@ for(var i=0;i<array_length(global.model_number);i++) {
 		ds_list_add(global.modellist, i)
 }
 ds_list_clear(global.rtanklist)
-for(var i=0;i<array_length(global.rtank);i++) {
-	if global.rtank[i]==1
+for(var i=0;i<array_length(global.rtank_gain);i++) {
+	if global.rtank_gain[i]==1
 		ds_list_add(global.rtanklist, i)
 }
 #endregion
@@ -71,10 +71,12 @@ if global.player_hp>global.player_hp_up
 else if global.player_hp<0
 	global.player_hp=0
 //血量红条
-if global.player_hp_aft<global.player_hp
-	global.player_hp_aft=global.player_hp
-else if global.player_hp_aft>global.player_hp {
-	global.player_hp_aft-=1/5
+if scr_menu_trem() {
+	if global.player_hp_aft<global.player_hp
+		global.player_hp_aft=global.player_hp
+	else if global.player_hp_aft>global.player_hp {
+		global.player_hp_aft-=1/5
+	}
 }
 //mp控制
 if global.player_mp>global.player_mp_up
@@ -123,10 +125,12 @@ if scr_menu_trem() {
 if global.boss_hp<0
 	global.boss_hp=0
 //血量红条
-if global.boss_hp_aft<global.boss_hp
-	global.boss_hp_aft=global.boss_hp
-else if global.boss_hp_aft>global.boss_hp {
-	global.boss_hp_aft-=1/5
+if scr_menu_trem() {
+	if global.boss_hp_aft<global.boss_hp
+		global.boss_hp_aft=global.boss_hp
+	else if global.boss_hp_aft>global.boss_hp {
+		global.boss_hp_aft-=1/5
+}
 }
 #endregion
 

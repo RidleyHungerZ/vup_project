@@ -44,7 +44,6 @@ if(use_death_system_boss && boom>0) {
 	}
 	//开始爆炸
 	if(boom==1) {
-		boom_start_trigger();
 		boom=2;
 		boom_time=240;
 	}
@@ -94,6 +93,7 @@ if(use_death_system_boss && boom>0) {
 				if boss==other.id
 					instance_destroy()
 			}
+			obj_room.boss_boom_white();
 			boom_trigger();
 			boom=4
 			boom_time=60

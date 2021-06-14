@@ -32,4 +32,7 @@ else if sprite_index == SS_fall_shoot{
 //else if sprite_index == SS_lad_shoot{
 //	scr_sprite_change(-2,2,0)
 //}
+else if sprite_index==spr_player_hu_faint {
+	scr_sprite_change(-2, image_number-0.5, 0)
+}
 updateMask()

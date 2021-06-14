@@ -21,19 +21,19 @@ global.down_key		=ord("S")
 global.select_key	=vk_space
 global.start_key	=vk_enter
 
-global.A_key	=ord("U")
+global.A_key	=ord("J")
 global.B_key	=ord("K")
-global.L_key	=ord("L")
-global.R_key	=ord("H")
-global.X_key	=ord("I")
-global.Y_key	=ord("J")
+global.L_key	=ord("Q")
+global.R_key	=ord("E")
+global.X_key	=ord("U")
+global.Y_key	=ord("I")
 
-global.jump_key		=	global.B_key
-global.att_key		=	global.Y_key
-global.dash_key		=	global.L_key
-global.sub_key		=	global.R_key
-global.trans_key	=	global.X_key
-global.true_key		=	global.A_key
+global.att_key		=	ord("J")
+global.jump_key		=	ord("K")
+global.dash_key		=	ord("L")
+global.sub_key		=	ord("U")
+global.trans_key	=	ord("I")
+global.true_key		=	ord("O")
 global.tformL_key	=	ord("Q")
 global.tformR_key	=	ord("E")
 //初始化记录存入
@@ -69,7 +69,7 @@ global.start_joy =	gp_start
 global.joy_ab_invert=0 //AB倒置
 global.sub_type=0//0双键，1双按，2切换
 global.dash_order=1//冲刺指令
-global.alert_type=0//系统提示
+global.alert_type=1//系统提示
 //初始化记录存入
 global.option_init_ary[initaryinx++]=[
 	"joy_ab_invert", "sub_type", "dash_order", "alert_type", 
@@ -301,7 +301,7 @@ global.boss_hp=0
 global.boss_hp_aft=0
 global.boss_icon=0
 global.player_def=1//实际伤害百分比
-global.prick_attack=6//尖刺伤害
+global.prick_attack=16//尖刺伤害
 global.player_reversed=0//上下倒立
 global.floor_down_list=ds_list_create()//玩家半透板记录
 player_death_action=0//重生控制变量

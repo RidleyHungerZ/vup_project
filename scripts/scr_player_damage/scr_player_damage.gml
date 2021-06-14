@@ -72,13 +72,15 @@ function scr_player_damage(otherobj) {
 				#region 非无敌
 					if undm=0 {
 					#region 判断是否切中护盾，护盾判断只针对不无敌的敌人
+					var place_undm = false;
+					if !array_contains(all, btn_or_sbr.undm_exclude) {
 						//列出所有可能作为护盾的对象
 						var undm_obj_type = [
 							obj_enemy,
 							obj_boss,
 							obj_bullet,
 							obj_ground_block_bullet,
-						], place_undm = false
+						];
 						for(var o=0;o<array_length(undm_obj_type);o++){
 							//判断子弹和目标敌人之间的直线链接上是否存在护盾且击中护盾
 							var undmlist = ds_list_create(),
@@ -156,6 +158,7 @@ function scr_player_damage(otherobj) {
 							ds_list_destroy(undmlist)
 							if place_undm break
 						}
+					}
 					#endregion
 					#region 无敌等级有效
 						if(injure_unrepeat!=btn_or_sbr.unrepeat	//判断是否因为刀刃叠加重复伤害
@@ -400,7 +403,7 @@ function scr_player_damage_block() {
 				if undamage=0{
 					if btn_or_sbr.only_hit_once{
 						if in(id, btn_or_sbr.only_hit_once_insts) continue
-						else //btn_or_sbr.only_hit_once_insts = array_add_value(btn_or_sbr.only_hit_once_insts, id)
+						else //array_push(btn_or_sbr.only_hit_once_insts, id)
 							array_push(btn_or_sbr.only_hit_once_insts, id)
 					}
 					damage+=1

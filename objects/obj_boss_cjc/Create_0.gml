@@ -1,5 +1,6 @@
-attack=6
-hp=192
+attack=4
+if scr_mode_Is_hard() hp=192
+else hp=96
 event_inherited();
 bs=0
 enemy_type=1
@@ -10,6 +11,7 @@ _xr=2512
 _yt=0
 _yb=288
 
+float=false //漂浮
 //body=instance_create_depth(x, y, depth+1, obj_boss_cjc_airplane)
 //body.enemy=id
 //body.boss=id
@@ -39,7 +41,12 @@ drawSelf = function() {
 	}
 }
 //开始爆炸发生事件
-boom_start_trigger=function() {
+boss_hp0_trigger=function() {
+	action=0
+	speed=0
+	gravity=0
+	gravity_direction=270
+	float=false
 	//消灭子弹
 	with obj_boss_cjc_bullet_missile_s {
 		final_selfBoom()
@@ -47,13 +54,20 @@ boom_start_trigger=function() {
 	with obj_boss_cjc_bullet_missile_b {
 		final_selfBoom()
 	}
+	with obj_ground_block_bullet {
+		self_boom()
+	}
+	//抓人爪子爆炸
+	if arm_catch.arm_angle>0 {
+		arm_catch.forearm.final_selfBoom()
+	}
 }
 //消失时一并带走零件
 boom_trigger = function() {
 	//消灭箱子
 	
 	//创建残骸
-	with instance_create_layer(2368, 240, obj_room.layerInst[4], obj_animation) {
+	with instance_create_layer(2368, 232, obj_room.layerInst[4], obj_animation) {
 		scr_sprite_change(spr_boss_cjc_body_ruins, 0, 0)
 		image_xscale=-1
 	}
@@ -63,12 +77,35 @@ vfire=function(fx, fy) {
 	if global.fps_currmenu mod 6 == 0 {
 		//获得地面位置
 		fy=(fy div 16)*16
-		while !place_meeting(fx, fy, obj_ground) fy+=16
+		while !place_meeting(fx, fy, obj_ground) && fy<global.room_yb
+			fy+=16
 		with instance_create_layer(fx+random_range(-32, 32), fy+16, obj_room.layerInst[1], obj_animation_once) {
 			scr_sprite_change(spr_smoke, 0, 0.5)
 			vspeed=-4
 		}
 	}
+}
+//冲撞气流
+sparkthre_airflow=function() {
+	var cenx=(_xl+_xr)/2;
+	with instance_create_layer(random_range(_xl, _xr), irandom_range(y-48, y+32), obj_room.layerInst[1], obj_animation_once) {
+		scr_sprite_change(spr_smoke, 0, 0.5)
+		hspeed=other.image_xscale*random_range(4, 8)
+	}
+}
+craw_catch_result=0
+//抓人未抓到结束
+craw_catch_empty=function() {
+	craw_catch_result=1
+}
+//抓人抓到了
+craw_catch_player=function() {
+	craw_catch_result=2
+}
+craw_block=0
+//箱子没了
+craw_block_boom=function() {
+	craw_block=1
 }
 
 #region 马达
@@ -121,6 +158,8 @@ with arm[0] {
 	shift_x=-45
 	shift_y=45
 }
+arm_catch=arm[0]
+
 arm[1]=instance_create_depth(x, y, depth+150, obj_boss_cjc_arm)
 with arm[1] {
 	scr_sprite_change(spr_boss_cjc_arm_back, 0, 0)
@@ -128,6 +167,7 @@ with arm[1] {
 	shift_x=-5
 	shift_y=23
 }
+arm_block=arm[1]
 #endregion
 #region 导弹发射
 lanuch[0]=instance_create_depth(x, y, depth-10, obj_boss_cjc_lanuch)

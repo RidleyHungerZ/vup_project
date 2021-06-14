@@ -10,13 +10,4 @@ if hp<=0 {
 		craw.deathBoomPart()
 	deathBoomPart()
 }
-
-
-if sprite_index==spr_boss_cjc_forearm_frt {
-	if keyboard_check(ord("5")) exrod_len+=1
-	else if keyboard_check(ord("6")) exrod_len-=1
-} else if sprite_index==spr_boss_cjc_forearm_back {
-	if keyboard_check(ord("7")) exrod_len+=1
-	else if keyboard_check(ord("8")) exrod_len-=1
-}
 exrod_len=clamp(exrod_len, 0, 384)

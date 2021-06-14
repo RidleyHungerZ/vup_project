@@ -13,8 +13,8 @@
   "soundFile": "se_player_armor_bullet_charge02.wav",
   "duration": 0.826769,
   "parent": {
-    "name": "armor",
-    "path": "folders/Sounds/player/armor.yy",
+    "name": "bullet",
+    "path": "folders/Sounds/player/bullet.yy",
   },
   "resourceVersion": "1.0",
   "name": "se_player_armor_bullet_charge02",

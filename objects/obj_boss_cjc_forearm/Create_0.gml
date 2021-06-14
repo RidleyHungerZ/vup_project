@@ -1,4 +1,4 @@
-hp=96
+hp=48
 event_inherited();
 view_edge=-1
 boom_number=9
