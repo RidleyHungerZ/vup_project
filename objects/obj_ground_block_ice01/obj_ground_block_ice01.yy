@@ -1,12 +1,15 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_block_ice01",
+    "path": "sprites/spr_block_ice01/spr_block_ice01.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_ground_block",
-    "path": "objects/obj_ground_block/obj_ground_block.yy",
+    "name": "obj_ground_block_ice",
+    "path": "objects/obj_ground_block_ice/obj_ground_block_ice.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -21,19 +24,18 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
-    {"isDnD":false,"eventNum":1,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":1,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
-  "overriddenProperties": [
-    {"propertyId":{"name":"ice","path":"objects/obj_ground/obj_ground.yy",},"objectId":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
-  ],
+  "overriddenProperties": [],
   "parent": {
     "name": "ice",
     "path": "folders/Objects/ground/ground/block/ice.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_ground_block_ice",
+  "name": "obj_ground_block_ice01",
   "tags": [],
   "resourceType": "GMObject",
 }

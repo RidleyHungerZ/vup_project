@@ -638,7 +638,7 @@ function scr_txt_menu(){
 					trim : function(){return true;},
 				}, {
 					txt : "回旋斩",
-					desc : "按住攻击键蓄力到黄色状态，\n在空中时释放，\n可发动圆形范围斩击，\n有足够ES值时可附加卡片属性",
+					desc : "按住攻击键蓄力到黄色状态，\n在空中时释放，\n可发动圆形范围斩击，\n连续按攻击键会持续旋转造成伤害，\n有足够ES值时可附加卡片属性",
 					trim : function(){return true;},
 				}, {
 					txt : "射击",

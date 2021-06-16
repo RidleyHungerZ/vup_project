@@ -160,9 +160,9 @@ death_use_speed_system=false; //死亡时都能使用移动系统
 /// @trans_spd=true
 //trans_spd=true; //是否收到传送带影响
 /// @fire_boom=true
-//fire_boom=true; //碰到燃烧的火是否爆炸
+fire_boom=true; //碰到燃烧的火是否爆炸
 /// @element_size=1
-//element_size=1; //属性特效尺寸
+element_size=1; //属性特效尺寸
 /// @damage_agent=noone
 damage_agent=noone; //伤害代理
 #endregion
@@ -193,20 +193,27 @@ drawSelf = function() {
 }
 //绘制属性效果
 drawElementEffect = function() {
-	//var spr_elem1 = spr_enemy_element1,
-	//	spr_elem2 = spr_enemy_element2,
-	//	spr_elem3 = spr_enemy_element3;
-	//if(element_size==2) {
-	//	spr_elem1 = spr_boss_element1
-	//	spr_elem2 = spr_boss_element2
-	//	spr_elem3 = spr_boss_element3;
-	//}
-	//if(injure_element==ELEMENTS.fire) 
-	//	draw_sprite(spr_elem1, element_index, x, y);
-	//else if(injure_element==ELEMENTS.ice) 
-	//	draw_sprite(spr_elem2, element_index, x, y);
-	//else if(injure_element==ELEMENTS.elec) 
-	//	draw_sprite(spr_elem3, element_index, x, y);
+	var //ss_elem_fire = spr_enemy_element1,
+		ss_elem_ice = spr_enemy_element_ice,
+		ss_elem_elec = spr_enemy_element_elec;
+	if(element_size==2) {
+		//ss_elem_fire = spr_boss_element1
+		ss_elem_ice = spr_enemy_element_ice_b
+		ss_elem_elec = spr_enemy_element_elec;
+	}
+	if(injure_element==ELEMENTS.fire) {
+		var blend=image_blend
+		image_blend=$7f7fff
+		draw_self();
+		image_blend=blend
+	} else if(injure_element==ELEMENTS.ice) {
+		draw_sprite(ss_elem_ice, 0, x, y);
+	} else if(injure_element==ELEMENTS.elec) {
+		draw_sprite(ss_elem_elec, element_index/2, x, y);
+	}
+}
+inInjurePush = function() {
+	return in(injure_type, ATK_TYPE.push, ATK_TYPE.pushup, ATK_TYPE.pushdown);
 }
 //原地爆炸
 final_selfBoom = function(intype, inele) {

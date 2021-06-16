@@ -6,7 +6,7 @@ if view!=1{
 	y=init_y
 	exit
 }
-if sprite_index=SS_injure exit
+if sprite_index==SS_injure exit
 //站立
 if action==0 && time==0 {
 	if find_player() {

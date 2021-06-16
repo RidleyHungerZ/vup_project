@@ -94,8 +94,10 @@ else if sprite_index == spr_player_armor_fall_spin_chop {
 		scr_sprite_change(-2, 2, -2)
 		scr_sound_play(se_player_armor_chop)
 		saber_combo=0
+		global.player_saber.span_comboing=true
 	} else {
 		scr_sprite_change(spr_player_armor_fall_spin_choped, 0, 0.5)
+		global.player_saber.span_comboing=false
 	}
 }
 else if sprite_index == spr_player_armor_fall_spin_choped {

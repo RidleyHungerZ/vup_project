@@ -194,7 +194,8 @@ else {
 			var enemy=enemylist[| i];
 			if(enemy.hp>0 && enemy.attack!=0
 			&& enemy.have_dmg
-			//&& enemy.injure_type!=ATK_TYPE.push
+			&& !in(enemy.injure_element, [ELEMENTS.ice, ELEMENTS.elec])
+			&& enemy.injure_type!=ATK_TYPE.push
 			&& (uninjure==0 || injure_level<enemy.damage_level)
 			&& uninjure_temp==0 ) {
 				place=true;
@@ -229,24 +230,6 @@ else {
 		//ds_list_destroy(bulletlist);
 		ds_list_clear(bulletlist);
 	}
-	#endregion
-	#region BOSS撞击受伤
-	//if(bosslistcnt>0
-	//&& operator) {
-	//	for(var i=0;i<bosslistcnt;i++){
-	//		var boss=bosslist[| i];
-	//		if(global.boss_hp>0 && boss.attack!=0 && boss.have_dmg=true
-	//		//&& !in(boss.injure_element, [ELEMENTS.ice, ELEMENTS.elec])
-	//		&& (uninjure==0 || injure_level<boss.damage_level)
-	//		&& uninjure_temp==0 ) {
-	//			place=true;
-	//			konjo=true;
-	//			scr_player_damage_cal(boss);
-	//		}
-	//	}
-	//	//ds_list_destroy(bosslist);
-	//	ds_list_clear(bosslist);
-	//}
 	#endregion
 	#region 尖刺撞击
 	if collision_rectangle(bbox_right+1,bbox_bottom+GRDY+1,bbox_left-1,bbox_top-1,obj_prick,1,1) {

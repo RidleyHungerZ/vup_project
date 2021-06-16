@@ -29,8 +29,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "block",
-    "path": "folders/Objects/ground/ground/block.yy",
+    "name": "block_bullet",
+    "path": "folders/Objects/ground/ground/block/block_bullet.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_ground_block_bomb02",

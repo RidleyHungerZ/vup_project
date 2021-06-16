@@ -1,4 +1,4 @@
-hp=10
+hp=100
 attack=6
 event_inherited();
 adjustGRDY();

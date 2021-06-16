@@ -26,6 +26,7 @@ function scr_player_damage(otherobj) {
 				var isexclude = false
 				for(var j=0;j<array_length(btn_or_sbr.exclude_target);j++){
 					var ontag = btn_or_sbr.exclude_target[j]
+					if !instance_exists(ontag) continue
 					if instance_is_object(target, ontag){
 						isexclude = true
 						break
@@ -192,7 +193,7 @@ function scr_player_damage(otherobj) {
 							if instance_is_object(id,obj_enemy) injureTrigger();
 					
 							//如果不是击飞，则设置击中方向和受伤类型
-							if injure_type!=ATK_TYPE.push{
+							if !inInjurePush() {
 								injure_type=btn_or_sbr.attack_type
 								//子弹击中
 								if instance_is_object(btn_or_sbr.id,obj_player_bullet){
@@ -234,52 +235,96 @@ function scr_player_damage(otherobj) {
 							//计算各种克制伤害结果
 							var atkelement = btn_or_sbr.element, //造成伤害的属性
 								attnor=playerattack*DEF, //普通伤害
-								attgrum=playerattack*1.5*DEF, //克制伤害
-								attingrum=0, //被克制伤害
+								attgrum=playerattack*2*DEF, //克制伤害
+								attingrum=playerattack/4*DEF, //被克制伤害
+								attingrumboss=0, //被克制伤害
 								attsame=playerattack/2*DEF, //同属性伤害
 							    att_infact=attnor, //实际造成伤害
 								old_injure_element = injure_element; //记录之前受伤属性
-							//敌人无属性
-							if element=ELEMENTS.none{
-								att_infact=attnor
-								if atkelement!=ELEMENTS.none{
-									injure_element=atkelement
-									element_index=0
+							//BOSS的属性克制
+							if inst_of(obj_boss) {
+								//敌人无属性
+								if element==ELEMENTS.none{
+									att_infact=attnor
+								}
+								//敌人火属性
+								else if element==ELEMENTS.fire{
+									if atkelement==ELEMENTS.fire att_infact=attsame
+									else if atkelement==ELEMENTS.ice att_infact=attingrumboss
+									else if atkelement==ELEMENTS.elec{
+										att_infact=attgrum
+										injure_element=atkelement
+										element_index=0
+									}
+									else att_infact=attnor
+								}
+								//敌人冰属性
+								else if element==ELEMENTS.ice{
+									if atkelement==ELEMENTS.ice att_infact=attsame
+									else if atkelement==ELEMENTS.elec att_infact=attingrumboss
+									else if atkelement==ELEMENTS.fire{
+										att_infact=attgrum
+										injure_element=atkelement
+										element_index=0
+									}
+									else att_infact=attnor
+								}
+								//敌人雷属性
+								else if element==ELEMENTS.elec{
+									if atkelement==ELEMENTS.elec att_infact=attsame
+									else if atkelement==ELEMENTS.fire att_infact=attingrumboss
+									else if atkelement==ELEMENTS.ice{
+										att_infact=attgrum
+										injure_element=atkelement
+										element_index=0
+									}
+									else att_infact=attnor
+								}
+							} 
+							//杂兵属性克制
+							else {
+								//敌人无属性
+								if element==ELEMENTS.none{
+									att_infact=attnor
+									if atkelement!=ELEMENTS.none{
+										injure_element=atkelement
+										element_index=0
+									}
+								}
+								//敌人火属性
+								else if element==ELEMENTS.fire{
+									if atkelement==ELEMENTS.fire att_infact=attsame
+									else if atkelement==ELEMENTS.ice att_infact=attingrum
+									else if atkelement==ELEMENTS.elec{
+										att_infact=attgrum
+										injure_element=atkelement
+										element_index=0
+									}
+									else att_infact=attnor
+								}
+								//敌人冰属性
+								else if element==ELEMENTS.ice{
+									if atkelement==ELEMENTS.ice att_infact=attsame
+									else if atkelement==ELEMENTS.elec att_infact=attingrum
+									else if atkelement==ELEMENTS.fire{
+										att_infact=attgrum
+										injure_element=atkelement
+										element_index=0
+									}
+									else att_infact=attnor
+								}
+								//敌人雷属性
+								else if element==ELEMENTS.elec{
+									if atkelement==ELEMENTS.elec att_infact=attsame
+									else if atkelement==ELEMENTS.fire att_infact=attingrum
+									else if atkelement==ELEMENTS.ice{
+										att_infact=attgrum
+										injure_element=atkelement
+										element_index=0
+									}
+									else att_infact=attnor
 								}
 							}
-							////敌人火属性
-							//else if element=ELEMENTS.fire{
-							//	if atkelement=ELEMENTS.fire att_infact=attsame
-							//	else if atkelement=ELEMENTS.ice att_infact=attingrum
-							//	else if atkelement=ELEMENTS.elec{
-							//		att_infact=attgrum
-							//		injure_element=atkelement
-							//		element_index=0
-							//	}
-							//	else att_infact=attnor
-							//}
-							////敌人冰属性
-							//else if element=ELEMENTS.ice{
-							//	if atkelement=ELEMENTS.ice att_infact=attsame
-							//	else if atkelement=ELEMENTS.elec att_infact=attingrum
-							//	else if atkelement=ELEMENTS.fire{
-							//		att_infact=attgrum
-							//		injure_element=atkelement
-							//		element_index=0
-							//	}
-							//	else att_infact=attnor
-							//}
-							////敌人雷属性
-							//else if element=ELEMENTS.elec{
-							//	if atkelement=ELEMENTS.elec att_infact=attsame
-							//	else if atkelement=ELEMENTS.fire att_infact=attingrum
-							//	else if atkelement=ELEMENTS.ice{
-							//		att_infact=attgrum
-							//		injure_element=atkelement
-							//		element_index=0
-							//	}
-							//	else att_infact=attnor
-							//}
 	        				//减血
 							if instance_exists(target.damage_agent) {
 								//伤害代理减被代理人的血
@@ -317,9 +362,9 @@ function scr_player_damage(otherobj) {
 							damage_note=true //记录结果，确实有击中过敌人
 					
 							//如果是击飞攻击
-							if injure_type=ATK_TYPE.push{
+							if inInjurePush() {
 								//判断敌人是否可以被击飞
-								if push_fly=0 || (push_fly=1 && hp<=0) || push_fly=3{
+								if push_fly==0 || (push_fly==1 && hp<=0) || push_fly==3{
 									if push_fly=0 hp=0
 									//如果是光剑，则计算点在玩家脚下
 									if btn_or_sbr.object_index=obj_player_saber
@@ -347,7 +392,7 @@ function scr_player_damage(otherobj) {
 					else if undm=1 && hp>0{
 						//无敌状态被击飞
 						if btn_or_sbr.attack_type=ATK_TYPE.push 
-						&& undm_push{
+						&& undm_push {
 							//判断是否为可被击飞类型
 							if push_fly=0 || (push_fly=1 && hp<=0) || push_fly=3{
 								injure_type=ATK_TYPE.push
@@ -393,14 +438,14 @@ function scr_player_damage_block() {
 	blockcollcnt = instance_place_list(x+(hspeed+hsp)+sign_no0(hspeed+hsp), y+vspeed+sign_no0(vspeed), obj_ground_block, blocklist, false)
 	if blockcollcnt>0
 	&& btn_or_sbr.attack!=0
-	&&(btn_or_sbr.attack_type==2){ // || btn_or_sbr.element=ELEMENTS.fire
+	&&(btn_or_sbr.attack_type==ATK_TYPE.push || btn_or_sbr.element=ELEMENTS.fire){
 		for(var i=0;i<blockcollcnt;i++){
 			with blocklist[| i]{
 				//子弹打破的单独计算
 				if instance_is_object(id,obj_ground_block_bullet) continue
 				//不是冰块时，如果非轰击则跳过
-				if !instance_is_object(id,obj_ground_block_ice) && btn_or_sbr.attack_type!=2 continue
-				if undamage=0{
+				if !instance_is_object(id,obj_ground_block_ice) && btn_or_sbr.attack_type!=ATK_TYPE.push continue
+				if undamage==0{
 					if btn_or_sbr.only_hit_once{
 						if in(id, btn_or_sbr.only_hit_once_insts) continue
 						else //array_push(btn_or_sbr.only_hit_once_insts, id)

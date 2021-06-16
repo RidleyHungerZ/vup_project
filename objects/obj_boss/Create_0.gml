@@ -37,9 +37,9 @@ use_death_system=false; //是否采用死亡系统
 /// @trans_spd=true
 //trans_spd=true; //是否收到传送带影响
 /// @fire_boom=true
-//fire_boom=false; //碰到燃烧的火是否爆炸
+fire_boom=false; //碰到燃烧的火是否爆炸
 /// @element_size=1
-//element_size=2; //属性特效尺寸
+element_size=2; //属性特效尺寸
 view_edge=-1
 #endregion
 

@@ -31,8 +31,8 @@
     {"propertyId":{"name":"fly","path":"objects/obj_ground/obj_ground.yy",},"objectId":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
   ],
   "parent": {
-    "name": "block",
-    "path": "folders/Objects/ground/ground/block.yy",
+    "name": "block_bullet",
+    "path": "folders/Objects/ground/ground/block/block_bullet.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_ground_block_bullet",

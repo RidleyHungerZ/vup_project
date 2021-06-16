@@ -589,7 +589,7 @@ for(var i=1;i<=2;i+=1){
 				}
 			}
 			//爬墙
-			else if(craw_ground && craw_ground.ice==0
+			else if(craw_ground && !craw_ground.ice
 			&&((keystate_check(global.left_state) && image_xscale==-1)
 			 ||(keystate_check(global.right_state) && image_xscale==1))
 			&& sign(wind_spd)!=-image_xscale
@@ -603,7 +603,7 @@ for(var i=1;i<=2;i+=1){
 				scr_player_se_step_craw();
 			}
 			//同向三角跳
-			else if(trg_ground && trg_ground.ice==0
+			else if(trg_ground && !trg_ground.ice
 			&& craw_can==1
 			&& jump==PYJUMP.fall
 			&&!scr_player_icewall()) {
@@ -631,7 +631,7 @@ for(var i=1;i<=2;i+=1){
 				}
 			}
 			//反向三角跳
-			else if(intrg_ground && intrg_ground.ice==0
+			else if(intrg_ground && !intrg_ground.ice
 			&& craw_can==1
 			&& jump==PYJUMP.fall
 			&&!scr_player_icewall()) {

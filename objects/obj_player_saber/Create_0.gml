@@ -6,3 +6,5 @@ enemy_list=ds_list_create();
 hit_target=function(targets) {
 	
 }
+
+span_comboing=false //光剑回旋中

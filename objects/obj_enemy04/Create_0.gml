@@ -8,6 +8,7 @@ SS_injure=spr_enemy04_injure
 SS_death=spr_enemy04_death
 SS_part=spr_enemy04_part
 SS_part2=spr_enemy04_part2
+SP_idle=0.05
 
 xrange=128
 

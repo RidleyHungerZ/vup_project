@@ -60,8 +60,33 @@ if(hp>0) {
 	_uninjure=uninjure;
 }
 #endregion
-#region 属性伤害计时
-	//scr_enemy_element_recover()
+#region 属性伤害
+	//恢复计时
+	scr_enemy_element_recover()
+	//火灼烧
+	//敌人被火焰灼伤
+	if injure_element==ELEMENTS.fire {
+		element_fire_time+=1
+		if element_fire_time>=30{
+			element_fire_time=0
+			final_selfInjure(ATK_TYPE.bullet, 1)
+		}
+		//冒火
+		if element_index mod 4 == 0 {
+			with instance_create_depth(random_range(bbox_left, bbox_right), random_range(bbox_top, bbox_bottom), depth-10, obj_animation) {
+				scr_sprite_change(spr_enemy_element_fire_star, 0, 0.5)
+				vspeed=-2
+				death_time=30
+				xcspeed=-1/death_time
+				ycspeed=xcspeed
+			}
+		}
+		//遇水即灭
+		if place_meeting(x, y, obj_water) {
+			element_index=9999
+		}
+	}
+	else element_fire_time=0
 #endregion
 //以下内容为敌方目标
 if !inst_of(obj_enemy)
@@ -70,7 +95,7 @@ if !inst_of(obj_enemy)
 #region 运动系统
 	if use_speed_system=1{
 		//击飞运动系统
-		if injure_type==ATK_TYPE.push {
+		if inInjurePush() {
 			if inst_of(obj_enemy){
 				scr_enemy_push_move_system()
 			}
@@ -97,18 +122,18 @@ if !inst_of(obj_enemy)
 			action=-1
 			hsp=0
 			element_ssinjure=1
-			if injure_elementfall=0{
-				if injure_type!=2 speed=0
+			if injure_elementfall==0{
+				if !inInjurePush() speed=0
 			}
 			else{
-				if place_meeting(x,y+image_yscale,obj_ground)
-				|| collision_rectangle(bbox_right,bbox_bottom+2,bbox_left,bbox_bottom-2,obj_floor,1,1)
-				|| place_meeting(x,y+image_yscale,obj_sink){
+				if collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_ground,1,1)
+				|| collision_rectangle(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top,obj_sink,1,1)
+				|| collision_rectangle(bbox_right,bbox_bottom+GRDY+2,bbox_left,bbox_bottom+GRDY-2,obj_floor,1,1) {
 					speed=0
 					gravity=0
-					while place_meeting(x,y,obj_ground)
-					|| place_meeting(x,y,obj_sink)
-					|| collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_bottom-2,obj_floor,1,1)
+					while collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_top,obj_ground,1,1)
+					|| collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_top,obj_sink,1,1)
+					|| collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_bottom+GRDY-2,obj_floor,1,1)
 						y-=image_yscale
 				}
 				else
@@ -117,10 +142,10 @@ if !inst_of(obj_enemy)
 		}
 		//属性击退
 		else if enemy_or_bullet==1{
-			if injure_type!=ATK_TYPE.push && use_speed_system=1 
+			if !inInjurePush() && use_speed_system=1 
 				gravity=0
-			if flash=1
-			&& injure_back=1 {
+			if flash==1
+			&& injure_back==1 {
 				scr_sprite_change(SS_injure,0,1/10)
 				action=-1
 				if inxscale!=0 hsp=1*inxscale
@@ -128,10 +153,10 @@ if !inst_of(obj_enemy)
 			}
 		}
 		//元素攻击中恢复
-		if sprite_index=SS_injure
-		&& element_ssinjure=1
+		if sprite_index==SS_injure
+		&& element_ssinjure==1
 		&& injure_elementback
-		&& element_index=0 {
+		&& element_index==0 {
 			scr_sprite_change(SS_idle,0,1/60)
 			hsp=0
 			element_ssinjure=0
@@ -144,13 +169,13 @@ if !inst_of(obj_enemy)
 	if enemy_prick=1
 	&& enemy_or_bullet==1
 	&& hp>0{
-		if collision_rectangle(bbox_right+1,bbox_bottom+1,bbox_left-1,bbox_top-1,obj_prick,1,1) {
+		if collision_rectangle(bbox_right+1,bbox_bottom+GRDY+1,bbox_left-1,bbox_top-1,obj_prick,1,1) {
 			var prick1list=ds_list_create(),
 				prick1listcnt=0,
 				prick2list=ds_list_create(),
 				prick2listcnt=0
-			var prick1listcnt=collision_rectangle_list(bbox_right,bbox_bottom+1,bbox_left,bbox_top-1,obj_ground,1,1,prick1list,false), //上下
-				prick2listcnt=collision_rectangle_list(bbox_right+1,bbox_bottom,bbox_left-1,bbox_top,obj_ground,1,1,prick2list,false) //上下
+			var prick1listcnt=collision_rectangle_list(bbox_right,bbox_bottom+GRDY+1,bbox_left,bbox_top-1,obj_ground,1,1,prick1list,false), //上下
+				prick2listcnt=collision_rectangle_list(bbox_right+1,bbox_bottom+GRDY,bbox_left-1,bbox_top,obj_ground,1,1,prick2list,false) //上下
 			var prick1=false, 
 				prick2=false
 			//横向撞击尖刺判定
@@ -184,8 +209,8 @@ if !inst_of(obj_enemy)
 	if hp>0
 	&& enemy_or_bullet==1
 	&& enemy_ground==1{
-		var flyobj=collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_ground,1,1),
-			block=collision_rectangle(bbox_right,bbox_bottom,bbox_left,bbox_top,obj_ground_block_bullet,1,1)
+		var flyobj=collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_top,obj_ground,1,1),
+			block=collision_rectangle(bbox_right,bbox_bottom+GRDY,bbox_left,bbox_top,obj_ground_block_bullet,1,1)
 		if(flyobj && flyobj.speed!=0)
 		||(block){
 			final_selfBoom();

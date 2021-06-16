@@ -455,6 +455,7 @@ if(scr_player_mainuse(0,0)
 			}
 			else if sprite_index==spr_player_armor_fall_spin_choped {
 				scr_sprite_change(spr_player_armor_fall_spin_chop, 2, 1)
+				global.player_saber.span_comboing=true
 				scr_sound_play(se_player_armor_chop)
 			}
 		} else if jump==PYJUMP.airdash {

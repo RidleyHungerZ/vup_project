@@ -139,8 +139,8 @@ function scr_enemy_push_move_system() {
 	if other_enemy && !instance_is_object(other_enemy,obj_enemy_bodypart){
 		var otherpush=false//被撞到的敌人是否一起飞走
 		with other_enemy{
-			if hp>0 && injure_type!=ATK_TYPE.push{
-				if(push_fly=0 ||(push_fly=1 && hp<=4) || push_fly=3)
+			if hp>0 && !inInjurePush() {
+				if(push_fly==0 ||(push_fly==1 && hp<=4) || push_fly==3)
 				&& undm_push{
 					if push_fly=0 hp=0
 					//image_xscale=other.image_xscale
@@ -151,9 +151,8 @@ function scr_enemy_push_move_system() {
 					gravity=other.gravity
 					otherpush=true
 				}
-				else if undm=0{
-					hp-=4
-					final_selfInjure();
+				else if undm==0{
+					final_selfInjure(ATK_TYPE.push, 8);
 				}
 			}
 		}
