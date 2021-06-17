@@ -4,6 +4,9 @@ var ox=x,oy=y, mask_type=getMaskType();
 //使用mask替代碰撞盒检测地面
 if mask_type==PYMASK_TYPE.dash
 	mask_index=spr_player_mask_idle
+var hspdmit=1; //横向移动速度倍率
+//缓慢状态下，移动速度降低25%
+if scr_player_debuff_is(DEBUFF.slow) spdmit=(1-0.25);
 #region 飓风吹飞
 //滑翔才受影响
 var //windlist = ds_list_create(),
@@ -69,7 +72,7 @@ if(ice==1 && jump==0) {
 		else if(dis_x==0) 
 			v_ice=f_ice;
 		else if(dis_x*image_xscale>0) {
-			if(abs(dis_x)<=abs(hsp*image_xscale+wind_spd)) 
+			if(abs(dis_x)<=abs(hsp*hspdmit*image_xscale+wind_spd)) 
 				v_ice+=f_ice;
 			else
 				v_ice-=f_ice;
@@ -169,9 +172,9 @@ if(hsp!=0 ||wind_spd!=0
 					else wind_spd=1*sign(wind_spd);
 				}
 			}
-			if(ice==0) 
-				hhh=hsp*image_xscale+wind_spd;
-			else if(ice==1) {
+			if(ice==0) {
+				hhh=hsp*hspdmit*image_xscale+wind_spd;
+			} else if(ice==1) {
 				if(dis_x!=0) 
 					hhh=(v_ice*sign(dis_x)+wind_spd)/h_ice;
 				else
@@ -180,7 +183,7 @@ if(hsp!=0 ||wind_spd!=0
 			wind_spd=pe_wind; //恢复风速
 		}
 		else
-			hhh=hsp*image_xscale*w_j+wind_spd;
+			hhh=hsp*hspdmit*image_xscale*w_j+wind_spd;
 		var dright=((sign(hhh)==1)?1:0),dleft=((sign(hhh)==-1)?-1:0);
 		#region 地面或L潜水
 		if(in(jump, [0])

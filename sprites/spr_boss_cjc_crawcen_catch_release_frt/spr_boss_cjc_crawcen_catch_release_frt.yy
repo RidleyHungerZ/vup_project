@@ -98,7 +98,7 @@
   },
   "parent": {
     "name": "frt",
-    "path": "folders/Sprites/boss/caoJianCong/craw/frt.yy",
+    "path": "folders/Sprites/boss/caoJc/craw/frt.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_crawcen_catch_release_frt",

@@ -21,6 +21,20 @@ function scr_enmus(){
 		frozen,
 	}
 	#endregion
+	#region 增益buff
+	enum BUFF {
+		none,
+	}
+	#endregion
+	#region 负面buff
+	enum DEBUFF {
+		none,
+		overheated, //火-过热无法蓄力
+		frozen, //冰-冻结
+		losses, //雷-泄露
+		slow, //迟缓
+	}
+	#endregion
 	#region 语言
 	enum LANG{
 		CHS = 0,//简体中文

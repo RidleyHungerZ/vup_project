@@ -261,6 +261,10 @@ global.player_es_max=99999
 global.combo=0 //当前连击数
 global.combo_time=0 //连击倒计时
 global.support_mult=1 //羁绊值倍率
+global.player_buff=BUFF.none
+global.player_buff_time=0
+global.player_debuff=DEBUFF.none
+global.player_debuff_time=0
 #endregion
 #region 计时区
 global.fps_60=0
@@ -323,6 +327,7 @@ global.rtanklist=ds_list_create()
 global.rtank_val_max=64
 //自动回复sp
 auto_sp_time=0
+loss_sp_time=0
 #endregion
 #region 发射区
 instance_create_depth(0, 0, -10000, obj_view)

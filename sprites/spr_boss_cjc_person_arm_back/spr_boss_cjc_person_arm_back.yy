@@ -70,7 +70,7 @@
   "nineSlice": null,
   "parent": {
     "name": "person",
-    "path": "folders/Sprites/boss/caoJianCong/person.yy",
+    "path": "folders/Sprites/boss/caoJc/person.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_person_arm_back",

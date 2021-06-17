@@ -130,6 +130,12 @@ scr_time_alarm();
 if(!scr_player_stop_trem()) exit;
 #region 蓄力
 for(var i=1;i<=2;i+=1){
+	//如果是过载，直接消除蓄力
+	if scr_player_debuff_is(DEBUFF.overheated) {
+		charge[i]=0;
+		charge_break[i]=0;
+		continue;
+	}
 	if(uncharge[i]==0) {
 		if(charge_break[i]==3) charge_break[i]=4;
 		if(charge_break[i]==4) {

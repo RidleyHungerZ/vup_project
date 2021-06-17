@@ -37,6 +37,8 @@ if player_death_action=2{
 		global.player_support=0
 		global.combo_time=0
 		global.boss_hp=0
+		scr_player_buff_clear()
+		scr_player_debuff_clear()
 		//global.player_life-=1
 		with obj_player{
 			x=global.re_x

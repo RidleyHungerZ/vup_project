@@ -70,7 +70,7 @@
   "nineSlice": null,
   "parent": {
     "name": "lanuch",
-    "path": "folders/Sprites/boss/caoJianCong/lanuch.yy",
+    "path": "folders/Sprites/boss/caoJc/lanuch.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_lanuch1_open",

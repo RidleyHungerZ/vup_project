@@ -292,7 +292,8 @@ else {
 		{
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
-			if(jump==9) scr_player_outground();
+			iif(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
+				scr_player_outground();
 			hsp=8*hspd*(-uninjure);
 			vsp=-vspd;
 			//提前位移，否则会被直接判定为落在地上
@@ -303,7 +304,8 @@ else {
 		else if(injure_attack_type==ATK_TYPE.pushup) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
-			if(jump==9) scr_player_outground();
+			if(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
+				scr_player_outground();
 			hsp=0*hspd*(-uninjure);
 			vsp=-2.5*vspd;
 			dash=1;
@@ -315,7 +317,8 @@ else {
 		else if(injure_attack_type==ATK_TYPE.pushdown) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
-			if(jump==9) scr_player_outground();
+			if(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
+				scr_player_outground();
 			hsp=0*hspd*(-uninjure);
 			vsp=2*vspd;
 			dash=1;
@@ -324,14 +327,17 @@ else {
 				y-=4*image_yscale;
 		}
 		//冰冻
-		else if(injure_attack_type==ATK_TYPE.frozen) {
+		else if(injure_element==ELEMENTS.ice) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
-			if(jump==9) scr_player_outground();
+			if(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
+				scr_player_outground();
 			hsp=0;
 			vsp=0;
 			ice_time=0;
 			scr_sound_play(se_ice);
+			scr_player_debuff(DEBUFF.frozen, 90)
+			injure_element=ELEMENTS.none
 		}
 		//普通受伤
 		else {
@@ -353,7 +359,13 @@ else {
 				vsp=0;
 			}
 			injure_attack_type=ATK_TYPE.bullet;
-			//injure_element=ELEMENTS.none;
+			//属性debuff
+			if injure_element==ELEMENTS.fire {
+				scr_player_debuff(DEBUFF.overheated, 180)
+			} else if injure_element==ELEMENTS.fire {
+				scr_player_debuff(DEBUFF.losses, 180)
+			}
+			injure_element=ELEMENTS.none;
 		}
 		if(scr_itemb_isopen(ITEMB.defineBack)) {
 			hsp=0;
@@ -473,7 +485,7 @@ else if(injure_attack_type==ATK_TYPE.pushdown) {
 }
 #endregion
 #region 冰冻
-else if(injure_attack_type==ATK_TYPE.frozen) {
+else if(scr_player_debuff_is(DEBUFF.frozen)) {
 	injure_t=1;//无敌一直在
 	#region 挣扎
 	if((keystate_check(global.left_state)
@@ -492,7 +504,8 @@ else if(injure_attack_type==ATK_TYPE.frozen) {
 		hsp=0;
 		vsp=0;
 		ice_time=0;
-		//scr_ice_over(spr_lbullet_dragonover,6);
+		scr_ice_boompart_ext(spr_ice_part, 6, x ,y)
+		scr_player_debuff(DEBUFF.slow, 120)
 	}
 	#endregion
 	#region 落地

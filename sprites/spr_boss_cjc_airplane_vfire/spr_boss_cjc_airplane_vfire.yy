@@ -78,7 +78,7 @@
   "nineSlice": null,
   "parent": {
     "name": "motor",
-    "path": "folders/Sprites/boss/caoJianCong/motor.yy",
+    "path": "folders/Sprites/boss/caoJc/motor.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_airplane_vfire",

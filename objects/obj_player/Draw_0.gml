@@ -69,5 +69,11 @@ if call_screen {
 					image_xscale, image_yscale, 0, c_white, 1)
 }
 #endregion
+#region 冻结
+if scr_player_debuff_is(DEBUFF.frozen) {
+	draw_sprite_ext(spr_player_debuff_frozen, 0, x, y, 
+					image_xscale, image_yscale, image_angle, image_blend, image_alpha)
+}
+#endregion
 x=perx;
 y=pery;

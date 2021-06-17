@@ -189,7 +189,14 @@ for(var i=0;i<2;i++){//0前景，1背景，j深度
 #region 事件
 //绘制自身
 drawSelf = function() {
-	draw_self();
+	if(injure_element==ELEMENTS.fire) {
+		var blend=image_blend
+		image_blend=$7f7fff
+		draw_self();
+		image_blend=blend
+	} else {
+		draw_self();
+	}
 }
 //绘制属性效果
 drawElementEffect = function() {
@@ -201,12 +208,7 @@ drawElementEffect = function() {
 		ss_elem_ice = spr_enemy_element_ice_b
 		ss_elem_elec = spr_enemy_element_elec;
 	}
-	if(injure_element==ELEMENTS.fire) {
-		var blend=image_blend
-		image_blend=$7f7fff
-		draw_self();
-		image_blend=blend
-	} else if(injure_element==ELEMENTS.ice) {
+	if(injure_element==ELEMENTS.ice) {
 		draw_sprite(ss_elem_ice, 0, x, y);
 	} else if(injure_element==ELEMENTS.elec) {
 		draw_sprite(ss_elem_elec, element_index/2, x, y);

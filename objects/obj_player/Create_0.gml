@@ -250,8 +250,18 @@ airdashed=0; //冲刺次数限制
 #endregion
 #region 事件
 drawSelf = function() {
+	var blend = image_blend
+	//debuff变色
+	if scr_player_debuff_is(DEBUFF.overheated) {
+		image_blend=$7f7fff
+	} else if scr_player_debuff_is(DEBUFF.losses) {
+		image_blend=$7fffff
+	} else if scr_player_debuff_is(DEBUFF.slow) {
+		image_blend=$ffff7f
+	}
 	draw_sprite_ext(sprite_index, image_index, round(x), round(y), 
 					image_xscale, image_yscale, image_angle, image_blend, image_alpha)
+	image_blend=blend
 }
 //清空子弹信息
 clearBullets = function() {

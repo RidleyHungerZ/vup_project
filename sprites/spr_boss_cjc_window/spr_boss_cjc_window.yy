@@ -73,8 +73,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "caoJianCong",
-    "path": "folders/Sprites/boss/caoJianCong.yy",
+    "name": "caoJc",
+    "path": "folders/Sprites/boss/caoJc.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_window",

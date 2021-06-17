@@ -1,2 +1,2 @@
 event_inherited()
-ice=0 //附着冰
+//ice=0 //附着冰

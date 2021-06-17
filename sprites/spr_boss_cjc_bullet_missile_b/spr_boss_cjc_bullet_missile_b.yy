@@ -82,7 +82,7 @@
   "nineSlice": null,
   "parent": {
     "name": "bullet",
-    "path": "folders/Sprites/boss/caoJianCong/bullet.yy",
+    "path": "folders/Sprites/boss/caoJc/bullet.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_boss_cjc_bullet_missile_b",

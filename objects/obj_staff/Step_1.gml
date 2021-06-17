@@ -111,13 +111,24 @@ if scr_menu_trem() {
 }
 //自动回复能量
 if scr_menu_trem() {
-	if global.player_mp<global.player_mp_up {
-		if auto_sp_time<120 auto_sp_time++
+	//自动回复
+	if global.player_mp<global.player_mp_up 
+	&& !scr_player_debuff_is(DEBUFF.losses) {
+		if auto_sp_time<90 auto_sp_time++
 		else {
 			global.player_mp++
 			auto_sp_time=0
 		}
 	} else auto_sp_time=0
+	//流失
+	if global.player_mp>0
+	&& scr_player_debuff_is(DEBUFF.losses) {
+		if loss_sp_time<30 loss_sp_time++
+		else {
+			global.player_mp--
+			loss_sp_time=0
+		}
+	} else loss_sp_time=0
 }
 #endregion
 #region BOSS数值控制
