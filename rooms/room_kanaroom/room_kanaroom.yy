@@ -103,7 +103,7 @@
       ],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"back","tags":[],"resourceType":"GMRLayer",},
   ],
   "inheritLayers": false,
-  "creationCodeFile": "",
+  "creationCodeFile": "${project_dir}/rooms/room_kanaroom/RoomCreationCode.gml",
   "inheritCode": false,
   "instanceCreationOrder": [
     {"name":"inst_4D1DE8C7","path":"rooms/room_kanaroom/room_kanaroom.yy",},

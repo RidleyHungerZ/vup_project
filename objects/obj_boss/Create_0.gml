@@ -111,6 +111,8 @@ boom_start=function() {
 	can_dmg=false;
 	have_dmg=false;
 	boom=1;
+	if sprite_exists(SS_death)
+		scr_sprite_change(SS_death, 0, 0)
 }
 //爆炸开始时发生
 boss_hp0_trigger=function() {

@@ -844,7 +844,7 @@ else if room==room_area0_2
 	if action==3 && time==0 {
 		audio_bgm_stop()
 		for(var i=0;i<6;i++) {
-			with instance_create_layer(2384-i*32, -64-64*i, layerInst[3], obj_boss_cjc_bullet_missile_s) {
+			with instance_create_layer(2384-i*32, -64-64*i, layerInst[3], obj_boss_caoJc_bullet_missile_s) {
 				scr_sprite_change(-2, -2, 0.5)
 				image_xscale/=image_xscale
 				view_edge=-1
@@ -859,7 +859,7 @@ else if room==room_area0_2
 		action+=0.1
 		time=15
 		if action>3.6 {
-			with obj_boss_cjc_bullet_missile_s {
+			with obj_boss_caoJc_bullet_missile_s {
 				vspeed=6
 			}
 			action=4
@@ -888,7 +888,7 @@ else if room==room_area0_2
 	}
 	//草剪葱出现
 	if action==5 && time==0 {
-		with obj_boss_cjc {
+		with obj_boss_caoJc {
 			firedir=1
 			vspeed=2
 		}
@@ -896,13 +896,13 @@ else if room==room_area0_2
 		action=5.1
 	}
 	if action==5.1 {
-		if obj_boss_cjc.y>0 {
-			obj_boss_cjc.vspeed=max(0.5, 2*(1-y/96))
+		if obj_boss_caoJc.y>0 {
+			obj_boss_caoJc.vspeed=max(0.5, 2*(1-y/96))
 		}
-		if obj_boss_cjc.y>=96 {
-			obj_boss_cjc.speed=0
-			obj_boss_cjc.y=96
-			obj_boss_cjc.float=true
+		if obj_boss_caoJc.y>=96 {
+			obj_boss_caoJc.speed=0
+			obj_boss_caoJc.y=96
+			obj_boss_caoJc.float=true
 			action=6
 			time=30
 		}
@@ -948,13 +948,13 @@ else if room==room_area0_2
 		scr_skip_boss(1, bgm_boss1, bgm_area0, 1, 2096, 224, prg, function() {
 			inst_room_area0_2_boss_roomrange.use=false
 		})
-		with obj_boss_cjc {
+		with obj_boss_caoJc {
 			y=96
 			speed=0
 			firedir=1
 			float=true
 		}
-		instance_destroy(obj_boss_cjc_bullet_missile_s)
+		instance_destroy(obj_boss_caoJc_bullet_missile_s)
 		instance_destroy(obj_bullet)
 		instance_destroy(obj_player_bullet)
 	}
