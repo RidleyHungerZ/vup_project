@@ -20,8 +20,12 @@ function scr_player_damage_cal(enemy) {
 	||(enemy.inst_of(obj_enemy) && enemy.enemy_or_bullet==2)
 		enemy.hit=1
 	//特殊效果
-	injure_element=enemy.element
+	injure_element=enemy.attack_element
 	injure_attack_type=enemy.attack_type
+	//负面状态
+	if enemy.attack_debuff!=PLAYER_DEBUFF.none {
+		scr_player_debuff(enemy.attack_debuff, enemy.attack_debuff_time)
+	}
 	//几种击飞指定朝向方向
 	if in(enemy.attack_type, [ATK_TYPE.push, ATK_TYPE.pushup, ATK_TYPE.pushdown]) {
 		//击飞方向，有位移则以位移为准

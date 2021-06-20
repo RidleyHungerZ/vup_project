@@ -59,7 +59,7 @@
     "spriteId": {"name":"spr_boss_yanzx_bullet_butterfly","path":"sprites/spr_boss_yanzx_bullet_butterfly/spr_boss_yanzx_bullet_butterfly.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 0.25,
+    "playbackSpeed": 0.5,
     "playbackSpeedType": 1,
     "autoRecord": true,
     "volume": 1.0,

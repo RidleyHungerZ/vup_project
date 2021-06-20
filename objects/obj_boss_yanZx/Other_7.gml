@@ -11,6 +11,14 @@ else if sprite_index==spr_boss_yanzx_dis {
 	have_dmg=false
 }
 #endregion
+#region 丢
+else if sprite_index==spr_boss_yanzx_throw_st {
+	scr_sprite_change(-2, image_number-0.5, 0)
+}
+else if sprite_index==spr_boss_yanzx_throw {
+	scr_sprite_change(-2, image_number-0.5, 0)
+}
+#endregion
 #region 斩击
 else if sprite_index==spr_boss_yanzx_chop1 {
 	scr_sprite_change(-2, image_number-0.5, 0)
@@ -26,6 +34,9 @@ else if sprite_index==spr_boss_yanzx_chop3 {
 	scr_sprite_change(-2, image_number-0.5, 0)
 	can_dmg=true
 	have_dmg=true
+}
+else if sprite_index==spr_boss_yanzx_choped {
+	scr_sprite_change(spr_boss_yanzx_idle, 0, 0.25)
 }
 #endregion
 #region 咏唱
@@ -48,13 +59,13 @@ else if sprite_index==spr_boss_yanzx_kick_ed {
 else if sprite_index==spr_boss_yanzx_gun_app {
 	scr_sprite_change(-2, image_number-0.5, 0)
 }
+else if sprite_index==spr_boss_yanzx_gun_dis {
+	scr_sprite_change(spr_boss_yanzx_idle, 0, 0.25)
+}
 else if sprite_index==spr_boss_yanzx_gun_raise {
 	scr_sprite_change(-2, image_number-0.5, 0)
 }
 else if sprite_index==spr_boss_yanzx_gun_ed {
 	scr_sprite_change(spr_boss_yanzx_gun_raise, 3.5, 0)
-}
-else if sprite_index==spr_boss_yanzx_throw {
-	scr_sprite_change(-2, image_number-0.5, 0)
 }
 #endregion

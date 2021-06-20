@@ -88,6 +88,20 @@ if(hp>0) {
 	}
 	else element_fire_time=0
 #endregion
+#region buff持续
+//正面buff
+if enemy_buff_time>0 enemy_buff_time--
+else {
+	enemy_buff=ENEMY_BUFF.none
+	enemy_buff_time=0
+}
+//负面buff
+if enemy_debuff_time>0 enemy_debuff_time--
+else {
+	enemy_debuff=ENEMY_DEBUFF.none
+	enemy_debuff_time=0
+}
+#endregion
 //以下内容为敌方目标
 if !inst_of(obj_enemy)
 && !inst_of(obj_boss)

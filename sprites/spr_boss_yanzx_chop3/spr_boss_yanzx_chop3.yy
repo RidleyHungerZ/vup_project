@@ -57,6 +57,9 @@
     {"compositeImage":{"FrameId":{"name":"7eb001a6-d89d-4e5d-9dfe-7bfc27b6c620","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"7eb001a6-d89d-4e5d-9dfe-7bfc27b6c620","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_boss_yanzx_chop3","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"resourceVersion":"1.0","name":"7eb001a6-d89d-4e5d-9dfe-7bfc27b6c620","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"3a95f82d-8470-4a49-9faf-58f6a8da4f64","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"3a95f82d-8470-4a49-9faf-58f6a8da4f64","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"LayerId":{"name":"67f079a6-f566-4fcd-97cc-a735fc8599ff","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_boss_yanzx_chop3","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"resourceVersion":"1.0","name":"3a95f82d-8470-4a49-9faf-58f6a8da4f64","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_boss_yanzx_chop3","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},
@@ -66,7 +69,7 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 11.0,
+    "length": 12.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -82,6 +85,7 @@
             {"id":"0803599c-eb1d-437e-b871-a204eacd57be","Key":8.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"81d140f5-5984-4f70-8e68-02a2a12f9323","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"d79213b6-2a29-4485-b429-450158d0899a","Key":9.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"3f516efa-d86e-48b7-8966-d71f82fbc564","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"7d37cea2-891b-4c85-993a-48c515806d3a","Key":10.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"7eb001a6-d89d-4e5d-9dfe-7bfc27b6c620","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"27931988-459d-4314-8e5c-0afe930822ad","Key":11.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"3a95f82d-8470-4a49-9faf-58f6a8da4f64","path":"sprites/spr_boss_yanzx_chop3/spr_boss_yanzx_chop3.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,

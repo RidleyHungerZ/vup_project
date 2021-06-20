@@ -6,7 +6,7 @@ if mask_type==PYMASK_TYPE.dash
 	mask_index=spr_player_mask_idle
 var hspdmit=1; //横向移动速度倍率
 //缓慢状态下，移动速度降低25%
-if scr_player_debuff_is(DEBUFF.slow) spdmit=(1-0.25);
+if scr_player_debuff_is(PLAYER_DEBUFF.slow) hspdmit=(1-0.25);
 #region 飓风吹飞
 //滑翔才受影响
 var //windlist = ds_list_create(),
@@ -330,12 +330,6 @@ if(instwater) {
 		underwater=0;
 		scr_sound_stop(se_player_underwater);
 	}
-	//呼吸泡
-	if(global.fps_currmenu mod 90 == 0) {
-		with(instance_create_depth(x+8*image_xscale, y-16*image_yscale, depth-1, obj_water_bubble)) {
-			breathe = true;
-		}
-	}
 }
 else{
 	water=0;
@@ -346,8 +340,17 @@ else{
 	underwater=0;
 	scr_sound_stop(se_player_underwater);
 }
-//出入水水花
-if scr_menu_trem() {
+//水域动画
+if global.stop==0 {
+	//呼吸泡
+	if water==1 {
+		if(global.fps_currmenu mod 90 == 0) {
+			with(instance_create_depth(x+8*image_xscale, y-16*image_yscale, depth-1, obj_water_bubble)) {
+				breathe = true;
+			}
+		}
+	}
+	//出入水花
 	if(waterboost==0) {
 		var waterup=instance_place(x, y, obj_water_top);
 		if(waterup) {
@@ -370,7 +373,7 @@ if scr_menu_trem() {
 }
 	
 //buff减速
-/*if(scr_player_debuff_is(DEBUFF.ice)) {
+/*if(scr_player_debuff_is(PLAYER_DEBUFF.ice)) {
 	H*=0.5;
 	V*=0.75;
 }*/

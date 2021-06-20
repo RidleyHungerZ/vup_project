@@ -192,7 +192,8 @@ else {
 	&& operator) {//omega剑强行取消无敌写在剑的事件中
 		for(var i=0;i<enemylistcnt;i++){
 			var enemy=enemylist[| i];
-			if(enemy.hp>0 && enemy.attack!=0
+			if(enemy.hp>0 
+			&& enemy.attack!=0
 			&& enemy.have_dmg
 			&& !in(enemy.injure_element, [ELEMENTS.ice, ELEMENTS.elec])
 			&& enemy.injure_type!=ATK_TYPE.push
@@ -215,7 +216,8 @@ else {
 	&& operator) {
 		for(var i=0;i<bulletlistcnt;i++){
 			var bullet=bulletlist[| i];
-			if(bullet.attack!=0) {
+			if(bullet.attack!=0
+			&& bullet.have_dmg) {
 				if(uninjure==0 || injure_level<bullet.damage_level)
 				&& uninjure_temp==0  {
 					place=true;
@@ -279,7 +281,6 @@ else {
 	}
 	#endregion
 	#endregion
-	injure_element=ELEMENTS.none
 	#region 进入受伤状态，进行方向和类型设定
 	if(place) injure_t=0;
 	if((uninjure==1 || uninjure==-1)
@@ -336,7 +337,7 @@ else {
 			vsp=0;
 			ice_time=0;
 			scr_sound_play(se_ice);
-			scr_player_debuff(DEBUFF.frozen, 90)
+			scr_player_debuff(PLAYER_DEBUFF.frozen, 9999)
 			injure_element=ELEMENTS.none
 		}
 		//普通受伤
@@ -361,9 +362,9 @@ else {
 			injure_attack_type=ATK_TYPE.bullet;
 			//属性debuff
 			if injure_element==ELEMENTS.fire {
-				scr_player_debuff(DEBUFF.overheated, 180)
-			} else if injure_element==ELEMENTS.fire {
-				scr_player_debuff(DEBUFF.losses, 180)
+				scr_player_debuff(PLAYER_DEBUFF.overheated, 180)
+			} else if injure_element==ELEMENTS.elec {
+				scr_player_debuff(PLAYER_DEBUFF.losses, 180)
 			}
 			injure_element=ELEMENTS.none;
 		}
@@ -485,17 +486,17 @@ else if(injure_attack_type==ATK_TYPE.pushdown) {
 }
 #endregion
 #region 冰冻
-else if(scr_player_debuff_is(DEBUFF.frozen)) {
+else if(scr_player_debuff_is(PLAYER_DEBUFF.frozen)) {
 	injure_t=1;//无敌一直在
 	#region 挣扎
 	if((keystate_check(global.left_state)
 	|| keystate_check(global.right_state))
 	&& keystate_check_pressed(global.jump_state)) {
 		ice_time+=20;
-		global.debuff_time-=20;
 	}
 	ice_time+=1;
 	if(ice_time>=ice_time_up) {
+		scr_player_debuff_clear()
 		injure_attack_type=ATK_TYPE.bullet;
 		scr_sprite_change(SS_idle,0,0.25);
 		walk=0;
@@ -505,7 +506,7 @@ else if(scr_player_debuff_is(DEBUFF.frozen)) {
 		vsp=0;
 		ice_time=0;
 		scr_ice_boompart_ext(spr_ice_part, 6, x ,y)
-		scr_player_debuff(DEBUFF.slow, 120)
+		scr_player_debuff(PLAYER_DEBUFF.slow, 180)
 	}
 	#endregion
 	#region 落地

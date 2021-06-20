@@ -261,9 +261,9 @@ global.player_es_max=99999
 global.combo=0 //当前连击数
 global.combo_time=0 //连击倒计时
 global.support_mult=1 //羁绊值倍率
-global.player_buff=BUFF.none
+global.player_buff=PLAYER_BUFF.none
 global.player_buff_time=0
-global.player_debuff=DEBUFF.none
+global.player_debuff=PLAYER_DEBUFF.none
 global.player_debuff_time=0
 #endregion
 #region 计时区

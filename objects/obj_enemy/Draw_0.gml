@@ -1,7 +1,7 @@
 if(view_current!=0) exit;
 var perx=x, pery=y;
-x=round(x) 
-y=round(y)
+//x=round(x) 
+//y=round(y)
 var fsh=flash,bgk=0;
 #region 白影
 if(whiteimage) {

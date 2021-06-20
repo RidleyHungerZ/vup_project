@@ -75,6 +75,59 @@ function scr_viewroom_background(isfirst){
 			#endregion
 		break } #endregion
 		#endregion
+		#region area_test
+		case room_area0_test : { #region
+			#region 背景
+				background_x[1]=0.75*vx
+				background_y[1]=vy
+			#endregion
+			#region 声音
+			
+			#endregion
+			#region 重生点
+				
+			#endregion
+			#region 门锁定
+			
+			#endregion
+			#region 小对话
+				
+			#endregion
+		break } #endregion
+		case room_area0_test_boss : { #region
+			#region 背景
+				background_x[1]=0.4 * vx
+				background_y[1]=vy-288
+				
+				background_x[2]=0.5 * vx
+				background_y[2]=vy-288
+				
+				background_x[3]=0.6 * vx
+				background_y[3]=vy-288
+				
+				background_x[4]=0.8 * vx
+				background_y[4]=vy-288
+				
+				background_x[5]=vx
+				background_y[5]=vy-288
+				
+				background_x[6]=vx
+				background_y[6]=vy-288
+			#endregion
+			#region 声音
+			
+			#endregion
+			#region 重生点
+				
+			#endregion
+			#region 门锁定
+			
+			#endregion
+			#region 小对话
+				
+			#endregion
+		break } #endregion
+		#endregion
 	}
 	scr_background_set()
 }

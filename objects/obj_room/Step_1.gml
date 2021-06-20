@@ -27,8 +27,11 @@ else if action==1004 {
 		action=1100
 	} else if global.boss_hp<=0 {
 		with obj_boss {
-			if is_war_boss 
+			if is_war_boss {
 				boss_hp0_trigger();
+				if sprite_exists(SS_death)
+					scr_sprite_change(SS_death, 0, 0)
+			}
 		}
 		global.boss_war=0
 		action=1200
@@ -66,5 +69,5 @@ else if action==1200 {
 }
 #endregion
 
-scr_room_beginstep_test()
+scr_room_beginstep_area_test()
 scr_room_beginstep_area0()

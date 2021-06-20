@@ -203,16 +203,16 @@ thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.boss, 1, 0)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"这……这不是窝上个月刚买的ES-02型么！
 乃们这些家伙……太过份了！")
-thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 0, false,
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 9, 0, false,
 @"一群杂碎……连个看仓库的女人都摆不平，还得本大爷亲自出马。")
-thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 0, false,
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 9, 0, false,
 @"直接干掉这女人算了，然后不光是什么"+TXT_K+@"『驱动器』"+TXT_D+@"，
 整个仓库的东西都是本大爷的了！")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @""+TXT_K+@"『驱动器』"+TXT_D+@"？
 乃是要来抢"+TXT_K+@"『虚拟驱动器』"+TXT_D+@"的？
 乃是谁？")
-thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.boss, 1, 1, true,
+thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 9, 4, true,
 @"本大爷叫草翦葱Negi！
 现在老子心情很差，所以要做掉你！
 记住这个名字然后下地狱去吧！")

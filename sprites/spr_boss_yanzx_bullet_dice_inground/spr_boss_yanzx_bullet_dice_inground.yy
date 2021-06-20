@@ -10,7 +10,7 @@
   "bbox_left": 0,
   "bbox_right": 24,
   "bbox_top": 0,
-  "bbox_bottom": 29,
+  "bbox_bottom": 30,
   "HTile": false,
   "VTile": false,
   "For3D": false,
@@ -54,6 +54,9 @@
     {"compositeImage":{"FrameId":{"name":"722ba1a5-229e-4d1b-aa9e-5cb5cfc9bf8d","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"722ba1a5-229e-4d1b-aa9e-5cb5cfc9bf8d","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"LayerId":{"name":"3a2d4176-ebcb-43ba-b282-cd07258f042b","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_boss_yanzx_bullet_dice_inground","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"resourceVersion":"1.0","name":"722ba1a5-229e-4d1b-aa9e-5cb5cfc9bf8d","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"820583f7-7f96-4baf-b820-2d919004f5cc","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"820583f7-7f96-4baf-b820-2d919004f5cc","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"LayerId":{"name":"3a2d4176-ebcb-43ba-b282-cd07258f042b","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_boss_yanzx_bullet_dice_inground","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"resourceVersion":"1.0","name":"820583f7-7f96-4baf-b820-2d919004f5cc","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_boss_yanzx_bullet_dice_inground","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},
@@ -63,7 +66,7 @@
     "playbackSpeedType": 1,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 10.0,
+    "length": 11.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -78,6 +81,7 @@
             {"id":"71c4aa06-5285-44dd-aa87-b8fb974fcecb","Key":7.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"a93aa99c-6728-4300-b146-7a82cef00410","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"7373d7ce-640b-4c1c-973c-907a98e3b765","Key":8.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"ac8b8906-77d8-449f-a8e0-d9c566403bfb","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"022cf46a-11bf-42b8-8848-2d374065d74a","Key":9.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"722ba1a5-229e-4d1b-aa9e-5cb5cfc9bf8d","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"3d1dad80-5dd2-4703-939e-7767be9aca9d","Key":10.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"820583f7-7f96-4baf-b820-2d919004f5cc","path":"sprites/spr_boss_yanzx_bullet_dice_inground/spr_boss_yanzx_bullet_dice_inground.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,

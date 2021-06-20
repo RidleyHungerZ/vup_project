@@ -252,11 +252,11 @@ airdashed=0; //冲刺次数限制
 drawSelf = function() {
 	var blend = image_blend
 	//debuff变色
-	if scr_player_debuff_is(DEBUFF.overheated) {
+	if scr_player_debuff_is(PLAYER_DEBUFF.overheated) {
 		image_blend=$7f7fff
-	} else if scr_player_debuff_is(DEBUFF.losses) {
+	} else if scr_player_debuff_is(PLAYER_DEBUFF.losses) {
 		image_blend=$7fffff
-	} else if scr_player_debuff_is(DEBUFF.slow) {
+	} else if scr_player_debuff_is(PLAYER_DEBUFF.slow) {
 		image_blend=$ffff7f
 	}
 	draw_sprite_ext(sprite_index, image_index, round(x), round(y), 

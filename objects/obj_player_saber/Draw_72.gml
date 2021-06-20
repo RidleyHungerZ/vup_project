@@ -68,7 +68,7 @@ if sprite_index==spr_player_armor_idle_chop_charge_saber  {
 	chop_charge_ele=ELEMENTS.elec
 }
 if chop_charge {
-	scr_player_damage_set(16,chop_charge_ele,ATK_TYPE.bullet,2,9,0,9,1)
+	scr_player_damage_set(16,chop_charge_ele,ATK_TYPE.bullet,2,7,0,7,1)
 }
 //回旋斩
 var chop_spin=false, chop_spin_ele=ELEMENTS.none;
@@ -92,7 +92,7 @@ if sprite_index==spr_player_armor_fall_spin_chop_saber
 if chop_spin {
 	var spandmg=8
 	if span_comboing spandmg=4
-	scr_player_damage_set(spandmg,chop_spin_ele,ATK_TYPE.bullet,2,9,1,0,1)
+	scr_player_damage_set(spandmg,chop_spin_ele,ATK_TYPE.bullet,2,7,1,0,1)
 } else span_comboing=false
 //升龙斩
 if sprite_index==spr_player_armor_fly_chop_saber 

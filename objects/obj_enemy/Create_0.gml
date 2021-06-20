@@ -17,13 +17,20 @@ untime=0; //无敌时间
 crash=0; //无敌等级变化
 injure_unrepeat=0; //防重复伤害
 injure_unrepeat_undm=0; //防重复无伤
-injure_type=ATK_TYPE.bullet;
+injure_type=ATK_TYPE.bullet; //被攻击类型
 undm_injure_type=ATK_TYPE.bullet; //无敌被击中类型
 injure_element=ELEMENTS.none; //属性伤害
 last_in_element=ELEMENTS.none; //收到攻击前的受伤属性
 now_in_element=ELEMENTS.none; //本次受到的属性，仅记录用
-element=ELEMENTS.none;
-attack_type=ATK_TYPE.bullet;
+enemy_buff=ENEMY_BUFF.none; //增益buff
+enemy_buff_time=0; //增益buff持续时间
+enemy_debuff=ENEMY_DEBUFF.none; //负面buff
+enemy_debuff_time=0; //负面buff持续时间
+element=ELEMENTS.none; //自身属性
+attack_type=ATK_TYPE.bullet; //攻击类型
+attack_element=ELEMENTS.none; //攻击属性
+attack_debuff=PLAYER_DEBUFF.none; //攻击附带debuff
+attack_debuff_time=0; //攻击附带debuff持续时间
 hit=0;
 DEF=1;
 if scr_mode_Is_easy() 
@@ -206,12 +213,14 @@ drawElementEffect = function() {
 	if(element_size==2) {
 		//ss_elem_fire = spr_boss_element1
 		ss_elem_ice = spr_enemy_element_ice_b
-		ss_elem_elec = spr_enemy_element_elec;
+		ss_elem_elec = spr_enemy_element_elec_b;
 	}
 	if(injure_element==ELEMENTS.ice) {
-		draw_sprite(ss_elem_ice, 0, x, y);
+		draw_sprite_ext(ss_elem_ice, 0, x, y, 
+						image_xscale, image_yscale, image_angle, c_white, 0.75);
 	} else if(injure_element==ELEMENTS.elec) {
-		draw_sprite(ss_elem_elec, element_index/2, x, y);
+		draw_sprite_ext(ss_elem_elec, element_index/2, x, y, 
+						image_xscale, image_yscale, image_angle, c_white, 1);
 	}
 }
 inInjurePush = function() {
@@ -321,5 +330,33 @@ findTarget = function(frtx, bckx, topy, btny, colline) {
 	 || !colline)
 	    target=obj_player
 	return target
+}
+//增益buff
+enemyBuff = function(buff, time) {
+	enemy_buff=buff
+	enemy_buff_time=time
+}
+enemyBuffClear = function() {
+	enemy_buff=0
+	enemy_buff_time=0
+}
+enemyBuffIs = function(buff) {
+	if is_undefined(buff)
+		return enemy_buff
+	else return enemy_buff==buff
+}
+//负面buff
+enemyDebuff = function(debuff, time) {
+	enemy_debuff=debuff
+	enemy_debuff_time=time
+}
+enemyDebuffClear = function() {
+	enemy_debuff=0
+	enemy_debuff_time=0
+}
+enemyDebuffIs = function(debuff) {
+	if is_undefined(debuff)
+		return enemy_debuff
+	else return enemy_debuff==debuff
 }
 #endregion

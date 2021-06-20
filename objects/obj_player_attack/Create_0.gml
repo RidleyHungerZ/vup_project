@@ -2,7 +2,7 @@ event_inherited()
 attack=0
 attack_up=0
 element=ELEMENTS.none
-//debuff=DEBUFF.none//继承玩家的debuff
+//debuff=PLAYER_DEBUFF.none//继承玩家的debuff
 attack_type=0//0炮击1切开2击飞
 unrepeat=0//设置击中后的防止重复数值
 uninjure_set=0//0赋值1叠加

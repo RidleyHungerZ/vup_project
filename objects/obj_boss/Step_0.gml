@@ -1,5 +1,8 @@
 event_inherited();
-if(scr_boss_isget(bs)) exit;
+if(scr_boss_isget(bs)) {
+	scr_sprite_change(spr_none, 0, 0)
+	exit;
+}
 if(!is_war_boss) exit;
 if(!scr_menu_trem()) exit;
 #region BOSS战开始或两方都空血或使用死亡系统，则停止
@@ -26,8 +29,8 @@ if(use_death_system_boss && boom>0) {
 			flash=1;
 		}
 	    if(boom<3) {
-	        var xx=random_range(bbox_right,bbox_left),
-				yy=random_range(bbox_bottom,bbox_top);
+	        var xx=random_range(min(bbox_left, x-48), max(bbox_right, x+48)),
+				yy=random_range(min(bbox_top, y-48), max(bbox_bottom, y+48));
 	        if(boom_time mod 5 == 0) {
 	            with(instance_create_depth(xx,yy,depth-500,obj_animation)) {
 	                scr_sprite_change(spr_smoke,0,0.5);
@@ -53,8 +56,8 @@ if(use_death_system_boss && boom>0) {
 		if(boom_time>120 &&(boom_time mod 30 == 0))
 		||(boom_time>60 &&(boom_time mod 20 == 0))
 		||(boom_time>0   &&(boom_time mod 10 == 0)){
-			var xx=random_range(bbox_right,bbox_left),
-				yy=random_range(bbox_bottom,bbox_top);
+			var xx=random_range(min(bbox_left, x-48), max(bbox_right, x+48)),
+				yy=random_range(min(bbox_top, y-48), max(bbox_bottom, y+48));
 			with(instance_create_depth(xx,yy,depth-500,obj_animation)) {
 				scr_sprite_change(spr_boom, 0, 0.5);
 				animation_once=true;
@@ -77,8 +80,8 @@ if(use_death_system_boss && boom>0) {
 	//变白
 	else if(boom==3) {
 		if boom_time mod 5 == 0 {
-			var xx=random_range(bbox_right,bbox_left),
-				yy=random_range(bbox_bottom,bbox_top);
+			var xx=random_range(min(bbox_left, x-48), max(bbox_right, x+48)),
+				yy=random_range(min(bbox_top, y-48), max(bbox_bottom, y+48));
 			with(instance_create_depth(xx,yy,depth-500,obj_animation)) {
 				scr_sprite_change(spr_boom, 0, 0.5);
 				animation_once=true;

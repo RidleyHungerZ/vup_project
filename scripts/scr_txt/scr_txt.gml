@@ -8,5 +8,6 @@ function scr_txt(){
 	scr_txt_tips()
 	#region 剧情
 	scr_txt_area0()
+	scr_txt_area_test()
 	#endregion
 }

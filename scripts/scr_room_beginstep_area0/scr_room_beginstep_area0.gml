@@ -984,6 +984,7 @@ else if room==room_area0_2
 		global.operate=0
 		with obj_player {
 			scr_sprite_change(spr_player_hu_faint, 0, 0.15)
+			scr_sound_play(se_player_faint)
 		}
 		action=4
 		time=90

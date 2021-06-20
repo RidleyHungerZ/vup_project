@@ -41,7 +41,7 @@
     "spriteId": {"name":"spr_boss_yanzx_bullet_dice_fall","path":"sprites/spr_boss_yanzx_bullet_dice_fall/spr_boss_yanzx_bullet_dice_fall.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 1.0,
+    "playbackSpeed": 0.5,
     "playbackSpeedType": 1,
     "autoRecord": true,
     "volume": 1.0,

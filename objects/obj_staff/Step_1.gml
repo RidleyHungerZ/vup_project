@@ -92,8 +92,22 @@ else if global.player_support<0
 //	global.player_life=0
 //else if global.player_life>9 
 //	global.player_life=9
-//连击羁绊加成
-if scr_menu_trem() {
+if global.operate==1
+&& global.player_operate==1 
+&& scr_menu_trem() {
+	//buff
+	if global.player_buff_time>0 {
+		global.player_buff_time--
+	} else {
+		scr_player_buff(PLAYER_BUFF.none, 0)
+	}
+	//debuff
+	if global.player_debuff_time>0 {
+		global.player_debuff_time--
+	} else {
+		scr_player_debuff(PLAYER_DEBUFF.none, 0)
+	}
+	//连击羁绊加成
 	if global.combo_time>0 global.combo_time--
 	else {
 		global.combo_time=0
@@ -108,12 +122,9 @@ if scr_menu_trem() {
 		global.support_mult=1+0.5*(global.combo div 5)
 		global.support_mult=min(5, global.support_mult)
 	}
-}
-//自动回复能量
-if scr_menu_trem() {
 	//自动回复
 	if global.player_mp<global.player_mp_up 
-	&& !scr_player_debuff_is(DEBUFF.losses) {
+	&& !scr_player_debuff_is(PLAYER_DEBUFF.losses) {
 		if auto_sp_time<90 auto_sp_time++
 		else {
 			global.player_mp++
@@ -122,7 +133,7 @@ if scr_menu_trem() {
 	} else auto_sp_time=0
 	//流失
 	if global.player_mp>0
-	&& scr_player_debuff_is(DEBUFF.losses) {
+	&& scr_player_debuff_is(PLAYER_DEBUFF.losses) {
 		if loss_sp_time<30 loss_sp_time++
 		else {
 			global.player_mp--

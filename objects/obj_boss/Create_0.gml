@@ -111,8 +111,8 @@ boom_start=function() {
 	can_dmg=false;
 	have_dmg=false;
 	boom=1;
-	if sprite_exists(SS_death)
-		scr_sprite_change(SS_death, 0, 0)
+	injure_element=ELEMENTS.none
+	element_index=0
 }
 //爆炸开始时发生
 boss_hp0_trigger=function() {
@@ -121,5 +121,5 @@ boss_hp0_trigger=function() {
 //爆炸结束时发生
 boom_trigger = function() {}
 //绘制属性效果
-drawElementEffect = function() {}
+//drawElementEffect = function() {}
 #endregion

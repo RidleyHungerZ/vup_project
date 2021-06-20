@@ -1,7 +1,7 @@
 if(view_current!=0) exit;
 var perx=x, pery=y;
-x=round(x) 
-y=round(y)
+//x=round(x) 
+//y=round(y)
 #region 副武器蓄力后半部分
 if charge[2]>=charge_dis {
 	var spr=spr_player_charge_sub_1_bck
@@ -70,9 +70,9 @@ if call_screen {
 }
 #endregion
 #region 冻结
-if scr_player_debuff_is(DEBUFF.frozen) {
+if scr_player_debuff_is(PLAYER_DEBUFF.frozen) {
 	draw_sprite_ext(spr_player_debuff_frozen, 0, x, y, 
-					image_xscale, image_yscale, image_angle, image_blend, image_alpha)
+					image_xscale, image_yscale, image_angle, c_white, 0.75)
 }
 #endregion
 x=perx;

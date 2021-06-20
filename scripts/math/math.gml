@@ -13,15 +13,15 @@ function tan_de(angle) {
 }
 /// @arg cos
 function arccos_de(cosval) {
-	return degtorad(arccos(cosval))
+	return radtodeg(arccos(cosval))
 }
 /// @arg sin
 function arcsin_de(sinval) {
-	return degtorad(arcsin(sinval))
+	return radtodeg(arcsin(sinval))
 }
 /// @arg tan
 function arctan_de(tanval) {
-	return degtorad(arctan(tanval))
+	return radtodeg(arctan(tanval))
 }
 #endregion
 #region 几何运算
