@@ -18,3 +18,10 @@ if sprite_index==spr_enemy01_shoot {
 	scr_sprite_change(spr_enemy01_idle, 0, 0)
 }
 #endregion
+#region BOSS
+if sprite_index==spr_boss_yanzx_app {
+	scr_sprite_change(spr_boss_yanzx_idle, 0, 0.25)
+} else if sprite_index==spr_boss_yanzx_dis {
+	scr_sprite_change(spr_boss_yanzx_none, 0, 0)
+}
+#endregion

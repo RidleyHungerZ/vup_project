@@ -293,7 +293,7 @@ else {
 		{
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
-			iif(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
+			if(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
 				scr_player_outground();
 			hsp=8*hspd*(-uninjure);
 			vsp=-vspd;

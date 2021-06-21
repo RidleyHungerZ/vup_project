@@ -398,8 +398,10 @@ function scr_draw_menu_item(dx, dy){
 	//道具说明
 	drawx=dx+128 drawy=dy+768
 	var desctxt=itstruts[msel[0]].desc
-	if menu_type==1
-		desctxt = itemnowst.desc
+	if menu_type==1 {
+		if !is_undefined(itemnowst)
+			desctxt = itemnowst.desc
+	}
 	scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, desctxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
 	#endregion
 	#region 右侧列表
@@ -672,7 +674,13 @@ function scr_draw_menu_skill_image(skinx, dx, dy, scl) {
 			draw_sprite_ext(spr_player_armor_bullet01, 0, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
 		}
 		#endregion
-		#region 蓄力射击
+		#region 一段蓄力射击
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_idle_shoot, 0, dx-48*scl, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_bullet_charge01, 0, dx+64*scl, dy-16*scl, scl, scl, 0, c_white, 1)
+		}
+		#endregion
+		#region 二段蓄力射击
 		else if skinx==(inx++) {
 			draw_sprite_ext(spr_player_armor_idle_shoot, 0, dx-48*scl, dy, scl, scl, 0, c_white, 1)
 			var saberele=scr_player_saber_element()

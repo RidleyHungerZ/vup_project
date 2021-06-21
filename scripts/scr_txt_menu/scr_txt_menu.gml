@@ -645,9 +645,13 @@ function scr_txt_menu(){
 					desc : "按副武器键发射子弹，\n最多可连续发射三枚子弹",
 					trim : function(){return true;},
 				}, {
-					txt : "普通蓄力射击",
-					desc : "按住副武器键蓄力到出现蓄力光时释放，\n红色蓄力光为一段蓄力，\n黄色蓄力光为二段蓄力，\n有足够ES值时可附加卡片属性",
-					trim : function(){return global.model!=PLAYER_MODEL.TAILS;},
+					txt : "一段蓄力射击",
+					desc : "按住副武器键蓄力到出现红色蓄力光时释放，\n子弹伤害提高，且具有穿透性",
+					trim : function(){return !in(global.model, [PLAYER_MODEL.TAILS]);},
+				}, {
+					txt : "二段蓄力射击",
+					desc : "按住副武器键蓄力到出现黄色蓄力光时释放，\n子弹伤害提高，且具有穿透性，\n有足够ES值时可附加卡片属性",
+					trim : function(){return !in(global.model, [PLAYER_MODEL.fire2, PLAYER_MODEL.ICE, PLAYER_MODEL.TAILS, PLAYER_MODEL.none2]);},
 				}, {
 					txt : "冰之泪",
 					desc : "副武器二段蓄力释放，\n会根据剩余ES值\n发射最多六枚环绕的冰锥，\n冰锥命中敌人后破裂，\n释放时若已存在冰锥，\n则会将原来的冰锥发射出去",

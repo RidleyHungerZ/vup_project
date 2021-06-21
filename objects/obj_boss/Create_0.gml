@@ -41,6 +41,8 @@ fire_boom=false; //碰到燃烧的火是否爆炸
 /// @element_size=1
 element_size=2; //属性特效尺寸
 view_edge=-1
+SS_death=noone;
+SS_injure=noone;
 #endregion
 
 #region 特有变量

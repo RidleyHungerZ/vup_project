@@ -26,7 +26,7 @@
   ],
   "properties": [],
   "overriddenProperties": [
-    {"propertyId":{"name":"ice","path":"objects/obj_ground/obj_ground.yy",},"objectId":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+    {"propertyId":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},"objectId":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
     {"propertyId":{"name":"ice","path":"objects/obj_soild/obj_soild.yy",},"objectId":{"name":"obj_soild","path":"objects/obj_soild/obj_soild.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
   ],
   "parent": {

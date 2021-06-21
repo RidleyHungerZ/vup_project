@@ -92,7 +92,6 @@
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_ground_hill","path":"objects/obj_ground_hill/obj_ground_hill.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":3.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":4304.0,"y":192.0,"resourceVersion":"1.0","name":"inst_4DF69DD5","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_ground_hill","path":"objects/obj_ground_hill/obj_ground_hill.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":3.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":4352.0,"y":208.0,"resourceVersion":"1.0","name":"inst_7CE7BB46","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_ground_all","path":"objects/obj_ground_all/obj_ground_all.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":4.0,"scaleY":36.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":4784.0,"y":0.0,"resourceVersion":"1.0","name":"inst_7F8140C0","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_prick","path":"objects/obj_prick/obj_prick.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":9.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":2480.0,"y":528.0,"resourceVersion":"1.0","name":"inst_755D36EF","tags":[],"resourceType":"GMRInstance",},
         {"properties":[
             {"propertyId":{"name":"aim_room","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"room_area0_test_boss","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
             {"propertyId":{"name":"aim_x","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"64","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
@@ -391,7 +390,6 @@
     {"name":"inst_7721C387","path":"rooms/room_area0_test/room_area0_test.yy",},
     {"name":"inst_78D9E4B9","path":"rooms/room_area0_test/room_area0_test.yy",},
     {"name":"inst_6ACEA73D","path":"rooms/room_area0_test/room_area0_test.yy",},
-    {"name":"inst_755D36EF","path":"rooms/room_area0_test/room_area0_test.yy",},
     {"name":"inst_17C0B9","path":"rooms/room_area0_test/room_area0_test.yy",},
     {"name":"inst_740CDADF","path":"rooms/room_area0_test/room_area0_test.yy",},
     {"name":"inst_10C30C10","path":"rooms/room_area0_test/room_area0_test.yy",},
