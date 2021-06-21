@@ -88,7 +88,7 @@ else if room==room_area0_test_boss
 	}
 	thread_talk_execute(prg, 1, 2, 30)
 	if action==2 && time==0 {
-		with npc[1] {
+		with npc[0] {
 			scr_sprite_change(spr_boss_yanzx_dis, 0, 0.25)
 			//scr_sound_play(se_boss_yanZx_dis)
 		}

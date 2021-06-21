@@ -270,7 +270,6 @@
     {"id":{"name":"spr_player_armor_jump_dblight_fire","path":"sprites/spr_player_armor_jump_dblight_fire/spr_player_armor_jump_dblight_fire.yy",},"order":2,},
     {"id":{"name":"se_door_s_open","path":"sounds/se_door_s_open/se_door_s_open.yy",},"order":2,},
     {"id":{"name":"se_player_trans_to","path":"sounds/se_player_trans_to/se_player_trans_to.yy",},"order":27,},
-    {"id":{"name":"obj_boss_yanZx_butterfly_follow","path":"objects/obj_boss_yanZx_butterfly_follow/obj_boss_yanZx_butterfly_follow.yy",},"order":8,},
     {"id":{"name":"spr_enemy07_trans","path":"sprites/spr_enemy07_trans/spr_enemy07_trans.yy",},"order":2,},
     {"id":{"name":"spr_ground_hill","path":"sprites/spr_ground_hill/spr_ground_hill.yy",},"order":2,},
     {"id":{"name":"spr_menu_status_left_hp","path":"sprites/spr_menu_status_left_hp/spr_menu_status_left_hp.yy",},"order":5,},

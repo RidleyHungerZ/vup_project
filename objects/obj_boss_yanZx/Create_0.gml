@@ -49,7 +49,19 @@ boss_hp0_trigger=function() {
 	speed=0
 	gravity=0
 	gravity_direction=270
-	
+	with obj_boss_yanZx_bullet_dice {
+		fun_selfBoom()
+	}
+	with obj_boss_yanZx_bullet_boost {
+		over()
+	}
+	with obj_boss_yanZx_bullet_kickfire {
+		hit=1
+	}
+	instance_destroy(obj_boss_yanZx_anima_groundfire)
+	instance_destroy(obj_boss_yanzx_bullet_chant_fire)
+	instance_destroy(obj_boss_yanZx_bullet_butterfly)
+	instance_destroy(obj_boss_yanZx_bullet_gun_spin)
 }
 //消失时一并带走零件
 boom_trigger = function() {

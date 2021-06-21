@@ -646,11 +646,11 @@ function scr_txt_menu(){
 					trim : function(){return true;},
 				}, {
 					txt : "一段蓄力射击",
-					desc : "按住副武器键蓄力到出现红色蓄力光时释放，\n子弹伤害提高，且具有穿透性",
+					desc : "按住副武器键蓄力到出现红色状态释放，\n子弹伤害提高，且具有穿透性",
 					trim : function(){return !in(global.model, [PLAYER_MODEL.TAILS]);},
 				}, {
 					txt : "二段蓄力射击",
-					desc : "按住副武器键蓄力到出现黄色蓄力光时释放，\n子弹伤害提高，且具有穿透性，\n有足够ES值时可附加卡片属性",
+					desc : "按住副武器键蓄力到出现黄色状态释放，\n子弹伤害提高，且具有穿透性，\n有足够ES值时可附加卡片属性",
 					trim : function(){return !in(global.model, [PLAYER_MODEL.fire2, PLAYER_MODEL.ICE, PLAYER_MODEL.TAILS, PLAYER_MODEL.none2]);},
 				}, {
 					txt : "冰之泪",

@@ -416,6 +416,7 @@ if action==5.3 && time==0 {
 		with instance_create_depth(cenx+80*i, _yb-32-GRDY, depth-10, obj_boss_yanzx_bullet_chant_fire) {
 			waittime=30//+abs(i*15)
 			time=abs(i*15)
+			topy=other._yt+32
 		}
 	}
 	action=5.4
@@ -426,6 +427,7 @@ if action==5.4 && time==0 {
 		with instance_create_depth(cenx+80*i, _yb-32-GRDY, depth-10, obj_boss_yanzx_bullet_chant_fire) {
 			waittime=30//+abs(sign(i)*floor(abs(i))*15)
 			time=abs(sign(i)*floor(abs(i))*15)
+			topy=other._yt+32
 		}
 	}
 	action=5.5
