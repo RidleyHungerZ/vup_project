@@ -85,7 +85,7 @@ function scr_viewroom_background(isfirst){
 			
 			#endregion
 			#region 重生点
-				
+				scr_relife_set_door(6320, 160)
 			#endregion
 			#region 门锁定
 			

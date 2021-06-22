@@ -1,0 +1,1 @@
+path_start(path_area_test01, 3, path_action_restart, true)

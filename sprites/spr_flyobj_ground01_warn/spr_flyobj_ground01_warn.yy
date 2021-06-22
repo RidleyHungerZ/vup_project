@@ -63,7 +63,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 40,
-    "yorigin": 7,
+    "yorigin": 23,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_flyobj_ground01_warn","path":"sprites/spr_flyobj_ground01_warn/spr_flyobj_ground01_warn.yy",},

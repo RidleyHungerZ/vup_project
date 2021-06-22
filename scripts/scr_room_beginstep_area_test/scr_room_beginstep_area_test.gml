@@ -96,7 +96,7 @@ else if room==room_area0_test_boss
 		time=120
 	}
 	if action==2.1 && time==0 {
-		instance_destroy(npc[1])
+		instance_destroy(npc[0])
 		inst_room_area0_test_boss_roomrange.use=false
 		global.operate=1
 		action=3

@@ -46,7 +46,8 @@ if(death_repeat==1
 #region 其他死亡
 if(hp<=0 
 && use_death_system==1
-&& enemy_or_bullet==1) {
+&& enemy_or_bullet==1
+&& injure_type>=0 ) {
 	gravity_direction=270;
 	if(abs(vspeed)>=abs(gravity)*vspmaxn
 	&& gravity!=0) {
