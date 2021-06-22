@@ -15,7 +15,7 @@ injure_elementfall=false; //飞行属性被属性击中是否下落
 /// @arg death_xscale=1
 death_xscale=false; //是否使用受伤对准的死亡方向
 
-xrange=256
+xrange=160
 
 SS_idle=spr_enemy08_idle
 SS_injure=spr_enemy08_injure

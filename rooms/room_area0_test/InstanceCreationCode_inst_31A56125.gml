@@ -1,1 +1,1 @@
-path_start(path_area_test02, 3, path_action_restart, true)
+path_start(path_area_test02, 2, path_action_restart, true)

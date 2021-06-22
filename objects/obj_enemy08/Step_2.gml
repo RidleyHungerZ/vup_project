@@ -9,8 +9,8 @@ if view!=1{
 if sprite_index==SS_injure exit
 //站立
 if action==0 && time==0 {
-	y+=4*(pi/60)*sin(global.fps_currmenu*pi/60)
-	hspeed=2*image_xscale
+	y+=8*(pi/30)*sin(global.fps_currmenu*pi/30)
+	hspeed=1*image_xscale
 	//超边界转弯
 	if (x-xsign)*image_xscale>=xrange
 	|| !collision_point(x+32*image_xscale, y, obj_water, 1, 1) {
@@ -21,12 +21,12 @@ if action==0 && time==0 {
 		scr_sprite_change(spr_enemy08_idle_angry, 0, 0.25)
 		speed=0
 		action=1
-		time=60
+		time=30
 	}
 } 
 //冲击
 else if action==1 && time==0 {
-	hspeed=6*image_xscale
+	hspeed=4*image_xscale
 	//超边界转弯
 	if (x-xsign)*image_xscale>=xrange
 	|| !collision_point(x+32*image_xscale, y, obj_water, 1, 1) {
