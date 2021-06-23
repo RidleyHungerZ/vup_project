@@ -31,6 +31,13 @@
             {"propertyId":{"name":"aim_xscale","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"1","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
             {"propertyId":{"name":"use","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"!scr_boss_isget(0)","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
           ],"isDnd":false,"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":192.0,"resourceVersion":"1.0","name":"inst_32474710","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[
+            {"propertyId":{"name":"aim_room","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"room_base","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+            {"propertyId":{"name":"aim_x","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"640","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+            {"propertyId":{"name":"aim_y","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"224","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+            {"propertyId":{"name":"aim_xscale","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"1","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+            {"propertyId":{"name":"use","path":"objects/obj_room_change/obj_room_change.yy",},"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"value":"scr_boss_isget(0)","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+          ],"isDnd":false,"objectId":{"name":"obj_room_change","path":"objects/obj_room_change/obj_room_change.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":192.0,"resourceVersion":"1.0","name":"inst_798C03AB","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":10,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"ground","tags":[],"resourceType":"GMRInstanceLayer",},
     {"visible":true,"depth":110,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[
         {"visible":true,"depth":210,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[
@@ -113,6 +120,7 @@
     {"name":"inst_29D886EE","path":"rooms/room_kanaroom/room_kanaroom.yy",},
     {"name":"inst_32474710","path":"rooms/room_kanaroom/room_kanaroom.yy",},
     {"name":"inst_3E58A114","path":"rooms/room_kanaroom/room_kanaroom.yy",},
+    {"name":"inst_798C03AB","path":"rooms/room_kanaroom/room_kanaroom.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
@@ -136,8 +144,8 @@
     "PhysicsWorldPixToMetres": 0.1,
   },
   "parent": {
-    "name": "area_0",
-    "path": "folders/Rooms/area_0.yy",
+    "name": "area_base",
+    "path": "folders/Rooms/area_base.yy",
   },
   "resourceVersion": "1.0",
   "name": "room_kanaroom",

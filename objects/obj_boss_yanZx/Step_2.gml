@@ -167,6 +167,7 @@ if(action==3 && time==0) {
 //位移
 if action==3.1 {
 	scr_sprite_change(spr_boss_yanzx_dis, 0, 0.25)
+	scr_sound_play(se_boss_yanzx_dis)
 	can_dmg=false
 	action=3.11
 	time=60
@@ -175,6 +176,7 @@ if action==3.11 && time==0 {
 	image_xscale*=-1
 	rx=cenrx-240*image_xscale
 	scr_sprite_change(spr_boss_yanzx_app, 0, 0.25)
+	scr_sound_play(se_boss_yanzx_app)
 	action=3.12
 	time=60
 }
@@ -187,6 +189,7 @@ if action==3.12 && time==0 {
 //举枪
 if action==3.2 && time==0 {
 	scr_sprite_change(spr_boss_yanzx_gun_raise, 0, 0.25)
+	scr_sound_play(se_boss_yanzx_gun)
 	action=3.3
 	time=30
 }
@@ -236,6 +239,7 @@ if action==3.61 && time==0 {
 //消失
 if action==3.7 && time==0 {
 	scr_sprite_change(spr_boss_yanzx_dis, 0, 0.25)
+	scr_sound_play(se_boss_yanzx_dis)
 	can_dmg=false
 	action=3.71
 }
@@ -244,6 +248,7 @@ if action==3.71 {
 		image_xscale*=-1
 		rx=cenrx-160*image_xscale
 		scr_sprite_change(spr_boss_yanzx_app, 0, 0.25)
+	scr_sound_play(se_boss_yanzx_app)
 		have_dmg=true
 		action=3.8
 		time=60
@@ -281,6 +286,7 @@ if(action==4 && time==0) {
 }
 if action==4.1 {
 	scr_sprite_change(spr_boss_yanzx_dis, 0, 0.25)
+	scr_sound_play(se_boss_yanzx_dis)
 	can_dmg=false
 	action=4.2
 }
@@ -346,6 +352,7 @@ if action==4.7 {
 	}
 	if time==0 {
 		scr_sprite_change(spr_boss_yanzx_app, 0, 0.25)
+	scr_sound_play(se_boss_yanzx_app)
 		have_dmg=true
 		action=4.8
 	}

@@ -90,7 +90,7 @@ else if room==room_area0_test_boss
 	if action==2 && time==0 {
 		with npc[0] {
 			scr_sprite_change(spr_boss_yanzx_dis, 0, 0.25)
-			//scr_sound_play(se_boss_yanZx_dis)
+			scr_sound_play(se_boss_yanzx_dis)
 		}
 		action=2.1
 		time=120
