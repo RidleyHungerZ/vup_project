@@ -31,7 +31,6 @@ function scr_player_mp_have(val) {
 	return (global.player_mp+global.player_mp_ex)>=val
 }
 /// @desc 玩家剩余血量
-/// @arg val
 function scr_player_support_ismax() {
 	return global.player_support>=100
 }

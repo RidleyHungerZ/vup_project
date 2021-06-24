@@ -164,4 +164,20 @@ else if sprite_index==spr_player_armor_change_fall_pull{
 	obj_staff.player_change_over=true
 }
 #endregion
+#region 援护技能
+else if sprite_index==spr_player_armor_support_idle_start {
+	scr_sprite_change(-2, image_number-0.5, 0)
+	menu_stop_use=true
+} 
+else if sprite_index==spr_player_armor_support_idle_ed {
+	scr_sprite_change(SS_fall, 0, 0.25)
+}
+else if sprite_index==spr_player_armor_support_fall_start {
+	scr_sprite_change(-2, image_number-0.5, 0)
+	menu_stop_use=true
+} 
+else if sprite_index==spr_player_armor_support_fall_ed {
+	scr_sprite_change(SS_fall, 0, 0.25)
+}
+#endregion
 updateMask()

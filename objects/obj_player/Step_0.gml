@@ -1,5 +1,5 @@
 updateMask()
-scr_menu_stop();
+if menu_stop_use scr_menu_stop();
 if(global.operate!=1 || global.player_operate!=1) {
 	//if(!scr_player_debuff_is(PLAYER_DEBUFF.none)) {
 	//	scr_player_debuff_clear();

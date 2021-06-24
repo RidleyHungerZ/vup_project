@@ -257,7 +257,7 @@ function scr_menu_page_status_code() {
 					audio_se_stop_all()
 					scr_sound_stopall_dpl()
 					scr_view_shock_stop()
-					global.stop=-0.5
+					return_title_stop=true
 					global.menu=0
 					global.boss_war=0
 					with obj_staff {

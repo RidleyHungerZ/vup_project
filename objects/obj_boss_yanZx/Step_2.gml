@@ -372,6 +372,7 @@ if action==4.9 && time==0 {
 if(action==5 && time==0) {
 	skill_dice([0, 0])
 	if skill_dice_over() {
+		scr_unskill_display_boss(PLAYER_MODEL.YANZX)
 		dice_action=0
 		dice_time=0
 		action=5.1

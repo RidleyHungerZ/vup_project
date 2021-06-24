@@ -480,6 +480,16 @@ function scr_txt_menu(){
 							scr_txt()
 						},
 					},
+				}, {
+					text : "必杀技界面",
+					option : {
+						type : menu_page2_option.list,
+						list : ["全部展示", "仅头目敌人", "仅玩家", "皆不展示"],
+						variable : "unskill_anima",
+						onChange : function() {
+							scr_txt()
+						},
+					},
 				},
 			]
 		},

@@ -44,4 +44,11 @@ function scr_menu_stop() {
 		image_speed=menu_imspd
 	}
 }
-
+/// @desc 可以让在暂停中播放的动画在暂停结束时不受影响
+function scr_menu_nostop_end() {
+	menu_spd=speed
+	menu_grav=gravity
+	menu_phspd=path_speed
+	menu_frict=friction
+	menu_imspd=image_speed
+}

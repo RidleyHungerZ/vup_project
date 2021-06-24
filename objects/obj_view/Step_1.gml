@@ -67,3 +67,32 @@ lastroom_xr=global.room_xr
 lastroom_yt=global.room_yt
 lastroom_yb=global.room_yb
 #endregion
+#region 大招动画
+if unskill_action!=0 {
+	if unskill_time>0 unskill_time--
+	else unskill_time=0
+} else {
+	unskill_time=0
+}
+if unskill_action==1 {
+	global.stop=0.5
+	unskill_action=2
+	unskill_time=180
+} 
+else if unskill_action==2 && unskill_time==0 {
+	unskill_action=3
+	unskill_time=5
+} 
+//变白
+else if unskill_action==3 && unskill_time==0 {
+	unskill_action=4
+	unskill_time=5
+} 
+//淡出
+else if unskill_action==4 && unskill_time==0 {
+	if unskill_endstop
+		global.stop=-0.5
+	unskill_action=0
+	unskill_time=0
+}
+#endregion

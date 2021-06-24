@@ -416,3 +416,84 @@ if loading_index>=0 {
 	}
 }
 #endregion
+#region 大招动画
+if unskill_action==2 
+|| unskill_action==3 {
+	var ukt=unskill_time,
+		ant=0,
+		bgt=0,
+		bgtmax=180;
+	//黑底
+	bgt=bgtmax;
+	if ukt<=bgt {
+		ant=bgt-ukt;
+		var alpha=clamp(ant/10, 0, 1)*0.5
+		scr_draw_rectangle_view(c_black, alpha, 1)
+	}
+	//立绘
+	bgt=bgtmax;
+	if ukt<=bgt {
+		ant=bgt-ukt;
+		var alpha=clamp(ant/10, 0, 1), 
+			px=clamp(VIEW_W_UI/2*(1-ant/10), 0, VIEW_W), 
+			py=0;
+		draw_sprite_ext(spr_ui_grd_unskill_person, unskill_index, px, py, 1, 1, 0, c_white, alpha)
+	}
+	//六边形
+	bgt=bgtmax-10;
+	if ukt<=bgt {
+		ant=bgt-ukt;
+		var alpha=0, 
+			px=112, 
+			py=956, 
+			rad=176;
+		for(var i=0;i<6;i++) {
+			var dir=15+60*i, col=merge_color(c_white, UIPINK, ((i+(ant mod 4)) mod 6)/6)
+			alpha=clamp((ant-4*i)/10, 0, 1)
+			draw_sprite_ext(spr_ui_grd_unskill_hex, 0, px+lengthdir_x(rad, dir), py+lengthdir_y(rad, dir), 
+							1, 1, 0, col, alpha)
+		}
+	}
+	//名称底边
+	bgt=bgtmax-40;
+	if ukt<=bgt {
+		ant=bgt-ukt;
+		var alpha=clamp(ant/10, 0, 1), 
+			px=112, 
+			py=956, 
+			dir=clamp(90*(ant/10), 0, 90);
+		draw_sprite_ext(spr_ui_grd_unskill_bgsline, 0, px, py, 
+						1, 1, dir, c_white, alpha)
+	}
+	//瞄准镜
+	bgt=bgtmax-60;
+	if ukt<=bgt {
+		ant=bgt-ukt;
+		var alpha=0, 
+			px=112, 
+			py=956, 
+			dir=clamp(180*(ant/10), 0, 180),
+			xsc=clamp(2*(ant/10), 1, 2);
+		draw_sprite_ext(spr_ui_grd_unskill_round, 0, px, py, 
+						xsc, xsc, dir, c_white, alpha)
+	}
+	//技能名称
+	bgt=bgtmax-60;
+	if ukt<=bgt {
+		ant=bgt-ukt;
+		var alpha=0, 
+			px=-400+912*(ant/10), 
+			py=828-192*(ant/10),
+			col=merge_color(c_white, c_yellow, 0.1+0.1*sin(ant*4/pi));
+		draw_sprite_ext(spr_ui_grd_unskill_name, 0, px, py, 
+						1, 1, 0, col, alpha)
+	}
+}
+//变白
+if unskill_action==3 
+|| unskill_action==4 {
+	var alpha=0
+	if unskill_action==3 alpha=1-unskill_time/5
+	else if unskill_action==4 alpha=unskill_time/5
+}
+#endregion

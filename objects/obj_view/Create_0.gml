@@ -244,4 +244,10 @@ loading_rate=0 //加载率
 loading_action=0
 loading_time=0
 #endregion
+#region 必杀技界面
+unskill_index=PLAYER_MODEL.HU
+unskill_action=0
+unskill_time=0
+unskill_endstop=true
+#endregion
 event_perform(ev_other, ev_room_start)

@@ -42,6 +42,7 @@ menu_skill_list=ds_list_create()
 #endregion
 draw_option_item=noone //设置页面绘制选项内容
 last_model=0 //开启彩蛋时的卡片
+return_title_stop=false //返回标题画面时关闭暂停
 #region 键盘sprite
 {
 	var inx=0

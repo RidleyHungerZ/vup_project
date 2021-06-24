@@ -45,3 +45,10 @@ if in(sprite_index, [spr_player_armor_bullet_charge02_st, spr_player_armor_bulle
 	}
 }
 #endregion
+#region 援护-初始
+if sprite_index==spr_player_support_armor_round_ing {
+	if time<=0 {
+		scr_sprite_change(spr_player_support_armor_round_ed, 0, 0.5)
+	}
+}
+#endregion

@@ -211,6 +211,7 @@ craw_trip_time=0; //爬墙震倒计算时间
 cliff_protect=false; //悬崖保护
 cliff_protect_time=0; //悬崖保护时间
 twining_time=0; //蛛网缠绕时间
+menu_stop_use=true; //使用菜单暂停动画播放
 
 death_action=0; //死亡动作
 death_time=0;
@@ -314,6 +315,8 @@ enum PYJUMP {
 	tripFall=19,
 	cliffProtect=20,
 	catched=21, //被抓住
+	
+	supportSkill=100, //援护技能
 }
 #endregion
 #region mask

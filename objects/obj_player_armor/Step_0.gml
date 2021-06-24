@@ -588,4 +588,49 @@ if scr_player_subuse(0,0)
 	}
 }
 #endregion
+#region 援护技能
+if scr_player_support_ismax()
+&&((jump==0 && in(walk, [0, PYWALK.walk]))
+|| in(jump, [PYJUMP.jump, PYJUMP.fall, PYJUMP.glide])) {
+	if jump==0 {
+		scr_sprite_change(spr_player_armor_support_idle_start, 0, 0.25)
+	} else {
+		scr_sprite_change(spr_player_armor_support_fall_start, 0, 0.25)
+	}
+	scr_unskill_display_player(global.model)
+	menu_stop_use=false
+	walk=0
+	jump=PYJUMP.supportSkill
+	hsp=0
+	vsp=0
+	dash=0
+	global.player_support=0
+	spskl_action=0
+	spskl_time=0
+}
+if jump==PYJUMP.supportSkill {
+	if spskl_time>0 spskl_time--
+	else spskl_time=0
+	scr_player_support_skills()
+	//结束
+	if spskl_action==-1 && spskl_time==0 {
+		global.stop=0.5
+		spskl_action=-2
+	} else if spskl_action==-2 {
+		if global.stop==0 {
+			if sprite_index==spr_player_armor_support_idle_start {
+				scr_sprite_change(SS_idle, 0, 0.25)
+				walk=0
+				jump=0
+			} else if sprite_index==spr_player_armor_support_fall_start {
+				scr_sprite_change(SS_fall, 0, 0.25)
+				walk=0
+				jump=PYJUMP.fall
+				hsp=walkspd*hspd;
+			}
+			spskl_action=0
+		}
+	}
+}
+#endregion
 updateMask()

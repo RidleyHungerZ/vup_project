@@ -8,3 +8,10 @@ if sprite_index==spr_player_armor_bullet_charge01_st {
 	x+=40*image_xscale
 	hspeed=12*image_xscale
 }
+#region 援护技能
+else if sprite_index==spr_player_support_armor_round_st {
+	scr_sprite_change(spr_player_support_armor_round_ing, 0, -2)
+} else if sprite_index==spr_player_support_armor_round_ed {
+	instance_destroy()
+}
+#endregion

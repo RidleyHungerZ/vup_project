@@ -80,9 +80,10 @@ global.full_screen=0
 global.resolution=0
 global.pix_filter=0
 global.language=LANG.CHS
+global.unskill_anima=0
 //初始化记录存入
 global.option_init_ary[initaryinx++]=[
-	"full_screen", "resolution", "pix_filter", "language"
+	"full_screen", "resolution", "pix_filter", "language", "unskill_anima",
 ]
 #endregion
 #region 音量读取

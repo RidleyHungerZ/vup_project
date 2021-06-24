@@ -46,3 +46,6 @@ shoot_y[3]=2
 
 //shoot_x[3]=25
 //shoot_y[3]=-7
+
+spskl_action=0
+spskl_time=0
