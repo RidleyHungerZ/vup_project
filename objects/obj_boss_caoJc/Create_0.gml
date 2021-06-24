@@ -71,6 +71,7 @@ boom_trigger = function() {
 		scr_sprite_change(spr_boss_cjc_body_ruins, 0, 0)
 		image_xscale=-1
 	}
+	firedir=0
 }
 //向下喷射火焰时地面灰尘
 vfire=function(fx, fy) {

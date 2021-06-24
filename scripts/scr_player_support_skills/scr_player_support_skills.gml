@@ -25,6 +25,7 @@ function scr_player_support_skills_armor(){
 		with instance_create_depth(x, y, depth-10 , obj_animation) {
 			scr_sprite_change(spr_player_support_armor_flash, 0, 0.5)
 			death_time=30
+			menu_stop=false
 		}
 		spskl_action=1
 		spskl_time=30
@@ -33,9 +34,11 @@ function scr_player_support_skills_armor(){
 			scr_sprite_change(spr_player_support_armor_round_st, 0, 0.5)
 			scr_menu_nostop_end()
 			scr_player_damage_set(2, ELEMENTS.none, ATK_TYPE.bullet, 0, 100, 1, 0, 0)
-			skip_attack_step=5
+			skip_attack_step=4
+			can_combo=false
 			time=180
 		}
+		scr_sound_play(se_player_unskill_armor)
 		spskl_action=2
 		spskl_time=60
 	} else if spskl_action==2 && spskl_time==0 {

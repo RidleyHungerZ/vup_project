@@ -106,7 +106,7 @@ if global.talk==0.5 {
 #region 小提示
 if scr_menu_trem() {
 	if global.tip_talk==0.5 {
-		if tip_talk_rate<0 tip_talk_rate+=0.05
+		if tip_talk_rate<1 tip_talk_rate+=0.05
 		else {
 			tip_talk_rate=1
 			global.tip_talk=1

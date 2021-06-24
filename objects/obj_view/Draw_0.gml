@@ -422,19 +422,22 @@ if unskill_action==2
 	var ukt=unskill_time,
 		ant=0,
 		bgt=0,
-		bgtmax=180;
+		bgtmax=180,
+		rate=0;
 	//黑底
 	bgt=bgtmax;
 	if ukt<=bgt {
 		ant=bgt-ukt;
-		var alpha=clamp(ant/10, 0, 1)*0.5
+		rate=clamp(ant/10, 0, 1);
+		var alpha=rate*0.5
 		scr_draw_rectangle_view(c_black, alpha, 1)
 	}
 	//立绘
 	bgt=bgtmax;
 	if ukt<=bgt {
 		ant=bgt-ukt;
-		var alpha=clamp(ant/10, 0, 1), 
+		rate=clamp(ant/10, 0, 1);
+		var alpha=rate, 
 			px=clamp(VIEW_W_UI/2*(1-ant/10), 0, VIEW_W), 
 			py=0;
 		draw_sprite_ext(spr_ui_grd_unskill_person, unskill_index, px, py, 1, 1, 0, c_white, alpha)
@@ -443,14 +446,15 @@ if unskill_action==2
 	bgt=bgtmax-10;
 	if ukt<=bgt {
 		ant=bgt-ukt;
+		rate=clamp(ant/10, 0, 1);
 		var alpha=0, 
-			px=112, 
-			py=956, 
+			px=[ 32, 208, 288,  192,   16, -64], 
+			py=[796, 812, 972, 1160, 1100, 940], 
 			rad=176;
 		for(var i=0;i<6;i++) {
-			var dir=15+60*i, col=merge_color(c_white, UIPINK, ((i+(ant mod 4)) mod 6)/6)
+			var dir=15+60*i, col=merge_color(UIPINK, c_white, ((i+(ant div 4)) mod 6)/6)
 			alpha=clamp((ant-4*i)/10, 0, 1)
-			draw_sprite_ext(spr_ui_grd_unskill_hex, 0, px+lengthdir_x(rad, dir), py+lengthdir_y(rad, dir), 
+			draw_sprite_ext(spr_ui_grd_unskill_hex, 0, px[i], py[i], 
 							1, 1, 0, col, alpha)
 		}
 	}
@@ -458,10 +462,11 @@ if unskill_action==2
 	bgt=bgtmax-40;
 	if ukt<=bgt {
 		ant=bgt-ukt;
-		var alpha=clamp(ant/10, 0, 1), 
+		rate=clamp(ant/10, 0, 1);
+		var alpha=rate, 
 			px=112, 
 			py=956, 
-			dir=clamp(90*(ant/10), 0, 90);
+			dir=clamp(90*(1-ant/10), 0, 90);
 		draw_sprite_ext(spr_ui_grd_unskill_bgsline, 0, px, py, 
 						1, 1, dir, c_white, alpha)
 	}
@@ -469,11 +474,12 @@ if unskill_action==2
 	bgt=bgtmax-60;
 	if ukt<=bgt {
 		ant=bgt-ukt;
-		var alpha=0, 
+		rate=clamp(ant/10, 0, 1);
+		var alpha=rate, 
 			px=112, 
 			py=956, 
-			dir=clamp(180*(ant/10), 0, 180),
-			xsc=clamp(2*(ant/10), 1, 2);
+			dir=180*rate,
+			xsc=2*rate;
 		draw_sprite_ext(spr_ui_grd_unskill_round, 0, px, py, 
 						xsc, xsc, dir, c_white, alpha)
 	}
@@ -481,12 +487,16 @@ if unskill_action==2
 	bgt=bgtmax-60;
 	if ukt<=bgt {
 		ant=bgt-ukt;
-		var alpha=0, 
-			px=-400+912*(ant/10), 
-			py=828-192*(ant/10),
+		rate=clamp(ant/10, 0, 1);
+		var alpha=rate, 
+			px=48+912*rate, 
+			py=828-192*rate,
 			col=merge_color(c_white, c_yellow, 0.1+0.1*sin(ant*4/pi));
-		draw_sprite_ext(spr_ui_grd_unskill_name, 0, px, py, 
+		draw_sprite_ext(spr_ui_grd_unskill_name, unskill_index, px, py, 
 						1, 1, 0, col, alpha)
+		if bgt==ukt {
+			scr_sound_menu_play(se_unskill_txt_shock)
+		}
 	}
 }
 //变白
@@ -495,5 +505,6 @@ if unskill_action==3
 	var alpha=0
 	if unskill_action==3 alpha=1-unskill_time/5
 	else if unskill_action==4 alpha=unskill_time/5
+	scr_draw_rectangle_view(c_white, alpha, 1)
 }
 #endregion

@@ -180,6 +180,7 @@ operate_rate=0 //恢复操作驾驶舱缓动
 //羁绊满时触发
 support_max_trigger=function() {
 	scr_sound_play(se_support_max)
+	scr_tip_thread(0, 4)
 }
 //血条
 hp_surface = noone

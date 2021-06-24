@@ -33,6 +33,7 @@ testmode=function() {
 	global.rtank_get[1]=1
 	global.rtank_get[2]=1
 	global.item2_byte_max=30
+	global.player_support=100
 	
 	scr_item_gain(ITEM.A, ITEMA.milk)
 	scr_item_gain(ITEM.A, ITEMA.candy)
@@ -63,9 +64,11 @@ testmode=function() {
 
 	scr_player_exskill_gain(PLAYER_SKILL.flyChop)
 
-	scr_mission_add(MISSION_TYPE.main, 0)
-	scr_mission_add(MISSION_TYPE.sub, 0)
-	scr_mission_add(MISSION_TYPE.sub, 1)
+	//scr_mission_add(MISSION_TYPE.main, 0)
+	//scr_mission_add(MISSION_TYPE.sub, 0)
+	//scr_mission_add(MISSION_TYPE.sub, 1)
+	
+	scr_boss_get(0)
 	
 	scr_room_goto(room_area0_test)
 	with obj_player {

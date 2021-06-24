@@ -47,7 +47,7 @@ if(action_distribution()) {
 		if(action>=1) action_round=(action_round+1)mod 5;
 	}
 	
-	//skill_addary();
+	skill_addary();
 }
 #endregion
 #region 1-导弹

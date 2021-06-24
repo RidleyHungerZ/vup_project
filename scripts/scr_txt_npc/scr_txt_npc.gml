@@ -78,7 +78,7 @@ npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 
 @"请问有什么可以帮助你的吗？", [
 new npcTalkSelect("关于暴乱事件", 110, noone),
 new npcTalkSelect("关于物语stor", 120, noone),
-new npcTalkSelect("关于纯蓝blue自己", 30, noone),
+new npcTalkSelect("关于纯蓝blue自己", 130, noone),
 new npcTalkSelect("关于仓库", 140, noone),
 new npcTalkSelect("关于货物", 150, noone),
 new npcTalkSelect("再见", 160, noone),
@@ -105,8 +105,8 @@ inx=130
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.weiXiao, 1, -1, 
 @"蓝蓝有的时候真看不出是AI呢。", []))
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, -1, 
-@"谢谢夸奖~
-但是必须提醒，纯蓝blue为军用AI，请勿对其产生奇怪的想法或是有奇怪的行为。
+@"谢谢夸奖~但是必须提醒，
+纯蓝blue为军用AI，请勿对其产生奇怪的想法或是有奇怪的行为。
 不然会发生什么我也不知道噢~", []))
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.chaoFeng, 1, 100, 
 @"欸嘿……", []))
@@ -145,7 +145,7 @@ npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.pla
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up,TALK_SHOTO.npc, 3, 2, -1, 
 @"部分是我从我自己的实验室搬过来的，
 不要乱碰。", [], false))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up,TALK_SHOTO.npc, 3, 2, -1, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up,TALK_SHOTO.npc, 3, 2, 100, 
 @"后调查行动的技术支持就由我提供，
 像是物品交易，装备开发，卡片管理之类的。
 当然，不是免费的。", [], false))
@@ -195,7 +195,7 @@ npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 
 @"这种自己产生的东西，为什么要认证才能使用？", []))
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, -1, 
 @"窝……窝不明白。", []))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, -1, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, 100, 
 @"那就别去想，无知者无罪。", []))
 //再见
 inx=140

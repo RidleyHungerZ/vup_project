@@ -30,7 +30,7 @@ if talk_action==0 {
 	talk_txt_index=0
 	talk_action=2
 } else if talk_action==2 {
-	scr_talk_start(talk_setting.talkinx, list[0].talkinx, image_xscale)
+	scr_talk_start(talk_setting.talkinx, list[0].talkinx, -image_xscale)
 	var unow=TALK_INX.up;
 	if talkset.talkinx==TALK_INX.up unow=TALK_INX.down
 	scr_talk(unow, "", talk_setting.otherShotoType, talk_setting.otherShoto, talk_setting.otherName, [])

@@ -2,13 +2,13 @@
 /// @arg index 大招序号
 /// @arg endstop 结束时是否继续游戏
 function scr_unskill_display(index, endstop){
-	unskill_index=index
-	unskill_endstop=endstop
-	unskill_action=1
+	obj_view.unskill_index=index
+	obj_view.unskill_endstop=endstop
+	obj_view.unskill_action=1
 }
 /// @desc 是否还在大招动画中
 function scr_unskill_isplay() {
-	return unskill_action!=0
+	return obj_view.unskill_action!=0
 }
 /// @desc 显示BOSS大招动画
 /// @arg index 大招序号

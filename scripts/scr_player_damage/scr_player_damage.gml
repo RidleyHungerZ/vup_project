@@ -172,7 +172,7 @@ function scr_player_damage(otherobj) {
 							var in_pre_ary = false
 							if btn_or_sbr.skip_attack_step>0{
 								for(var s=0;s<btn_or_sbr.skip_attack_step;s++){
-									if(in_array(btn_or_sbr.skip_pre_insts[s], id)){
+									if(array_contains(id, btn_or_sbr.skip_pre_insts[s])){
 										in_pre_ary = true
 										break
 									}

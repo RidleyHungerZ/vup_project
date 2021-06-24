@@ -49,6 +49,7 @@ if room==room_area0_test_boss
 				jump=0
 				x=768-160
 				y=224-GRDY
+				image_xscale=1
 			}
 			npc[0]=instance_create_layer(768+160, 224-GRDY, layerInst[3], obj_another)
 			with npc[0] {
@@ -109,7 +110,7 @@ else if room==room_area0_test_boss
 	}
 	///@skip
 	if scr_can_skip(prg) {
-		scr_skip(1, "", 1, obj_player.x, obj_player.y, prg, 0, 0)
+		scr_skip(1, "", 1, obj_player.x, obj_player.y+GRDY, prg, 0, 0)
 		inst_room_area0_test_boss_roomrange.use=false
 		scr_view_set_with_inst(obj_player)
 		scr_room_freedom()

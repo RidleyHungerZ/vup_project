@@ -142,6 +142,7 @@ if(jump!=0) {
 	&& jump!=PYJUMP.kick //斜下踢
 	&& jump!=PYJUMP.cliffProtect //悬崖漂浮
 	&& jump!=PYJUMP.catched //被抓住
+	&& jump!=PYJUMP.supportSkill //援护技能
 	&& !(jump==-1 && injure_ingrd))//受伤且在地面上
 	{
 		if(vsp<vspmaxrate*grav*sign(grav)) 

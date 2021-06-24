@@ -76,10 +76,12 @@ if unskill_action!=0 {
 }
 if unskill_action==1 {
 	global.stop=0.5
+	scr_sound_menu_play(se_unskill_appear)
 	unskill_action=2
 	unskill_time=180
 } 
 else if unskill_action==2 && unskill_time==0 {
+	scr_sound_menu_play(se_title_disapper)
 	unskill_action=3
 	unskill_time=5
 } 

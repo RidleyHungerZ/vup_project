@@ -84,7 +84,7 @@ if keyboard_check_pressed(vk_delete) {
 if keyboard_check_pressed(vk_backspace) {
 	with obj_boss {
 		if is_war_boss
-			hp=0
+			hp=1
 	}
 } 
 if keyboard_check(vk_control) 
@@ -103,12 +103,21 @@ if keyboard_check(vk_control)
 		global.player_mp--
 		scr_sound_play(se_item_mp)
 	}
+	if keyboard_check(vk_f1) {
+		global.player_support=100
+	}
 	if global.boss_war==1 {
 		if keyboard_check(vk_numpad1) {
-			global.boss_hp++
+			with obj_boss {
+				if is_war_boss
+					hp++
+			}
 			scr_sound_play(se_item_mp)
 		} else if keyboard_check(vk_numpad2) {
-			global.boss_hp--
+			with obj_boss {
+				if is_war_boss
+					hp--
+			}
 			scr_sound_play(se_item_mp)
 		}
 	}
