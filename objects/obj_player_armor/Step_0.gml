@@ -624,7 +624,8 @@ if scr_player_support_ismax()
 	} else {
 		scr_sprite_change(spr_player_armor_support_fall_start, 0, 0.25)
 	}
-	scr_unskill_display_player(global.model)
+	if !scr_unskill_display_player(global.model)
+		spskl_bgstep_stop=true
 	menu_stop_use=false
 	walk=0
 	jump=PYJUMP.supportSkill

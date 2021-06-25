@@ -49,3 +49,4 @@ shoot_y[3]=2
 
 spskl_action=0
 spskl_time=0
+spskl_bgstep_stop=false //不播放动画手动停止

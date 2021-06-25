@@ -15,13 +15,17 @@ function scr_unskill_isplay() {
 function scr_unskill_display_boss(index){
 	if in(global.unskill_anima, [0, 1]) {
 		scr_unskill_display(index, true);
+		return true
 	}
+	return false
 }
 /// @desc 显示玩家大招动画
 /// @arg index 大招序号
 function scr_unskill_display_player(index){
 	if in(global.unskill_anima, [0, 2]) {
 		scr_unskill_display(index, false);
+		return true
 	}
+	return false
 }
 
