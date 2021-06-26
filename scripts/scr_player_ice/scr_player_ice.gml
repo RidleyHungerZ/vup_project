@@ -5,6 +5,7 @@ function scr_player_ice() {
 	&&(place_meeting(x,y+1,obj_ground)||place_meeting(x,y+1,obj_floor)))
 	||(!place_meeting(x,y+1,obj_ground)&&!place_meeting(x,y+1,obj_floor)))*/
 	//if(scr_player_debuff_is(PLAYER_DEBUFF.oil)) return true;
+	if scr_itemb_isopen(ITEMB.nonslip) return false;
 	var ground=instance_place(x, y+GRDY+1, obj_ground),
 		flor=instance_place(x, y+GRDY+1, obj_floor);
 	if((ground && ground.ice)

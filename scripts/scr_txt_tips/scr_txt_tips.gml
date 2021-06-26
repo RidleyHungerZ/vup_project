@@ -1,5 +1,26 @@
 function scr_txt_tips(){
 var rom=0, inx=0
+#region 通用
+rom=100 inx=0
+//援护技能
+global.txt_tips[rom][0]=[
+@"当援护能量积攒满时，按"+TXT_K+@"援护技能键"+TXT_D+@"
+即可发动援护技能，使用超强力的攻击！",
+@"援护能量可以靠"+TXT_K+@"不断攻击敌人"+TXT_D+@"来获得！",]
+//灼伤
+global.txt_tips[rom][1]=[
+@"受到火属性伤害时，短时间内
+将会因为过热"+TXT_K+@"无法进行蓄力"+TXT_D+@"！",]
+//冰冻
+global.txt_tips[rom][2]=[
+@"受到冰属性伤害时，
+短时间内将"+TXT_K+@"无法行动"+TXT_D+@"，",
+@"且恢复后短时间内将会"+TXT_K+@"行动缓慢"+TXT_D+@"。",]
+//电伤
+global.txt_tips[rom][3]=[
+@"受到雷属性伤害时，
+短时间内将"+TXT_K+@"持续流失ES能量"+TXT_D+@"。",]
+#endregion
 #region 序关
 rom=0 inx=0
 //发射子弹
@@ -23,10 +44,5 @@ global.txt_tips[rom][3]=[
 @"若无法通过移动躲避敌人的攻击，
 可以尝试使用"+TXT_K+@"飞踢技能"+TXT_D+@"命中敌人！",
 @"飞踢可以获取短暂的"+TXT_K+@"无敌效果"+TXT_D+@"！",]
-//援护技能
-global.txt_tips[rom][4]=[
-@"当援护能量积攒满时，按"+TXT_K+@"援护技能键"+TXT_D+@"
-即可发动援护技能，使用超强力的攻击！",
-@"援护能量可以靠"+TXT_K+@"不断攻击敌人"+TXT_D+@"来获得！",]
 #endregion
 }

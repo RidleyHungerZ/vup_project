@@ -202,6 +202,7 @@ prg=5 inx=0
 thread_talk(prg, inx, TALK_INX.both, 1, TALK_SHOTO.boss, 1, 0)
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu, 1, false,
 @"这……这不是窝上个月刚买的ES-02型么！
+我都还没用过就被抢走了！
 乃们这些家伙……太过份了！")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 9, 0, false,
 @"一群杂碎……连个看仓库的女人都摆不平，还得本大爷亲自出马。")

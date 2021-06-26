@@ -42,3 +42,65 @@ if global.room_change>=3 && global.room_change<=4 {
 	scr_draw_rectangle_view(c_white,global.room_change_rate[2],view_current)
 }
 #endregion
+#region 按键显示
+if global.gamekey_display==1 {
+	var txts=global.txt_view_gamekey, 
+		txtsuts=noone;
+	//菜单按键
+	if global.menu=0.6 || global.menu=1 || global.menu=-0.5 {
+		txtsuts=txts.menu
+	}
+	//其他菜单
+	else if scr_talk_ing() 
+	|| room==room_logo {
+		txtsuts=txts.otherMenu
+	}
+	//场景按键
+	else if global.operate==1 
+	&& global.player_operate==1 {
+		txtsuts=txts.stage
+	}
+	if is_array(txtsuts) {
+		draw_sprite_ext(spr_ui_grd_gamekey_bgs, 0, 0, VIEW_H_UI, VIEW_W_UI/16, 1, 0, c_white, 0.65)
+		var keycount=array_length(txtsuts),
+			gkspr=spr_menu_option_keyboard,
+			joypad=os_type_is(OS.HOST) || gaypad_exists();
+		if joypad {
+			gkspr=spr_menu_option_gaypad;
+		}
+		var keydx=100,
+			keydy=1056,
+			txtdx=32,
+			txtsc=0.5;
+		for(var i=0;i<keycount;i++) {
+			var txtsut=txtsuts[i],
+				valname=txtsut.key,
+				val=variable_global_get(valname),
+				keycheck = keyboard_check(val),
+				keyinx = global.keyboard_spr_map[? val],
+				kblend = c_white,
+				stroke = -1;
+			if joypad {
+				valname=txtsut.joy();
+				if is_undefined(valname) continue;
+				else if is_real(valname) {
+					val=valname
+				} else if is_string(valname) {
+					val=variable_global_get(valname);
+				}
+				keycheck = gamepad_button_check(global.joy, val);
+				keyinx = global.gaypad_spr_map[? val];
+			}
+			if keycheck {
+				kblend=UIPINK
+				stroke=UIPINK
+			}
+			draw_sprite_ext(gkspr, keyinx, keydx, keydy, 1, 1, 0, kblend, 1)
+			scr_draw_text_ext(kblend, 1, 0, font_puhui_32, 0, 0.5, txtsut.txt, keydx+txtdx, keydy, txtsc, txtsc, -1, -1, stroke, 1)
+			draw_set_font(font_puhui_32)
+			var strw=string_width(txtsut.txt)
+			keydx+=txtdx+strw*txtsc+64
+		}
+	}
+}
+#endregion

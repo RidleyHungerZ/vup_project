@@ -13,9 +13,15 @@ if talk_action==0 {
 	&& global.player_operate==1 
 	&& place_meeting(x, y, obj_player) 
 	&& obj_player.jump==0 
-	&& obj_player.walk==0 
+	&& obj_player.walk==0 {
+		ready_talk=true
+	} else {
+		ready_talk=false
+	}
+	if ready_talk 
 	&& keystate_check_pressed(global.up_state) {
 		talk_action=1
+		ready_talk=false
 	}
 } else if talk_action==1 {
 	if xscale_to_player 
@@ -75,8 +81,11 @@ else if talk_action==12 && time==0 {
 				talk_action=13
 			}
 		} else if scr_talk_canclekey()
-		&& talkset.back {
-			talk_txt_index--
+		&& talkset.back!=0 {
+			if talkset.back<0
+				talk_txt_index-=talkset.back
+			else
+				talk_txt_index=talkset.back
 			talk_action=10
 			scr_sound_menu_play(se_menu_cancle)
 		}

@@ -30,7 +30,7 @@ if room==room_area0_test_boss
 	thread_talk_execute(prg, 3, 4, 30)
 	if action==4 && time==0 {
 		scr_thread_over(prg)
-		scr_room_bosswar_start(bgm_boss1, bgm_area0, function() {
+		scr_room_bosswar_start(bgm_boss1, bgm_story, function() {
 			inst_room_area0_test_boss_roomrange.use=false
 		})
 	}
@@ -64,14 +64,14 @@ if room==room_area0_test_boss
 			scr_boss_get(1)
 			action=0
 			//scr_room_freedom()
-			//audio_bgm_change(bgm_area0)
+			//audio_bgm_change(bgm_story)
 		}
 	}
 	#endregion
 	///@skip
 	if scr_can_skip_boss(prg) {
 		inst_room_area0_test_boss_roomrange.use=true
-		scr_skip_boss(1, bgm_boss1, bgm_area0, 1, 768-160*direct, 224, prg, function() {
+		scr_skip_boss(1, bgm_boss1, bgm_story, 1, 768-160*direct, 224, prg, function() {
 			inst_room_area0_test_boss_roomrange.use=false
 		})
 	}
@@ -83,7 +83,7 @@ else if room==room_area0_test_boss
 && scr_boss_isget(1) {
 	prg=11
 	if action==0 {
-		audio_bgm_change(bgm_area0)
+		audio_bgm_change(bgm_story)
 		action=1
 		time=60
 	}

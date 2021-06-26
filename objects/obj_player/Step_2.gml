@@ -62,13 +62,23 @@ if(scr_menu_trem()) {
 		scr_sound_play(se_player_charge);
 	#endregion
 	#region 飞行物
-	if(global.player_hp>0) {
+	if global.player_hp>0 
+	&& global.player_operate==1 {
 		var mask_type=getMaskType();
 		if mask_type==PYMASK_TYPE.dash
 			mask_index=spr_player_mask_idle
 		scr_player_flyobj_move();
 		if mask_type==PYMASK_TYPE.dash
 			mask_index=spr_player_mask_dash
+		//坐标矫正
+		if !instance_exists(flyobj) {
+			if hsp==0
+			&& vsp==0 {
+				y=ceil(y)
+				while collision_rectangle(bbox_right, bbox_bottom+GRDY-1, bbox_left, bbox_bottom+GRDY, obj_soild, 1, 1)
+					y--
+			}
+		}
 	}
 	#endregion
 	#region 死亡
@@ -289,8 +299,7 @@ else {
 		dash=0;
 		//击飞
 		if injure_attack_type==ATK_TYPE.push
-		//&& !scr_itemb_isrun(ITEMB_STATUS.shock_absorber) 
-		{
+		&& !scr_itemb_isopen(ITEMB.defineBack) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
 			if(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
@@ -302,7 +311,8 @@ else {
 				y-=4*image_yscale;
 		}
 		//上击飞
-		else if(injure_attack_type==ATK_TYPE.pushup) {
+		else if(injure_attack_type==ATK_TYPE.pushup)
+		&& !scr_itemb_isopen(ITEMB.defineBack) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
 			if(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
@@ -315,7 +325,8 @@ else {
 				y-=4*image_yscale;
 		}
 		//下击飞
-		else if(injure_attack_type==ATK_TYPE.pushdown) {
+		else if(injure_attack_type==ATK_TYPE.pushdown)
+		&& !scr_itemb_isopen(ITEMB.defineBack) {
 			if(uninjure==1) scr_sprite_change(SS_injure1,1,0);
 			else if(uninjure==-1) scr_sprite_change(SS_injure2,1,0);
 			if(jump==PYJUMP.airdash || jump==PYJUMP.airDashChop) 
@@ -338,6 +349,7 @@ else {
 			ice_time=0;
 			scr_sound_play(se_ice);
 			scr_player_debuff(PLAYER_DEBUFF.frozen, 9999)
+			scr_tip_thread(100, 2)
 			injure_element=ELEMENTS.none
 		}
 		//普通受伤
@@ -363,11 +375,14 @@ else {
 			//属性debuff
 			if injure_element==ELEMENTS.fire {
 				scr_player_debuff(PLAYER_DEBUFF.overheated, 180)
+				scr_tip_thread(100, 1)
 			} else if injure_element==ELEMENTS.elec {
 				scr_player_debuff(PLAYER_DEBUFF.losses, 180)
+				scr_tip_thread(100, 3)
 			}
 			injure_element=ELEMENTS.none;
 		}
+		//冲击吸收
 		if(scr_itemb_isopen(ITEMB.defineBack)) {
 			hsp=0;
 			vsp=0;

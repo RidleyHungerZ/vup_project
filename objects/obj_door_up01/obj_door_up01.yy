@@ -35,7 +35,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "door",
-    "path": "folders/Objects/door.yy",
+    "path": "folders/Objects/room_change/door.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_door_up01",

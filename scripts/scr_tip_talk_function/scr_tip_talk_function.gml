@@ -15,8 +15,17 @@ function scr_tip_talk(txts, inx){
 		scr_sound_play(se_tip)
 	}
 }
+/// @desc 对话结束
 function scr_tip_talk_end() {
 	global.tip_talk=-0.5
+}
+/// @desc 对话立刻结束
+function scr_tip_talk_end_imm() {
+	with obj_view {
+		tip_talk_rate=0
+		global.tip_talk=0
+		tip_init()
+	}
 }
 /// @desc 对话是否进行中
 function scr_tip_talk_ing() {

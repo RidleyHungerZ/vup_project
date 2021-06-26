@@ -1,0 +1,1 @@
+path_start(path_area_test_2_01, 2, path_action_reverse, true)

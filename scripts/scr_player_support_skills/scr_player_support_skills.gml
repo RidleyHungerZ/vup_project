@@ -21,15 +21,7 @@ function scr_player_support_skills(){
 		scr_player_support_skills_white()
 }
 function scr_player_support_skills_armor(){
-	if spskl_action==0 {
-		with instance_create_depth(x, y, depth-10 , obj_animation) {
-			scr_sprite_change(spr_player_support_armor_flash, 0, 0.5)
-			death_time=30
-			menu_stop=false
-		}
-		spskl_action=1
-		spskl_time=30
-	} else if spskl_action==1 && spskl_time==0 {
+	if spskl_action==1 && spskl_time==0 {
 		with instance_create_depth(x, y, depth+20, obj_player_bullet_armor) {
 			scr_sprite_change(spr_player_support_armor_round_st, 0, 0.5)
 			scr_menu_nostop_end()
@@ -46,7 +38,19 @@ function scr_player_support_skills_armor(){
 	}
 }
 function scr_player_support_skills_YANZX(){
-	if spskl_action==0 {
+	if spskl_action==1 && spskl_time==0 {
+		with instance_create_layer(view_xcenpos(0), view_ycenpos(0), obj_room.layerInst[1], obj_player_bullet_fire) {
+			scr_sprite_change(spr_boss_yanzx_app, 0, 0.5)
+			image_xscale=other.image_xscale
+			scr_menu_nostop_end()
+			attack=0
+			yanzx_view=[view_xpos(0), view_ypos(0), view_xpos(0)+view_wpos(0), view_ypos(0)+view_hpos(0)]
+			dis_edge=-1
+		}
+		scr_sound_play(se_boss_yanzx_app)
+		spskl_action=2
+		spskl_time=60
+	} else if spskl_action==2 && spskl_time==0 {
 		spskl_action=-1
 	}
 }

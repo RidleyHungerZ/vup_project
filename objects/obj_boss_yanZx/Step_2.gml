@@ -65,11 +65,12 @@ if action=1.2 && time==0 {
 	}
 	kick_count++
 	action=1.3
-	if scr_mode_Is_hard() time=15
-	else time=20
+	time=20
 }
 if action==1.3 && time==0 {
-	if kick_count<3 {
+	var kickmax=3
+	if scr_mode_Is_hard() kickmax=4
+	if kick_count<kickmax {
 		scr_sprite_change(spr_boss_yanzx_kick_st, 2, 0.25)
 		action=1.2
 		time=10
@@ -100,7 +101,7 @@ if action==2.1 {
 	scr_sprite_change(spr_boss_yanzx_gun_app, 0, 0.25)
 	image_xscale=sign_no0(obj_player.x-x)
 	action=2.2
-	time=30
+	time=60
 }
 if action==2.2 && time==0 {
 	scr_sprite_change(spr_boss_yanzx_chop1, 0, 0.5)
@@ -109,12 +110,12 @@ if action==2.2 && time==0 {
 		var xof=(64+112*i)
 		with instance_create_depth(x+xof*image_xscale, bbox_bottom, depth-20, obj_boss_yanzx_bullet_flyfire) {
 			image_xscale=other.image_xscale
-			waittime=15*i
+			waittime=20*i
 		}
 	}
 	scr_sound_play(se_boss_yanzx_chop)
 	action=2.3
-	time=60
+	time=90
 }
 if action==2.3 && time==0 {
 	scr_sprite_change(spr_boss_yanzx_chop2, 0, 0.5)
@@ -125,12 +126,12 @@ if action==2.3 && time==0 {
 		else if i==3 xof+=32
 		with instance_create_depth(x+xof*image_xscale, bbox_bottom, depth-20, obj_boss_yanzx_bullet_flyfire) {
 			image_xscale=other.image_xscale
-			waittime=15*i
+			waittime=20*i
 		}
 	}
 	scr_sound_play(se_boss_yanzx_chop)
 	action=2.4
-	time=60
+	time=90
 }
 if action==2.4 && time==0 {
 	scr_sprite_change(spr_boss_yanzx_chop3, 0, 0.5)
@@ -139,12 +140,12 @@ if action==2.4 && time==0 {
 		var xof=(64+64*i)
 		with instance_create_depth(x+xof*image_xscale, bbox_bottom, depth-20, obj_boss_yanzx_bullet_flyfire) {
 			image_xscale=other.image_xscale
-			waittime=15*i
+			waittime=20*i
 		}
 	}
 	scr_sound_play(se_boss_yanzx_chop)
 	action=2.5
-	time=90
+	time=120
 }
 if action==2.5 && time==0 {
 	scr_sprite_change(spr_boss_yanzx_choped, 0, 0.25)
@@ -300,7 +301,7 @@ if action==4.2 && time==0 {
 				image_xscale=other.image_xscale
 				action_mode=0
 				boss=other.id
-				dirspeed=2*other.image_xscale
+				dirspeed=(6/bfnum)*other.image_xscale
 				direction=i*diroff
 			}
 		}
@@ -399,23 +400,6 @@ if action==5.11 && time==0 {
 	}
 }
 if action==5.2 && time==0 {
-	//var dicenum=3,dicexof=256
-	//if scr_mode_Is_hard() {
-	//	dicenum=4 dicexof=160
-	//}
-	//for(var i=-(dicenum+1)/2;i<=(dicenum+1)/2;i++) {
-	//	var dicex=cenx+i*dicexof;
-	//	with instance_create_depth(x, y, depth, obj_boss_yanZx_bullet_dice) {
-	//		scr_sprite_change(spr_boss_yanzx_bullet_dice_star, 0, 0.5)
-	//		index=10
-	//		vspeed=-5
-	//		gravity=G
-	//		var t=abs(vspeed/gravity),
-	//			aimdx=dicex;
-	//		hspeed=(aimdx-x)/t
-	//		aimx=aimdx
-	//	}
-	//}
 	action=5.3
 	time=60
 }
@@ -424,7 +408,7 @@ if action==5.3 && time==0 {
 		with instance_create_depth(cenx+80*i, _yb-32-GRDY, depth-10, obj_boss_yanzx_bullet_chant_fire) {
 			waittime=30//+abs(i*15)
 			time=abs(i*15)
-			topy=other._yt+32
+			topy=other._yt+64
 		}
 	}
 	action=5.4
@@ -435,7 +419,7 @@ if action==5.4 && time==0 {
 		with instance_create_depth(cenx+80*i, _yb-32-GRDY, depth-10, obj_boss_yanzx_bullet_chant_fire) {
 			waittime=30//+abs(sign(i)*floor(abs(i))*15)
 			time=abs(sign(i)*floor(abs(i))*15)
-			topy=other._yt+32
+			topy=other._yt+64
 		}
 	}
 	action=5.5

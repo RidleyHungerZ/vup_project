@@ -11,6 +11,8 @@ if action==0 {
 	if image_index>=3 {
 		if instance_exists(ground_anima)
 			ground_anima.disapper()
+		have_dmg=false;
+		attack=0
 		action=3
 	}
 }

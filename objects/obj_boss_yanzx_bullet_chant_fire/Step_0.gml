@@ -7,6 +7,7 @@ if action==0 && time==0 {
 	time=waittime
 } else if action==1 && time==0 {
 	scr_sprite_change(spr_boss_yanzx_bullet_fire, 0, 0.5)
+	scr_sound_play(se_boss_yanzx_kick)
 	direction=90
 	speed=6
 	image_angle=direction

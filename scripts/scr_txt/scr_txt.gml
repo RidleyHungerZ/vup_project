@@ -2,6 +2,7 @@
 function scr_txt(){
 	scr_txt_logo()
 	scr_txt_menu()
+	scr_txt_view()
 	scr_txt_stage()
 	scr_txt_talk_name()
 	scr_txt_npc()

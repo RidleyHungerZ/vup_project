@@ -36,7 +36,7 @@ function npc_talk_txt(npcName, group, inx, context) {
 /// @arg next 下一句;-1继续;-2结束;正数跳转
 /// @arg txt 
 /// @arg selects[] 选项
-/// @arg back 选项是否能回退
+/// @arg back 回退位置，0不可回退
 function npcTalkContext(_talkinx, _shotoType, _shoto, _name, _next, _txt, _selects, _back) constructor {
 	talkinx = _talkinx; 
 	shotoType = _shotoType;
@@ -82,7 +82,7 @@ new npcTalkSelect("关于纯蓝blue自己", 130, noone),
 new npcTalkSelect("关于仓库", 140, noone),
 new npcTalkSelect("关于货物", 150, noone),
 new npcTalkSelect("再见", 160, noone),
-], false))
+], 160))
 //关于暴乱事件
 inx=110
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 13, 5, -1, 
@@ -150,20 +150,20 @@ npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up,TALK_SHOTO.npc, 3
 像是物品交易，装备开发，卡片管理之类的。
 当然，不是免费的。", [], false))
 //选项分支
-npc_talk_txt(npc, group, 100, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, -1, 
+npc_talk_txt(npc, group, 100, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, -1, 
 @"那么，有何贵干？", [
 new npcTalkSelect("关于商店", 110, noone),
 new npcTalkSelect("关于卡片解析", 120, noone),
 new npcTalkSelect("关于物语stor自己", 130, noone),
 new npcTalkSelect("再见", 140, noone),
-], false))
+], 140))
 //关于商店
 inx=110
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.kuMen, 1, -1, 
 @"为什么商店里面只卖装备开发方案啊……
 就不能直接卖成品给窝么！
 还得再花钱……花材料开发……", []))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, 100, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, 100, 
 @"说得好，但是上面卡我材料了，
 你可以跟他们反应一下，能不能把我的材料申请先过了。", []))
 //关于卡片解析
@@ -171,35 +171,35 @@ inx=120
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, -1, 
 @"有几张卡片的解析内容总感觉怪怪的……
 该不会是哪个奇怪的家伙写入的吧……", []))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, -1, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, -1, 
 @"你是对我的文风有什么意见么？", []))
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.wuNai, 1, -1, 
 @"没……没有的事……
 （说多了这个家伙肯定会涨价）", []))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, -1, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, -1, 
 @"别想多了，商品的价格只与其价值有关。", []))
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.wuNai, 1, -1, 
 @"（喂，这个家伙是能听到窝在想什么吗？！）", []))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, 100, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, 100, 
 @"你的表情太明显了，还有没事的话别打扰我了。", []))
 //关于物语自己
 inx=130
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, -1, 
 @"乃也是『Pro经营者』吗？", []))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, -1, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, -1, 
 @"如果是那个认证的话，我没有获得。", []))
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, -1, 
 @"可是乃的实验好像一直在使用『存在支持度』，
 如果不是『Pro经营者』的话……", []))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, -1, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, -1, 
 @"这种自己产生的东西，为什么要认证才能使用？", []))
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.yiHuo, 1, -1, 
 @"窝……窝不明白。", []))
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, 100, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, 100, 
 @"那就别去想，无知者无罪。", []))
 //再见
 inx=140
-npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 10, 5, -2, 
+npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up, TALK_SHOTO.npc, 3, 2, -2, 
 @"没事的话别打扰我了。", []))
 #endregion
 }

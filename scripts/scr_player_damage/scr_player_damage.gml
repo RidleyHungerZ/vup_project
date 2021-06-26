@@ -334,7 +334,9 @@ function scr_player_damage(otherobj) {
 							
 							//活动装甲后才有连击
 							if scr_model_isget(PLAYER_MODEL.ARMOR) 
-							&& btn_or_sbr.can_combo {
+							&& btn_or_sbr.can_combo 
+							&& global.operate==1
+							&& global.player_operate==1 {
 								//计算连击，并获得羁绊值
 								global.combo+=att_infact
 								//每4点伤害获得1秒结算时间，如果剩余时间更多则按剩余时间计算

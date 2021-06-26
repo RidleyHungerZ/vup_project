@@ -481,16 +481,22 @@ function scr_txt_menu(){
 						},
 					},
 				}, {
-					text : "必杀技界面",
+					text : "下方显示按键",
+					option : {
+						type : menu_page2_option.list,
+						list : ["不显示", "显示"],
+						variable : "gamekey_display",
+						onChange : function() {},
+					},
+				}, {
+					text : "援护技能动画",
 					option : {
 						type : menu_page2_option.list,
 						list : ["全部展示", "仅头目敌人", "仅玩家", "皆不展示"],
 						variable : "unskill_anima",
-						onChange : function() {
-							scr_txt()
-						},
+						onChange : function() {},
 					},
-				},
+				}, 
 			]
 		},
 		//音量
@@ -690,6 +696,26 @@ function scr_txt_menu(){
 					txt : "烈焰升龙斩",
 					desc : "地面按住上键时按攻击键发动，\n在地面跃起向前上方攻击，\n攻击为火属性",
 					trim : function(){return scr_player_exskill_isget(PLAYER_SKILL.flyChop) && global.model==PLAYER_MODEL.YANZX;},
+				}, {
+					txt : "援护技能",
+					desc : "援护槽积攒满时按援护技能键，\n会清空援护槽，并发动援护技能，\n根据卡片可以发动不同的援护技能",
+					trim : function(){return true},
+				}, {
+					txt : "援护技·存在释放",
+					desc : "发动援护技能时，\n会在自身位置生成一个巨大的能量球，\n能量球会持续对周围敌人造成伤害",
+					trim : function(){return global.model==PLAYER_MODEL.ARMOR},
+				}, {
+					txt : "援护技·烟火派对",
+					desc : "发动援护技能时，\n会召唤燕逐晓出现在屏幕中央，\n发动咏唱技能不断召唤火焰，\n对该区域的敌人造成伤害",
+					trim : function(){return global.model==PLAYER_MODEL.YANZX},
+				}, {
+					txt : "援护技·开发中",
+					desc : "该技能开发中，暂无法使用",
+					trim : function(){return global.model==PLAYER_MODEL.ICE},
+				}, {
+					txt : "援护技·开发中",
+					desc : "该技能开发中，暂无法使用",
+					trim : function(){return global.model==PLAYER_MODEL.TAILS},
 				}, 
 			],
 			special : [

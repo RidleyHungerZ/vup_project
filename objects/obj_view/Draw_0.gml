@@ -336,12 +336,14 @@ if global.talk!=0 {
 						txtdx, txtdy, 1, 1, -1, -1, -1, 0);
 		//对话选项
 		if array_length(global.talk_options[i])>0 
-		&& scr_talk_print_over(){
+		&& scr_talk_print_over() 
+		&& i==global.talk_now {
 			var printh=string_height(global.talk_print[i]),
 				optiondy=printh,
-				selectbg=talk_select_begin[i];
+				selectbg=talk_select_begin[i],
+				selectcnt=array_length(global.talk_options[i]);
 			//默认最多两个选项
-			for(var o=selectbg;o<min(array_length(global.talk_options[i]), selectbg+2);o++) {
+			for(var o=selectbg;o<min(selectcnt, selectbg+2);o++) {
 				var optiontxt=global.talk_options[i][o],
 					optionh=string_height(optiontxt),
 					optiony=txtdy+optiondy;
@@ -352,6 +354,13 @@ if global.talk!=0 {
 					draw_sprite_ext(spr_ui_grd_talk_point, 0, txtdx+96, optiony+optionh/2-4, 1, 1, 0, blend, 1)
 				}
 				optiondy+=string_height(optiontxt);
+			}
+			//上下扩展
+			if selectbg>0 {
+				draw_sprite_ext(spr_ui_grd_talk_seelct_ex, 0, txtdx+96, txtdy+printh, 1, 1, 0, blend, (global.fps_curr div 30) mod 2)
+			}
+			if selectbg+2<selectcnt {
+				draw_sprite_ext(spr_ui_grd_talk_seelct_ex, 0, txtdx+96, txtdy+printh+2*optionh, 1, -1, 0, blend, (global.fps_curr div 30) mod 2)
 			}
 		}
 	}
@@ -366,7 +375,7 @@ if global.tip_talk!=0 {
 	//文字
 	if global.tip_talk==1 {
 		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, global.tip_talk_print, 
-						tfx+64, tfy-48, 1, 1, -1, -1, -1, 0);
+						tfx+64, tfy-32, 0.75, 0.75, -1, -1, -1, 0);
 	}
 }
 #endregion
@@ -491,7 +500,7 @@ if unskill_action==2
 		var alpha=rate, 
 			px=48+912*rate, 
 			py=828-192*rate,
-			col=merge_color(c_white, c_yellow, 0.1+0.1*sin(ant*4/pi));
+			col=merge_color(c_white, $B2FFFF, 0.5+0.5*sin(ant*4/pi));
 		draw_sprite_ext(spr_ui_grd_unskill_name, unskill_index, px, py, 
 						1, 1, 0, col, alpha)
 		if bgt==ukt {

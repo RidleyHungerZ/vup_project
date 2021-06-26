@@ -66,8 +66,8 @@ function data_save_variable_single(){
 		global.threaded[i]=0 //第一次进行时开启，以后可跳过
 	}
 	//小对话
-	for(var a=0;a<20;a++) {
-		for(var i=0;i<50;i++) {
+	for(var a=0;a<=100;a++) {
+		for(var i=0;i<=100;i++) {
 			global.thread_tip[a][i]=0
 		}
 	}

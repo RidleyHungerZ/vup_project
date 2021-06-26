@@ -78,51 +78,52 @@ else if global.skip==2{
 #endregion
 
 #region debug测试
-if keyboard_check_pressed(vk_delete) {
-	global.player_hp=0
-} 
-if keyboard_check_pressed(vk_backspace) {
-	with obj_boss {
-		if is_war_boss
-			hp=1
-	}
-} 
-if keyboard_check(vk_control) 
-&&(global.fps_curr mod 3 == 0){
-	if keyboard_check(vk_up) {
-		global.player_hp++
-		scr_sound_play(se_item_hp)
-	} else if keyboard_check(vk_down) {
-		global.player_hp--
-		scr_sound_play(se_item_hp)
-	}
-	if keyboard_check(vk_right) {
-		global.player_mp++
-		scr_sound_play(se_item_mp)
-	} else if keyboard_check(vk_left) {
-		global.player_mp--
-		scr_sound_play(se_item_mp)
-	}
-	if keyboard_check(vk_f1) {
-		global.player_support=100
-	}
-	if global.boss_war==1 {
-		if keyboard_check(vk_numpad1) {
-			with obj_boss {
-				if is_war_boss
-					hp++
-			}
+if debug_mode {
+	if keyboard_check_pressed(vk_delete) {
+		global.player_hp=0
+	} 
+	if keyboard_check_pressed(vk_backspace) {
+		with obj_boss {
+			if is_war_boss
+				hp=1
+		}
+	} 
+	if keyboard_check(vk_control) 
+	&&(global.fps_curr mod 3 == 0){
+		if keyboard_check(vk_up) {
+			global.player_hp++
+			scr_sound_play(se_item_hp)
+		} else if keyboard_check(vk_down) {
+			global.player_hp--
+			scr_sound_play(se_item_hp)
+		}
+		if keyboard_check(vk_right) {
+			global.player_mp++
 			scr_sound_play(se_item_mp)
-		} else if keyboard_check(vk_numpad2) {
-			with obj_boss {
-				if is_war_boss
-					hp--
-			}
+		} else if keyboard_check(vk_left) {
+			global.player_mp--
 			scr_sound_play(se_item_mp)
 		}
+		if keyboard_check(vk_f1) {
+			global.player_support=100
+		}
+		if global.boss_war==1 {
+			if keyboard_check(vk_numpad1) {
+				with obj_boss {
+					if is_war_boss
+						hp++
+				}
+				scr_sound_play(se_item_mp)
+			} else if keyboard_check(vk_numpad2) {
+				with obj_boss {
+					if is_war_boss
+						hp--
+				}
+				scr_sound_play(se_item_mp)
+			}
+		}
 	}
-}
-if debug_mode {
+	
 	if keyboard_check_pressed(vk_enter)
 	&& global.operate=1
 	&& global.player_operate=1{

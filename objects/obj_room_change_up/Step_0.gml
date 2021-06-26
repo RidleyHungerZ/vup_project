@@ -5,11 +5,19 @@ scr_time_alarm()
 if action==0 {
 	if place_meeting(x, y, obj_player) 
 	&& global.operate==1 {
-		if keystate_check_pressed(global.up_state) 
-		&& obj_player.jump==0
+		if obj_player.jump==0
 		&& obj_player.walk==0 {
+			ready_open=true
+		} else {
+			ready_open=false
+		}
+		if ready_open
+		&& keystate_check_pressed(global.up_state) {
 			if can_open {
+				ready_open=false
 				global.operate=0
+				global.player_operate=0
+				scr_player_debuff_clear()
 				with obj_player {
 					scr_sprite_change(SS_doorup, 0, 0.25)
 					uninjure_temp=1
@@ -53,6 +61,7 @@ else if action==4 {
 		obj_player.image_xscale=aim_xscale
 		with obj_player {
 			scr_sprite_change(SS_idle, 0, 0.25)
+			uninjure_temp=0
 		}
 		if audio_exists(bgm)
 			audio_bgm_change(bgm)

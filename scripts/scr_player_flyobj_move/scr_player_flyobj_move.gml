@@ -1,8 +1,8 @@
 function scr_player_flyobj_move() {
-	var ground1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_top,obj_ground,1,1),		//全身+足下
-		ground3=collision_rectangle(bbox_right+2,bbox_bottom+GRDY,bbox_left-2,bbox_top,obj_ground,1,1),	//左右
+	var ground1=collision_rectangle(bbox_right,bbox_bottom+GRDY+8,bbox_left,bbox_top,obj_ground,1,1),		//全身+足下
+		ground3=collision_rectangle(bbox_right+4,bbox_bottom+GRDY,bbox_left-4,bbox_top,obj_ground,1,1),	//左右
 		ground4=collision_rectangle(bbox_right,bbox_top,bbox_left,bbox_top-1,obj_ground,1,1),		//头上
-		floor1=collision_rectangle(bbox_right,bbox_bottom+GRDY+4,bbox_left,bbox_bottom+GRDY,obj_floor,1,1),	//半透板足下
+		floor1=collision_rectangle(bbox_right,bbox_bottom+GRDY+8,bbox_left,bbox_bottom+GRDY,obj_floor,1,1),	//半透板足下
 		pre_flyobj=flyobj, //上一帧接触的飞行物
 		upfloor = false //是否踩在半透板上
 	//脚下
@@ -94,16 +94,28 @@ function scr_player_flyobj_move() {
 		//如果是这一帧才接触，则强制坐标小数位校准
 		if !instance_exists(pre_flyobj){
 			if fhsp>0 && in(flyobj, [ground3]){
-				x=floor(x)
-				if bbox_right<flyobj.bbox_left x+=frac(flyobj.bbox_left)
-				else if bbox_left>flyobj.bbox_right x+=frac(flyobj.bbox_right)
+				x=round(x)
+				while bbox_right<flyobj.bbox_left-1 {
+					//x+=frac(flyobj.bbox_left)
+					x++
+				}
+				while bbox_left>flyobj.bbox_right+1 {
+					//x+=frac(flyobj.bbox_right)
+					x--
+				}
 				while collision_rectangle(bbox_right, bbox_bottom+GRDY, bbox_left, bbox_top, flyobj, 1, 1) 
 					x+=sign(fhsp)
 			}
 			if fvsp>0 && in(flyobj, [ground1, ground4]){
 				y=floor(y)
-				if bbox_bottom+GRDY<flyobj.bbox_top y+=frac(flyobj.bbox_top)
-				else if bbox_top>flyobj.bbox_bottom+GRDY y+=frac(flyobj.bbox_bottom+GRDY)
+				while ground1 && bbox_bottom+GRDY<flyobj.bbox_top-1 {
+					//y+=frac(flyobj.bbox_top)
+					y++
+				}
+				while ground4 && bbox_top>flyobj.bbox_bottom+1 {
+					//y+=frac(flyobj.bbox_bottom+GRDY)
+					y--
+				}
 				while collision_rectangle(bbox_right, bbox_bottom+GRDY, bbox_left, bbox_top, flyobj, 1, 1) 
 					y+=sign(fvsp)
 			}

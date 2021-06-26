@@ -1,6 +1,7 @@
 function scr_txt_logo(){
 global.gametitle[0]="相沢加奈Official出品"
 global.gametitle[1]="Virtua Ride System制作组"
+global.gametitle[2]="推荐使用控制器进行游玩以获得最佳的体验"
 //任意键
 global.txt_logo[0]="请按下任意键"
 //基础选项

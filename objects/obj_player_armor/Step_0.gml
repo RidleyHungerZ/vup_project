@@ -7,6 +7,16 @@ if jump==PYJUMP.supportSkill
 && !scr_unskill_isplay() {
 	if spskl_time>0 spskl_time--
 	else spskl_time=0
+	//闪光
+	if spskl_action==0 {
+		with instance_create_depth(x, y, depth-10 , obj_animation) {
+			scr_sprite_change(spr_player_support_armor_flash, 0, 0.5)
+			death_time=30
+			menu_stop=false
+		}
+		spskl_action=1
+		spskl_time=30
+	}
 	scr_player_support_skills()
 	//结束
 	if spskl_action==-1 && spskl_time==0 {
@@ -23,6 +33,7 @@ if jump==PYJUMP.supportSkill
 				jump=PYJUMP.fall
 				hsp=walkspd*hspd;
 			}
+			uninjure_temp=0
 			spskl_action=0
 		}
 	}
@@ -616,7 +627,9 @@ if scr_player_subuse(0,0)
 #endregion
 #region 援护技能
 if scr_player_support_ismax()
+&& global.player_saber.sprite_index==spr_none
 && keystate_check_pressed(global.true_state)
+&& in(global.model, [PLAYER_MODEL.ARMOR, PLAYER_MODEL.YANZX])
 &&((jump==0 && in(walk, [0, PYWALK.walk]))
 || in(jump, [PYJUMP.jump, PYJUMP.fall, PYJUMP.glide])) {
 	if jump==0 {
@@ -633,6 +646,7 @@ if scr_player_support_ismax()
 	vsp=0
 	dash=0
 	global.player_support=0
+	uninjure_temp=1
 	spskl_action=0
 	spskl_time=0
 }

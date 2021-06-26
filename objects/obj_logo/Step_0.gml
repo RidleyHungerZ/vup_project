@@ -44,14 +44,16 @@ else if select_type==1 {
 	} 
 	//缓动动画
 	else if action==1.1 && time==0 {
-		if select[select_type]==0 {
+		if select[select_type]==0
+		|| select[select_type]==1 {
+			if select[select_type]==1
+				beta_mode=true
+			else beta_mode=false
 			action=2
 			select_type=2
 			select[select_type]=0
-		} else if select[select_type]==1 {
-			action=1.2
-			scr_view_transition(1, 0)
-		} else if select[select_type]==2 {
+		} 
+		else if select[select_type]==2 {
 			action=1.3
 			scr_view_transition(1, 0)
 		}
@@ -59,7 +61,7 @@ else if select_type==1 {
 	//读档
 	else if action==1.2 {
 		if scr_view_transition_Isover(1) {
-			testmode()
+			
 		}
 	}
 	//设置
@@ -95,7 +97,8 @@ else if select_type==2 {
 	//难度选择
 	if action==2 {
 		//难度选择
-		if select[1]==0 {
+		if select[1]==0 
+		|| select[1]==1 {
 			if keystate_check_pressed(global.A_state) {
 				action=2.1
 				time=30
@@ -130,8 +133,13 @@ else if select_type==2 {
 			global.game_start=1
 			data_save_variable_single()
 			global.mode=select[select_type]
-			startVars()
-			scr_room_goto(room_story)
+			if beta_mode {
+				testmode()
+				scr_room_goto(room_area0_test)
+			} else {
+				startVars()
+				scr_room_goto(room_story)
+			}
 		}
 	}
 }

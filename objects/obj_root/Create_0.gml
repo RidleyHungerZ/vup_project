@@ -1,5 +1,6 @@
 ///@desc 所有对象共用方法库
 scr_menu_var();
+action=0
 inst_of = function(obj) {
 	if(is_array(obj)){
 		for(var i=0;i<array_length(obj);i++){

@@ -26,8 +26,9 @@ thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 15, 6, false,
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jingXi, 1, false,
 @"哎，到这里就结束了么？")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 15, 6, false,
-@"还可以四处自由探索看看或者返回行动据点哦，
-尽情放松下吧。")
+@"后面就是我们的行动据点了，
+蓝蓝和物语都在里面等着你，
+你先去和他们见面吧。")
 thread_talk_txt(prg, inx++, TALK_INX.up, TALK_SHOTO.npc, 15, 6, true,
 @"那么，我先告辞了！")
 #endregion

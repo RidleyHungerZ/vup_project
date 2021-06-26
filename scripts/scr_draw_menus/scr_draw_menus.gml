@@ -738,11 +738,44 @@ function scr_draw_menu_skill_image(skinx, dx, dy, scl) {
 			draw_sprite_ext(spr_player_armor_fly_choping_saber, 0, dx, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
-		#region 升龙斩
+		#region 烈焰升龙斩
 		else if skinx==(inx++) {
 			draw_sprite_ext(spr_player_armor_fly_choping_part, 0, dx, dy, scl, scl, 0, c_white, 1)
 			draw_sprite_ext(spr_player_armor_fly_choping, 0, dx, dy, scl, scl, 0, c_white, 1)
 			draw_sprite_ext(spr_player_armor_fly_choping_saber_fire, 0, dx, dy, scl, scl, 0, c_white, 1)
+		}
+		#endregion
+		#region 援护技能
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_armor_support_idle_start, 2, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_support_armor_flash, 2, dx, dy, scl, scl, 0, c_white, 1)
+		}
+		#endregion
+		#region 援护技·存在释放
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_player_support_armor_round_ing, 0, dx, dy, scl, scl, 0, c_white, 1)
+			draw_sprite_ext(spr_player_armor_support_idle_start, 2, dx, dy, scl, scl, 0, c_white, 1)
+		}
+		#endregion
+		#region 援护技·烟火派对
+		else if skinx==(inx++) {
+			draw_sprite_ext(spr_boss_yanzx_chant_ing, 0, dx, dy, scl, scl, 0, c_white, 1)
+			for(var i=-4;i<=4;i++) {
+				if i==0 continue
+				draw_sprite_ext(spr_boss_yanzx_bullet_fire, 0, dx+i*32, dy+i*16, sign(i), 1, 90, c_white, 1)
+			}
+		}
+		#endregion
+		#region 援护技·ICE开发中
+		else if skinx==(inx++) {
+			
+			//draw_sprite_ext(spr_player_armor_support_idle_start, 2, dx, dy, scl, scl, 0, c_white, 1)
+		}
+		#endregion
+		#region 援护技·TAILS开发中
+		else if skinx==(inx++) {
+			
+			//draw_sprite_ext(spr_player_armor_support_idle_start, 2, dx, dy, scl, scl, 0, c_white, 1)
 		}
 		#endregion
 	}

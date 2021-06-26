@@ -16,6 +16,7 @@ if action==0 {
 			scr_sound_play(SE_open)
 			global.operate=0
 			global.player_operate=0
+			scr_player_debuff_clear()
 			open_xscale=sign(x-obj_player.x)
 			with obj_player {
 				image_xscale=other.open_xscale

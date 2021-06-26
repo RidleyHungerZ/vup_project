@@ -1,6 +1,16 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_enmus(){
+	#region 操作系统
+		enum OS{
+			PC = 0,		//电脑
+			MOBILE = 1,	//手机
+			HOST = 2,	//主机
+			NS = 3,
+			PS = 4,
+			XBOX = 5,
+		}
+	#endregion
 	#region 元素
 	enum ELEMENTS{
 		none,
