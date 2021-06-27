@@ -402,7 +402,7 @@ function scr_draw_menu_item(dx, dy){
 		if !is_undefined(itemnowst)
 			desctxt = itemnowst.desc
 	}
-	scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, desctxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
+	scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, desctxt, drawx, drawy, 0.75, 0.75, -1, -1, -1, 0)
 	#endregion
 	#region 右侧列表
 	drawx=dx+1368 drawy=dy+232
@@ -483,7 +483,7 @@ function scr_draw_menu_mission(dx, dy){
 		else if missnowstatus==MISSION_STATIS.waitReport statuscol="FB8E19"
 		else if missnowstatus==MISSION_STATIS.complete statuscol="00a651"
 		desctxt = stmodel.desc + "[$="+statuscol+"]" + stmodel.list[missnowstatus] + "[$=ffffff]\n" + desctxt
-		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, desctxt, drawx, drawy, 1, 1, -1, -1, -1, 0)
+		scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, desctxt, drawx, drawy, 0.75, 0.75, -1, -1, -1, 0)
 		//任务报酬
 		drawx=dx+160 drawy=dy+768
 		//rewardtxt = rewardtxt + "\n"
@@ -563,7 +563,7 @@ function scr_draw_menu_skill(dx, dy){
 	scr_draw_menu_skill_image(skillnow.index, drawx, drawy, 2)
 	//技能说明
 	drawx=dx+128 drawy=dy+608
-	scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, skillnow.desc, drawx, drawy, 1, 1, -1, -1, -1, 0)
+	scr_draw_text_ext(c_white, 1, 0, font_puhui_32, 0, 0, skillnow.desc, drawx, drawy, 0.75, 0.75, -1, -1, -1, 0)
 	#endregion
 	#region 右侧列表
 	drawx=dx+1368 drawy=dy+232
@@ -762,7 +762,7 @@ function scr_draw_menu_skill_image(skinx, dx, dy, scl) {
 			draw_sprite_ext(spr_boss_yanzx_chant_ing, 0, dx, dy, scl, scl, 0, c_white, 1)
 			for(var i=-4;i<=4;i++) {
 				if i==0 continue
-				draw_sprite_ext(spr_boss_yanzx_bullet_fire, 0, dx+i*32, dy+i*16, sign(i), 1, 90, c_white, 1)
+				draw_sprite_ext(spr_boss_yanzx_bullet_fire, 0, dx+i*32, dy+(4*sign(i)-i)*16, sign(i), 1, 90, c_white, 1)
 			}
 		}
 		#endregion

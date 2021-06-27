@@ -259,17 +259,19 @@ function scr_menu_option_ini_save(type) {
 	#region 指令
 	else if type==1 {
 		ini_write_real("order", "joy_ab_invert",	global.joy_ab_invert) //ab倒置
-		ini_write_real("order", "sub",			global.sub_type)//0双键，1双按，2切换
+		ini_write_real("order", "sub_type",			global.sub_type)//0双键，1双按，2切换
 		ini_write_real("order", "dash_order",	global.dash_order)//冲刺指令
 		ini_write_real("order", "alert_type",	global.alert_type)//系统提示
 	}
 	#endregion
 	#region 显示
 	else if type==2 {
-		ini_write_real("display", "full_screen",global.full_screen)
-		ini_write_real("display", "resolution",global.resolution)
+		ini_write_real("display", "full_screen",	global.full_screen)
+		ini_write_real("display", "resolution",	global.resolution)
 		ini_write_real("display", "pix_filter",	global.pix_filter)
 		ini_write_real("display", "language",	global.language)
+		ini_write_real("display", "gamekey_display",	global.gamekey_display)
+		ini_write_real("display", "unskill_anima",	global.unskill_anima)
 	}
 	#endregion
 	#region 音量

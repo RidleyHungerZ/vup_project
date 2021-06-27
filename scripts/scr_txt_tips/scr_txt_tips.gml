@@ -20,6 +20,12 @@ global.txt_tips[rom][2]=[
 global.txt_tips[rom][3]=[
 @"受到雷属性伤害时，
 短时间内将"+TXT_K+@"持续流失ES能量"+TXT_D+@"。",]
+//简单模式掉落
+global.txt_tips[rom][4]=[
+@"简单模式下，掉落进陷阱后，
+会有一次自救机会。",
+@"此时按住"+TXT_K+@"上键"+TXT_D+@"可以
+将自己从陷阱中拉上来。",]
 #endregion
 #region 序关
 rom=0 inx=0

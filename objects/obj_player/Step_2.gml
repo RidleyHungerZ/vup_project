@@ -95,6 +95,8 @@ if(scr_menu_trem()) {
 		injure_element=ELEMENTS.none;
 		injure_t=0;
 		uninjure_temp=0;
+		image_alpha=1;
+		scr_tip_talk_end_imm()
 		//清空各类记录
 		scr_player_charge_clear()
 		scr_player_floordown_clear(); 

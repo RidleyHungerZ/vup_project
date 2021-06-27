@@ -69,7 +69,9 @@ function audio_bgm_stop_imm() {
 }
 /// @desc 获得设置的bgm音量
 function audio_bgm_get_volume() {
-	return global.volume_bgm * global.volume_all * global.volume_menu * 0.5
+	var mult=0.5
+	if obj_player.water==1 mult*=0.5
+	return global.volume_bgm * global.volume_all * global.volume_menu * mult
 }
 /// @desc 设置音量
 /// @arg vol

@@ -73,6 +73,7 @@ if global.gamekey_display==1 {
 			txtdx=32,
 			txtsc=0.5;
 		for(var i=0;i<keycount;i++) {
+			if !txtsuts[i].display() continue;
 			var txtsut=txtsuts[i],
 				valname=txtsut.key,
 				val=variable_global_get(valname),

@@ -338,12 +338,12 @@ for(var i=1;i<=2;i+=1){
 		var dashbox=((walk==2||walk==5) ? 1 : 0)*8,
 			dleft=dashbox*rightshf*-1,
 			dright=dashbox*leftshf*1;//冲刺的多余部分
-		var flordown = collision_rectangle(bbox_right+dright,bbox_bottom+GRDY+2,bbox_left+dleft,bbox_bottom+GRDY,obj_floor,1,1);
+		var flordown = collision_rectangle(bbox_right+dright,bbox_bottom+GRDY+4,bbox_left+dleft,bbox_bottom+GRDY,obj_floor,1,1);
 		if(image_yscale==-1) 
-			flordown = collision_rectangle(bbox_right+dright,bbox_top-GRDY,bbox_left+dleft,bbox_top-GRDY-2,obj_floor,1,1);
+			flordown = collision_rectangle(bbox_right+dright,bbox_top-GRDY,bbox_left+dleft,bbox_top-GRDY-4,obj_floor,1,1);
 		//记录的半透板
 		if(scr_player_floordown_exists(flordown)) flordown=noone;
-		if(!collision_rectangle(bbox_right+dright,bbox_bottom+GRDY+2*bottomshf,bbox_left+dleft,bbox_top-2*topshf,obj_ground,1,1)
+		if(!collision_rectangle(bbox_right+dright,bbox_bottom+GRDY+4*bottomshf,bbox_left+dleft,bbox_top-4*topshf,obj_ground,1,1)
 		&&!((image_yscale==1 && collision_rectangle(bbox_right+dright,bbox_bottom+GRDY+1,bbox_left+dleft,bbox_top,obj_sink,1,1))
 		|| (image_yscale==-1 && collision_rectangle(bbox_right+dright,bbox_bottom,bbox_left+dleft,bbox_top-GRDY-1,obj_sink,1,1)))
 		&&!((image_yscale==1
@@ -716,7 +716,7 @@ for(var i=1;i<=2;i+=1){
 		if(jump==PYJUMP.cliffProtect) {
 			if(cliff_protect_time>0) {
 				cliff_protect_time--;
-				image_alpha=cliff_protect_time mod 3;
+				image_alpha=(cliff_protect_time mod 3)/3;
 				if(y>global.room_yb-32) {
 					if(vsp>-1) vsp-=0.01;
 				}

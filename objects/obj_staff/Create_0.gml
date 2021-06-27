@@ -116,11 +116,11 @@ have_file_config = file_exists(FILE_CONFIG)
 ini_open(FILE_CONFIG)
 #region 键盘
 global.left_key =	ini_read_real("key", "left",	global.left_key)
-global.right_key =	ini_read_real("key", "right",global.right_key)
-global.up_key =		ini_read_real("key", "up",	global.up_key)
-global.down_key =	ini_read_real("key", "down",global.down_key)
-global.select_key =	ini_read_real("key", "select",global.select_key)
-global.start_key =	ini_read_real("key", "start", global.start_key)
+global.right_key =	ini_read_real("key", "right",	global.right_key)
+global.up_key =		ini_read_real("key", "up",		global.up_key)
+global.down_key =	ini_read_real("key", "down",	global.down_key)
+global.select_key =	ini_read_real("key", "select",	global.select_key)
+global.start_key =	ini_read_real("key", "start",	global.start_key)
 
 global.A_key = ini_read_real("key", "A", global.A_key)
 global.B_key = ini_read_real("key", "B", global.B_key)
@@ -150,15 +150,17 @@ global.tformR_joy =	ini_read_real("joy", "tformR",	global.tformR_joy)
 #endregion
 #region 动作
 global.joy_ab_invert = ini_read_real("order", "joy_ab_invert",	global.joy_ab_invert)//AB倒置
-global.sub_type =	ini_read_real("order", "sub",			global.sub_type)//0双键，1双按，2切换
+global.sub_type =	ini_read_real("order", "sub_type",			global.sub_type)//0双键，1双按，2切换
 global.dash_order =	ini_read_real("order", "dash_order",	global.dash_order)//冲刺指令
 global.alert_type =	ini_read_real("order", "alert_type",	global.alert_type)//系统提示
 #endregion
 #region 显示读取
-global.full_screen = ini_read_real("display", "full_screen",global.full_screen)
-global.resolution = ini_read_real("display", "resolution",global.resolution)
+global.full_screen = ini_read_real("display", "full_screen",	global.full_screen)
+global.resolution = ini_read_real("display", "resolution",	global.resolution)
 global.pix_filter =	ini_read_real("display", "pix_filter",	global.pix_filter)
 global.language =	ini_read_real("display", "language",	global.language)
+global.gamekey_display =	ini_read_real("display", "gamekey_display",	global.gamekey_display)
+global.unskill_anima =	ini_read_real("display", "unskill_anima",	global.unskill_anima)
 #endregion
 #region 音量读取
 global.volume_se =	ini_read_real("volume", "se",	global.volume_se)
@@ -328,6 +330,7 @@ global.modellist=ds_list_create()
 global.rtanklist=ds_list_create()
 global.rtank_val_max=64
 //自动回复sp
+auto_hp_time=0
 auto_sp_time=0
 loss_sp_time=0
 #endregion

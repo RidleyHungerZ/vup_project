@@ -78,7 +78,7 @@ if unskill_action==1 {
 	global.stop=0.5
 	scr_sound_menu_play(se_unskill_appear)
 	unskill_action=2
-	unskill_time=180
+	unskill_time=150
 } 
 else if unskill_action==2 && unskill_time==0 {
 	scr_sound_menu_play(se_title_disapper)

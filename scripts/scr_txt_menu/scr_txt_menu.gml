@@ -120,7 +120,7 @@ function scr_txt_menu(){
 	#region 装备品
 	global.txt_menu[page].items[ITEM.B]={
 		name : "装备品",
-		desc : "可拆卸的强化装备，\n会强化某方面的能力",
+		desc : "可拆卸的强化装备，\n会强化某方面的能力，\n装载总点数超过容量上限时会受到超载惩罚",
 		tag  : "◆",
 		exmsg: "不能与%1$同时装备",
 		list : [],
@@ -175,14 +175,14 @@ function scr_txt_menu(){
 	}
 	global.txt_menu[page].items[ITEM.B].list[ITEMB.autoRecover]={
 		name : "自动恢复",
-		desc : "站立不动时恢复生命值，\n1秒钟恢复1点",
+		desc : "站立不动时恢复生命值，\n每2秒钟恢复1点",
 		byte : 4,
 		exclude : [],
 	}
 	global.txt_menu[page].items[ITEM.B].list[ITEMB.supportGain]={
 		name : "羁绊增幅",
-		desc : "获得的羁绊点数增加25%",
-		byte : 5,
+		desc : "造成伤害获得的充能点数提升50%",
+		byte : 8,
 		exclude : [],
 	}
 	global.txt_menu[page].items[ITEM.B].list[ITEMB.nonslip]={
@@ -698,7 +698,7 @@ function scr_txt_menu(){
 					trim : function(){return scr_player_exskill_isget(PLAYER_SKILL.flyChop) && global.model==PLAYER_MODEL.YANZX;},
 				}, {
 					txt : "援护技能",
-					desc : "援护槽积攒满时按援护技能键，\n会清空援护槽，并发动援护技能，\n根据卡片可以发动不同的援护技能",
+					desc : "不断造成伤害可以为援护槽充能，\n快速连续造成伤害会提升充能倍率，\n援护槽积攒满时按援护技能键，\n会清空援护槽，并发动援护技能，\n根据卡片可以发动不同的援护技能",
 					trim : function(){return true},
 				}, {
 					txt : "援护技·存在释放",

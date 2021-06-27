@@ -34,9 +34,9 @@ if sprite_index==spr_boss_yanzx_chant_ing {
 				vw=(yanzx_view[2]-yanzx_view[0]),
 				vh=(yanzx_view[3]-yanzx_view[1]);
 			for(var i=-1;i<=1;i+=2) {
-				with instance_create_depth(cenx+i*image_xscale*(vw/2-16*inx), ceny+i*image_xscale*vh/2, depth-1, obj_player_bullet_fire) {
+				with instance_create_depth(cenx+i*image_xscale*(vw/2-16*inx), ceny+i*vh/2, depth-1, obj_player_bullet_fire) {
 					scr_sprite_change(spr_boss_yanzx_bullet_fire_st, 0, 0.25)
-					direction=90*i*other.image_xscale
+					direction=90*i
 					image_angle=direction
 					scr_player_damage_set(4,ELEMENTS.fire,ATK_TYPE.bullet,0,10,1,0,0)
 					yanzx_view=other.yanzx_view

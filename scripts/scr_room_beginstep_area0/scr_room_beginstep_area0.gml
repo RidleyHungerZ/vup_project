@@ -987,7 +987,7 @@ else if room==room_area0_2
 			scr_sound_play(se_player_faint)
 		}
 		action=4
-		time=90
+		time=120
 	}
 	//物语出现
 	if action==4 && time==0 {

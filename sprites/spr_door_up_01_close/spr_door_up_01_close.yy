@@ -142,7 +142,7 @@
   "nineSlice": null,
   "parent": {
     "name": "01",
-    "path": "folders/Sprites/door/up/01.yy",
+    "path": "folders/Sprites/room_change/door/up/01.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_door_up_01_close",

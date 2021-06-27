@@ -3,7 +3,6 @@ if player_death_action=2{
 	obj_player.death_cliff=false;
 	audio_se_stop_all()
 	scr_sound_stopall_dpl()
-	scr_tip_talk_end_imm()
 	with obj_room {
 		action=0
 		//道具记录清空

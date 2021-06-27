@@ -1,7 +1,7 @@
 if view_current!=1 exit
 #region 驾驶舱
 if operate_rate>0 {
-	var ifx=32, ify=32*operate_rate;
+	var ifx=32, ify=-96+128*operate_rate;
 	//发卡
 	var bbnum=sprite_get_number(spr_ui_grd_board_bgs)
 	draw_sprite(spr_ui_grd_board_bgs, scr_image_index_fpscurr(false, 0.1, bbnum), ifx, ify)
@@ -101,7 +101,7 @@ if operate_rate>0 {
 	}
 	#endregion
 	
-	var bx=288, by=VIEW_H_UI-120*operate_rate
+	var bx=288, by=VIEW_H_UI+120-240*operate_rate
 	#region 腰带
 	with obj_menu {
 		//纹路底
@@ -212,7 +212,7 @@ if operate_rate>0 {
 	}
 	#endregion
 	
-	var bifx=1888, bify=VIEW_H_UI-120*operate_rate
+	var bifx=1888, bify=VIEW_H_UI+120-240*operate_rate
 	#region BOSS血条
 	if global.boss_war==1 {
 		var hpupmax=96
@@ -431,7 +431,7 @@ if unskill_action==2
 	var ukt=unskill_time,
 		ant=0,
 		bgt=0,
-		bgtmax=180,
+		bgtmax=150,
 		rate=0;
 	//黑底
 	bgt=bgtmax;
@@ -500,7 +500,8 @@ if unskill_action==2
 		var alpha=rate, 
 			px=48+912*rate, 
 			py=828-192*rate,
-			col=merge_color(c_white, $B2FFFF, 0.5+0.5*sin(ant*4/pi));
+			col=c_white;
+			//col=merge_color(c_white, $B2FFFF, 0.5+0.5*sin(ant*4/pi));
 		draw_sprite_ext(spr_ui_grd_unskill_name, unskill_index, px, py, 
 						1, 1, 0, col, alpha)
 		if bgt==ukt {

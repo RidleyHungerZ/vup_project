@@ -4,14 +4,10 @@ scr_time_alarm()
 //接触
 if action==0 {
 	if place_meeting(x, y, obj_player) 
-	&& global.operate==1 {
-		if obj_player.jump==0
-		&& obj_player.walk==0 {
-			ready_open=true
-		} else {
-			ready_open=false
-		}
-		if ready_open
+	&& global.operate==1 
+	&& obj_player.jump==0 {
+		ready_open=true
+		if obj_player.walk==0 
 		&& keystate_check_pressed(global.up_state) {
 			if can_open {
 				ready_open=false
@@ -28,6 +24,8 @@ if action==0 {
 				scr_sound_play(se_menu_error)
 			}
 		}
+	} else {
+		ready_open=false
 	}
 }
 //开门

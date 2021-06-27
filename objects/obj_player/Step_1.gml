@@ -469,7 +469,10 @@ if(obj_player.y>global.room_yb+24) {
 	&& !cliff_protect
 	&& global.player_operate==1) {
 		scr_player_hp_subtract(4);
+		scr_tip_thread(100, 4)
 		jump=PYJUMP.cliffProtect;
+		y-=4
+		flyobj=noone
 		hsp=0;
 		vsp=0;
 		dash=0;

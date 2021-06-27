@@ -123,7 +123,7 @@ if scr_menu_trem() {
 		} else {
 			scr_player_buff(PLAYER_BUFF.none, 0)
 		}
-		//自动回复
+		//自动回复能量
 		if global.player_mp<global.player_mp_up 
 		&& !scr_player_debuff_is(PLAYER_DEBUFF.losses) {
 			if auto_sp_time<90 auto_sp_time++
@@ -132,7 +132,7 @@ if scr_menu_trem() {
 				auto_sp_time=0
 			}
 		} else auto_sp_time=0
-		//流失
+		//流失能量
 		if global.player_mp>0
 		&& scr_player_debuff_is(PLAYER_DEBUFF.losses) {
 			if loss_sp_time<30 loss_sp_time++
@@ -141,6 +141,19 @@ if scr_menu_trem() {
 				loss_sp_time=0
 			}
 		} else loss_sp_time=0
+		//自动回血
+		if scr_itemb_isopen(ITEMB.autoRecover) {
+			if obj_player.walk==0 
+			&& obj_player.jump==0 
+			&& global.player_hp<global.player_hp_up{
+				auto_hp_time++
+				if auto_hp_time>=120 {
+					auto_hp_time=0
+					global.player_hp+=1
+					scr_sound_play(se_item_hp)
+				}
+			} else auto_hp_time=0
+		}
 	}
 }
 #endregion

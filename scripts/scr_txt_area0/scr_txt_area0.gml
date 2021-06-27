@@ -228,11 +228,11 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.meiSh
 身体突然……没有力气了……")
 //趴下
 thread_talk(prg, inx, TALK_INX.down, 1, -1, -1, -1)
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 3, 2, false,
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, WUYU_SHOTO.pingDan1, 2, false,
 @"……")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 6, 2, false,
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, WUYU_SHOTO.pingDan1, 2, false,
 @"这种程度的力量……")
-thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, 7, 2, false,
+thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.npc, WUYU_SHOTO.weiXiao, 2, false,
 @"可用之材……")
 #endregion
 }

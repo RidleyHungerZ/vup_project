@@ -98,6 +98,7 @@ function scr_enmus(){
 		up,
 		down,
 	}
+	//加奈表情
 	enum PLAYER_SHOTO {
 		normal, //平常
 		beiShang, //悲伤
@@ -115,6 +116,29 @@ function scr_enmus(){
 		wuNai, //无奈
 		yiHuo, //疑惑
 		ziXin, //自信
+	}
+	//物语表情
+	enum WUYU_SHOTO {
+		pingDan1 = 3,
+		pingDan2,
+		zhuangSha,
+		siKao,
+		weiXiao,
+		yinXiao,
+	}
+	//蓝蓝表情
+	enum BLUE_SHOTO {
+		normal = 10,
+		kaiXin,
+		danXin,
+		guoZai,
+	}
+	//燕逐晓
+	enum YANZX_SHOTO {
+		normal = 14,
+		kaiXin,
+		fenNu,
+		tanQi,
 	}
 	#endregion
 	#region 道具

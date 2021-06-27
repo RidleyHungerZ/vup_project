@@ -337,15 +337,14 @@ function scr_player_damage(otherobj) {
 							&& btn_or_sbr.can_combo 
 							&& global.operate==1
 							&& global.player_operate==1 {
+								var combo_add=att_infact
+								if scr_itemb_isopen(ITEMB.supportGain) combo_add*=1.5
 								//计算连击，并获得羁绊值
-								global.combo+=att_infact
-								//每4点伤害获得1秒结算时间，如果剩余时间更多则按剩余时间计算
-								//global.combo_time=max(global.combo_time, 60*(att_infact div 4)) 
+								global.combo+=combo_add
 								//每5点伤害获得0.5秒时间延长
-								global.combo_time=60*0.5*max(1, floor(att_infact div 5))
+								global.combo_time=60*0.5*max(1, floor(combo_add div 5))
 								//按照倍率获得羁绊值，每8点伤害获得一层倍率
 								var supval=2*global.support_mult
-								if scr_itemb_isopen(ITEMB.supportGain) supval*=1.25
 								scr_player_support_add(floor(supval))
 							}
 					

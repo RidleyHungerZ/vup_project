@@ -36,10 +36,10 @@ testmode=function() {
 	scr_item_gain(ITEM.A, ITEMA.milk)
 	scr_item_gain(ITEM.A, ITEMA.candy)
 	scr_item_gain(ITEM.A, ITEMA.energy)
-	//scr_item_gain(ITEM.A, ITEMA.hpup)
-	//scr_item_gain(ITEM.A, ITEMA.mpup)
-	//scr_item_gain(ITEM.A, ITEMA.rtank)
-	//scr_item_gain(ITEM.A, ITEMA.byte)
+	scr_item_gain(ITEM.A, ITEMA.hpup)
+	scr_item_gain(ITEM.A, ITEMA.mpup)
+	scr_item_gain(ITEM.A, ITEMA.rtank)
+	scr_item_gain(ITEM.A, ITEMA.byte)
 
 	scr_item_gain(ITEM.B, ITEMB.dbjump)
 	scr_item_gain(ITEM.B, ITEMB.airdash)
@@ -57,7 +57,7 @@ testmode=function() {
 
 	scr_item_gain(ITEM.C, ITEMC.esGun)
 	scr_item_gain(ITEM.C, ITEMC.esSaber)
-	scr_item_gain(ITEM.C, ITEMC.starGuard)
+	//scr_item_gain(ITEM.C, ITEMC.starGuard)
 
 	scr_player_exskill_gain(PLAYER_SKILL.flyChop)
 	
