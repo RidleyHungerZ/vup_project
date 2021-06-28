@@ -146,7 +146,7 @@ npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up,TALK_SHOTO.npc, W
 @"部分是我从我自己的实验室搬过来的，
 不要乱碰。", [], false))
 npc_talk_txt(npc, group, inx++, new npcTalkContext(TALK_INX.up,TALK_SHOTO.npc, WUYU_SHOTO.weiXiao, 2, 100, 
-@"后调查行动的技术支持就由我提供，
+@"今后调查行动的技术支持就由我提供，
 像是物品交易，装备开发，卡片管理之类的。
 当然，不是免费的。", [], false))
 //选项分支
