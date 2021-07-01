@@ -96,6 +96,7 @@ if global.gamekey_display==1 {
 				kblend=UIPINK
 				stroke=UIPINK
 			}
+			if !is_real(keyinx) keyinx=0
 			draw_sprite_ext(gkspr, keyinx, keydx, keydy, 1, 1, 0, kblend, 1)
 			scr_draw_text_ext(kblend, 1, 0, font_puhui_32, 0, 0.5, txtsut.txt, keydx+txtdx, keydy, txtsc, txtsc, -1, -1, stroke, 1)
 			draw_set_font(font_puhui_32)
