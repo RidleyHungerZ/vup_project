@@ -7,7 +7,7 @@ scr_sprite_imspd(spr_player_armor_idle_chop1,0.25,6,7)
 //////////////////////////////////////
 scr_sprite_imspd(spr_player_armor_idle_chop2,0.5,0,4)
 scr_sprite_imspd(spr_player_armor_idle_chop2,0.5,4,7)
-scr_sprite_imspd(spr_player_armor_idle_chop2,0.25,7,8)
+scr_sprite_imspd(spr_player_armor_idle_chop2,0.5,7,8)
 scr_sprite_imspd(spr_player_armor_idle_chop2,0.25,8,10)
 //////////////////////////////////////
 scr_sprite_imspd(spr_player_armor_idle_chop3,0.5,0,4)

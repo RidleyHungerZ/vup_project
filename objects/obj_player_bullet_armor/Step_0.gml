@@ -14,8 +14,8 @@ if in(sprite_index, [spr_player_armor_bullet01]) {
 #endregion
 #region 小蓄力弹
 if in(sprite_index, [spr_player_armor_bullet_charge01_st, spr_player_armor_bullet_charge01]) {
-	if collision_rectangle(x+8, y+4, x-8, y-4, obj_ground, 1, 1) 
-	|| collision_rectangle(x+8, y+4, x-8, y-4, obj_sink, 1, 1) {
+	if collision_rectangle(x+8, y+2, x-8, y-2, obj_ground, 1, 1) 
+	|| collision_rectangle(x+8, y+2, x-8, y-2, obj_sink, 1, 1) {
 		hit_ground(x, y, true)
 	} else if hit==1 {
 		instance_destroy()
@@ -35,8 +35,8 @@ if in(sprite_index, [spr_player_armor_bullet_charge02_st, spr_player_armor_bulle
 			image_angle=other.image_angle
 		}
 	}
-	if collision_rectangle(x+16, y+8, x-16, y-8, obj_ground, 1, 1) 
-	|| collision_rectangle(x+16, y+8, x-16, y-8, obj_sink, 1, 1) {
+	if collision_rectangle(x+16, y+4, x-16, y-4, obj_ground, 1, 1) 
+	|| collision_rectangle(x+16, y+4, x-16, y-4, obj_sink, 1, 1) {
 		hit_ground(x, y, true)
 	} else if hit==1 {
 		instance_destroy()

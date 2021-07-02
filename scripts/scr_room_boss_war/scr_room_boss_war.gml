@@ -7,6 +7,7 @@ function scr_room_bosswar_start(warbgm, resbgm, failfun) {
 	bosswar_bgm=warbgm
 	restart_bgm=resbgm
 	bosswar_fail=failfun
+	bosswar_fail_room=room
 }
 /// @desc BOSS战进行中
 function scr_room_bosswar_inwar() {

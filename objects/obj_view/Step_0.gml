@@ -119,6 +119,11 @@ if scr_menu_trem() {
 			tip_talk_rate=0
 			global.tip_talk=0
 			tip_init()
+			if ds_list_size(global.tip_talk_sequeue)>0 {
+				var nexttip = global.tip_talk_sequeue[| 0];
+				ds_list_delete(global.tip_talk_sequeue, 0)
+				scr_tip_talk(nexttip, 0)
+			}
 		}
 	} else if global.tip_talk==1 {
 		if global.tip_talk_print_len<global.tip_talk_txt_len {

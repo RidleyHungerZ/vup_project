@@ -2,7 +2,7 @@ hp=48
 event_inherited();
 view_edge=-1
 boom_number=9
-//undm=1
+undm=1
 follow_angle=false //是否跟随角度
 
 exrod_len=0 //伸缩杆长度

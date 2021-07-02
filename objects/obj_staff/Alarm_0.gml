@@ -7,9 +7,17 @@ if player_death_action=2{
 		action=0
 		//道具记录清空
 		item_not_set = 1
-		if is_method(bosswar_fail) 
-			bosswar_fail()
-		bosswar_fail=noone
+		try {
+			if is_method(bosswar_fail) 
+			&& room==bosswar_fail_room {
+				bosswar_fail()
+			}
+			bosswar_fail=noone
+			bosswar_fail_room=noone
+		} catch (e) {
+			print e
+			show_message("发生错误！请将该窗口的内容复制发送给制作组人员！" + e)
+		}
 	}
 	//命归零
 	if false { //global.player_life<=0 && 
@@ -58,10 +66,6 @@ if player_death_action=2{
 	global.view_ycen_shift=0//镜头中心偏移
 	global.stop=0
 	global.menu=0
-	//对话
-	//global.talk=0
-	//重置小对话
-	//with obj_view0 event_user(15)
 }
 else if player_death_action=3{
 	scr_view_transition(1,1)

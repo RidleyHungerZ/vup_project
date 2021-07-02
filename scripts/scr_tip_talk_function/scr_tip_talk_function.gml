@@ -25,6 +25,7 @@ function scr_tip_talk_end_imm() {
 		tip_talk_rate=0
 		global.tip_talk=0
 		tip_init()
+		ds_list_clear(global.tip_talk_sequeue)
 	}
 }
 /// @desc 对话是否进行中
@@ -35,7 +36,12 @@ function scr_tip_talk_ing() {
 function scr_tip_thread(area, inx) {
 	if !scr_tip_thread_isover(area, inx) {
 		global.thread_tip[area][inx]=1
-		scr_tip_talk(global.txt_tips[area][inx], 0)
+		var tips=global.txt_tips[area][inx]
+		if scr_tip_talk_ing() {
+			ds_list_add(global.tip_talk_sequeue, tips)
+		} else {
+			scr_tip_talk(tips, 0)
+		}
 	}
 }
 /// @desc 小对话是否发生过

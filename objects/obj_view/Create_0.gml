@@ -116,6 +116,7 @@ talk_print_fast=false //快速打印
 #endregion
 #region 小提示
 global.tip_talk=0 //小提示
+global.tip_talk_sequeue=ds_list_create() //提示队列
 tip_init = function() {
 	global.tip_talk_txt_list=[]
 	global.tip_talk_txt="" //对话内容

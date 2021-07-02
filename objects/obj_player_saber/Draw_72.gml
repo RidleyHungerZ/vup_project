@@ -3,11 +3,14 @@ if global.player_hp<=0
 || global.operate!=1
 || global.player_operate!=1 {
 	scr_sprite_change(spr_none, 0, 0)
+	exit
 }
+var playspr = global.player.sprite_index,
+	playsprname = sprite_get_name(playspr),
+	sprname = playsprname + "_saber",
+	spr = asset_get_index(sprname);
 #region 精灵对齐
 if(scr_menu_trem()) {
-	var sprname = sprite_get_name(global.player.sprite_index)+"_saber",
-		spr = asset_get_index(sprname);
 	if sprite_exists(spr) {
 		scr_sprite_change(spr, global.player.image_index, global.player.image_speed)
 	}
@@ -107,3 +110,22 @@ if sprite_index==spr_player_armor_fly_chop_saber
 #endregion
 if sprite_index!=spr_none
 	global.player.bullet_time=-1;
+#region 光剑同步消失
+var sbrsprname=sprite_get_name(sprite_index)
+//当前精灵名称中不存在原名称时，即视为玩家与光剑不同步
+if sprite_index!=spr_none
+&& !string_contain(sbrsprname, playsprname + "_saber") {
+	if string_contain(sbrsprname, sprite_get_name(spr_player_armor_fly_chop) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_fly_choping) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_fly_choped) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_fall_spin_chop) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_fall_spin_choped) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_idle_chop_charge) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_idle_chop1) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_idle_chop2) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_idle_chop3) + "_saber")
+	|| string_contain(sbrsprname, sprite_get_name(spr_player_armor_dash_chop) + "_saber") {
+		scr_sprite_change(spr_none, 0, 0)
+	}
+}
+#endregion

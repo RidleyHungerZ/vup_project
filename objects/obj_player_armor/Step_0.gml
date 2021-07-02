@@ -122,7 +122,7 @@ if jump==0 {}
 #region 下踢前摇
 else if jump==PYJUMP.kickSt {
 	if place_meeting(x,y-image_yscale,obj_ground) 
-	|| vsp>0 {
+	|| vsp>=0 {
 		if kick_type==1 {
 			scr_sprite_change(spr_player_armor_kick_below, 0, 0.5)
 			vsp=round(vspmaxrate*GRAV*sin(pi/4));
@@ -309,7 +309,8 @@ if jump==PYJUMP.fall {
 		} else kick_type=0
 		scr_sprite_change(spr_player_armor_kick_down_st, 0, 0.25)
 		hsp=0
-		vsp=-5
+		vsp=-1
+		//vsp=-2.5
 		jump=PYJUMP.kickSt
 		scr_player_mp_subtract(2)
 	}

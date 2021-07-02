@@ -139,6 +139,7 @@ if(jump!=0) {
 	&& jump!=PYJUMP.glide //悬浮
 	&& jump!=PYJUMP.airdash //空冲
 	&& jump!=PYJUMP.airDashChop //空冲砍
+	//&& jump!=PYJUMP.kickSt //斜下踢
 	&& jump!=PYJUMP.kick //斜下踢
 	&& jump!=PYJUMP.cliffProtect //悬崖漂浮
 	&& jump!=PYJUMP.catched //被抓住

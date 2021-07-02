@@ -28,6 +28,9 @@ function scr_return_title(){
 		//进度清空
 		action=0
 		time=0
+		//BOSS战函数清理
+		bosswar_fail=noone
+		bosswar_fail_room=noone
 	}
 	with obj_menu {
 		menu_type=0
