@@ -17,63 +17,70 @@ if action==0 {
 			global.operate=0
 			global.player_operate=0
 			scr_player_debuff_clear()
-			open_xscale=sign(x-obj_player.x)
-			with obj_player {
-				image_xscale=other.open_xscale
-				if jump==0 {
-					if sprite_index!=SS_walk
-						scr_sprite_change(SS_walk, 0, 0.25)
-					walk=0
-					hsp=0
-				} else {
-					scr_sprite_change(SS_jumped, 0, 0.25)
-					jump=PYJUMP.fall
-					hsp=0
-					vsp=0
-				}
-				dash=0
-				can_dbjump=true
-			}
 			action=1
 		}
 	}
 } 
-//开门走入
+//动作变化
 else if action==1 {
+	open_xscale=sign(x-obj_player.x)
+	with obj_player {
+		image_xscale=other.open_xscale
+		if jump==0 {
+			if sprite_index!=SS_walk
+				scr_sprite_change(SS_walk, 0, 0.25)
+			walk=PYWALK.walk
+			hsp=0
+		} else {
+			scr_sprite_change(SS_jumped, 0, 0.25)
+			jump=PYJUMP.fall
+			hsp=0
+			vsp=0
+		}
+		dash=0
+		can_dbjump=true
+		clearBullets()
+	}
+	action=2
+}
+//开门走入
+else if action==2 {
 	scr_view_freedom(obj_player, true, true)
 	if sprite_index==SS_opening {
 		with obj_player {
 			hspeed=walkspd*hspd*image_xscale
 		}
-		action=2
-	}
-}
-else if action==2 {
-	if(obj_player.x-x)*open_xscale>0 
-	&& !room_change{
 		action=3
 	}
 }
-//镜头移动
 else if action==3 {
+	if(obj_player.x-x)*open_xscale>0 
+	&& !room_change{
+		action=4
+	}
+}
+//镜头移动
+else if action==4 {
 	scr_view_freedom(obj_player, true, true)
 	//到达位置
 	if(obj_player.x-x)*open_xscale>=64 {
 		with obj_player {
 			hspeed=0
 			if jump==0 scr_sprite_change(SS_idle, 0, 0.25)
+			walk=0
 		}
 		scr_sprite_change(SS_close, 0, 0.25)
 		scr_sound_play(SE_close)
-		action=4
+		action=5
 	}
 }
-else if action==4 {
+else if action==5 {
 	scr_view_freedom(obj_player, true, true)
 	if sprite_index==SS_closing {
 		with obj_player {
 			if jump!=0 {
 				scr_sprite_change(SS_jumped, 0, 0.25)
+				jump=PYJUMP.fall
 			}
 		}
 		global.operate=0.8
