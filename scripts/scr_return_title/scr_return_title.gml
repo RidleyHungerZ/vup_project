@@ -4,6 +4,8 @@ function scr_return_title(){
 	scr_sound_stopall_dpl()
 	scr_view_shock_stop()
 	scr_room_goto(room_logo)
+	scr_talk_end_imm()
+	scr_tip_talk_end_imm()
 	//scr_data_save_global(noone,noone)
 	//scr_data_set_note()
 	data_save_variable_single()

@@ -1,4 +1,9 @@
 /// @description 精灵对齐
+if global.player_hp<=0 
+|| global.operate!=1 {
+	scr_sprite_change(spr_none, 0, 0)
+	exit
+}
 if sprite_index==spr_player_armor_walk_chop_saber {
 	exit
 }

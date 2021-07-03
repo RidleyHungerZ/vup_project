@@ -17,6 +17,14 @@ function scr_talk_start(inx, now, xscale) {
 function scr_talk_end(){
 	global.talk=-0.5
 }
+/// @desc 结束对话
+function scr_talk_end_imm(){
+	with obj_view {
+		talk_rate=0
+		global.talk=0
+		talk_init()
+	}
+}
 /// @desc 开启对话
 /// @arg now 当前对话
 /// @arg txt 内容

@@ -9,8 +9,7 @@ if action==0 {
 			global.operate=0
 			global.player_operate=0
 			action=1
-		}
-		action=2
+		} else action=2
 	}
 }
 //前进中
