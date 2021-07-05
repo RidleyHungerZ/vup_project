@@ -56,6 +56,9 @@ else if select_type==1 {
 		else if select[select_type]==2 {
 			action=1.3
 			scr_view_transition(1, 0)
+		} else if select[select_type]==3 {
+			action=-100
+			scr_view_transition(1, 0)
 		}
 	}
 	//读档
@@ -88,6 +91,12 @@ else if select_type==1 {
 		if scr_view_transition_Isover(1) {
 			operate_setting_display=false
 			action=1
+		}
+	}
+	//退出游戏
+	else if action==-100 {
+		if scr_view_transition_Isover(1) {
+			game_end()
 		}
 	}
 }

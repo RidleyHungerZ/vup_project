@@ -138,7 +138,7 @@ thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.fenNu
 @"这些家伙果然是从大门突入的，赶紧联系物语做紧急维护处理！")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, false,
 @"紧急呼叫，物语stor，
-K.A.N.A.资源管理所确认遭受到不明暴乱袭，仓库大门遭到破坏！")
+K.A.N.A.资源管理所确认遭受到不明暴乱袭击，仓库大门遭到破坏！")
 thread_talk_txt(prg, inx++, TALK_INX.down, TALK_SHOTO.player, PLAYER_SHOTO.jianDing, 1, true,
 @"目前已携带货物抵达仓库大门，请求紧急维护与战术支援！
 重复一遍，请求紧急维护与战术支援！")

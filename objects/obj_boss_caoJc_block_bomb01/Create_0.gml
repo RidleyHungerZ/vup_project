@@ -1,5 +1,5 @@
 if !variable_instance_exists(id, "hp") hp=12
-if !variable_instance_exists(id, "attack") attack=4
+if !variable_instance_exists(id, "attack") attack=8
 event_inherited();
 view_edge=-1
 /// @arg injure_back=true

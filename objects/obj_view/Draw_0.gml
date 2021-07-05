@@ -23,7 +23,8 @@ if operate_rate>0 {
 			draw_surface_ext(hp_surface, hpx+0, hpy+8, 1, 1, 0, $130ecc, 11)
 		}
 		//血条
-		get_hp_surface(global.player_hp, global.player_hp_up, hprate);
+		var whitehp=max(0, global.player_hp-scr_itemb_overload())
+		get_hp_surface(whitehp, global.player_hp_up, hprate);
 		if surface_exists(hp_surface) {
 			draw_surface(hp_surface, hpx+0, hpy+8)
 		}

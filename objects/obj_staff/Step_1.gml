@@ -71,12 +71,11 @@ if global.player_hp>global.player_hp_up
 else if global.player_hp<0
 	global.player_hp=0
 //血量红条
-if scr_menu_trem() {
-	if global.player_hp_aft<global.player_hp
-		global.player_hp_aft=global.player_hp
-	else if global.player_hp_aft>global.player_hp {
-		global.player_hp_aft-=1/5
-	}
+if global.player_hp_aft<global.player_hp
+	global.player_hp_aft=global.player_hp
+else if global.player_hp_aft>global.player_hp
+&& scr_menu_trem() {
+	global.player_hp_aft-=1/5
 }
 //mp控制
 if global.player_mp>global.player_mp_up

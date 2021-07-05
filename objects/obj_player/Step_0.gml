@@ -718,31 +718,33 @@ for(var i=1;i<=2;i+=1){
 				cliff_protect_time--;
 				image_alpha=(cliff_protect_time mod 3)/3;
 				if(y>global.room_yb-32) {
-					if(vsp>-1) vsp-=0.01;
+					if(vsp>-1) vsp-=0.025;
 				}
 				else{
 					//上飞
 					if(keystate_check(global.up_state)) {
-						if(vsp>-1) vsp-=0.1;
+						if(vsp>-1) vsp-=0.25;
 					}
-					else if(vsp<0) vsp+=0.1;
+					else if(vsp<0) vsp+=0.25;
 				}
 				var old_xscale=image_xscale;
 				//左右飞行
 				if(keystate_check(global.left_state)) {
 					image_xscale=-1;
 					if(old_xscale!=image_xscale) hsp*=-1;
-					if(hsp<1) hsp+=0.1;
+					if(hsp<1) hsp+=0.2;
 				}
 				else if(keystate_check(global.right_state)) {
 					image_xscale=1;
 					if(old_xscale!=image_xscale) hsp*=-1;
-					if(hsp<1) hsp+=0.1;
+					if(hsp<1) hsp+=0.25;
 				}
-				else if(hsp>0) hsp-=0.1;
-				else if(hsp<0) hsp+=0.1;
+				else if(hsp>0) hsp-=0.25;
+				else if(hsp<0) hsp+=0.25;
 				
-				if(keystate_check_pressed(global.jump_state)) cliff_protect_time=0;
+				if(keystate_check_pressed(global.jump_state)
+				&& cliff_protect_time<=60*3) 
+					cliff_protect_time=0;
 			}
 			else{
 				image_alpha=1;
@@ -752,6 +754,8 @@ for(var i=1;i<=2;i+=1){
 				scr_sprite_change(SS_fall,0,0.25);
 				hsp=walkspd*hspd;
 				vsp=0;
+				x=round(x)
+				y=round(y)
 			}
 		}
 		#endregion

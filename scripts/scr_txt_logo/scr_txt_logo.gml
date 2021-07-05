@@ -8,6 +8,7 @@ global.txt_logo[0]="请按下任意键"
 global.txt_logo[1][0]="开始游戏"
 global.txt_logo[1][1]="试玩模式"
 global.txt_logo[1][2]="游戏设置"
+global.txt_logo[1][3]="退出游戏"
 //进阶选项
 global.txt_logo[2][0][0]="简单模式"
 global.txt_logo[2][0][1]="普通模式"

@@ -9,7 +9,7 @@ draw_sprite_ext(spr_logo_bgs, 0, 0, 0, 1, 1, 0, c_white, black_start)
 draw_sprite(spr_logo_title, 0, logox, logoy)
 //文本
 var txtsx=cenx,
-	txtsy=ceny+256;
+	txtsy=ceny+272;
 //按下任意键
 if select_type==0 {
 	var txtalpha=1;

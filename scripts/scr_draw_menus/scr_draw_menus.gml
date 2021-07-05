@@ -345,7 +345,9 @@ function scr_draw_menu_item(dx, dy){
 	} else if msel[0]==ITEM.B {
 		//蜂窝格子
 		drawx=dx+304 drawy=dy+352
-		var bytemax=global.item2_byte_max;
+		var bytemax=global.item2_byte_max,
+			overload=scr_itemb_overload();
+		bytemax+=overload;
 		if !is_undefined(itemnowst)
 			bytemax+=itemnowst.byte
 		var bytemaxgrp = (bytemax div 3), //3个一组，总组数
@@ -374,12 +376,15 @@ function scr_draw_menu_item(dx, dy){
 						&& byteinx>=menu_item_byte_sum-itemnowst.byte {
 							draw_sprite_ext(spr_menu_item_hex, 1, drx, dry, 1, 1, 0, c_white, 0.5)
 						}
-						else draw_sprite(spr_menu_item_hex, 1, drx, dry)
+						if byteinx<global.item2_byte_max 
+							draw_sprite(spr_menu_item_hex, 1, drx, dry)
+						else draw_sprite_ext(spr_menu_item_hex, 1, drx, dry, 1, 1, 0, c_fuchsia, 0.5)
 					}
-					//待占用格子
+					//待占用格子（不超载时显示）
 					else if menu_type==1 
 					&& global.item[ITEM.B][itemnow]==ITEMB_STATUS.close
-					&& byteinx<menu_item_byte_sum+itemnowst.byte
+					&& byteinx<menu_item_byte_sum+itemnowst.byte 
+					&& overload==0
 						draw_sprite_ext(spr_menu_item_hex, 1, drx, dry, 1, 1, 0, c_white, flashaph)
 					byteinx++;
 				}
