@@ -796,8 +796,9 @@ else if room==room_area0_2
 		global.sub_type=temp[0]
 		global.main_sub_exchange[PLAYER_MODEL.ARMOR]=temp[1]
 		scr_thread_over(prg)
-		scr_room_freedom()
+		//scr_room_freedom()
 		scr_relife_set_point(obj_player.x, obj_player.y+GRDY, obj_player.image_xscale)
+		scr_room_beginstep_area0_autoShowSkillList()
 		action=0
 	}
 	///@skip
@@ -813,8 +814,9 @@ else if room==room_area0_2
 		instance_destroy(obj_thread_enemy05)
 		instance_destroy(obj_player_bullet)
 		global.view_control=0
-		scr_room_freedom()
+		//scr_room_freedom()
 		scr_relife_set_point(obj_player.x, obj_player.y+GRDY, obj_player.image_xscale)
+		scr_room_beginstep_area0_autoShowSkillList()
 	}
 }
 #endregion
@@ -1156,4 +1158,39 @@ else if room==room_end {
 	}
 }
 #endregion
+}
+/// @desc 自动打开菜单技能页面的方法
+function scr_room_beginstep_area0_autoShowSkillList() {
+	var assl = scr_create_extractor_temp(function() {
+		if action==0 {
+			global.menu_operate=0
+			action=1
+			menu_time=30
+		} 
+		//开启菜单
+		else if action==1 && menu_time==0 {
+			global.start_state=1
+			action=1.1
+		} else if action==1.1 {
+			global.start_state=0
+			action=2
+			menu_time=30
+		}
+		//切换到技能页
+		else if action==2 && menu_time==0 {
+			global.L_state=1
+			action=2.1
+		} else if action==2.1 {
+			global.L_state=0
+			action=3
+			menu_time=30
+		}
+		//结束操作
+		else if action==3 && menu_time==0 {
+			global.menu_operate=1
+			scr_room_freedom()
+			instance_destroy()
+		}
+	});
+	scr_execute_extractor_temp(assl);
 }

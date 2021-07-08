@@ -69,8 +69,9 @@ function scr_viewroom_background(isfirst){
 			#region 小对话
 				if scr_tip_thread_can() {
 					//变身
-					if scr_thread_isover(4)
+					if scr_thread_isover(4) {
 						scr_tip_thread(0, 2)
+					}
 				}
 			#endregion
 		break } #endregion

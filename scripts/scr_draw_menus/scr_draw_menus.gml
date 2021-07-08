@@ -370,10 +370,10 @@ function scr_draw_menu_item(dx, dy){
 					if byteinx<global.item2_byte_max 
 						draw_sprite(spr_menu_item_hex, 0, drx, dry)
 					//已占用格子
-					if byteinx<menu_item_byte_sum {
+					if byteinx<global.menu_item_byte_sum {
 						if menu_type==1
 						&& global.item[ITEM.B][itemnow]==ITEMB_STATUS.open 
-						&& byteinx>=menu_item_byte_sum-itemnowst.byte {
+						&& byteinx>=global.menu_item_byte_sum-itemnowst.byte {
 							draw_sprite_ext(spr_menu_item_hex, 1, drx, dry, 1, 1, 0, c_white, 0.5)
 						}
 						if byteinx<global.item2_byte_max 
@@ -383,7 +383,7 @@ function scr_draw_menu_item(dx, dy){
 					//待占用格子（不超载时显示）
 					else if menu_type==1 
 					&& global.item[ITEM.B][itemnow]==ITEMB_STATUS.close
-					&& byteinx<menu_item_byte_sum+itemnowst.byte 
+					&& byteinx<global.menu_item_byte_sum+itemnowst.byte 
 					&& overload==0
 						draw_sprite_ext(spr_menu_item_hex, 1, drx, dry, 1, 1, 0, c_white, flashaph)
 					byteinx++;
@@ -393,7 +393,7 @@ function scr_draw_menu_item(dx, dy){
 		//计数
 		drawx=dx+752 drawy=dy+672
 		draw_sprite(spr_menu_item_line, 0, drawx, drawy)
-		scr_draw_text(UIPINK, 1, 0, font_jam_80, 1, 0.5, menu_item_byte_sum, drawx, drawy-40, 1, 1, -1, -1, -1, 0)
+		scr_draw_text(UIPINK, 1, 0, font_jam_80, 1, 0.5, global.menu_item_byte_sum, drawx, drawy-40, 1, 1, -1, -1, -1, 0)
 		scr_draw_text(UIPINK, 1, 0, font_jam_80, 0, 0.5, global.item2_byte_max, drawx, drawy+40, 1, 1, -1, -1, -1, 0)
 	} else if msel[0]==ITEM.C {
 		drawx=dx+480 drawy=dy+512

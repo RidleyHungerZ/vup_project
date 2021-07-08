@@ -447,7 +447,7 @@ function scr_menu_page_item_code() {
 					global.item[ITEM.B][itemnow]=ITEMB_STATUS.close
 					scr_sound_menu_play(se_menu_true)
 				} else {
-					if menu_item_byte_sum>=global.item2_byte_max {
+					if global.menu_item_byte_sum>=global.item2_byte_max {
 						scr_sound_menu_play(se_menu_error)
 					} else {
 						//检测是否已装备排除装备

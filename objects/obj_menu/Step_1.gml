@@ -5,7 +5,8 @@ if global.operate==1
 	switch(global.menu) {
 		case 0:{
 			if global.stop==0
-			&& keystate_check_pressed(global.start_state){
+			&&(keystate_check_pressed(global.start_state) || global.menu_open_temp==1 ){
+				global.menu_open_temp=0
 				global.menu=0.5
 				global.stop=0.5
 				menu_open_action=1
@@ -29,8 +30,10 @@ if global.operate==1
 		}
 		case 1:{
 			if(keystate_check_pressed(global.start_state)
-			|| keystate_check_pressed(global.B_state))
+			|| keystate_check_pressed(global.B_state)
+			|| global.menu_open_temp==1)
 			&& menu_type==0 {
+				global.menu_open_temp=0
 				global.menu=-0.5
 				menu_open_action=1
 			}

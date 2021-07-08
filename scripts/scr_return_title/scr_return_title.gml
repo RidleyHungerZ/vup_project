@@ -42,5 +42,6 @@ function scr_return_title(){
 				menu_curr[type]=0
 			}
 		}
+		global.menu_item_byte_sum=0
 	}
 }

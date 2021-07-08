@@ -51,5 +51,5 @@ function scr_itemb_isopen(inx) {
 }
 /// @desc 超载点数
 function scr_itemb_overload(){
-	return max(0, obj_menu.menu_item_byte_sum-global.item2_byte_max)
+	return max(0, global.menu_item_byte_sum-global.item2_byte_max)
 }

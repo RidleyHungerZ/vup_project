@@ -290,6 +290,7 @@ global.fps_roommenu=0//房间开始到现在活动状态
 #region 暂停区
 global.operate=0//完全代码操纵
 global.player_operate=0//仅关闭按键操纵，依然可用自带移动体系
+global.menu_operate=1//挟持菜单按键，为0时菜单按键会失去与实体按键的映射
 global.stop=0//暂停游戏
 //打击感
 global.saber_pause=0

@@ -101,6 +101,7 @@ function scr_staff_key_state() {
 #endregion
 	////////////////////////////////////////
 #region 菜单操作
+if(global.menu_operate==1) {
 	global.Left_state = scr_allkey_state(global.left_allstate)
 	global.Right_state = scr_allkey_state(global.right_allstate)
 	global.Up_state = scr_allkey_state(global.up_allstate)
@@ -150,6 +151,7 @@ function scr_staff_key_state() {
 	//鼠标坐标
 	global.Mmouse_x=mouse_x
 	global.Mmouse_y=mouse_y
+}
 #endregion
 #region 玩家动作
 #region 自由操作
