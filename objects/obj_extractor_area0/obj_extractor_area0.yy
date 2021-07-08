@@ -5,8 +5,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_root",
-    "path": "objects/obj_root/obj_root.yy",
+    "name": "obj_extractor_temp",
+    "path": "objects/obj_extractor_temp/obj_extractor_temp.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -22,8 +22,6 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":1,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -32,7 +30,7 @@
     "path": "folders/Objects/extractor.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_extractor_temp",
+  "name": "obj_extractor_area0",
   "tags": [],
   "resourceType": "GMObject",
 }

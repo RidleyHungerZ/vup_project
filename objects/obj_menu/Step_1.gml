@@ -1,11 +1,13 @@
 #region 进入菜单
-if global.operate==1 
-&& global.player_operate==1
+if((global.menu_operate==1
+ && global.operate==1 
+ && global.player_operate==1)
+  || global.menu_operate==0)
 && global.player_hp>0 {
 	switch(global.menu) {
 		case 0:{
 			if global.stop==0
-			&&(keystate_check_pressed(global.start_state) || global.menu_open_temp==1 ){
+			&& keystate_check_pressed(global.Start_state) {
 				global.menu_open_temp=0
 				global.menu=0.5
 				global.stop=0.5
@@ -29,9 +31,8 @@ if global.operate==1
 			break
 		}
 		case 1:{
-			if(keystate_check_pressed(global.start_state)
-			|| keystate_check_pressed(global.B_state)
-			|| global.menu_open_temp==1)
+			if(keystate_check_pressed(global.Start_state)
+			|| keystate_check_pressed(global.B_state))
 			&& menu_type==0 {
 				global.menu_open_temp=0
 				global.menu=-0.5

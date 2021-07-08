@@ -9,6 +9,8 @@ bosswar_fail_room=noone
 direct=0
 npc=array_create(20, noone)
 temp=array_create(20, 0)
+//用于临时传递方法参数使用
+method_temp=function(){}
 
 for(var i=1;i<=4;i++) {
 	layerInstFront[i]="front_inst"+string_real_supply0(i, 2)

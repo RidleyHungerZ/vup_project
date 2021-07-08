@@ -43,7 +43,8 @@ if global.room_change>=3 && global.room_change<=4 {
 }
 #endregion
 #region 按键显示
-if global.gamekey_display==1 {
+if global.gamekey_display==1
+&& global.menu_operate==1 {
 	var txts=global.txt_view_gamekey, 
 		txtsuts=noone;
 	//菜单按键

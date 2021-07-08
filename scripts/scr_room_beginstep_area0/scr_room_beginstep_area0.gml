@@ -1161,36 +1161,6 @@ else if room==room_end {
 }
 /// @desc 自动打开菜单技能页面的方法
 function scr_room_beginstep_area0_autoShowSkillList() {
-	var assl = scr_create_extractor_temp(function() {
-		if action==0 {
-			global.menu_operate=0
-			action=1
-			menu_time=30
-		} 
-		//开启菜单
-		else if action==1 && menu_time==0 {
-			global.start_state=1
-			action=1.1
-		} else if action==1.1 {
-			global.start_state=0
-			action=2
-			menu_time=30
-		}
-		//切换到技能页
-		else if action==2 && menu_time==0 {
-			global.L_state=1
-			action=2.1
-		} else if action==2.1 {
-			global.L_state=0
-			action=3
-			menu_time=30
-		}
-		//结束操作
-		else if action==3 && menu_time==0 {
-			global.menu_operate=1
-			scr_room_freedom()
-			instance_destroy()
-		}
-	});
+	var assl = scr_create_extractor_temp(obj_extractor_area0);
 	scr_execute_extractor_temp(assl);
 }
